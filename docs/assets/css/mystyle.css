@@ -1,0 +1,62 @@
+@charset "utf-8";
+@media (max-width: 768px) {
+	body{
+		margin: auto;
+		width: 95%;
+	}
+	div#PAGETOP	{
+		margin: 0 auto;
+		min-width: 100px;
+	}
+}
+p, li {
+  line-height: 1.65;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  margin: 0 0 0.8em;
+}
+div#KIZI div.text ul li {
+	padding-left: 1em;
+	text-indent: -1em;
+}
+.footnotes {
+  margin-top: 80px;
+}
+.footnote {
+  /*vertical-align: super;*/
+  font-size: 0.8em;
+	text-decoration: none;
+}
+.footnote::before {
+  content: "["
+}
+.footnote::after {
+  content: "]"
+}
+div#KIZI div.text ul li::before{
+	content: "‣";
+	padding-right: 0.25em;
+	margin-left: 0.25em;
+	color: #0095d9;
+}
+div#KIZI div.text ul.modori li::before{
+	content: none;
+}
+div#MENU h2	,
+div#FOOTER h2	{
+	display: none;
+}
+.e {
+	line-height: 0;
+	text-transform: uppercase;
+	margin-left: -0.140em;
+	margin-right: -0.102em;
+	vertical-align: -0.161em;
+}
+.a {
+	font-size: 0.75em;
+	vertical-align: 0.2em;
+	margin-left: -0.36em;
+	margin-right: -0.15em;
+	text-transform: uppercase;
+}

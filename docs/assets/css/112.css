@@ -1,0 +1,189 @@
+@charset "utf-8";
+
+/* ===================================================================
+		106.css --- レイアウト設定
+=================================================================== */
+
+/* 全体 */
+body	{
+	color: #333;
+	/*background: #fff url(img/112.png) fixed no-repeat 90% 90%;*/
+	margin: 0 430px 30px 30px;
+}
+
+/* アンカー */
+a	{
+	color: #0095d9;
+}
+a:visited	{
+	color: #59b9c6;
+}
+a:hover	{
+	color: #dbd0e6;
+}
+
+/* 強調 */
+em	{
+	color: #f00;
+}
+
+
+/* -------------------------------------------------------------------
+			#PAGETOP
+------------------------------------------------------------------- */
+
+div#PAGETOP	{
+	margin: 0 auto;
+	min-width: 500px;
+	width: auto;
+	overflow: hidden;
+	position: relative;
+}
+
+
+/* -------------------------------------------------------------------
+			#HEADER
+------------------------------------------------------------------- */
+
+div#HEADER	{
+	margin: 30px 0;
+	width: auto;
+}
+
+div#HEADER h1	{
+	font-size: 180%;
+	line-height: 1.2;
+	color: #a59aca;
+	border-left: 9px double #a59aca;
+	padding-left: 5px;
+}
+
+
+/* -------------------------------------------------------------------
+			#PAN
+------------------------------------------------------------------- */
+
+ul#PAN	{
+	font-size: smaller;
+	text-align: right;
+	width: auto;
+	position: absolute;
+	top: 5px;
+	right: 0;
+}
+ul#PAN li	{
+	float: right;
+}
+ul#PAN li + li:after	{
+	content: "≪";
+	color: #999;
+	margin: 0 5px;
+}
+
+
+/* -------------------------------------------------------------------
+			#MENU		,	#FOOTER
+------------------------------------------------------------------- */
+
+div#MENU	,
+div#FOOTER	{
+	line-height: 1.2;
+	text-align: right;
+	width: auto;
+	overflow: hidden;
+	clear: both;
+}
+
+div#MENU h2	,
+div#FOOTER h2	{
+	display: inline;
+}
+
+div#MENU ul	,
+div#FOOTER ul	{
+	width: auto;
+	overflow: hidden;
+	display: inline;
+}
+div#MENU li	,
+div#FOOTER li	{
+	margin-left: 15px;
+	display: inline;
+}
+div#FOOTER li *	{
+	display: inline;
+}
+div#MENU li a	,
+div#FOOTER li a	{
+	border-left: 3px solid #dbd0e6;
+	padding-left: 5px;
+}
+div#MENU li a:hover	,
+div#FOOTER li a:hover	,
+div#MENU li.menu-on a	{
+	border-color: #59b9c6;
+}
+div#MENU li.menu-on a	{
+	text-decoration: none;
+	color: #333;
+}
+
+
+/* -------------------------------------------------------------------
+			#KIZI
+------------------------------------------------------------------- */
+
+div#KIZI	{
+	width: auto;
+	overflow: hidden;
+}
+
+div#KIZI h2	{
+	line-height: 1.2;
+	color: #59b9c6;
+	margin: 30px 0 5px;
+	border-left: 9px double #59b9c6;
+	padding-left: 5px;
+}
+
+div#KIZI h3	,
+div#KIZI h4	,
+div#KIZI h5	,
+div#KIZI h6	{
+	line-height: 1.2;
+	color: #a59aca;
+	margin: 10px 0 5px 3px;
+	border-left: 3px solid #a59aca;
+	padding-left: 8px;
+}
+
+div#KIZI div.text	{
+	margin: 10px 0 30px;
+	width: auto;
+	clear: both;
+}
+div#KIZI div.text *:first-child	{
+	margin-top: 0;
+}
+
+div#KIZI ul.modori	{
+	line-height: 1.2;
+	text-align: right;
+	margin-top: 10px;
+	width: auto;
+	overflow: hidden;
+}
+div#KIZI ul.modori li	{
+	margin-left: 15px;
+	display: inline;
+}
+div#KIZI ul.modori li a	{
+	border-left: 3px solid #dbd0e6;
+	padding-left: 5px;
+}
+div#KIZI ul.modori li a:hover	{
+	border-color: #59b9c6;
+}
+
+
+/* ================================================================ */
