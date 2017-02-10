@@ -4,7 +4,8 @@ title: ABOUT
 permalink: /about/
 ---
 
-### 沿革
+### 文藝部LaTeX研究会とは
+九州大学文藝部の下部組織。LaTeXなどの研究を行っている人が一名ほど所属していたりする。
 
 ### CSS
-このホームページのCSSは[nostos](http://nostos.sakura.ne.jp/template.html)さんからお借りしたテンプレートに若干の修正を加えたものである。
+このホームページのCSSは春なす氏運営のサイト[nostos](http://nostos.sakura.ne.jp/template.html)からお借りしたテンプレートに少々手を加えたものである。
