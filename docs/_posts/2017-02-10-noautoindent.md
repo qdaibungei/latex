@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Wordのオートインデント機能を抑制する
+title:  Wordのオートインデント機能を停止させる
 date:   2017-02-10
 ---
 
