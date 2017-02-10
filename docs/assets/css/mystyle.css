@@ -60,3 +60,7 @@ div#FOOTER h2	{
 	margin-right: -0.15em;
 	text-transform: uppercase;
 }
+img {
+	max-width: 100%;
+	border: 1px solid #eee;
+}
