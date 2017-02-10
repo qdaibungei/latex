@@ -12,25 +12,25 @@ Wordはおせっかい機能が多いことで有名である。中でも文芸�
 
 まず、赤丸で囲ったところをクリック。
 
-![img]({{site.baseurl}}/assets/images/noautoindent1.png)
+![]({{site.baseurl}}/images/noautoindent1.png)
 
 　
 
 次に、オプションをクリック。
 
-![img]({{site.baseurl}}/assets/images/noautoindent2.png)
+![]({{site.baseurl}}/images/noautoindent2.png)
 
 　
 
 オートコレクトのオプションをクリック。
 
-![img]({{site.baseurl}}/assets/images/noautoindent3.png)
+![]({{site.baseurl}}/images/noautoindent3.png)
 
 　
 
 入力オートフォーマットタブの「行の始まりのスペースを字下げに変更する」のチェックボックスを外す。図は、チェックボックスを外した状態である。
 
-![img]({{site.baseurl}}/assets/images/noautoindent4.png)
+![]({{site.baseurl}}/images/noautoindent4.png)
 
 
 ### むすび
