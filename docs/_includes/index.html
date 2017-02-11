@@ -33,10 +33,11 @@
 <div id="KIZI">
 
 
-<div class="text">
+
 
 {% for post in site.posts limit:1 %}
 <h2>{{ post.title }}</h2>
+<div class="text">
 {{ post.content }}
 {% endfor %}
 
