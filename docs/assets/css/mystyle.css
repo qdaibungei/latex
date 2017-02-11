@@ -85,7 +85,7 @@ img {
 	border: 1px solid #eee;
 }
 pre, pre.highlight {
-	background-color: #e6fcff;
+	background-color: #f7f7f7;
 	padding: 20px;
 	margin: 0 0 15px 0;
 	border-radius: 5px;
@@ -94,7 +94,7 @@ pre, pre.highlight {
 	word-wrap: break-word;
 }
 code {
-	background-color: #e6fcff;
+	background-color: #f7f7f7;
 	padding: 1px;
 	border-radius: 2px;
 }
@@ -102,5 +102,5 @@ figure {
 	margin: 0px;
 }
 strong {
-	background: linear-gradient(transparent 60%, #73efff 60%);
+	background: linear-gradient(transparent 60%, #73#f7f7f7fff 60%);
 }
