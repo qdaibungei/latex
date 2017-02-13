@@ -84,6 +84,10 @@ img {
 	max-width: 100%;
 	border: 1px solid #eee;
 }
+textarea {
+	width: 90%;
+	border: 1px solid #eee;
+}
 pre, pre.highlight {
 	background-color: #f7f7f7;
 	padding: 10px;
