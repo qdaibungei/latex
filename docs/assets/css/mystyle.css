@@ -23,11 +23,11 @@ div#KIZI div.text ul li {
 	text-indent: -1em;
 }
 .footnotes {
-  margin-top: 80px;
+	margin-top: 80px;
+	word-break: break-all;
 }
 .footnote {
-  /*vertical-align: super;*/
-  font-size: 0.8em;
+	font-size: 0.8em;
 	text-decoration: none;
 }
 .footnote::before {
@@ -60,6 +60,9 @@ div#KIZI h4 {
 	border-left: 3px solid #59b9c6;
 }
 div#KIZI div.text *:first-of-type {
+	margin-top: 0;
+}
+div#KIZI div.text h3+h4 {
 	margin-top: 0;
 }
 div#MENU h2	,
