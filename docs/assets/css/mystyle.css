@@ -26,6 +26,22 @@ div#KIZI div.text ul li {
 	margin-top: 80px;
 	word-break: break-all;
 }
+.footnotes p{
+	display: inline;
+	font-size: 0.85em;
+	line-height: 1.5;
+}
+.footnotes ol li {
+	list-style-type: none;
+	list-style-position: inside;
+	counter-increment: cnt;
+	margin-bottom: 0.85em;
+}
+.footnotes ol li::before {
+	display: marker;
+	content: "[" counter(cnt) "]";
+	font-size: 0.85em;
+}
 .footnote {
 	font-size: 0.8em;
 	text-decoration: none;
