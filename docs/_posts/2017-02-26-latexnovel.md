@@ -34,7 +34,7 @@ LaTeX（およびパソコン）初心者でも読めるように配慮したつ
 
 PDF化の仕方は簡単である。ターミナルでカレントディレクトリに移動した後、次のように打ち込めばよい。
 
-```shell script
+```shell
 uplatex novel
 dvipdfmx novel
 ```
@@ -45,7 +45,7 @@ dvipdfmx novel
 
 そこで、ここでは意味は分からずともとりあえずPDFを生成する方法として次の方法を勧めたい。以下の文字列を `tex2pdf.bat` という名で保存する（ファイル名は末尾に `.bat` があれば何でもよいが、ここでは "tex to pdf" という意味で `tex2pdf.bat` という名にした）。
 
-```bat
+```shell
 cd %~dp0
 uplatex novel
 dvipdfmx novel
