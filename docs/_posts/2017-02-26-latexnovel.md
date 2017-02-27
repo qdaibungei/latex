@@ -20,7 +20,9 @@ date: 2017-02-26
 
 <script src="https://gist.github.com/qdaibungei/2bebd353eaeefa5db076402c75e095cd.js"></script>
 
-第二に、以下の文字列を `novel.tex` という名で保存する。これが雛形ファイルとなる。 
+　
+
+次に、以下の文字列を `novel.tex` という名で保存する。これが雛形ファイルとなる。 
 
 ```TeX
 \documentclass[a6paper,papersize,autodetect-engine]{jsbook}
