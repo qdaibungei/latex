@@ -75,9 +75,8 @@ div#KIZI h4 {
 	color: #59b9c6;
 	border-left: 3px solid #59b9c6;
 }
-div#KIZI div.text *:first-of-type {
-	margin-top: 0;
-}
+div#KIZI div.text h1+h2,
+div#KIZI div.text h2+h3,
 div#KIZI div.text h3+h4 {
 	margin-top: 0;
 }
