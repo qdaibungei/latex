@@ -16,7 +16,7 @@ date: 2017-02-26
 #### 雛形ファイルの用意
 具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。
 
-まず、以下を `novelstyle.sty` という名前で保存する。
+まず、以下を `novelstyle.sty` という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
 
 <script src="https://gist.github.com/qdaibungei/2bebd353eaeefa5db076402c75e095cd.js"></script>
 
