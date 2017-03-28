@@ -7,5 +7,6 @@
 @import url("reset.css");	/* 共通初期設定 */
 @import url("112.css");	/* レイアウト設定 */
 @import url("mystyle.css");	/* レイアウト設定 */
+@import url("syntax.css");
 
 /* ================================================================ */

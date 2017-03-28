@@ -124,3 +124,9 @@ figure {
 strong {
 	background: linear-gradient(transparent 60%, #73efff 60%);
 }
+ul.tags {
+	text-align: right;
+}
+ul.tags li {
+	display: inline-block;
+}

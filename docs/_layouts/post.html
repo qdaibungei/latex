@@ -40,18 +40,18 @@ layout: default
 
 <h2>{{ page.title }}</h2>
 <div class="text">
-
+<ul class="tags">
+	{% for tag in page.tags %}
+	<li><a href="{{ site.url | append:site.baseurl }}/documents/#{{ tag }}">{{ tag }}</a></li>
+	{% endfor %}
+</ul>
 
 
 {{ content }}
 
 
 
-<ul class="modori">
-  <li><a href="#PAGETOP">TOP</a></li>
-</ul>
-</div>
-<hr>
+{% include modori.html %}
 
 </div>
 

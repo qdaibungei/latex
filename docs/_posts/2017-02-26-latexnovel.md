@@ -2,6 +2,7 @@
 layout: post
 title: LaTeXによる小説組版法（初級）
 date: 2017-02-26
+tags: LaTeX 解説
 ---
 
 
