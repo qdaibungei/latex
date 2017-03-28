@@ -6,4 +6,4 @@ tags: javascript
 ---
 
 
-[layoutcal.html]({{baseurl}}/assets/layoutcal.html)
+[layoutcal.html]({{site.baseurl}}/assets/layoutcal.html)
