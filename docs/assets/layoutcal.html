@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<title>版面数値計算</title>
+	</head>
+	<style media="screen">
+		* {
+			font-family: courier,sans-serif;
+		}
+		h1,h2 {
+			margin-top: 60px;
+		}
+		body {
+			margin: 50px;
+			background: #272822;
+			color: #fff;
+		}
+		input[type="text"] {
+			margin: 0 10px 0;
+			background: #272822;
+			color: #fff;
+			padding: 7px;
+			border: 1px solid #666;
+			border-radius: 3px;
+			width: 50px;
+			text-align: center;
+		}
+		input[type="button"],#selectpapersize {
+			padding: 3px 10px;
+			border: none;
+			background: white;
+			box-shadow: 3px #ccc;
+			cursor: pointer;
+		}
+		form {
+			margin: 20px 0;
+		}
+		#selectpapersize {
+			padding: 2px 10px;
+		}
+	</style>
+	<body>
+		<h1>版面数値計算</h1>
+		<form id="papersize">
+			<select id="selectpapersize">
+				<option>B4</option>
+				<option>A4</option>
+				<option>B5</option>
+				<option>A5</option>
+				<option>B6</option>
+				<option>A6</option>
+			</select>
+		</form>
+		<form id="typesetDir">
+			<input type="radio" name="typesetDir" id="tate" checked>縦書き
+			<input type="radio" name="typesetDir" id="yoko">横書き
+		</form>
+		<p><input type="button" id="paperDirReplace" value="height <-> width"></p>
+		<p>paper height <input type="text" id="paperheight" value="210">mm</p>
+		<p>paper width <input type="text" id="paperwidth" value="148">mm</p>
+		<br>
+		<form id="QHorPt">
+			<p>
+				文字サイズ・行送り単位：
+				<input type="radio" name="QorPt" id="QH_QHorPt" checked>Q &amp; H
+				<input type="radio" name="QorPt" id="Pt_QHorPt">pt
+			</p>
+		</form>
+		<p>
+			文字サイズ <input type="text" id="Q" value="13"><span id="Qunit"></span>
+			（<span id="QtoPt"></span>）
+		</p>
+		<p>
+			行送り <input type="text" id="H" value="22"><span id="Hunit"></span>
+			（<span id="HperQ"></span>）
+		</p>
+		<p>行長 <input type="text" id="W" value="49">字</p>
+		<p>行数 <input type="text" id="L" value="21">行</p>
+		<br>
+		<p>
+			<input type="checkbox" id="fixNodo" value="">
+			ノド
+			<input type="text" id="nodo" value="0">
+			<span id="koguchiYose"></span>
+		</p>
+		<p>
+			<input type="checkbox" id="fixKoguchi" value="">
+			小口
+			<input type="text" id="koguchi" value="0">
+		</p>
+		<p>
+			<input type="checkbox" id="fixTen" value="">
+			天
+			<input type="text" id="ten" value="0">
+			<span id="tenYose"></span>
+		</p>
+		<p>
+			<input type="checkbox" id="fixChi" value="">
+			地
+			<input type="text" id="chi" value="0">
+		</p>
+		<h2>Usage</h2>
+		<p>版面の計算をするためのものである。枠内の数値を書き換えると、自動的に再計算される。</p>
+		<p>ノドや小口の左側にあるチェックボックスにチェックをつけると、数値が固定される。ノドの余白を広めで固定しておくと、本を開いたとき文字がノドに食われずに版面設計できる。</p>
+		<script>
+			(function() {
+				'use strict';
+
+				var HperQ = document.getElementById('HperQ');
+				var koguchiYose = document.getElementById('koguchiYose');
+				var tenYose = document.getElementById('tenYose');
+				var nodo = document.getElementById('nodo');
+				var koguchi = document.getElementById('koguchi');
+				var ten = document.getElementById('ten');
+				var chi = document.getElementById('chi');
+
+				function papersizeSet() {
+					var paperheight = document.getElementById('paperheight');
+					var paperwidth = document.getElementById('paperwidth');
+					switch (document.forms.papersize.selectpapersize.selectedIndex) {
+						case 0:
+							paperheight.value = 364;
+							paperwidth.value = 257;
+							break;
+						case 1:
+							paperheight.value = 297;
+							paperwidth.value = 210;
+							break;
+						case 2:
+							paperheight.value = 257;
+							paperwidth.value = 182;
+							break;
+						case 3:
+							paperheight.value = 210;
+							paperwidth.value = 148;
+							break;
+						case 4:
+							paperheight.value = 182;
+							paperwidth.value = 128;
+							break;
+						case 5:
+							paperheight.value = 148;
+							paperwidth.value = 105;
+							break;
+					}
+				}
+				document.forms.papersize.selectpapersize.selectedIndex = 3;
+				papersizeSet();
+				document.getElementById('selectpapersize').addEventListener('change',papersizeSet);
+				document.getElementById('selectpapersize').addEventListener('change',layoutCal);
+
+
+				function clickCheckbox() {
+					document.getElementById('fixNodo').addEventListener('click',function() {
+						fixKoguchi.checked = false;
+					});
+					document.getElementById('fixKoguchi').addEventListener('click',function() {
+						fixNodo.checked = false;
+					});
+					document.getElementById('fixTen').addEventListener('click',function() {
+						fixChi.checked = false;
+					});
+					document.getElementById('fixChi').addEventListener('click',function() {
+						fixTen.checked = false;
+					});
+				}
+				clickCheckbox();
+
+				function layoutCal() {
+					var paperheight = document.getElementById('paperheight').value;
+					var paperwidth = document.getElementById('paperwidth').value;
+					var Q = document.getElementById('Q').value;
+					var H = document.getElementById('H').value;
+					var W = document.getElementById('W').value;
+					var L = document.getElementById('L').value;
+					if (document.forms.QHorPt.QH_QHorPt.checked === true) {
+						Q = Q/4;
+						H = H/4;
+						document.getElementById('Qunit').innerHTML = 'Q';
+						document.getElementById('Hunit').innerHTML = 'H';
+						document.getElementById('QtoPt').innerHTML = Q/(25.4/72)+' pt';
+					} else if (document.forms.QHorPt.Pt_QHorPt.checked === true) {
+						Q = Q*(25.4/72);
+						H = H*(25.4/72);
+						document.getElementById('Qunit').innerHTML = 'pt';
+						document.getElementById('Hunit').innerHTML = 'pt';
+						document.getElementById('QtoPt').innerHTML = Q*4+' Q';
+					}
+					var textheight = H*(L-1)+Q;
+					var textwidth = Q*W;
+					if (document.forms.typesetDir.tate.checked === true) {
+						var temp;
+						temp = textheight;
+						textheight = textwidth;
+						textwidth = temp;
+					}
+					if (fixNodo.checked === false) {
+						nodo.value = (paperwidth-textwidth);
+						if (fixKoguchi.checked === true) {
+							nodo.value = nodo.value-koguchi.value;
+						} else {
+							nodo.value = nodo.value/2;
+						}
+					}
+					if (fixKoguchi.checked === false) {
+						koguchi.value = (paperwidth-textwidth);
+						if (fixNodo.checked === true) {
+							koguchi.value = koguchi.value-nodo.value;
+						} else {
+							koguchi.value = koguchi.value/2;
+						}
+					}
+					if (fixTen.checked === false) {
+						ten.value = (paperheight-textheight);
+						if (fixChi.checked === true) {
+							ten.value = ten.value-chi.value;
+						} else {
+							ten.value = ten.value/2;
+						}
+					}
+					if (fixChi.checked === false) {
+						chi.value = (paperheight-textheight);
+						if (fixTen.checked === true) {
+							chi.value = chi.value-ten.value;
+						} else {
+							chi.value = chi.value/2;
+						}
+					}
+					HperQ.innerHTML = '文字サイズの ' + H/Q + ' 倍';
+					koguchiYose.innerHTML = (nodo.value-koguchi.value)/2 + ' mm 小口寄せ';
+					tenYose.innerHTML = (chi.value-ten.value)/2 + ' mm 天寄せ';
+				}
+				layoutCal();
+				var values = [Q,H,W,L,paperheight,paperwidth,typesetDir,fixNodo,fixKoguchi,fixTen,fixChi,QHorPt];
+				for (var i = 0; i < values.length; i++) {
+					(function() {
+						values[i].addEventListener('change',layoutCal);
+					}(i));
+				}
+
+				document.getElementById('paperDirReplace').addEventListener('click',function() {
+					var paperheight = document.getElementById('paperheight');
+					var paperwidth = document.getElementById('paperwidth');
+					var temp;
+					temp = paperheight.value;
+					paperheight.value = paperwidth.value;
+					paperwidth.value = temp;
+					layoutCal();
+				});
+
+				function layoutCalNodo() {
+					var paperheight = document.getElementById('paperheight').value;
+					var paperwidth = document.getElementById('paperwidth').value;
+					var Q = document.getElementById('Q').value;
+					var H = document.getElementById('H').value;
+					var W = document.getElementById('W').value;
+					var L = document.getElementById('L').value;
+					var textheight;
+					var textwidth;
+					textheight = (H/4)*(L-1)+Q/4;
+					textwidth = Q/4*W;
+					if (document.forms.typesetDir.tate.checked === true) {
+						var temp;
+						temp = textheight;
+						textheight = textwidth;
+						textwidth = temp;
+					}
+					koguchi.value = (paperwidth-textwidth) - nodo.value;
+					koguchiYose.innerHTML = (nodo.value-koguchi.value)/2 + ' mm 小口寄せ';
+				}
+				nodo.addEventListener('change',layoutCalNodo);
+
+				function layoutCalKoguchi() {
+					var paperheight = document.getElementById('paperheight').value;
+					var paperwidth = document.getElementById('paperwidth').value;
+					var Q = document.getElementById('Q').value;
+					var H = document.getElementById('H').value;
+					var W = document.getElementById('W').value;
+					var L = document.getElementById('L').value;
+					var textheight;
+					var textwidth;
+					textheight = (H/4)*(L-1)+Q/4;
+					textwidth = Q/4*W;
+					if (document.forms.typesetDir.tate.checked === true) {
+						var temp;
+						temp = textheight;
+						textheight = textwidth;
+						textwidth = temp;
+					}
+					nodo.value = (paperwidth-paperwidth) - koguchi.value;
+					koguchiYose.innerHTML = (nodo.value-koguchi.value)/2 + ' mm 小口寄せ';
+				}
+				koguchi.addEventListener('change',layoutCalKoguchi);
+
+				function layoutCalTen() {
+					var paperheight = document.getElementById('paperheight').value;
+					var paperwidth = document.getElementById('paperwidth').value;
+					var Q = document.getElementById('Q').value;
+					var H = document.getElementById('H').value;
+					var W = document.getElementById('W').value;
+					var L = document.getElementById('L').value;
+					var textheight;
+					var textwidth;
+					textheight = (H/4)*(L-1)+Q/4;
+					textwidth = Q/4*W;
+					if (document.forms.typesetDir.tate.checked === true) {
+						var temp;
+						temp = textheight;
+						textheight = textwidth;
+						textwidth = temp;
+					}
+					chi.value = (paperheight-paperheight) - ten.value;
+					tenYose.innerHTML = (chi.value-ten.value)/2 + ' mm 天寄せ';
+				}
+				ten.addEventListener('change',layoutCalTen);
+
+				function layoutCalChi() {
+					var paperheight = document.getElementById('paperheight').value;
+					var paperwidth = document.getElementById('paperwidth').value;
+					var Q = document.getElementById('Q').value;
+					var H = document.getElementById('H').value;
+					var W = document.getElementById('W').value;
+					var L = document.getElementById('L').value;
+					var textheight;
+					var textwidth;
+					textheight = (H/4)*(L-1)+Q/4;
+					textwidth = Q/4*W;
+					if (document.forms.typesetDir.tate.checked === true) {
+						var temp;
+						temp = textheight;
+						textheight = textwidth;
+						textwidth = temp;
+					}
+					ten.value = (paperheight-paperheight) - chi.value;
+					tenYose.innerHTML = (chi.value-ten.value)/2 + ' mm 天寄せ';
+				}
+				chi.addEventListener('change',layoutCalChi);
+
+			})();
+		</script>
+	</body>
+</html>
