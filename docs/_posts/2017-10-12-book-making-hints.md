@@ -23,7 +23,7 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 
 ```LaTeX
 % 欧文フォントの変更
-\usepackage[scale=0.95]{lato,opensans}
+\usepackage[scale=0.95]{fbb,opensans}
 \tbaselineshift=.3zw % ついでに、ベースラインを適当に変更しておこう
 ```
 
