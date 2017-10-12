@@ -14,6 +14,9 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 まず日本語フォントであるが、これは游明朝がよい。游明朝を使うには、以下のように書く（uplatexを使うことを前提として。いまどきわざわざplatexを使う理由はあるまい）。
 
 ```LaTeX
+% uplatexでA5サイズの本を作る場合のdocumentclassの書きかた
+\documentclass[a5paper,papersize,uplatex]{jsbook}
+
 % 日本語フォントを游明朝にする
 \usepackage[deluxe,uplatex]{otf}
 \AtBeginDvi{\special{pdf:mapfile otf-up-yu-win10.map}}
