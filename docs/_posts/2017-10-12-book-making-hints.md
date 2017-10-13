@@ -26,7 +26,8 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 
 ```LaTeX
 % 欧文フォントの変更
-\usepackage[scale=0.95]{fbb,opensans}
+\usepackage[scale=0.95]{fbb}
+\usepackage[scale=0.95,defaultsans]{opensans}
 \tbaselineshift=.3zw % ついでに、ベースラインを適当に変更しておこう
 ```
 
@@ -42,7 +43,8 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 そしてプリアンブルに以下を記述する。
 
 ```LaTeX
-\usepackage[Q=13,H=22,W=49,L=21,ko=3.875truemm,te=26\bQ,footskip=2.47truemm,tate]{hanmen}
+% 上のフォント設定をした後に書く
+\usepackage[Q=13,H=22,W=49,L=21,ko=3.875truemm,te=6.5truemm,footskip=2.47truemm,tate]{hanmen}
 ```
 
 これで厳密な版面の設定が可能となる。厳密というのは、たとえば表と裏とで行が揃っているということである（厳密な設定をしないと、行がズレる。紙を透かして見ると行がズレているかどうか分かる）。
