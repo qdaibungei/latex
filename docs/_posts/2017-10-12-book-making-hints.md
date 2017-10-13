@@ -51,6 +51,7 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 LaTeXで縦書きをするさい、縦中横には`\rensuji`を使うよう言われる。しかし`\rensuji`だと前後のアキがおかしくなる（たとえば、行頭で`\rensuji`を使うとインデント量が狂う）。そこで`\tcy`命令を新たに作り、これを使うのがよい。
 
 ```LaTeX
+\usepackage{plext}
 \makeatletter
 \chardef\nvlsty@zenkakuSpace=\jis"2121\relax
 \newcommand{\tcy}[1]{\relax
