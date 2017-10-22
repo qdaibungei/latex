@@ -28,7 +28,6 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 % 欧文フォントの変更
 \usepackage[scale=0.95]{fbb}
 \usepackage[scale=0.95,defaultsans]{opensans}
-\tbaselineshift=.3zw % ついでに、ベースラインを適当に変更しておこう
 ```
 
 ### jdashパッケージ
@@ -45,6 +44,11 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 ```LaTeX
 % 上のフォント設定をした後に書く
 \usepackage[Q=13,H=22,W=49,L=21,ko=3.875truemm,te=6.5truemm,footskip=2.47truemm,tate]{hanmen}
+
+% ついでに、欧文のベースラインなどを適当に変更しておこう
+\tbaselineshift=.3zw
+\kanjiskip=0pt plus .25zw minus 0zw
+\xkanjiskip=.25zw plus .083333zw minus 0zw
 ```
 
 これで厳密な版面の設定が可能となる。厳密というのは、たとえば表と裏とで行が揃っているということである（厳密な設定をしないと、行がズレる。紙を透かして見ると行がズレているかどうか分かる）。
@@ -67,6 +71,76 @@ LaTeXで縦書きをするさい、縦中横には`\rensuji`を使うよう言�
 ```
 
 以上をプリアンブルなどに書いておく。使いかたは至ってかんたんで、`\tcy{12}時`、のようにすればよい。
+
+### 禁則処理の設定
+縦書きの場合、禁則処理はほどほどに抑制しておくと商業出版物の組版に似せることができる。プリアンブルなどに以下を記述する。
+
+```LaTeX
+\clubpenalty=0
+\widowpenalty=0
+\jcharwidowpenalty=0
+\displaywidowpenalty=0
+\prebreakpenalty\jis"2147=10000  % 5000 ’
+\postbreakpenalty\jis"2148=10000 % 5000 “
+\prebreakpenalty\jis"2149=10000  % 5000 ”
+\inhibitxspcode`〒=2
+\prebreakpenalty\jis"2133=10000
+\prebreakpenalty\jis"2134=10000
+\prebreakpenalty\jis"2135=10000
+\prebreakpenalty\jis"2136=10000
+\prebreakpenalty`ー=0
+\prebreakpenalty`ぁ=0
+\prebreakpenalty`ぃ=0
+\prebreakpenalty`ぅ=0
+\prebreakpenalty`ぇ=0
+\prebreakpenalty`ぉ=0
+\prebreakpenalty`っ=0
+\prebreakpenalty`ゃ=0
+\prebreakpenalty`ゅ=0
+\prebreakpenalty`ょ=0
+\prebreakpenalty\jis"246E=0     %ゎ
+\prebreakpenalty`ァ=0
+\prebreakpenalty`ィ=0
+\prebreakpenalty`ゥ=0
+\prebreakpenalty`ェ=0
+\prebreakpenalty`ォ=0
+\prebreakpenalty`ッ=0
+\prebreakpenalty`ャ=0
+\prebreakpenalty`ュ=0
+\prebreakpenalty`ョ=0
+\prebreakpenalty\jis"256E=0     %ヮ
+\prebreakpenalty\jis"2575=0     %ヵ
+\prebreakpenalty\jis"2576=0     %ヶ
+\prebreakpenalty\jis"2139=0     %々
+```
+
+### フッター
+『どこにもりんごがない』を組版したときのフッターの設定はだいたいこんな感じである。
+
+```LaTeX
+\usepackage{fancyhdr}
+\usepackage[scale=0.9]{tgadventor}
+\makeatletter
+\def\qbook@chaptertitle{タイトル}
+\def\booktitlename{ブックタイトル}
+\def\qbook@nombre{\relax
+    {\fontsize{10\bQ}{11trueH}\romanfamily{qag}\bfseries\thepage}%
+}
+\def\qbook@lhasira{\relax
+    {\fontsize{10\bQ}{11trueH}\gtfamily\sffamily
+    \kern1em\rule[-.25truemm]{0.15truemm}{1zw}\kern1em
+    \qbook@chaptertitle}%
+}
+\def\qbook@rhasira{\relax
+    {\fontsize{10\bQ}{11trueH}\gtfamily\sffamily
+    \booktitlename
+    \kern1em\rule[-.25truemm]{0.15truemm}{1zw}\kern1em}%
+}
+\fancyfoot{}
+\fancyfoot[LO]{\vspace*{65\bQ}\qbook@nombre\qbook@lhasira}
+\fancyfoot[RE]{\vspace*{65\bQ}\qbook@rhasira\qbook@nombre}
+\makeatother
+```
 
 ### 結言
 以上、ヒントを列挙した。参考にしてください。
