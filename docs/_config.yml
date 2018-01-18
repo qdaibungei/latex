@@ -19,7 +19,6 @@ url: "https://qdaibungei.github.io" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
-theme: minima
 exclude:
   - Gemfile
   - Gemfile.lock
