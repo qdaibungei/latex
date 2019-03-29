@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>otfパッケージのぶら下げ組をちょっと改良する｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="logo">
+                <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+            </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex">HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about">About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents">Docs</a></li>
+    </ul>
+</nav>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<hr>
+<p>
+    otfパッケージのぶら下げ組をちょっと改良する<br>
+    2018/1/12
+</p>
+<hr>
+
+
+<h1 id="緒言">緒言</h1>
+
+<p>本稿は、otfパッケージによるぶら下げ組を改良するための方法を記すものである。</p>
+
+<h1 id="本論">本論</h1>
+
+<p>otfパッケージにはburasageオプションがあり、これを利用するとぶら下げ組ができる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[burasage]</span><span class="nb">{</span>otf<span class="nb">}</span></code></pre></div>
+<p>しかし、このぶら下げ組にはひとつ問題がある。句読点が行末に来たとき、必ずぶら下げ処理がおこなわれてしまうのである<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>。</p>
+
+<p>むろん、これはこれでひとつの立派な組版方針である。だが、行長が短いときに強制的にぶら下げ処理がおこなわれてしまうと、字間が開いてしまい、間延びした印象の組みかたになってしまう。よって、われわれとしては、ぶら下げ処理を少し抑制するように修正してみたい。これは、商業出版の本によく見られる組みかたでもある。</p>
+
+<p>そこで、プリアンブルなどに以下のように記述し、<code>\。</code>と<code>\、</code>というマクロを作る。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\if</span>@burasage
+    <span class="k">\def\、</span><span class="nb">{</span><span class="k">\relax</span>
+        <span class="k">\@</span>ifnextchar<span class="k">\par</span><span class="nb">{</span>、<span class="nb">}{</span>、<span class="k">\hbox</span><span class="nb">{}}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\def\。</span><span class="nb">{</span><span class="k">\relax</span>
+        <span class="k">\@</span>ifnextchar<span class="k">\par</span><span class="nb">{</span>。<span class="nb">}{</span>。<span class="k">\hbox</span><span class="nb">{}}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="k">\else</span>
+    <span class="k">\def\、</span><span class="nb">{</span><span class="k">\nobreak\makebox</span><span class="na">[1zw][l]</span><span class="nb">{</span>、<span class="nb">}}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\def\。</span><span class="nb">{</span><span class="k">\nobreak\makebox</span><span class="na">[1zw][l]</span><span class="nb">{</span>。<span class="nb">}}</span><span class="c">%
+</span><span class="c"></span><span class="k">\fi</span></code></pre></div>
+<p>あとは、文章中の句読点すべてを<code>\。</code>および<code>\、</code>で置き換えればよい。すると、burasageオプション時には適度にぶら下げが抑制された組みかたとなる。また、burasageオプションを外したときには、追い出し組となる。</p>
+
+<h2 id="細かい調整">細かい調整</h2>
+
+<p>ただし、このままでは句読点と括弧類とが並んだとき、空きが広くなりすぎてしまう。たとえば、<code>\。「</code>のように、句読点の直後に始め括弧が来た場合、<code>\。\&lt;「</code>とする（つまり<code>\&lt;</code>を追加する）ことが必要となる。</p>
+
+<p>句点と鉤括弧の場合だけ考えると、以下のような置換が必要である（上に挙げた例を含めている）。</p>
+
+<ul>
+<li><code>\。「</code> → <code>\。\&lt;「</code></li>
+<li><code>\。」</code> → <code>。」</code></li>
+<li><code>」\。</code> → <code>」\&lt;\。</code></li>
+</ul>
+
+<p>このような置換を、すべての括弧類と句読点との組み合わせを考えて、おこなえばよい。置換作業は手作業だと面倒きわまりないので、PythonなりRubyなりで置換スクリプトを組んで置換するのがよいであろう。</p>
+
+<h1 id="結言">結言</h1>
+
+<p>LaTeXのデフォルトは追い込み組であるが、これは商業出版にはあまり見られない。そこで上のような設定をし、ぶら下げ組にするか、追い出し組にするとよいのである。そうすれば、いっそう商業出版に近い組みかたが実現でき、嬉しい気分に浸れることであろう。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">ただし段落末尾はそのかぎりではない。
+ <a class="footnote-return" href="#fnref:1">↩</a></li>
+</ol>
+</div>
+
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2019 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+

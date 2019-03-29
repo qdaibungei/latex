@@ -1,0 +1,11 @@
+{{ partial "site_header.html" . }}
+{{ partial "menu_documents.html" . }}
+
+<h1>Documents</h1>
+<ul>
+    {{ range (.Paginator 100).Pages }}
+        {{ .Render "list" }}
+    {{ end }}
+</ul>
+
+{{ partial "site_footer.html" . }}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>小説校正のための正規表現集｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="logo">
+                <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+            </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex">HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about">About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents">Docs</a></li>
+    </ul>
+</nav>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<hr>
+<p>
+    小説校正のための正規表現集<br>
+    2016/10/9
+</p>
+<hr>
+
+
+<h1 id="背景">背景</h1>
+
+<ul>
+<li>小説集の編集をやっている。</li>
+<li>インデントは全角空白で表現、ただし文頭が括弧の場合は空白不要、などの表記ルールを（明示はしていないが暗黙のうちに）定めている。</li>
+</ul>
+
+<h1 id="問題">問題</h1>
+
+<ul>
+<li>著者たちはパソコンに熟達している人ばかりでなく、そのためインデント規則など表記ルールが守られていない原稿がよく送られてくる。</li>
+</ul>
+
+<h1 id="解法">解法</h1>
+
+<ul>
+<li>以下のような正規表現を使って置換する。置換すべき項目がリストアップしてあると便利なので、以下に記しておく。上が検索文字列、下が置換後文字列。</li>
+</ul>
+
+<h2 id="インデントがないとき全角空白を挿入">インデントがないとき全角空白を挿入</h2>
+
+<p><textarea onclick="this.select();">^([^　「『（〈【〔《［｛〝])</textarea>
+<textarea onclick="this.select();">　\1</textarea></p>
+
+<h2 id="括弧前に空白があれば削除">括弧前に空白があれば削除</h2>
+
+<p><textarea onclick="this.select();">^　([「『（〈【〔《［｛〝])</textarea>
+<textarea onclick="this.select();">\1</textarea></p>
+
+<h2 id="文末の不要な空白を削除">文末の不要な空白を削除</h2>
+
+<p><textarea onclick="this.select();">[ 　]+$</textarea>
+<textarea onclick="this.select();" placeholder="（なし）"></textarea></p>
+
+<h2 id="半角括弧-全角括弧">半角括弧→全角括弧</h2>
+
+<p><textarea onclick="this.select();">((.+?))</textarea>
+<textarea onclick="this.select();">（\1）</textarea></p>
+
+<h2 id="2連続で使用されている疑問符-感嘆符は半角に">2連続で使用されている疑問符・感嘆符は半角に</h2>
+
+<p><textarea onclick="this.select();">[！？]{2,}</textarea>
+<textarea onclick="this.select();" placeholder="（置換ではなく検索して手動で訂正）"></textarea></p>
+
+<h1 id="その他">その他</h1>
+
+<p><a href="http://www.aozora.gr.jp/aozora-manual/index-proofreading.html#proofreading04">青空文庫作業マニュアル【校正編】</a>は参考になる。</p>
+
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2019 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+

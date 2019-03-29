@@ -1,0 +1,6 @@
+baseURL = "https://qdaibungei.github.io/latex"
+languageCode = "ja"
+title = "文藝部LaTeX研究会"
+FootnoteReturnLinkContents = "↩"
+pygmentsUseClasses = true
+pygmentsCodefences = true

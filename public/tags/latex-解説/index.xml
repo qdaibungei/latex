@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Latex 解説 on 文藝部LaTeX研究会</title>
+    <link>https://qdaibungei.github.io/latex/tags/latex-%E8%A7%A3%E8%AA%AC/</link>
+    <description>Recent content in Latex 解説 on 文藝部LaTeX研究会</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 26 Feb 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://qdaibungei.github.io/latex/tags/latex-%E8%A7%A3%E8%AA%AC/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LaTeXによる小説組版法（初級）</title>
+      <link>https://qdaibungei.github.io/latex/documents/2017-02-26-latexnovel/</link>
+      <pubDate>Sun, 26 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2017-02-26-latexnovel/</guid>
+      <description>この記事は、LaTeXで小説を組版するにはどうすればよいかを具体的に解説するものである。理論的な話は最小限に留め、主として実践的な話題を取り上げる。つまり、具体的にどう手を動かせばLaTeXで小説が組版できるのかを解説する。
+コンピュータおよびLaTeXの初心者でも読めるように配慮したつもりだが、LaTeXの知識ゼロだと厳しいかもしれない。
+なお、以下の方法はあくまでも初心者向けの簡易的方法であり、私が普段LaTeXで組版している実際の現場の方法とはかなり異なる。
+電撃文庫の再現 雛形ファイルの用意 具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。
+まず、以下を novelstyle.sty という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
+ 　次に、以下の文字列を novel.tex という名で保存する。これが雛形ファイルとなる。
+\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} （ここに本文を書く） \end{document} 最後に、hanmen.styもダウンロードしておく。
+以上のファイルはすべて同じフォルダに入れておく。
+PDFファイルの生成 さて、あとは先程の雛形ファイルをPDF化できれば、ひとまずは成功である。
+コンピュータに詳しい人なら、PDF化は容易であろう。しかし、コンピュータに不慣れな人にはこれが難しく感じられるはずである。
+そこで、簡単にPDF化する方法として、以下のものを勧めたい（なお、以下の方法はWindows限定）。
+次の文字列を tex2pdf.bat という名で保存する1。
+cd %~dp0 uplatex novel dvipdfmx novel この tex2pdf.bat を、novel.tex と同じフォルダに入れておく。あとは、tex2pdf.bat をダブルクリックすると、見事PDFファイルが生成されるはずである。
+本文の書き方 上で、novel.tex というファイルを作った。それをここに再掲する。
+\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} （ここに本文を書く） \end{document} 基本 （ここに本文を書く） の部分に本文を書けばよい。たとえば以下のように書く。
+\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} 吾輩は猫である。名前はまだ無い。 どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。 \end{document} 通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、novelstyle.sty では、空行を挟まずとも段落分けできるようにしてある。つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。
+ルビ ルビを振りたいときは、ルビマクロが使える。
+\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} \ruby[h]{吾輩}{わが|はい}は猫である。名前はまだ無い。 どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番\ruby[h]{獰悪}{どう|あく}な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。 \end{document} ルビマクロの使い方は、LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～を参照せよ。</description>
+    </item>
+    
+  </channel>
+</rss>

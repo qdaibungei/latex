@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>jdashパッケージ｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="logo">
+                <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+            </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex">HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about">About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents">Docs</a></li>
+    </ul>
+</nav>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<hr>
+<p>
+    jdashパッケージ<br>
+    2017/2/17
+</p>
+<hr>
+
+
+<h1 id="導入">導入</h1>
+
+<p>jdashパッケージというLaTeXパッケージを作った。<a href="https://gist.github.com/qdaibungei/4230bb59434ec1ba505bc94dbfde1898">ダウンロードはここからできる</a>。</p>
+
+<p>jdashというのはjapanese dashの略のつもりである。日本語文に現れる記号ダッシュ <code>―</code> は、通常何個か並べて一本の線のようにして使うが、フォントによっては一本の線に見えない。一本の線のように見せるには工夫が必要だ。その工夫をパッケージ化したものがjdashパッケージだ。</p>
+
+<p>ところで、人によってはときおり放心状態で「あ～～～」と声にならない声を発したくなることがある。しかしこれでは、波ダッシュ <code>～</code> がつながって見えないのでいまいち放心状態であることが伝達されにくい。そこで波線をつなげられるような工夫が必要となる。jdashパッケージでは、その工夫をも盛り込んだ。</p>
+
+<h1 id="使い方">使い方</h1>
+
+<h2 id="ダッシュ">ダッシュ</h2>
+
+<p>この文章でも使っているようなふつうのダッシュ――あるいはダーシとも言う――を出力するには、<code>\jdash</code> という命令を使う。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\jdash</span><span class="na">[2]</span></code></pre></div>
+<p>のように数字を与えれば、この例の場合2字分の長さのダッシュが出力される。なお、2字分の長さのダッシュ（倍角ダッシュ）に限り、<code>\――</code> という命令でも出力可能に設定してある。</p>
+
+<p>デフォルトでは、通常のダッシュ記号 <code>―</code> を重ねることで一本につながったダッシュを出力するようにしている。このやり方は美文書などでも紹介されている有名なやり方である。</p>
+
+<p>しかしPDFで見たときダブって見える弱点もある。そこでPDFで閲覧するときのために、罫線 <code>─</code> を使った表示ができると都合がよい。そこで容易している命令が <code>\jdashmode</code> である。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\jdashmode</span><span class="nb">{</span>0<span class="nb">}</span> <span class="c">% デフォルト
+</span><span class="c"></span><span class="k">\jdash</span><span class="na">[3]</span> <span class="c">% ダブったダッシュが出る
+</span><span class="c"></span>
+<span class="k">\jdashmode</span><span class="nb">{</span>1<span class="nb">}</span> <span class="c">% ダッシュ記号を罫線に変更
+</span><span class="c"></span><span class="k">\jdash</span><span class="na">[3]</span> <span class="err">%</span> 罫線で出力される</code></pre></div>
+<h2 id="波ダッシュ">波ダッシュ</h2>
+
+<p>「あ～～～～」と叫びたいとき、あるいはTeX言語話者らしく「えくすぱんどあふた～～～～！」と叫びたいときには波ダッシュがつながっていると便利だ。そのために <code>\～</code> という命令を用意してある（wave dashの略のつもり）。<code>\～</code> という命令を並べれば、波ダッシュ記号 <code>～</code> がいくらでもつながる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX">えくすぱんどあふた<span class="k">\～\～\～\～\～\～\～</span>！</code></pre></div>
+<p>フォントによっては波線同士の食い込み量がまずくて、うまくつながらないかもしれない。その場合は <code>\wdashKerningAmount{数字}</code> という命令を使う。数字の単位は <code>zw</code> である。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% \wdashKerningAmount{.25} % デフォルト。0.25zw分、波線が食い込む。
+</span><span class="c"></span><span class="k">\wdashKerningAmount</span><span class="nb">{</span>.261<span class="nb">}</span> <span class="err">%</span> 食い込み具合を変更。筑紫明朝はこのくらい食い込ませるとうまく波線がつながる。</code></pre></div>
+<p>なお、一部のライトノベルで使われているような波線 <code>〰</code> の表示もできる。このために <code>\wdashmode</code> という命令が容易されている。なお、これの出力には <code>\CID</code> を使っているのでotfパッケージが必要となっている。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% \wdashmode{0} % デフォルト
+</span><span class="c"></span><span class="k">\wdashmode</span><span class="nb">{</span>1<span class="nb">}</span> <span class="err">%</span> 波線表示の切り替え</code></pre></div>
+<h1 id="結尾">結尾</h1>
+
+<p>とりあえず、使ってみるなり、使ってみないなりしてください。おしまい。</p>
+
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2019 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+

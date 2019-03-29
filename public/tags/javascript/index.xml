@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on 文藝部LaTeX研究会</title>
+    <link>https://qdaibungei.github.io/latex/tags/javascript/</link>
+    <description>Recent content in Javascript on 文藝部LaTeX研究会</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 28 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://qdaibungei.github.io/latex/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>版面数値計算</title>
+      <link>https://qdaibungei.github.io/latex/documents/2017-03-28-layoutcal/</link>
+      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2017-03-28-layoutcal/</guid>
+      <description>版面の数値を計算するプログラムをJavaScriptで作った。
+layoutcal.html
+使い方はリンク先に書いてある。デザインをもう少し洗練させたかったが、デザイン力がないのでこのままで公開。</description>
+    </item>
+    
+  </channel>
+</rss>

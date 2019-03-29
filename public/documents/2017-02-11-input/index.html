@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>小説を入力する方法｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="logo">
+                <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+            </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex">HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about">About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents">Docs</a></li>
+    </ul>
+</nav>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<hr>
+<p>
+    小説を入力する方法<br>
+    2017/2/11
+</p>
+<hr>
+
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>ここでは、九大文藝部の部誌へ投稿する小説をどう入力するべきかについて概観する。</p>
+
+<p>以下、「こうするのが事実上の標準だ」という入力規則であって、何か特別なこだわりを著者が持つ場合、必ずしも厳密に従わなくてもよい。</p>
+
+<h1 id="書き方">書き方</h1>
+
+<h2 id="行頭">行頭</h2>
+
+<p>行頭にはインデントが要る。インデントは全角空白で表現する。次のように（なお、この文書内では全角空白をアンダーバー <code>＿</code> で表現することとする）。</p>
+
+<pre><code>＿吾輩は猫である。名前はまだない。
+</code></pre>
+
+<h2 id="括弧の処理">括弧の処理</h2>
+
+<p>ただし、行頭が括弧の場合、空白は不要である。</p>
+
+<pre><code>「この文章書くのだるい」と私は言った。
+</code></pre>
+
+<p>会話文の行頭だけでなく、たまたま行頭に括弧が来る場合も、空白は不要である。</p>
+
+<ul>
+<li>誤： <code>＿〈あ〉という平仮名は、〈安〉という漢字が崩れて成立した文字である。</code></li>
+<li>正： <code>〈あ〉という平仮名は、〈安〉という漢字が崩れて成立した文字である。</code></li>
+</ul>
+
+<p>また、閉じ括弧の直前に句点は不要である。つまり、<code>「あいうえお。」</code> とするのではなく、<code>「あいうえお」</code> とする。</p>
+
+<h2 id="三点リーダ-ダッシュ">三点リーダ、ダッシュ</h2>
+
+<p>三点リーダ <code>…</code> やダッシュ <code>―</code> は、偶数個ずつで使うのが普通である。</p>
+
+<pre><code>「……お兄さま。お兄さま。お兄さまお兄さまお兄さまお兄さまお兄さま。……モウ一度……今のお声を……聞かしてエ――ッ…………」
+</code></pre>
+
+<p>ちなみに、Google日本語入力を使っている場合、<code>ｚ。</code> と打つと <code>…</code> に変換されるので便利だ。覚えておいて損はない。さらにちなみにだが、Google日本語入力だと他にも <code>ｚ「</code> と打つと <code>『</code> に変換されるなどのショートカットがある。便利である。</p>
+
+<h2 id="長音記号">長音記号</h2>
+
+<p>先程のように、「聞かしてエ――ッ」などと叫ばせたい場合、長音記号 <code>ー</code> を並べて書くと不格好である。</p>
+
+<pre><code>「聞かしてエーーッ」
+</code></pre>
+
+<p>それゆえ、この場合、</p>
+
+<pre><code>「聞かしてエ――ッ」
+</code></pre>
+
+<p>というふうにダッシュ記号を使うほうが見栄えがよい。</p>
+
+<h2 id="疑問符-感嘆符">疑問符・感嘆符</h2>
+
+<p>疑問符 <code>？</code> や感嘆符 <code>！</code> の後には全角空白を置く。</p>
+
+<pre><code>何だって……？＿そうじゃない。
+</code></pre>
+
+<p>ただし、後ろが三点リーダのときは全角空白がなくてもよい。</p>
+
+<pre><code>相手がキチガイ博士だから、初めから本当にして聞いていない……？……ウハッ。
+</code></pre>
+
+<p>疑問符と感嘆符をセットで使う場合、</p>
+
+<pre><code>なんだって！？
+</code></pre>
+
+<p>のように全角文字で <code>！？</code> と書くと見栄えが悪い（あと、編集がダルい）ので、これは半角で <code>!?</code> と書く。あるいは、<code>⁉</code> を使ってもよい。</p>
+
+<h2 id="傍点">傍点</h2>
+
+<p>傍点がWordの傍点機能で振ってある原稿がたまにある。だが、私はLaTeXで編集しているので、Wordの独自機能を使われてしまうと見落としやすい。できたらカクヨム記法か青空文庫記法かLaTeX記法で書いてほしい。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX">カクヨム記法で《《傍点》》を振る。
+青空文庫記法で傍点［＃「傍点」に傍点］を振る。
+LaTeX記法で<span class="k">\bou</span><span class="nb">{</span>傍点<span class="nb">}</span>を振る。</code></pre></div>
+<p>なお、Wordのルビ機能で傍点を振ってある原稿も来たりするが、ルビ機能はルビを振るためにあるのだから、傍点には使わないほうが賢明であろう。</p>
+
+<h2 id="数字">数字</h2>
+
+<p><strong>これ、けっこう重要である。</strong>まず悪い例を挙げよう。縦書きでこんな書き方をするのは、かなり見栄えが悪い。</p>
+
+<pre><code>1984年。
+12時。
+</code></pre>
+
+<p>こうすべきだ。</p>
+
+<pre><code>一九八四年（または、１９８４年）。
+一二時（または、十二時）。
+</code></pre>
+
+<p>縦中横と呼ばれる処理をしたい場合、できたら青空文庫形式で <code>12［＃「12」は縦中横］時</code> と書いてくだされば大変ありがたい。または直接LaTeXの記法で <code>\tcy{12}時</code> と書く。</p>
+
+<h2 id="記号">記号</h2>
+
+<p>アルファベットや記号の類は原則として<strong>全角文字を使おう</strong>。</p>
+
+<pre><code>&lt;今&gt;、&lt;ここ&gt;にいる &quot;私&quot; がCMを見ている
+</code></pre>
+
+<p>と書くのではなく、</p>
+
+<pre><code>〈今〉、〈ここ〉にいる〝私〟がＣＭを見ている
+</code></pre>
+
+<p>と書く。</p>
+
+<p>大文字アルファベットの略字は、横書きなら半角でよいのだが、縦書きのときは全角で書くほうがよい場合が多い。むろん、たとえば <code>アルファベットのスペルはAlphabetだ</code> のように、長い単語の場合などは半角でよい。</p>
+
+<p>まとめると、</p>
+
+<ul>
+<li><code>&lt; &gt;</code> ではなく <code>〈〉</code></li>
+<li><code>&quot; &quot;</code> ではなく <code>〝〟</code>（または <code>“”</code>）</li>
+<li><code>ABC</code> ではなく <code>ＡＢＣ</code></li>
+</ul>
+
+<p>である。</p>
+
+<h2 id="体裁を考えて書く場合の注意">体裁を考えて書く場合の注意</h2>
+
+<p>よくあるのが、「50字×22行という体裁を前提とした作品」である。このように、体裁を考えてかっちりと字数を調整して書きたい場合、<strong>まず書き始める前に編集長に相談してほしい</strong>と私は考える。なぜならば、部誌は毎回50字×22行のフォーマットで作られるわけではないからである。編集長が突如DTPに興味を持ち、体裁（正確には版面）を作り変えてしまう可能性は、いつでも考慮に入れるべきであろう。</p>
+
+<p>体裁といえば、なぜ九大文藝部はA5サイズに一段組、それも一行50字という体裁が部誌の標準スタイルになっているのだろうか。身の回りの小説本を見てみよ。一行50字もある本なんてほとんどないのだ（49字なら哲学書などによくあるが。ただこの場合、かなり行間が広めにとってある）。一行50字は読みづらいというのが一般的な認識ではないだろうか。</p>
+
+<p>ところが、私が聞いた範囲では、九大文藝部員は口を揃えて「一段組のほうが読みやすい」と言う。A5サイズで部誌を作るなら、二段組のほうが圧倒的に読みやすいと私は思うのだが……。どうも、組版の常識と書き手の常識との間には、ズレがあるようである。</p>
+
+<h1 id="むすび">むすび</h1>
+
+<p>以上の規則を多少なりとも頭に入れておいていただければ、編集作業の負担が減って編集委員はラクになる。寄稿者にとっても、編集委員とのメールのやり取りが減ってラクになる。双方にとって利点があります。部誌投稿のさいには、よろしくお願いします……。</p>
+
+<p>とくに、<strong>「数字」と「記号」と「体裁を考えて書く場合の注意」は毎回編集で困るところ</strong>である。</p>
+
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2019 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+
