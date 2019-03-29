@@ -537,14 +537,13 @@ img {
     background: linear-gradient(transparent 60%, #73efff 60%);
 } */
 pre, .highlight {
-    font-size: 1.2em;
     margin: 1px 0 10px;
     overflow-x: auto;
 }
 p > code, li > code {
-    font-size: 1.2em;
     border-radius: 2px;
     padding: 1px;
+    margin: 0 2px;
     font-family: monospace;
     background-color: #f7f7f7;
 }
