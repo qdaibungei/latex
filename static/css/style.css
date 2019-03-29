@@ -56,9 +56,9 @@ a:hover{
 }
 .logo{
     font-size: 30px;
-    padding: 6px;
+    padding: 19px 6px;
     /* width: 224px; */
-    height: 56px;
+    height: 86px;
     /* background: url('../images/logo.png') no-repeat;
     background-size: 52%;
     overflow: hidden;
@@ -75,7 +75,7 @@ a:hover{
 }
 .header{
     width: 100%;
-    height: 52px;
+    height: 82px;
     padding: 6px 0 10px;
     background-color: #333;
 }
