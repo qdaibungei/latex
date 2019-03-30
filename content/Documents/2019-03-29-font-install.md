@@ -26,7 +26,9 @@ tfmを生成するためには「otftotfm」というソフトを使う。otftot
 otftotfm --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
 ```
 
-すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである。一応、オプションの意味を説明しておこう。
+すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである[^1]。一応、オプションの意味を説明しておこう。
+
+[^1]: ここでエラーが出てtfmファイルが生成されない場合、ec.encをネットで検索してダウンロードし、作業用ディレクトリに置いておくこと。
 
 * `--no-type1 --no-dotlessj`は、「Type 1フォントへの変換を行わない」ということ、らしい。あまり理解できていない。
 * `--mapfile=josefinslab.map`で、mapファイルの指定をする。
@@ -100,6 +102,8 @@ mv *.enc enc/josefinslab/
 ```
 
 こうして、各種ファイルを収納した四つのフォルダが作られた。これらのフォルダを、`$TEXMF/fonts`へ移動させる（マージさせる）と、tfmなどの各種ファイルがカレントディレクトリになくとも使えるようになる。こうしてtfm類のインストールは完了する。
+
+mapファイルが読み込めずエラーが生ずる場合、`$ sudo mktexlsr`として情報を更新する。
 
 ## styファイルの生成とインストール
 さらにstyファイルを作る。

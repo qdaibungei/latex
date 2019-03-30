@@ -12,6 +12,25 @@ body{
     flex-direction: column;
     min-height: 100vh;
 }
+.title {
+    font-size: 1.4rem;
+    padding: 10px 0px;
+    display: block;
+}
+.title:after {
+    display: block;
+    width: 30px;
+    content: "";
+    border-top: 2px solid #ccc;
+    margin: 15px 0 auto;
+}
+.title:before {
+    display: block;
+    width: 100%;
+    content: "";
+    border-top: 2px solid #ccc;
+    margin: auto 0 15px;
+}
 .about{
     padding: 80px 30px;
 }

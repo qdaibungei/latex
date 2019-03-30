@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>和文フォントを混植する方法｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="logo">
+                <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+            </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex">HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about">About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents">Docs</a></li>
+    </ul>
+</nav>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<p class="title">
+    和文フォントを混植する方法<br>
+    2019/3/31
+</p>
+
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>和文フォントは、平仮名や片仮名だけ別のフォントに置き換えて使用することがある。漢字は同じでも、平仮名が違えば、紙面の印象を大きく変えることができるからだ。このように、漢字と平仮名とで別のフォントを使うことを「混植」と言う。</p>
+
+<p>LaTeXで混植をする方法の解説としては、これまでにも優れた記事がいくつか存在している。例えば「<a href="http://p-act.sakura.ne.jp/PARALLEL_ACT/LaTeX-Dojin/Hiragino-Yuchiku5go-konshoku.html">ヒラギノ明朝W2と游築五号仮名W2混植方法</a>」など。しかしそこに書かれた方法は、いくぶんか簡略的なものだというきらいがある。otfパッケージのburasageオプションが使えなかったり、upLaTeXでは使えなかったりするのだ。</p>
+
+<p>そこで本稿では、上述の欠点への補足として、やや備忘録的に記事を書いてみたい。</p>
+
+<h1 id="必要なファイルの用意">必要なファイルの用意</h1>
+
+<p>まず、必要なファイルを揃えておこう。ここでは游明朝体と游明朝体五号かなの混植をしてみよう。</p>
+
+<p>CTANにある<a href="https://ctan.org/tex-archive/language/japanese/japanese-otf">japanese-otfパッケージ</a>からbaseplとscriptというディレクトリをダウンロード。またmkjvfもダウンロードしておく。</p>
+
+<p>同様に<a href="https://ctan.org/tex-archive/language/japanese/japanese-otf-uptex">japanese-otf-uptex</a>からbasepl、script、umkjvfをダウンロード。</p>
+
+<p>さらに次のスクリプトを作成する。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
+</span><span class="cp"></span>
+mkdir tfm
+mkdir vf
+
+<span class="c1"># 普通にtfmファイルを生成
+</span><span class="c1"></span><span class="k">for</span> face in r b
+<span class="k">do</span>
+    <span class="k">for</span> hv in h v
+    <span class="k">do</span>
+        ppltotf basepl/base-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl yumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        ppltotf basepl/base-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl expyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        ppltotf basepl/brsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl brsgyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        ppltotf basepl/brsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl brsgexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        <span class="c1">#
+</span><span class="c1"></span>        uppltotf -kanji<span class="o">=</span>uptex basepl/ubase-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        uppltotf -kanji<span class="o">=</span>uptex basepl/ubase-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        uppltotf -kanji<span class="o">=</span>uptex basepl/ubrsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upbrsgyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        uppltotf -kanji<span class="o">=</span>uptex basepl/ubrsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upbrsgexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+    <span class="k">done</span>
+<span class="k">done</span>
+
+<span class="c1"># ここが混植のキモ。
+</span><span class="c1"># 混植しないときは引数二つでよかったが、混植のため引数は三つ。
+</span><span class="c1"># しかし仕組みはあまり理解できていない。
+</span><span class="c1"></span><span class="k">for</span> face in r b
+<span class="k">do</span>
+    <span class="k">for</span> hv in h v
+    <span class="k">do</span>
+        perl mkjvf -m               yumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> hmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> r-yumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        perl mkjvf -m -sage         brsgyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> hmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> r-yumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        perl mkjvf -m       -expert expyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> hmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> cidjmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>
+        perl mkjvf -m -sage -expert brsgexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> hmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> cidjmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>
+    <span class="k">done</span>
+<span class="k">done</span>
+
+<span class="k">for</span> face in r b
+<span class="k">do</span>
+    <span class="k">for</span> hv in h v
+    <span class="k">do</span>
+        perl umkjvf -m -ucs -sp <span class="m">1</span>               upyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> uphmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> r-upyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        perl umkjvf -m -ucs -sp <span class="m">1</span> -sage         upbrsgyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> uphmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> r-upyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        perl umkjvf -m -ucs -sp <span class="m">1</span>       -expert upexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> uphmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> cidjmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>
+        perl umkjvf -m -ucs -sp <span class="m">1</span> -sage -expert upbrsgexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> uphmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span> cidjmin<span class="si">${</span><span class="nv">face</span><span class="si">}</span>
+    <span class="k">done</span>
+<span class="k">done</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;making tfm for supplementary plane ...&#34;</span>
+perl script/mktfm_sp.pl
+<span class="nb">echo</span> <span class="s2">&#34;making vf for supplementary plane ...&#34;</span>
+perl script/mkutfvf_sp.pl
+
+mv *.tfm tfm/
+mv *.vf vf/</code></pre></div>
+<p>このスクリプトは、基本的にはmakeotfおよびumakeotfを参考にして適当に書き換えたものである。</p>
+
+<h1 id="各種ファイルの作成">各種ファイルの作成</h1>
+
+<p>先程作成したスクリプトを実行し、tfmファイルやvfファイルを生成する。そして$TEXMF下の適当な場所に配置する。</p>
+
+<p>最後に、otfパッケージを参考にして、yumin5go.styを作成する。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
+</span><span class="c">% yumin5go.sty
+</span><span class="c">%
+</span><span class="c"></span>
+<span class="k">\ProvidesPackage</span><span class="nb">{</span>yumin5go<span class="nb">}</span>
+<span class="k">\RequirePackage</span><span class="nb">{</span>otf<span class="nb">}</span>
+
+<span class="k">\if</span>@deluxe
+    <span class="k">\DeclareKanjiFamily</span><span class="nb">{</span><span class="k">\otf</span>@JYn<span class="nb">}{</span>yumin5go<span class="nb">}{}</span>
+    <span class="k">\DeclareKanjiFamily</span><span class="nb">{</span><span class="k">\otf</span>@JTn<span class="nb">}{</span>yumin5go<span class="nb">}{}</span>
+    <span class="k">\if</span>@kana
+        <span class="k">\DeclareFontShape</span><span class="nb">{</span><span class="k">\otf</span>@JYn<span class="nb">}{</span>yumin5go<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; s * [<span class="k">\utf</span>@sc@le] <span class="k">\otf</span>@pfx@ <span class="k">\brsg</span>@pfx@ yumin5gor<span class="k">\nlck</span>@sfx@-h<span class="nb">}{}</span>
+        <span class="k">\DeclareFontShape</span><span class="nb">{</span><span class="k">\otf</span>@JTn<span class="nb">}{</span>yumin5go<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; s * [<span class="k">\utf</span>@sc@le] <span class="k">\otf</span>@pfx@ <span class="k">\brsg</span>@pfx@ yumin5gor<span class="k">\nlck</span>@sfx@-v<span class="nb">}{}</span>
+    <span class="k">\else</span>
+        <span class="k">\DeclareFontShape</span><span class="nb">{</span><span class="k">\otf</span>@JYn<span class="nb">}{</span>yumin5go<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; s * [<span class="k">\utf</span>@sc@le] <span class="k">\otf</span>@pfx@ <span class="k">\brsg</span>@pfx@ yumin5gor<span class="k">\nlck</span>@sfx@-h<span class="nb">}{}</span>
+        <span class="k">\DeclareFontShape</span><span class="nb">{</span><span class="k">\otf</span>@JTn<span class="nb">}{</span>yumin5go<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; s * [<span class="k">\utf</span>@sc@le] <span class="k">\otf</span>@pfx@ <span class="k">\brsg</span>@pfx@ yumin5gor<span class="k">\nlck</span>@sfx@-v<span class="nb">}{}</span>
+    <span class="k">\fi</span>
+<span class="k">\fi</span>
+<span class="k">\if</span>@deluxe
+    <span class="k">\DeclareKanjiFamily</span><span class="nb">{</span><span class="k">\otf</span>@JYn<span class="nb">}{</span>yumin5go<span class="nb">}{}</span>
+    <span class="k">\DeclareKanjiFamily</span><span class="nb">{</span><span class="k">\otf</span>@JTn<span class="nb">}{</span>yumin5go<span class="nb">}{}</span>
+    <span class="k">\if</span>@kana
+        <span class="k">\DeclareFontShape</span><span class="nb">{</span><span class="k">\otf</span>@JYn<span class="nb">}{</span>yumin5go<span class="nb">}{</span>bx<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; s * [<span class="k">\utf</span>@sc@le] <span class="k">\otf</span>@pfx@ <span class="k">\brsg</span>@pfx@ yumin5gob<span class="k">\nlck</span>@sfx@-h<span class="nb">}{}</span>
+        <span class="k">\DeclareFontShape</span><span class="nb">{</span><span class="k">\otf</span>@JTn<span class="nb">}{</span>yumin5go<span class="nb">}{</span>bx<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; s * [<span class="k">\utf</span>@sc@le] <span class="k">\otf</span>@pfx@ <span class="k">\brsg</span>@pfx@ yumin5gob<span class="k">\nlck</span>@sfx@-v<span class="nb">}{}</span>
+    <span class="k">\else</span>
+        <span class="k">\DeclareFontShape</span><span class="nb">{</span><span class="k">\otf</span>@JYn<span class="nb">}{</span>yumin5go<span class="nb">}{</span>bx<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; s * [<span class="k">\utf</span>@sc@le] <span class="k">\otf</span>@pfx@ <span class="k">\brsg</span>@pfx@ yumin5gob<span class="k">\nlck</span>@sfx@-h<span class="nb">}{}</span>
+        <span class="k">\DeclareFontShape</span><span class="nb">{</span><span class="k">\otf</span>@JTn<span class="nb">}{</span>yumin5go<span class="nb">}{</span>bx<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; s * [<span class="k">\utf</span>@sc@le] <span class="k">\otf</span>@pfx@ <span class="k">\brsg</span>@pfx@ yumin5gob<span class="k">\nlck</span>@sfx@-v<span class="nb">}{}</span>
+    <span class="k">\fi</span>
+<span class="k">\fi</span>
+
+<span class="k">\DeclareRobustCommand\okfamily</span><span class="nb">{</span><span class="k">\kanjifamily</span><span class="nb">{</span>yumin5go<span class="nb">}</span><span class="k">\selectfont</span><span class="nb">}</span>
+
+<span class="k">\def\ymnVgo</span>@mapline#1#2#3<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapline #1 #2 #3<span class="nb">}}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+
+<span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>r-yumin5gor-h<span class="nb">}{</span>H<span class="nb">}{</span>JJSYuMin5goKn-R.otf<span class="nb">}</span>
+<span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>r-yumin5gor-v<span class="nb">}{</span>V<span class="nb">}{</span>JJSYuMin5goKn-R.otf<span class="nb">}</span>
+<span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>hminr-h<span class="nb">}{</span>H<span class="nb">}{</span>JJSYuMinchoPr6N-R.otf<span class="nb">}</span>
+<span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>hminr-v<span class="nb">}{</span>V<span class="nb">}{</span>JJSYuMinchoPr6N-R.otf<span class="nb">}</span>
+
+<span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>r-yumin5gob-h<span class="nb">}{</span>H<span class="nb">}{</span>JJSYuMin5goKn-D.otf<span class="nb">}</span>
+<span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>r-yumin5gob-v<span class="nb">}{</span>V<span class="nb">}{</span>JJSYuMin5goKn-D.otf<span class="nb">}</span>
+<span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>hminb-h<span class="nb">}{</span>H<span class="nb">}{</span>JJSYuMinchoPr6N-D.otf<span class="nb">}</span>
+<span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>hminb-v<span class="nb">}{</span>V<span class="nb">}{</span>JJSYuMinchoPr6N-D.otf<span class="nb">}</span>
+
+<span class="k">\if</span>@otf@uplatex
+    <span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>r-upyumin5gor-h<span class="nb">}{</span>UniJIS-UTF16-H<span class="nb">}{</span>JJSYuMin5goKn-R.otf<span class="nb">}</span>
+    <span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>r-upyumin5gor-v<span class="nb">}{</span>UniJIS-UTF16-V<span class="nb">}{</span>JJSYuMin5goKn-R.otf<span class="nb">}</span>
+    <span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>uphminr-h<span class="nb">}{</span>UniJIS-UTF16-H<span class="nb">}{</span>JJSYuMinchoPr6N-R.otf<span class="nb">}</span>
+    <span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>uphminr-v<span class="nb">}{</span>UniJIS-UTF16-V<span class="nb">}{</span>JJSYuMinchoPr6N-R.otf<span class="nb">}</span>
+    <span class="c">%
+</span><span class="c"></span>    <span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>r-upyumin5gob-h<span class="nb">}{</span>UniJIS-UTF16-H<span class="nb">}{</span>JJSYuMin5goKn-D.otf<span class="nb">}</span>
+    <span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>r-upyumin5gob-v<span class="nb">}{</span>UniJIS-UTF16-V<span class="nb">}{</span>JJSYuMin5goKn-D.otf<span class="nb">}</span>
+    <span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>uphminb-h<span class="nb">}{</span>UniJIS-UTF16-H<span class="nb">}{</span>JJSYuMinchoPr6N-D.otf<span class="nb">}</span>
+    <span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>uphminb-v<span class="nb">}{</span>UniJIS-UTF16-V<span class="nb">}{</span>JJSYuMinchoPr6N-D.otf<span class="nb">}</span>
+<span class="k">\fi</span>
+
+<span class="k">\endinput</span></code></pre></div>
+<p>このstyファイルを読み込み、<code>\okfamily</code>とすれば游明朝体五号かなが使えるはずである。</p>
+
+<h1 id="おわりに">おわりに</h1>
+
+<p>一応、混植はできるようになった。しかし混植の仕組みはあまり理解できていない。混植の仕組みの解説は、心優しきTeXnicianの方々に託すことにする。</p>
+
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2019 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+

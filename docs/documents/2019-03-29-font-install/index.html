@@ -29,12 +29,10 @@
 <main class="main">
     <div class="content">
 
-<hr>
-<p>
+<p class="title">
     CTANにない欧文フォントをLaTeXにインストールする<br>
     2019/3/29
 </p>
-<hr>
 
 
 <h1 id="はじめに">はじめに</h1>
@@ -57,7 +55,7 @@
 
 <p>まず作業用ディレクトリを適当に作っておき、そこにJosefinSlab-Regular.ttfを入れておく。ターミナルで作業用ディレクトリに行き、次のコマンドを実行してみよう。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf</code></pre></div>
-<p>すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである。一応、オプションの意味を説明しておこう。</p>
+<p>すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>。一応、オプションの意味を説明しておこう。</p>
 
 <ul>
 <li><code>--no-type1 --no-dotlessj</code>は、「Type 1フォントへの変換を行わない」ということ、らしい。あまり理解できていない。</li>
@@ -121,6 +119,8 @@ mv *.map map/josefinslab/
 mv *.enc enc/josefinslab/</code></pre></div>
 <p>こうして、各種ファイルを収納した四つのフォルダが作られた。これらのフォルダを、<code>$TEXMF/fonts</code>へ移動させる（マージさせる）と、tfmなどの各種ファイルがカレントディレクトリになくとも使えるようになる。こうしてtfm類のインストールは完了する。</p>
 
+<p>mapファイルが読み込めずエラーが生ずる場合、<code>$ sudo mktexlsr</code>として情報を更新する。</p>
+
 <h2 id="styファイルの生成とインストール">styファイルの生成とインストール</h2>
 
 <p>さらにstyファイルを作る。</p>
@@ -149,6 +149,15 @@ mv *.enc enc/josefinslab/</code></pre></div>
 <li><a href="https://zrbabbler.hatenablog.com/entry/20110926/1317041905">dvipdfmx で OpenType する件について (1)</a></li>
 <li><a href="https://zrbabbler.hatenablog.com/entry/20110927/1317136030">dvipdfmx で OpenType する件について (2)</a></li>
 </ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">ここでエラーが出てtfmファイルが生成されない場合、ec.encをネットで検索してダウンロードし、作業用ディレクトリに置いておくこと。
+ <a class="footnote-return" href="#fnref:1">↩</a></li>
+</ol>
+</div>
 
                     </div>
                 </main>
