@@ -6,10 +6,28 @@
     <description>Recent content in Tags on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 28 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Aprilfool</title>
+      <link>https://qdaibungei.github.io/latex/tags/aprilfool/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/tags/aprilfool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dtp 小説</title>
+      <link>https://qdaibungei.github.io/latex/tags/dtp-%E5%B0%8F%E8%AA%AC/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/tags/dtp-%E5%B0%8F%E8%AA%AC/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Javascript</title>
@@ -35,6 +53,24 @@
       <pubDate>Sun, 26 Feb 2017 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/tags/latex-%E8%A7%A3%E8%AA%AC/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://qdaibungei.github.io/latex/tags/python/</link>
+      <pubDate>Sun, 10 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tex</title>
+      <link>https://qdaibungei.github.io/latex/tags/tex/</link>
+      <pubDate>Fri, 11 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/tags/tex/</guid>
       <description></description>
     </item>
     

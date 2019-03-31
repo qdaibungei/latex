@@ -6,10 +6,22 @@
     <description>Recent content on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 31 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>高品質なプロ仕様の有料フォント20種を300円足らずで入手する方法</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-04-01-aprilfool/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-04-01-aprilfool/</guid>
+      <description>そんな方法、知っているわけがないでしょう。終わり。
+
+※本記事はエイプリルフールネタ用の記事です。
+※プロ仕様のフォントをたった数百円で買えるなんて都合のいい話、普通あり得ません。普通は数万円します。セール特価とかで稀にやたらと安く売っているときはありますが……。例えば現在、一太郎ユーザーなら清和堂明朝というクオリティの高い本文用フォントが6000円という特価で買えるのでお得です。私も欲しいけど今のところ買う余裕がなくて断念しています。</description>
+    </item>
     
     <item>
       <title>和文フォントを混植する方法</title>
@@ -80,9 +92,9 @@ styファイルの作成 各種ファイルが生成できたならば、すか�
 \usepackage[burasage]{otf} しかし、このぶら下げ組にはひとつ問題がある。句読点が行末に来たとき、必ずぶら下げ処理がおこなわれてしまうのである1。
 むろん、これはこれでひとつの立派な組版方針である。だが、行長が短いときに強制的にぶら下げ処理がおこなわれてしまうと、字間が開いてしまい、間延びした印象の組みかたになってしまう。よって、われわれとしては、ぶら下げ処理を少し抑制するように修正してみたい。これは、商業出版の本によく見られる組みかたでもある。
 そこで、プリアンブルなどに以下のように記述し、\。と\、というマクロを作る。
-\if@burasage \def\、{\relax \@ifnextchar\par{、}{、\hbox{}}%  }%  \def\。{\relax \@ifnextchar\par{。}{。\hbox{}}%  }% \else \def\、{\nobreak\makebox[1zw][l]{、}}%  \def\。{\nobreak\makebox[1zw][l]{。}}% \fi あとは、文章中の句読点すべてを\。および\、で置き換えればよい。すると、burasageオプション時には適度にぶら下げが抑制された組みかたとなる。また、burasageオプションを外したときには、追い出し組となる。
+\if@burasage \def\、{%  \@ifnextchar\par{、}{、\hbox{}}%  }%  \def\。{%  \@ifnextchar\par{。}{。\hbox{}}%  }% \else \def\、{\nobreak\makebox[1zw][l]{、}}%  \def\。{\nobreak\makebox[1zw][l]{。}}% \fi あとは、文章中の句読点すべてを\。および\、で置き換えればよい。すると、burasageオプション時には適度にぶら下げが抑制された組みかたとなる。また、burasageオプションを外したときには、追い出し組となる。
 細かい調整 ただし、このままでは句読点と括弧類とが並んだとき、空きが広くなりすぎてしまう。たとえば、\。「のように、句読点の直後に始め括弧が来た場合、\。\&amp;lt;「とする（つまり\&amp;lt;を追加する）ことが必要となる。
-句点と鉤括弧の場合だけ考えると、以下のような置換が必要である（上に挙げた例を含めている）。
+句点と鉤括弧の場合だけ考えると、結局、以下のような置換が必要である。
  \。「 → \。\&amp;lt;「 \。」 → 。」 」\。 → 」\&amp;lt;\。  このような置換を、すべての括弧類と句読点との組み合わせを考えて、おこなえばよい。置換作業は手作業だと面倒きわまりないので、PythonなりRubyなりで置換スクリプトを組んで置換するのがよいであろう。
 結言 LaTeXのデフォルトは追い込み組であるが、これは商業出版にはあまり見られない。そこで上のような設定をし、ぶら下げ組にするか、追い出し組にするとよいのである。そうすれば、いっそう商業出版に近い組みかたが実現でき、嬉しい気分に浸れることであろう。
  ただし段落末尾はそのかぎりではない。 ↩   </description>
@@ -123,6 +135,32 @@ pdfpagesパッケージの使いかた 大きさを指定して画像をPDF化�
 PDFファイルの連結 以下はA5サイズの本を作っているとき、左右のページをつなげてA4用紙に出力するやりかたである。デザインを確認したいときなどに有用である。
 \documentclass[a4paper,landscape]{article} \usepackage{pdfpages} \begin{document} \includepdf[pages={28,29},nup=2x1]{mybook.pdf} \end{document} pages={28,29}は28～29ページだけを読み込む設定、nupは複数ページを一枚に並べる設定である。nup=2x1は2行×1列で並べるという意味になる。
 自炊したPDFファイルの加工と連結 \documentclass{article} \usepackage{pdfpages} \usepackage[a5paper]{geometry} \begin{document} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{1.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{2.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{3.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{4.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{5.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{6.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{7.pdf} \end{document}\documentclass{article} \usepackage{pdfpages} \usepackage[a4paper,landscape]{geometry} \newcount\K \newcommand{\createPDF}{%  \K=0 \loop\ifnum\K&amp;lt;134 % while(K&amp;lt;pagecount)  \includepdf[pages=-,scale=1.15,offset=-12mm 2mm]{\the\K.png} \advance\K by 1 % K++  \repeat % end while } \begin{document} \createPDF \end{document} scaleオプションとoffsetオプションを指定してやると周囲の切り落としが可能となる。</description>
+    </item>
+    
+    <item>
+      <title>TeX Gyreフォントの使い方</title>
+      <link>https://qdaibungei.github.io/latex/documents/2017-08-11-texgyre/</link>
+      <pubDate>Fri, 11 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2017-08-11-texgyre/</guid>
+      <description>TeX Gyreのパッケージ名をすぐ忘れてしまうのでメモしておく。
+TeX Gyreフォント Adventor URW Gothic LにもとづくITC Avant Garde Gothic代用フォント。
+\usepackage[scale=0.9]{tgadventor} ファミリ名はqagである。
+Bonum URW Bookman LにもとづくITC Bookman代用フォント。
+\usepackage[scale=0.95]{tgbonum} ファミリ名はqbkである。
+Chorus URW Chancery L Medium ItalicにもとづくITC Zapf Chancery代用フォント。
+\usepackage[scale=0.95]{tgbonum} ファミリ名はqzcである。
+Cursor URW Nimbus Mono LにもとづくCourier代用フォント。
+\usepackage[scale=1]{tgcursor} ファミリ名はqcrである。
+Heros URW Nimbus Sans LにもとづくHelvetica代用フォント。
+\usepackage[scale=0.95]{tgheros} ファミリ名はqhvである。
+Pagella URW Palladio LにもとづくPalatino代用フォント。
+\usepackage{tgpagella} ファミリ名はqplである。
+Schola URW Century Schoolbook LにもとづくCentury Schoolbook代用フォント。
+\usepackage[scale=1]{tgschola} ファミリ名はqcsである。
+数式はfourierncと合わせる（tgscholaより先に読み込む）。
+Termes URW Nimbus Roman LにもとづくTimes代用フォント。
+\usepackage{qtxmath} % 数式を使う場合これを先に読み込む \usepackage[scale=1]{tgtermes} ファミリ名はqtmである。</description>
     </item>
     
     <item>
@@ -291,6 +329,43 @@ jdashというのはjapanese dashの略のつもりである。日本語文に�
     </item>
     
     <item>
+      <title>初心者による初心者のための小説DTP入門の原稿の残骸</title>
+      <link>https://qdaibungei.github.io/latex/documents/2016-11-29-dtp-guide-zangai/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2016-11-29-dtp-guide-zangai/</guid>
+      <description>はじめに この文書の目的 この文書の狙いは、読みやすい小説の同人誌を作成するにはどうすればよいかを、主にDTPの観点から解説することにあった（が、この目標は断念を余儀なくされた1）。
+主な対象読者は、小説の同人誌づくりの工程のうち、本文データ作成で悩んでいる人たちである。すなわち、
+ 同人誌を作ってみたが、どうも本文が読みづらい 商業本に比べて見劣りがする  と漠然と感じている人や、
+ Wordに小説本文を流し込んでみたが、『!?』が横倒しになって気持ち悪い ルビを振ると行間が空いてしまう  といったように、意図した通りのデータ作成ができず苦しんでいる人が該当する。
+私の方針 今回、初心者向けということで、以下の方針を採用することとした。
+ できるだけ安く ただし使用ソフトはWord  できるだけ安く済ませるに越したことはない。特に初心者の場合、いきなり高価なソフトに手を出すのはあまり賢いやり方ではないであろう。
+ただし、使用ソフトはWordを採用した2。これは、初心者の場合Wordが最も操作に慣れていると考えられたからである。もちろん、WordがなければLibreOfficeで代用して構わない。
+注意 私の独断と偏見が多分に混じっていることを留意されたい。
+フォント まずはフォントの選定からである。フォントは本文の印象を担う重要なファクターであり、慎重に選ぶ必要がある。フォントは商用のものを購入すると非常に高価なので、まずは無料フォントの中から選ぶことにする3。
+結論から言ってしまえば、本文フォントは以下の4つのいずれかを使用するのが無難であろう。これらはすべて無料で使えるが、ただしヒラギノだけはMacにしか付いていない。
+ 游明朝 ヒラギノ IPAex明朝 F910明朝W3-IPA  個人的には、MS明朝は避けたほうがよいと考えている。
+MS明朝 MS明朝を使ってはならない理由は、端的に「読みづらい」からである。
+そもそもMS明朝は小説向きのフォントではない。もともと、MS明朝は解像度の低いディスプレイ用に開発されたフォントであり、印刷向きではないのである。その証拠に、開発元のサイトを見ると、
+ そのころは、ディスプレイの解像度が低く、小さな画面で、いかに小さい文字まできれいに表示させるかということでいろいろな工夫をしました。
+ と書いてある。推測するに、MS明朝のひらがなが独特な形状をしている（直線が多用されていたり、少しばかり大きめだったりする）のは、解像度が低いディスプレイでも字が潰れず読めるように、という工夫だと思われる。
+当時は大変役に立ったであろうそうした工夫は、我々の目指す「美しい小説本をつくる」という目的の前ではむしろ百害あって一理なしである。
+游明朝 游明朝は、最も小説向きと言えるだろう。公式サイトには次のように書いてあり、小説用に開発されたフォントであることが明言されている。
+ 游明朝体ファミリーは「時代小説が組めるような明朝体」をキーワードに、単行本や文庫などで小説を組むことを目的に開発した游明朝体Rを核とした明朝体ファミリーです。
+ 游明朝は現在、Windows および Mac に標準で付属している。
+なお、最新のMacには「游明朝体36ポかな」という仮名書体が付属している（游明朝の漢字部分と組み合わせて使う）。公式サイトを見ると、もともとは見出しフォントとしての使用を想定しているようである。したがって、本文フォントとして読みやすいのかどうか定かではない。場合によっては使ってみてもよいかもしれない。
+ヒラギノ ヒラギノフォントは、とにかく美しいフォントである。ファンも多い。「ヒラギノを目当てにMacを買った」という人も結構いる（フォント単体を買うよりMacごと買ったほうが安いので、しばしば「ヒラギノを買ったらMacがついてきた」と表現される）。
+個人的な意見では、小説よりは横書きの文書に適しているように思うが、縦書きの小説に使用してもさほど問題はなかろう。
+Macにしか付属していないのがちょっと残念である。
+IPAex明朝 独立行政法人情報処理推進機構（IPA）が作ったフォントである。無料でダウンロードできる。特に小説向きというわけでもないが、普通に本文書体として活用できるフォントである。
+F910明朝W3-IPA 「現代的な骨格と古くからある味わいを融合した明朝体」とのことである。漢字部分は上で紹介した「IPAフォント」を、ひらがなやカタカナは「フォント910」という会社で作ったものを組み合わせて作られたフォントである。築地体というのか、仮名部分が古風な雰囲気なのが嬉しい。ただ本文に使うには、ちょっと仮名が大きいような気がしないでもない。
+古風といえば「はんなり明朝」もIPAフォントの漢字に古風な仮名書体を合わせたフリーフォントだが、こちらは縦書きで使うと縦の線が揃わなくてあまり読みやすくない、という意見をどこかで見た気がする。真偽の程は定かではないが。美しさについては、最終的には自分の目で判断するしかないであろう。
+版面設計 本文領域のレイアウトのことを、版面という。この版面設計こそが、小説本の読みやすさを左右する最重要の工程である。
+基本的には、次の4点を決定することで、版面設計したことになる。
+ 文字サイズ 行送りサイズ 1行あたりの文字数 1ページあたりの行数  文字サイズ 好きなフォントを選んだら、次に本文の文字サイズを決めよう。大きすぎても小さすぎてもいけない。基本的には市販の本を見て、それに合わせるのがよいだろう。</description>
+    </item>
+    
+    <item>
       <title>小説校正のための正規表現集</title>
       <link>https://qdaibungei.github.io/latex/documents/2016-10-09-kousei/</link>
       <pubDate>Sun, 09 Oct 2016 00:00:00 +0000</pubDate>
@@ -307,6 +382,17 @@ jdashというのはjapanese dashの略のつもりである。日本語文に�
 2連続で使用されている疑問符・感嘆符は半角に [！？]{2,}
 
 その他 青空文庫作業マニュアル【校正編】は参考になる。</description>
+    </item>
+    
+    <item>
+      <title>校正割り振りスクリプト</title>
+      <link>https://qdaibungei.github.io/latex/documents/2016-07-10-kousei-script/</link>
+      <pubDate>Sun, 10 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2016-07-10-kousei-script/</guid>
+      <description>はじめに 校正割り振りスクリプトをつくった。校正割り振りっていうより、「山分け問題」の解決をするスクリプトって言ったほうがいいか。というかこういう問題ってふつうどう呼ばれているのだろう。検索してもいまいちこれといったものが見つからなかった。「山分け問題」もしくは「分配問題」と呼んでいる本がgoogle booksで見つかったが、これが一般的呼称なのは分からない。
+校正割り振りスクリプト 背景  文藝サークルでは、文集や部誌を発行するさい、校正係を置いている。 ここで校正係とは、部員の原稿を事前に読み、誤字脱字などをチェックする係である。 各校正係は、すべての原稿に目を通す必要はなく、自分の担当原稿のみに目を通せばよい（各人がすべての原稿に目を通すのは非効率的であるため）。  問題  校正係へ原稿を割り振るとき、各人が読まねばならぬ原稿の文字数をできるかぎり揃えたい。 しかし、これを手作業で揃えようとすると、面倒である。  解法 以下に示すpythonスクリプトを書いた。すべての可能な組み合わせを考えて、標準偏差を出し、標準偏差の最も低い組み合わせを出力するようにしてある。
+# -*- coding: utf-8 -*- import math import itertools list1 = [1011,8595,5064,4978,6751,108,30218,732,&amp;#39;|&amp;#39;,&amp;#39;|&amp;#39;,&amp;#39;|&amp;#39;] junretu = [i for i in itertools.permutations(list1)] # すべての順列をひたすら出力 goodp = [] # good permitation listhozon = [] # list保存 # 標準偏差 standard deviation sd = -1 for p in junretu: list2 = [] p = list(p) i = [i for (i, x) in enumerate(p) if x == &amp;#39;|&amp;#39;] # 区切り位置の取得 # 取得した区切り位置を元に数字の組み合わせのリストを作る c = 0 for x in i: list2.</description>
     </item>
     
     <item>

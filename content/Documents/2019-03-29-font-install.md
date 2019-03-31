@@ -130,6 +130,39 @@ mapファイルが読み込めずエラーが生ずる場合、`$ sudo mktexlsr`
 
 本当は`\DeclareFontShape……`のような情報はstyでなくfdファイルに書き込むのが正しいのかもしれないが、fdファイルを作るやり方はよく分からなかった。しかしstyに書いても動くことは動くので、動作の点からは特に問題ないものと思われる。
 
+
+# scaleオプションの追加
+scaleオプションを追加しておくと便利である（既存の欧文フォントのパッケージには大抵scaleオプションがある）。scaleオプションとは、`\usepackage[scale=0.9]{josefinslab}`などとすれば欧文が0.9倍の大きさで印字されるようなオプション機能である。
+
+scaleオプションを実装するためには、styファイルを少しばかり書き換えるだけでよろしい。具体的には以下のようにする（煩雑になるのを避けるためウェイトは二種類のみにしてある）。
+
+```LaTeX
+%
+% josefinslab.sty
+%
+
+\ProvidesPackage{josefinslab}[2019/03/31 v0.2]
+
+\RequirePackage{xkeyval}
+\DeclareOptionX{scale}{\def\jsfnslb@scale{#1}}
+\DeclareOptionX{scaled}{\def\jsfnslb@scale{#1}}
+\ExecuteOptionsX{scale=1}
+\ProcessOptionsX
+
+\def\jsfnslb@@scale{s*[\jsfnslb@scale]}
+
+\DeclareFontFamily{T1}{josefinslab}{}
+\DeclareFontShape{T1}{josefinslab}{m}{n}{<-> \jsfnslb@@scale josefinslab-regular}{}
+\DeclareFontShape{T1}{josefinslab}{m}{it}{<-> \jsfnslb@@scale josefinslab-regular-italic}{}
+\DeclareFontShape{T1}{josefinslab}{bx}{n}{<-> \jsfnslb@@scale josefinslab-bold}{}
+\DeclareFontShape{T1}{josefinslab}{bx}{it}{<-> \jsfnslb@@scale josefinslab-bold-italic}{}
+
+\AtBeginDvi{\special{pdf:mapfile josefinslab.map}}
+
+\endinput
+```
+
 # 参考文献
 * [dvipdfmx で OpenType する件について (1)](https://zrbabbler.hatenablog.com/entry/20110926/1317041905)
 * [dvipdfmx で OpenType する件について (2)](https://zrbabbler.hatenablog.com/entry/20110927/1317136030)
+* [LaTeX に新しいフォントを持ち込む練習](https://zrbabbler.hatenablog.com/entry/20110921/1316607031)

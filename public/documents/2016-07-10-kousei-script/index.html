@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>校正割り振りスクリプト｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="logo">
+                <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+            </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex">HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about">About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents">Docs</a></li>
+    </ul>
+</nav>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<p class="title">
+    校正割り振りスクリプト<br>
+    2016/7/10
+</p>
+
+
+<h1 id="はじめに">はじめに</h1>
+
+<p>校正割り振りスクリプトをつくった。校正割り振りっていうより、「山分け問題」の解決をするスクリプトって言ったほうがいいか。というかこういう問題ってふつうどう呼ばれているのだろう。検索してもいまいちこれといったものが見つからなかった。「山分け問題」もしくは「分配問題」と呼んでいる本がgoogle booksで見つかったが、これが一般的呼称なのは分からない。</p>
+
+<h1 id="校正割り振りスクリプト">校正割り振りスクリプト</h1>
+
+<h2 id="背景">背景</h2>
+
+<ul>
+<li>文藝サークルでは、文集や部誌を発行するさい、校正係を置いている。</li>
+<li>ここで校正係とは、部員の原稿を事前に読み、誤字脱字などをチェックする係である。</li>
+<li>各校正係は、すべての原稿に目を通す必要はなく、自分の担当原稿のみに目を通せばよい（各人がすべての原稿に目を通すのは非効率的であるため）。</li>
+</ul>
+
+<h2 id="問題">問題</h2>
+
+<ul>
+<li>校正係へ原稿を割り振るとき、各人が読まねばならぬ原稿の文字数をできるかぎり揃えたい。</li>
+<li>しかし、これを手作業で揃えようとすると、面倒である。</li>
+</ul>
+
+<h2 id="解法">解法</h2>
+
+<p>以下に示すpythonスクリプトを書いた。すべての可能な組み合わせを考えて、標準偏差を出し、標準偏差の最も低い組み合わせを出力するようにしてある。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+
+<span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1011</span><span class="p">,</span><span class="mi">8595</span><span class="p">,</span><span class="mi">5064</span><span class="p">,</span><span class="mi">4978</span><span class="p">,</span><span class="mi">6751</span><span class="p">,</span><span class="mi">108</span><span class="p">,</span><span class="mi">30218</span><span class="p">,</span><span class="mi">732</span><span class="p">,</span><span class="s1">&#39;|&#39;</span><span class="p">,</span><span class="s1">&#39;|&#39;</span><span class="p">,</span><span class="s1">&#39;|&#39;</span><span class="p">]</span>
+
+<span class="n">junretu</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">list1</span><span class="p">)]</span> <span class="c1"># すべての順列をひたすら出力</span>
+<span class="n">goodp</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># good permitation</span>
+<span class="n">listhozon</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># list保存</span>
+
+<span class="c1"># 標準偏差 standard deviation</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">junretu</span><span class="p">:</span>
+    <span class="n">list2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;|&#39;</span><span class="p">]</span> <span class="c1"># 区切り位置の取得</span>
+
+    <span class="c1"># 取得した区切り位置を元に数字の組み合わせのリストを作る</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">c</span><span class="p">:</span><span class="n">x</span><span class="p">])</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;dummy&#39;</span><span class="p">)</span>
+        <span class="n">list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">c</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># 空のリストを持っているかどうか判定</span>
+    <span class="n">kara</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">list2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">kara</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">break</span>
+    <span class="k">if</span> <span class="n">kara</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1">#print list2</span>
+        <span class="n">list3</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">list2</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+                <span class="n">total</span> <span class="o">+=</span> <span class="n">y</span>
+            <span class="n">list3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+            <span class="n">total</span><span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1">#print list3</span>
+
+        <span class="n">ave</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">list3</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">list3</span><span class="p">)</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list3</span><span class="p">)):</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="p">(</span><span class="n">list3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">ave</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">if</span> <span class="n">sd</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">sd</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">total</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">list3</span><span class="p">))</span>
+            <span class="n">goodp</span> <span class="o">=</span> <span class="n">p</span>
+            <span class="n">listhozon</span> <span class="o">=</span> <span class="n">list3</span>
+        <span class="k">elif</span> <span class="n">sd</span> <span class="o">&gt;</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">total</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">list3</span><span class="p">)):</span>
+            <span class="n">sd</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">total</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">list3</span><span class="p">))</span>
+            <span class="n">goodp</span> <span class="o">=</span> <span class="n">p</span>
+            <span class="n">listhozon</span> <span class="o">=</span> <span class="n">list3</span>
+<span class="k">del</span> <span class="n">goodp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">sd</span>
+<span class="k">print</span> <span class="n">goodp</span>
+<span class="k">print</span> <span class="n">listhozon</span></code></pre></div>
+<h1 id="追記">追記</h1>
+
+<p>流石に適当すぎて、リストが多すぎるとすぐフリーズしてしまうことが判明した。やっぱりそうか。悲しい。メモリを食い過ぎてしまうのだ。改善したいがなかなか資料が見つからない。<a href="http://pythonlife.seesaa.net/article/243207369.html">ここ</a>などが参考になるかもしれない。</p>
+
+<h1 id="さらに追記">さらに追記</h1>
+
+<p>pythonスクリプトに渡すリストの要素数が10以下ならば、フリーズしないことが経験的にわかった。用法を守って使えばまずまず使えるソフトだ。</p>
+
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2019 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+

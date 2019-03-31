@@ -568,6 +568,11 @@ p > code, li > code {
     font-family: monospace;
     background-color: #f7f7f7;
 }
+blockquote {
+    color: #828282;
+    border-left: 2px solid #e8e8e8;
+    padding-left: 13px;
+}
 
 @media (max-width: 768px) {
     .sidemenu{

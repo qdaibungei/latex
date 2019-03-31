@@ -143,11 +143,40 @@ mv *.enc enc/josefinslab/</code></pre></div>
 
 <p>本当は<code>\DeclareFontShape……</code>のような情報はstyでなくfdファイルに書き込むのが正しいのかもしれないが、fdファイルを作るやり方はよく分からなかった。しかしstyに書いても動くことは動くので、動作の点からは特に問題ないものと思われる。</p>
 
+<h1 id="scaleオプションの追加">scaleオプションの追加</h1>
+
+<p>scaleオプションを追加しておくと便利である（既存の欧文フォントのパッケージには大抵scaleオプションがある）。scaleオプションとは、<code>\usepackage[scale=0.9]{josefinslab}</code>などとすれば欧文が0.9倍の大きさで印字されるようなオプション機能である。</p>
+
+<p>scaleオプションを実装するためには、styファイルを少しばかり書き換えるだけでよろしい。具体的には以下のようにする（煩雑になるのを避けるためウェイトは二種類のみにしてある）。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
+</span><span class="c">% josefinslab.sty
+</span><span class="c">%
+</span><span class="c"></span>
+<span class="k">\ProvidesPackage</span><span class="nb">{</span>josefinslab<span class="nb">}</span>[2019/03/31 v0.2]
+
+<span class="k">\RequirePackage</span><span class="nb">{</span>xkeyval<span class="nb">}</span>
+<span class="k">\DeclareOptionX</span><span class="nb">{</span>scale<span class="nb">}{</span><span class="k">\def\jsfnslb</span>@scale<span class="nb">{</span>#1<span class="nb">}}</span>
+<span class="k">\DeclareOptionX</span><span class="nb">{</span>scaled<span class="nb">}{</span><span class="k">\def\jsfnslb</span>@scale<span class="nb">{</span>#1<span class="nb">}}</span>
+<span class="k">\ExecuteOptionsX</span><span class="nb">{</span>scale=1<span class="nb">}</span>
+<span class="k">\ProcessOptionsX</span>
+
+<span class="k">\def\jsfnslb</span>@@scale<span class="nb">{</span>s*[<span class="k">\jsfnslb</span>@scale]<span class="nb">}</span>
+
+<span class="k">\DeclareFontFamily</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{}</span>
+<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-regular<span class="nb">}{}</span>
+<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-regular-italic<span class="nb">}{}</span>
+<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-bold<span class="nb">}{}</span>
+<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-bold-italic<span class="nb">}{}</span>
+
+<span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile josefinslab.map<span class="nb">}}</span>
+
+<span class="k">\endinput</span></code></pre></div>
 <h1 id="参考文献">参考文献</h1>
 
 <ul>
 <li><a href="https://zrbabbler.hatenablog.com/entry/20110926/1317041905">dvipdfmx で OpenType する件について (1)</a></li>
 <li><a href="https://zrbabbler.hatenablog.com/entry/20110927/1317136030">dvipdfmx で OpenType する件について (2)</a></li>
+<li><a href="https://zrbabbler.hatenablog.com/entry/20110921/1316607031">LaTeX に新しいフォントを持ち込む練習</a></li>
 </ul>
 <div class="footnotes">
 

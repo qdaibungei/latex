@@ -49,11 +49,11 @@
 
 <p>そこで、プリアンブルなどに以下のように記述し、<code>\。</code>と<code>\、</code>というマクロを作る。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\if</span>@burasage
-    <span class="k">\def\、</span><span class="nb">{</span><span class="k">\relax</span>
-        <span class="k">\@</span>ifnextchar<span class="k">\par</span><span class="nb">{</span>、<span class="nb">}{</span>、<span class="k">\hbox</span><span class="nb">{}}</span><span class="c">%
+    <span class="k">\def\、</span><span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\@</span>ifnextchar<span class="k">\par</span><span class="nb">{</span>、<span class="nb">}{</span>、<span class="k">\hbox</span><span class="nb">{}}</span><span class="c">%
 </span><span class="c"></span>    <span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\def\。</span><span class="nb">{</span><span class="k">\relax</span>
-        <span class="k">\@</span>ifnextchar<span class="k">\par</span><span class="nb">{</span>。<span class="nb">}{</span>。<span class="k">\hbox</span><span class="nb">{}}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\def\。</span><span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\@</span>ifnextchar<span class="k">\par</span><span class="nb">{</span>。<span class="nb">}{</span>。<span class="k">\hbox</span><span class="nb">{}}</span><span class="c">%
 </span><span class="c"></span>    <span class="nb">}</span><span class="c">%
 </span><span class="c"></span><span class="k">\else</span>
     <span class="k">\def\、</span><span class="nb">{</span><span class="k">\nobreak\makebox</span><span class="na">[1zw][l]</span><span class="nb">{</span>、<span class="nb">}}</span><span class="c">%
@@ -65,7 +65,7 @@
 
 <p>ただし、このままでは句読点と括弧類とが並んだとき、空きが広くなりすぎてしまう。たとえば、<code>\。「</code>のように、句読点の直後に始め括弧が来た場合、<code>\。\&lt;「</code>とする（つまり<code>\&lt;</code>を追加する）ことが必要となる。</p>
 
-<p>句点と鉤括弧の場合だけ考えると、以下のような置換が必要である（上に挙げた例を含めている）。</p>
+<p>句点と鉤括弧の場合だけ考えると、結局、以下のような置換が必要である。</p>
 
 <ul>
 <li><code>\。「</code> → <code>\。\&lt;「</code></li>
