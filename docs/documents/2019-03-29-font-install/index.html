@@ -117,9 +117,9 @@ mv *.vf vf/josefinslab/
 mv *.tfm tfm/josefinslab/
 mv *.map map/josefinslab/
 mv *.enc enc/josefinslab/</code></pre></div>
-<p>こうして、各種ファイルを収納した四つのフォルダが作られた。これらのフォルダを、<code>$TEXMF/fonts</code>へ移動させる（マージさせる）と、tfmなどの各種ファイルがカレントディレクトリになくとも使えるようになる。こうしてtfm類のインストールは完了する。</p>
+<p>こうして、各種ファイルを収納した四つのフォルダが作られた。これらのフォルダを、<code>$TEXMF/fonts/</code>へ移動させる（マージさせる）<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>と、tfmなどの各種ファイルがカレントディレクトリになくとも使えるようになる。こうしてtfm類のインストールは完了する。</p>
 
-<p>mapファイルが読み込めずエラーが生ずる場合、<code>$ sudo mktexlsr</code>として情報を更新する。</p>
+<p>mapファイルが読み込めずエラーが生ずる場合、<code>$ sudo mktexlsr</code>を実行して情報を更新する。</p>
 
 <h2 id="styファイルの生成とインストール">styファイルの生成とインストール</h2>
 
@@ -139,7 +139,7 @@ mv *.enc enc/josefinslab/</code></pre></div>
 <span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-bold<span class="nb">}{}</span>
 <span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-bold-italic<span class="nb">}{}</span>
 <span class="k">\endinput</span></code></pre></div>
-<p>これを<code>$TEXMF/tex/latex</code>に移動させる。これでstyファイルのインストールも完了する。</p>
+<p>これを<code>$TEXMF/tex/latex/</code>に移動させる。これでstyファイルのインストールも完了する。</p>
 
 <p>本当は<code>\DeclareFontShape……</code>のような情報はstyでなくfdファイルに書き込むのが正しいのかもしれないが、fdファイルを作るやり方はよく分からなかった。しかしstyに書いても動くことは動くので、動作の点からは特に問題ないものと思われる。</p>
 
@@ -185,6 +185,8 @@ mv *.enc enc/josefinslab/</code></pre></div>
 <ol>
 <li id="fn:1">ここでエラーが出てtfmファイルが生成されない場合、ec.encをネットで検索してダウンロードし、作業用ディレクトリに置いておくこと。
  <a class="footnote-return" href="#fnref:1">↩</a></li>
+<li id="fn:2"><code>$TEXMF</code>とは、TeXとMETAFONTという意味で、各種パッケージが収められるディレクトリのこと。その場所は複数あるので「<code>$TEXMF</code>」という変数の形でよく表記される。<code>$TEXMF</code>の場所が分からない場合、ターミナルで<code>kpsewhich -var-value TEXMF</code>を実行すれば、調べられる。
+ <a class="footnote-return" href="#fnref:2">↩</a></li>
 </ol>
 </div>
 
