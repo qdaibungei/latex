@@ -6,10 +6,23 @@
     <description>Recent content in Latex on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 31 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/tags/latex/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>三点リーダを並べる</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-04-01-leader/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-04-01-leader/</guid>
+      <description> 方法 目次など、三点リーダを行長いっぱいまで並べる必要に迫られることがある。これをLaTeXで実現するためには\leadersを使う。
+あ\kern-.33333zw\leaders\hbox to .33333zw{\hss\raise.3zw\hbox{.}\hss}\hfill あ こうすると、ピリオドを三点リーダと同じ間隔で行長いっぱいまで並べることができる。
+結果 組版結果は以下のようになる。
+上は\leadersを使ったものであり、下は…（三点リーダ）を直接手作業で書き並べたものである。上と下でほぼ同じ形になっており、望ましい結果が得られていることが分かる。
+参考文献  藤田眞作『LaTeX2eまくろの八衢』（オンライン版）  </description>
+    </item>
     
     <item>
       <title>和文フォントを混植する方法</title>
