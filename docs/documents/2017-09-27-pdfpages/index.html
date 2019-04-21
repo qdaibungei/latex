@@ -102,29 +102,29 @@
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span></code></pre></div>
 <p>scaleオプションとoffsetオプションを指定してやると周囲の切り落としが可能となる。</p>
 
-<h2 id="ubuntu用に作ったもの">Ubuntu用に作ったもの</h2>
+<h2 id="奇数ページ-偶数ページで異なる処理をする">奇数ページ・偶数ページで異なる処理をする</h2>
 <div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
-<span class="k">\usepackage</span><span class="na">[a4paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
-<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}{</span>master.pdf<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="na">[a4paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
 <span class="k">\pdfximage</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
 <span class="k">\newcount\pagecount</span>
 <span class="k">\pagecount</span>=<span class="k">\pdflastximagepages</span>
 <span class="k">\advance\pagecount</span> by 1
 <span class="k">\newcount\K</span>
-<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\createPDFforUbuntu</span><span class="nb">}{</span><span class="c">%
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\createPDF</span><span class="nb">}{</span><span class="c">%
 </span><span class="c"></span>    <span class="k">\K</span>=1
-    <span class="k">\loop\ifnum\K</span>&lt;<span class="k">\pagecount</span> <span class="c">% while(K&lt;pagecount)
-</span><span class="c"></span>        <span class="k">\ifodd\K</span>
-            <span class="k">\includepdf</span><span class="na">[pages={\the\K},scale=1.02]</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
+    <span class="k">\loop\ifnum\K</span>&lt;<span class="k">\pagecount</span>
+        <span class="k">\ifodd\K</span>
+            <span class="k">\includepdf</span><span class="na">[pages={\the\K},scale=1.25,offset=0mm -20mm]</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
         <span class="k">\else</span>
-            <span class="k">\includepdf</span><span class="na">[pages={\the\K},scale=1.02,angle=180]</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
+            <span class="k">\includepdf</span><span class="na">[pages={\the\K},scale=1.25,offset=-15mm -20mm]</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
         <span class="k">\fi</span>
-    <span class="k">\advance\K</span> by 1 <span class="c">% K++
-</span><span class="c"></span>    <span class="k">\repeat</span> <span class="c">% end while
-</span><span class="c"></span><span class="nb">}</span>
+    <span class="k">\advance\K</span> by 1
+    <span class="k">\repeat</span>
+<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-<span class="k">\createPDFforUbuntu</span>
+<span class="k">\createPDF</span>
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span></code></pre></div>
 <h2 id="印刷時の縮小の打ち消し">印刷時の縮小の打ち消し</h2>
 <div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
