@@ -517,10 +517,17 @@ img {
     color: #fff;
     text-decoration: none;
 }
+.footnotes hr {
+    display: none;
+}
 .footnotes {
     margin-top: 80px;
+    margin-bottom: 80px;
+    background: #f8f8f8;
+    border-radius: 5px;
+    padding: 25px 20px 15px 5px;
 }
-.footnotes p{
+.footnotes p {
     display: inline;
     font-size: 0.85em;
     line-height: 1.5;
@@ -533,11 +540,17 @@ img {
 }
 .footnotes ol li::before {
     display: marker;
-    content: "[" counter(cnt) "]";
+    content: "注" counter(cnt);
     font-size: 1rem;
-    vertical-align: super;
-    padding-right: 5px;
+    vertical-align: text-top;
+    text-decoration: none;
     letter-spacing: 1px;
+    margin: 0 5px 0 1px;
+    border-radius: 20%;
+    background: #777;
+    padding: 1px 2px;
+    color: #fff;
+    font-weight: bold;
 }
 .footnote-ref {
     font-size: 1rem;
@@ -545,12 +558,27 @@ img {
     vertical-align: super;
     letter-spacing: 1px;
     margin-left: 1px;
+    border-radius: 20%;
+    background: #777;
+    padding: 1px 2px;
 }
-.footnote-ref > a::before {
+.footnote-ref a:before {
+    content: "注";
+    color: #fff;
+    font-weight: bold;
+}
+.footnote-ref a {
+    color: #fff;
+    font-weight: bold;
+}
+/* .footnote-ref > a::before {
   content: "["
 }
 .footnote-ref > a::after {
   content: "]"
+} */
+#disqus_thread {
+    margin-top: 80px;
 }
 /* strong {
     background: linear-gradient(transparent 60%, #73efff 60%);
