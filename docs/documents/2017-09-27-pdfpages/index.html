@@ -134,6 +134,14 @@
 <span class="c">% 20/19.05 = 1.0498687664
 </span><span class="c"></span><span class="k">\includepdf</span><span class="na">[scale=1.0498687664]</span><span class="nb">{</span>main.pdf<span class="nb">}</span>
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span></code></pre></div>
+<h2 id="a4にする">A4にする</h2>
+<div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="na">[a4paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<span class="k">\includepdf</span><span class="na">[scale=1]</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span></code></pre></div>
 <h1 id="参考文献">参考文献</h1>
 
 <ul>
