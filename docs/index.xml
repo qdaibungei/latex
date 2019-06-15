@@ -6,10 +6,22 @@
     <description>Recent content on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>表題つきの四角い枠（四角いitembox環境）</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-06-15-fitembox/</link>
+      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-06-15-fitembox/</guid>
+      <description> はじめに ascmac.styを用いると、itembox環境というものが使える。表題つきの丸い枠である。この枠は、レジュメなどを作るとき使い勝手がよい。
+ところで丸い枠ではなく四角い枠が使いたいときもある。こういうときはどうすればよいか。四角い枠を定義すればよい。以下は、ネットで見つけて拾ったものである。
+fitembox環境の定義 以下、ネットで拾った「表題つきの四角い枠」の定義である。fitembox環境と名づけられている。使いかたはitembox環境と同じである。
+% % fitembox environment % \def\fitembox{\@ifnextchar[{\@itembox}{\@itembox[c]}} \def\@myhleader{\leaders\hrule height .4pt\hfil} \def\endfitembox{\end{minipage}\egroup%  \setbox\scscb@x=\hbox to\linewidth{%  \vbox{\offinterlineskip%  \thicklines\setlength{\unitlength}{1pt}%  \hbox{\rule{10pt}{.4pt}%  \hbox to\@scw{\if l\the\@iboxpos\else\@myhleader\fi \space\vbox to.4pt{\vss\hbox{\box\@iboxstr}\vss}%  \space\if r\the\@iboxpos\else \@myhleader\fi}%  \rule{10pt}{.4pt}} \vskip 10pt \hbox to\linewidth{\hfill\box\scb@x\hfill} \vskip 10pt \hrule height.4pt}} \noindent\hbox to\linewidth{%  \vrule width .4pt \hss \box\scscb@x \hss \vrule width .4pt}%  \egroup\vskip0pt} 使用例 \begin{fitembox}[l]{夏目漱石} 吾輩は猫である。 \end{fitembox} </description>
+    </item>
     
     <item>
       <title>三点リーダを並べる</title>
@@ -372,14 +384,14 @@ F910明朝W3-IPA 「現代的な骨格と古くからある味わいを融合し
       <pubDate>Sun, 09 Oct 2016 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2016-10-09-kousei/</guid>
-      <description>背景  小説集の編集をやっている。 インデントは全角空白で表現、ただし文頭が括弧の場合は空白不要、などの表記ルールを（明示はしていないが暗黙のうちに）定めている。  問題  著者たちはパソコンに熟達している人ばかりでなく、そのためインデント規則など表記ルールが守られていない原稿がよく送られてくる。  解法  以下のような正規表現を使って置換する。置換すべき項目がリストアップしてあると便利なので、以下に記しておく。上が検索文字列、下が置換後文字列。  インデントがないとき全角空白を挿入 ^([^　「『（〈【〔《［｛〝])
-\1
+      <description>背景  小説集の編集をやっている。 インデントは全角空白で表現、ただし文頭が括弧の場合は空白不要、などの表記ルールを（明示はしていないが暗黙のうちに）定めている。  問題  著者たちはパソコンに熟達している人ばかりでなく、そのためインデント規則など表記ルールが守られていない原稿がよく送られてくる。  解法  以下のような正規表現を使って置換する。置換すべき項目がリストアップしてあると便利なので、以下に記しておく。上が検索文字列、下が置換後文字列。  インデントがないとき全角空白を挿入 ^([^　「『（〈【〔《［｛〝\n\\])
+$1
 括弧前に空白があれば削除 ^　([「『（〈【〔《［｛〝])
-\1
+$1
 文末の不要な空白を削除 [ ]+$
 
 半角括弧→全角括弧 ((.+?))
-（\1）
+（$1）
 2連続で使用されている疑問符・感嘆符は半角に [！？]{2,}
 
 その他 青空文庫作業マニュアル【校正編】は参考になる。</description>

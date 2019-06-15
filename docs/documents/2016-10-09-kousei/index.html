@@ -56,15 +56,15 @@
 
 <h2 id="インデントがないとき全角空白を挿入">インデントがないとき全角空白を挿入</h2>
 
-<p><textarea onclick="this.select();">^([^　「『（〈【〔《［｛〝])</textarea></p>
+<p><textarea onclick="this.select();">^([^　「『（〈【〔《［｛〝\n\\])</textarea></p>
 
-<p><textarea onclick="this.select();">　\1</textarea></p>
+<p><textarea onclick="this.select();">　$1</textarea></p>
 
 <h2 id="括弧前に空白があれば削除">括弧前に空白があれば削除</h2>
 
 <p><textarea onclick="this.select();">^　([「『（〈【〔《［｛〝])</textarea></p>
 
-<p><textarea onclick="this.select();">\1</textarea></p>
+<p><textarea onclick="this.select();">$1</textarea></p>
 
 <h2 id="文末の不要な空白を削除">文末の不要な空白を削除</h2>
 
@@ -76,7 +76,7 @@
 
 <p><textarea onclick="this.select();">((.+?))</textarea></p>
 
-<p><textarea onclick="this.select();">（\1）</textarea></p>
+<p><textarea onclick="this.select();">（$1）</textarea></p>
 
 <h2 id="2連続で使用されている疑問符-感嘆符は半角に">2連続で使用されている疑問符・感嘆符は半角に</h2>
 
