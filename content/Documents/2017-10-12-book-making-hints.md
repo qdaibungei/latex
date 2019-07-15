@@ -11,7 +11,7 @@ tags: LaTeX
 # フォントの指定
 LaTeXのデフォルトフォントはあまり小説向きではない。そこで以下のように記述しフォントを変更する。
 
-まず日本語フォントであるが、これは游明朝がよい。游明朝を使うには、以下のように書く（uplatexを使うことを前提として。いまどきわざわざplatexを使う理由はあるまい）。
+まず日本語フォントであるが、特にこだわりがないならば、とりあえず游明朝にしておくとよい。游明朝を使うには、以下のように書く（以下はuplatexを使うことを前提とした書き方である。いまどきわざわざplatexを使う理由はあるまい）。
 
 ```LaTeX
 % uplatexでA5サイズの本を作る場合のdocumentclassの書きかた
@@ -19,14 +19,14 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 
 % 日本語フォントを游明朝にする
 \usepackage[deluxe,uplatex]{otf}
-\AtBeginDvi{\special{pdf:mapfile otf-up-yu-win10.map}}
+\AtBeginDvi{\special{pdf:mapfile otf-up-yu-win10.map}}% Windows 10以外の場合は適宜変更せよ
 ```
 
 欧文フォントも変更しておこう。
 
 ```LaTeX
 % 欧文フォントの変更
-\usepackage[scale=0.95]{fbb}
+\usepackage[scale=1.05]{cochineal}% この欧文フォントはわりと游明朝に合う
 \usepackage[scale=0.95,defaultsans]{opensans}
 ```
 
@@ -34,10 +34,7 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 游明朝だと、ダッシュ`――`がつながらない。そこでjdashパッケージを導入し、これを使う。jdashパッケージについては[ここ]({{< ref "2017-02-17-jdash.md" >}})を参照のこと。
 
 # hanmenパッケージの使用
-まず以下の二つのファイルをダウンロードし、TeXファイルと同じフォルダへ入れる。
-
-* [hanmen.sty](https://gist.github.com/qdaibungei/5f6986fa99fc9a7d86122a7a9417d64e)
-* [nombre_for_fancyhdr.sty](http://p-act.sakura.ne.jp/PARALLEL_ACT/LaTeX-Dojin/src/nombre_for_fancyhdr.sty)
+まず[hanmenパッケージ](https://gist.github.com/qdaibungei/5f6986fa99fc9a7d86122a7a9417d64e)をダウンロードし、TeXファイルと同じフォルダへ入れる。
 
 そしてプリアンブルに以下を記述する。
 
@@ -47,11 +44,13 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 
 % ついでに、欧文のベースラインなどを適当に変更しておこう
 \tbaselineshift=.3zw
-\kanjiskip=0pt plus .25zw minus 0zw
-\xkanjiskip=.25zw plus .083333zw minus 0zw
+\kanjiskip=0zw plus .25zw minus .03125zw
+\xkanjiskip=.25zw plus .25zw minus .0625zw
 ```
 
 これで厳密な版面の設定が可能となる。厳密というのは、たとえば表と裏とで行が揃っているということである（厳密な設定をしないと、行がズレる。紙を透かして見ると行がズレているかどうか分かる）。
+
+hanmenパッケージの使い方の詳細は[この記事]({{< ref "2017-02-18-hanmen.md" >}})を参照のこと。
 
 # \tcyマクロ
 LaTeXで縦書きをするさい、縦中横には`\rensuji`を使うよう言われる。しかし`\rensuji`だと前後のアキがおかしくなる（たとえば、行頭で`\rensuji`を使うとインデント量が狂う）。そこで`\tcy`命令を新たに作り、これを使うのがよい。
@@ -115,7 +114,7 @@ LaTeXで縦書きをするさい、縦中横には`\rensuji`を使うよう言�
 ```
 
 # フッター
-『どこにもりんごがない』を組版したときのフッターの設定はだいたいこんな感じである。
+以前出した本のフッターの設定はだいたいこんな感じである。
 
 ```LaTeX
 \usepackage{fancyhdr}

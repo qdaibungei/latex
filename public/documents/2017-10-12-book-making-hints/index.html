@@ -43,29 +43,24 @@
 
 <p>LaTeXのデフォルトフォントはあまり小説向きではない。そこで以下のように記述しフォントを変更する。</p>
 
-<p>まず日本語フォントであるが、これは游明朝がよい。游明朝を使うには、以下のように書く（uplatexを使うことを前提として。いまどきわざわざplatexを使う理由はあるまい）。</p>
+<p>まず日本語フォントであるが、特にこだわりがないならば、とりあえず游明朝にしておくとよい。游明朝を使うには、以下のように書く（以下はuplatexを使うことを前提とした書き方である。いまどきわざわざplatexを使う理由はあるまい）。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% uplatexでA5サイズの本を作る場合のdocumentclassの書きかた
 </span><span class="c"></span><span class="k">\documentclass</span><span class="na">[a5paper,papersize,uplatex]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 
 <span class="c">% 日本語フォントを游明朝にする
 </span><span class="c"></span><span class="k">\usepackage</span><span class="na">[deluxe,uplatex]</span><span class="nb">{</span>otf<span class="nb">}</span>
-<span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile otf-up-yu-win10.map<span class="nb">}}</span></code></pre></div>
+<span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile otf-up-yu-win10.map<span class="nb">}}</span><span class="err">%</span> Windows 10以外の場合は適宜変更せよ</code></pre></div>
 <p>欧文フォントも変更しておこう。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 欧文フォントの変更
-</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[scale=0.95]</span><span class="nb">{</span>fbb<span class="nb">}</span>
-<span class="k">\usepackage</span><span class="na">[scale=0.95,defaultsans]</span><span class="nb">{</span>opensans<span class="nb">}</span></code></pre></div>
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[scale=1.05]</span><span class="nb">{</span>cochineal<span class="nb">}</span><span class="c">% この欧文フォントはわりと游明朝に合う
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[scale=0.95,defaultsans]</span><span class="nb">{</span>opensans<span class="nb">}</span></code></pre></div>
 <h1 id="jdashパッケージ">jdashパッケージ</h1>
 
 <p>游明朝だと、ダッシュ<code>――</code>がつながらない。そこでjdashパッケージを導入し、これを使う。jdashパッケージについては<a href="https://qdaibungei.github.io/latex/documents/2017-02-17-jdash/">ここ</a>を参照のこと。</p>
 
 <h1 id="hanmenパッケージの使用">hanmenパッケージの使用</h1>
 
-<p>まず以下の二つのファイルをダウンロードし、TeXファイルと同じフォルダへ入れる。</p>
-
-<ul>
-<li><a href="https://gist.github.com/qdaibungei/5f6986fa99fc9a7d86122a7a9417d64e">hanmen.sty</a></li>
-<li><a href="http://p-act.sakura.ne.jp/PARALLEL_ACT/LaTeX-Dojin/src/nombre_for_fancyhdr.sty">nombre_for_fancyhdr.sty</a></li>
-</ul>
+<p>まず<a href="https://gist.github.com/qdaibungei/5f6986fa99fc9a7d86122a7a9417d64e">hanmenパッケージ</a>をダウンロードし、TeXファイルと同じフォルダへ入れる。</p>
 
 <p>そしてプリアンブルに以下を記述する。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 上のフォント設定をした後に書く
@@ -73,9 +68,11 @@
 
 <span class="c">% ついでに、欧文のベースラインなどを適当に変更しておこう
 </span><span class="c"></span><span class="k">\tbaselineshift</span>=.3zw
-<span class="k">\kanjiskip</span>=0pt plus .25zw minus 0zw
-<span class="k">\xkanjiskip</span>=.25zw plus .083333zw minus 0zw</code></pre></div>
+<span class="k">\kanjiskip</span>=0zw plus .25zw minus .03125zw
+<span class="k">\xkanjiskip</span>=.25zw plus .25zw minus .0625zw</code></pre></div>
 <p>これで厳密な版面の設定が可能となる。厳密というのは、たとえば表と裏とで行が揃っているということである（厳密な設定をしないと、行がズレる。紙を透かして見ると行がズレているかどうか分かる）。</p>
+
+<p>hanmenパッケージの使い方の詳細は<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">この記事</a>を参照のこと。</p>
 
 <h1 id="tcyマクロ">\tcyマクロ</h1>
 
@@ -134,7 +131,7 @@
 </span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2139=0     <span class="err">%</span>々</code></pre></div>
 <h1 id="フッター">フッター</h1>
 
-<p>『どこにもりんごがない』を組版したときのフッターの設定はだいたいこんな感じである。</p>
+<p>以前出した本のフッターの設定はだいたいこんな感じである。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="nb">{</span>fancyhdr<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="na">[scale=0.9]</span><span class="nb">{</span>tgadventor<span class="nb">}</span>
 <span class="k">\makeatletter</span>
