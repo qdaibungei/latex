@@ -285,7 +285,7 @@ hanmenパッケージとは、版面の設計1を厳密に行うためのパッ�
 \usepackage[tate]{hanmen} 　ヘッダ・フッタの位置の調整。
 \usepackage[headheight=13truemm, headsep=1truemm, footskip=3truemm]{hanmen} 　小口側に寄せる、天側に寄せる。
 \usepackage[ko=3truemm]{hanmen}%% 3mm小口寄せ\usepackage[te=4truemm]{hanmen}%% 4mm天寄せ 　文字サイズ単位にQではなくptを使う。
-\usepackage[pt]{hanmen} 　このパッケージは新ドキュメントクラスで使うことを想定している。旧ドキュメントクラスで使う場合、オプションを付けないと、文字サイズが正しく設定されない。
+\usepackage[pt]{hanmen} 　このパッケージは新ドキュメントクラス（jsbook.cls、jsarticle.clsなど）で使うことを想定している。旧ドキュメントクラス（jarticle.cls、tbook.clsなど）で使う場合、jisfontzoomオプションを付けないと、文字サイズが正しく設定されない。
 \usepackage[jisfontzoom]{hanmen} 提供されるマクロ \newhanmen \newhanmen というマクロが提供される。これは、本文中で、
 \newhanmen{Q=11.5,H=19,W=42,L=17} などとすると、文書の途中から基本版面を再設定できるマクロである。上記のオプションはすべてここでも使うことができる。
 \hanmenchangedir 本文領域はそのままに、組方向だけ変えたい場合に使えるのが \hanmenchangedir である。本文中、このマクロを記述すると組方向だけが切り替わる。
