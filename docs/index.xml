@@ -6,10 +6,20 @@
     <description>Recent content on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 14 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hanmenパッケージを更新した</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-09-02-hanmen/</link>
+      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-09-02-hanmen/</guid>
+      <description> はじめに hanmenパッケージを一年半ぶりくらいに更新した。使いかたはここに記してある。ダウンロードはここからできる。
+改良点  オプションを追加し、ユーザーインターフェースを改良した。これにより、\usepackage[nodo=20mm]{hanmen}といったふうにノドの広さを直接指定したりできるようになった。 他にも色々と改良した。  </description>
+    </item>
     
     <item>
       <title>jdashパッケージを更新した</title>
@@ -275,7 +285,7 @@ MyTeXpert 書籍ではなくネットの文書でLaTeXに入門するなら、�
       <description>はじめに hanmenパッケージというLaTeXパッケージを作った。ダウンロードはここからできる。
 hanmenパッケージとは、版面の設計1を厳密に行うためのパッケージである。たとえば、38字×40行で文書を作りたい、といったときにhanmenパッケージは有用である。
 従来、LaTeXでは版面の設計が煩雑であった2。とくに縦組みの場合、geometryパッケージが使えないので厄介である。そこで、縦組みでも版面設計がやりやすいようにと作ったのがhanmenパッケージである。
-基本的なアイディアはTomOne氏の『よくわかるLaTeX小説』3による。
+基本的なアイディアはTomOne氏の『よくわかるLaTeX小説』による。
 なお、2017年2月18日現在、あべのり氏によって開発中のクラスファイルであるjlreq.clsは、従来のクラスファイルより圧倒的に版面設計が行いやすいようになっているようなので、jlreq.clsの安定版がリリースされたあかつきには、hanmenパッケージの存在意義は薄れゆくであろうと思われる。
 使い方 基本 基本的な使い方は簡単である。プリアンブルに次のように書き込む。
 \usepackage[Q=15,H=24,W=38,L=40]{hanmen} そうすると、
@@ -283,15 +293,12 @@ hanmenパッケージとは、版面の設計1を厳密に行うためのパッ�
 各種オプション グリッド線を表示させる（gに代入する値は上のWで指定した文字数と同じか、または近い整数値を入れる）。
 \usepackage[g=38]{hanmen} 　縦組みにする。
 \usepackage[tate]{hanmen} 　ヘッダ・フッタの位置の調整。
-\usepackage[headheight=13truemm, headsep=1truemm, footskip=3truemm]{hanmen} 　小口側に寄せる、天側に寄せる。
-\usepackage[ko=3truemm]{hanmen}%% 3mm小口寄せ\usepackage[te=4truemm]{hanmen}%% 4mm天寄せ 　文字サイズ単位にQではなくptを使う。
-\usepackage[pt]{hanmen} 　このパッケージは新ドキュメントクラス（jsbook.cls、jsarticle.clsなど）で使うことを想定している。旧ドキュメントクラス（jarticle.cls、tbook.clsなど）で使う場合、jisfontzoomオプションを付けないと、文字サイズが正しく設定されない。
-\usepackage[jisfontzoom]{hanmen} 提供されるマクロ \newhanmen \newhanmen というマクロが提供される。これは、本文中で、
-\newhanmen{Q=11.5,H=19,W=42,L=17} などとすると、文書の途中から基本版面を再設定できるマクロである。上記のオプションはすべてここでも使うことができる。
-\hanmenchangedir 本文領域はそのままに、組方向だけ変えたい場合に使えるのが \hanmenchangedir である。本文中、このマクロを記述すると組方向だけが切り替わる。
-提供される機能 正確な単位の導入 \bQ および \bbp を導入した。これによって、和文文字に関して、より正確に文字サイズを設定できるようになった。
-事情を知らない人には意味が分からないだろうが、LaTeXの文字サイズ単位に関しては複雑な事情があり、そのため上のように新たに単位を導入する必要に迫られるのである。詳しくは、吉永氏によるクラスファイルにおける文字サイズの設定などを参照せよ。
-フォントサイズの再定義 hanmenパッケージで \usepackage[Q=13]{hanmen} のように文字サイズを変更した場合、それに伴って \small や \huge といったLaTeXに備わった文字サイズ変更マクロが再定義され、文字サイズや行送りサイズが、商業出版で行われているように0.</description>
+\usepackage[headheight=13mm, headsep=1mm, footskip=3mm]{hanmen} 　デフォルトでは、版面は左右中央に配置される。これを、少しだけ小口側に寄せたり、天側に寄せたりしたい場合、以下のようにする。
+\usepackage[ko=3truemm]{hanmen}%% 3mm小口寄せ\usepackage[te=4truemm]{hanmen}%% 4mm天寄せ 　ノド、小口、天、地の広さを直接指定することもできる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない。もし間違えて両方指定した場合はエラーが出るようにしてある。
+% ノドと天の広さを指定 \usepackage[nodo=20mm, ten=15mm]{hanmen}% 小口と地の広さを指定 \usepackage[koguchi=20mm, chi=15mm]{hanmen} 　文字サイズ単位にQではなくptを使う。
+\usepackage[pt]{hanmen} % \usepackage[ptj]{hanmen} % Wordに合わせたptのサイズにするには ptj とすること。 　このパッケージは新ドキュメントクラス（jsbook.cls、jsarticle.clsなど）で使うことを想定している。旧ドキュメントクラス（jarticle.cls、tbook.clsなど）で使う場合、jisfontzoomオプションを付けないと、文字サイズが正しく設定されない。
+\usepackage[jisfontzoom]{hanmen} 　版面を一切いじらない。
+\usepackage[pass]{hanmen} 提供されるマクロ \newhanmen \newhanmen というマクロが提供される。これは、本文中で、</description>
     </item>
     
     <item>

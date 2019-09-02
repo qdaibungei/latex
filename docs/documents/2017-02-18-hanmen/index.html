@@ -43,7 +43,7 @@
 
 <p>従来、LaTeXでは版面の設計が煩雑であった<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">2</a></sup>。とくに縦組みの場合、geometryパッケージが使えないので厄介である。そこで、縦組みでも版面設計がやりやすいようにと作ったのがhanmenパッケージである。</p>
 
-<p>基本的なアイディアはTomOne氏の『よくわかるLaTeX小説』<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">3</a></sup>による。</p>
+<p>基本的なアイディアはTomOne氏の『<a href="http://p-act.sakura.ne.jp/PARALLEL_ACT/LaTeX-Dojin/">よくわかるLaTeX小説</a>』による。</p>
 
 <p>なお、2017年2月18日現在、あべのり氏によって開発中のクラスファイルである<a href="https://github.com/abenori/jlreq">jlreq.cls</a>は、従来のクラスファイルより圧倒的に版面設計が行いやすいようになっているようなので、jlreq.clsの安定版がリリースされたあかつきには、hanmenパッケージの存在意義は薄れゆくであろうと思われる。</p>
 
@@ -75,21 +75,30 @@
 <p>　</p>
 
 <p>ヘッダ・フッタの位置の調整。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span>[headheight=13truemm,
-            headsep=1truemm,
-            footskip=3truemm]<span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[headheight=13mm, headsep=1mm, footskip=3mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div>
 <p>　</p>
 
-<p>小口側に寄せる、天側に寄せる。</p>
+<p>デフォルトでは、版面は左右中央に配置される。これを、少しだけ小口側に寄せたり、天側に寄せたりしたい場合、以下のようにする。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[ko=3truemm]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="err">%%</span> 3mm小口寄せ</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[te=4truemm]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="err">%%</span> 4mm天寄せ</code></pre></div>
 <p>　</p>
 
+<p>ノド、小口、天、地の広さを直接指定することもできる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない。もし間違えて両方指定した場合はエラーが出るようにしてある。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% ノドと天の広さを指定
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[nodo=20mm, ten=15mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 小口と地の広さを指定
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[koguchi=20mm, chi=15mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div>
+<p>　</p>
+
 <p>文字サイズ単位にQではなくptを使う。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[pt]</span><span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[pt]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<span class="err">%</span> <span class="k">\usepackage</span><span class="na">[ptj]</span><span class="nb">{</span>hanmen<span class="nb">}</span> <span class="err">%</span> Wordに合わせたptのサイズにするには ptj とすること。</code></pre></div>
 <p>　</p>
 
 <p>このパッケージは新ドキュメントクラス（jsbook.cls、jsarticle.clsなど）で使うことを想定している。旧ドキュメントクラス（jarticle.cls、tbook.clsなど）で使う場合、jisfontzoomオプションを付けないと、文字サイズが正しく設定されない。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[jisfontzoom]</span><span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div>
+<p>　</p>
+
+<p>版面を一切いじらない。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[pass]</span><span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div>
 <h1 id="提供されるマクロ">提供されるマクロ</h1>
 
 <h2 id="newhanmen"><code>\newhanmen</code></h2>
@@ -98,9 +107,26 @@
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\newhanmen</span><span class="nb">{</span>Q=11.5,H=19,W=42,L=17<span class="nb">}</span></code></pre></div>
 <p>などとすると、文書の途中から基本版面を再設定できるマクロである。上記のオプションはすべてここでも使うことができる。</p>
 
+<p>　</p>
+
+<p>なお、一度代入した値は、<code>\newhanmen</code> においてもそのまま保持される。したがって、</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=13, nodo=20mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<span class="k">\newhanmen</span><span class="nb">{</span>ten=20mm<span class="nb">}</span></code></pre></div>
+<p>とした場合、<code>Q=13</code> や <code>nodo=20mm</code> といった値はリセットされず、そのまま使われる。それゆえ、</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=13, nodo=20mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<span class="k">\newhanmen</span><span class="nb">{</span>koguchi=20mm<span class="nb">}</span></code></pre></div>
+<p>とするとエラーとなる（ノドと小口を両方同時に指定することはできないため）。このような場合、次のように明示的にノドの広さをリセットしてやる必要がある。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=13, nodo=20mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<span class="k">\newhanmen</span><span class="nb">{</span>nodo=<span class="k">\relax</span>, koguchi=20mm<span class="nb">}</span></code></pre></div>
 <h2 id="hanmenchangedir"><code>\hanmenchangedir</code></h2>
 
 <p>本文領域はそのままに、組方向だけ変えたい場合に使えるのが <code>\hanmenchangedir</code> である。本文中、このマクロを記述すると組方向だけが切り替わる。</p>
+
+<h2 id="pagegridon"><code>\pagegridon</code></h2>
+
+<p><code>\usepackage[g=50]{hanmen}</code> とやる代わりに、<code>\pagegridon{g=50}</code> としてもグリッド線を表示できる。また、</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\pagegridon</span><span class="nb">{</span>g=26, column=2, columnskip=28.5<span class="nb">}</span></code></pre></div>
+<p>とすると、26字×2段組の場合にもうまくグリッド線が表示される。columnskipは、一段の文字数＋段間の広さ。この場合、一段が26字あり、段間の広さが2.5字分あるので、26+2.5=28.5なので、<code>columnskip=28.5</code> としてある（段間の広さをミリメートルで指定できるようにもしたかったが、技術力不足により実現していない）。</p>
 
 <h1 id="提供される機能">提供される機能</h1>
 
@@ -112,7 +138,7 @@
 
 <h2 id="フォントサイズの再定義">フォントサイズの再定義</h2>
 
-<p>hanmenパッケージで <code>\usepackage[Q=13]{hanmen}</code> のように文字サイズを変更した場合、それに伴って <code>\small</code> や <code>\huge</code> といったLaTeXに備わった文字サイズ変更マクロが再定義され、文字サイズや行送りサイズが、商業出版で行われているように0.5刻みの数値となる（ただし、現時点では、<code>Q=10</code> から <code>Q=16</code> までしか再定義されない）。しかしこれは簡易的なものである。したがって、より組版にこだわる人は、一冊の本を作るごとに別途再定義したほうがよいであろう。</p>
+<p>hanmenパッケージで <code>\usepackage[Q=13]{hanmen}</code> のように文字サイズを変更した場合、それに伴って <code>\small</code> や <code>\huge</code> といったLaTeXに備わった文字サイズ変更マクロが再定義され、文字サイズや行送りサイズが、0.5刻みの数値となる（ただし、現時点では、<code>Q=10</code> から <code>Q=16</code> までしか再定義されない）。しかしこれは簡易的なものである。したがって、より組版にこだわる人は、一冊の本を作るごとに別途再定義したほうがよいであろう。</p>
 
 <h2 id="tate-オプション時の挙動"><code>tate</code> オプション時の挙動</h2>
 
@@ -121,17 +147,17 @@
 <h1 id="おわりに">おわりに</h1>
 
 <p>最近は、日本語で小説を書く時間よりも、TeX言語でパッケージを書く時間のほうが長くなってしまった。文藝部員としては憂うべき事態である。</p>
+
+<p>追記：このパッケージを使ってくれている人がいることに近頃気がついた（<a href="https://note.mu/asagiripenguin/n/nbd5cbc19ff15">この方</a>など）。ありがたいことである。</p>
 <div class="footnotes">
 
 <hr />
 
 <ol>
-<li id="fn:1">「版面の設計」とは何かについては、詳しくは<a href="http://t2publisher.xrea.jp/forme/layout.shtml">http://t2publisher.xrea.jp/forme/layout.shtml</a>などを参照せよ。
+<li id="fn:1">「版面の設計」とは何かについては、詳しくは「<a href="http://t2publisher.xrea.jp/forme/layout.shtml">基本版面（レイアウト）の設計</a>」（外部サイト）などを参照せよ。
  <a class="footnote-return" href="#fnref:1">↩</a></li>
 <li id="fn:3">煩雑と言っても、原理を理解するのはそれほど難しいことではない。<a href="http://d.hatena.ne.jp/Rion778/20091002/1254482262">ここ</a>に書いてあるように設定すればよいだけではある。ただし記述量が多く、プリアンブルに気軽に置いておける感じではない。そこでパッケージ化する必要が出てくるわけである。
  <a class="footnote-return" href="#fnref:3">↩</a></li>
-<li id="fn:2"><a href="http://p-act.sakura.ne.jp/PARALLEL_ACT/LaTeX-Dojin/">よくわかるLaTeX小説サポートページ</a>は大いに参考になる。
- <a class="footnote-return" href="#fnref:2">↩</a></li>
 </ol>
 </div>
 
