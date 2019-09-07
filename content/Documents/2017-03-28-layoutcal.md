@@ -2,7 +2,7 @@
 layout: post
 title: 版面数値計算
 date: 2017-03-28
-tags: ["JavaScript"]
+tags: ["JavaScript", "DTP"]
 ---
 
 版面の数値を計算するプログラムをJavaScriptで作った。

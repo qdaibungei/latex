@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Font on 文藝部LaTeX研究会</title>
+    <link>https://qdaibungei.github.io/latex/tags/font/</link>
+    <description>Recent content in Font on 文藝部LaTeX研究会</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 31 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://qdaibungei.github.io/latex/tags/font/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>和文フォントを混植する方法</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-03-31-konsyoku/</link>
+      <pubDate>Sun, 31 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-03-31-konsyoku/</guid>
+      <description>はじめに 和文フォントは、平仮名や片仮名だけ別のフォントに置き換えて使用することがある。漢字は同じでも、平仮名が違えば、紙面の印象を大きく変えることができるからだ。このように、漢字と平仮名とで別のフォントを使うことを「混植」と言う。
+LaTeXで混植をする方法の解説としては、これまでにも優れた記事がいくつか存在している。例えば「ヒラギノ明朝W2と游築五号仮名W2混植方法」など。しかしそこに書かれた方法は、いくぶんか簡略的なものだというきらいがある。otfパッケージのburasageオプションが使えなかったり、upLaTeXでは使えなかったりするのだ。
+そこで本稿では、上述の欠点への補足として、やや備忘録的に記事を書いてみたい。
+必要なファイルの用意 まず、必要なファイルを揃えておこう。ここでは游明朝体と游明朝体五号かなの混植をしてみよう。
+CTANにあるjapanese-otfパッケージからbaseplとscriptというディレクトリをダウンロード。またmkjvfもダウンロードしておく。
+同様にjapanese-otf-uptexからbasepl、script、umkjvfをダウンロード。
+さらに次のスクリプトを作成する。
+#!/bin/sh  mkdir tfm mkdir vf # 普通にtfmファイルを生成 for face in r b do for hv in h v do ppltotf basepl/base-${hv}.pl yumin5go${face}-${hv} ppltotf basepl/base-${hv}.pl expyumin5go${face}-${hv} ppltotf basepl/brsg-${hv}.pl brsgyumin5go${face}-${hv} ppltotf basepl/brsg-${hv}.pl brsgexpyumin5go${face}-${hv} #  uppltotf -kanji=uptex basepl/ubase-${hv}.pl upyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubase-${hv}.pl upexpyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubrsg-${hv}.pl upbrsgyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubrsg-${hv}.pl upbrsgexpyumin5go${face}-${hv} done done # ここが混植のキモ。 # 混植しないときは引数二つでよかったが、混植のため引数は三つ。 # しかし仕組みはあまり理解できていない。 for face in r b do for hv in h v do perl mkjvf -m yumin5go${face}-${hv} hmin${face}-${hv} r-yumin5go${face}-${hv} perl mkjvf -m -sage brsgyumin5go${face}-${hv} hmin${face}-${hv} r-yumin5go${face}-${hv} perl mkjvf -m -expert expyumin5go${face}-${hv} hmin${face}-${hv} cidjmin${face} perl mkjvf -m -sage -expert brsgexpyumin5go${face}-${hv} hmin${face}-${hv} cidjmin${face} done done for face in r b do for hv in h v do perl umkjvf -m -ucs -sp 1 upyumin5go${face}-${hv} uphmin${face}-${hv} r-upyumin5go${face}-${hv} perl umkjvf -m -ucs -sp 1 -sage upbrsgyumin5go${face}-${hv} uphmin${face}-${hv} r-upyumin5go${face}-${hv} perl umkjvf -m -ucs -sp 1 -expert upexpyumin5go${face}-${hv} uphmin${face}-${hv} cidjmin${face} perl umkjvf -m -ucs -sp 1 -sage -expert upbrsgexpyumin5go${face}-${hv} uphmin${face}-${hv} cidjmin${face} done done echo &amp;#34;making tfm for supplementary plane .</description>
+    </item>
+    
+    <item>
+      <title>jfontsパッケージ</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-03-30-jfonts/</link>
+      <pubDate>Sat, 30 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-03-30-jfonts/</guid>
+      <description> はじめに LaTeXでPDFに和文フォントを埋め込む際、いちいちmapファイルを書き換えるのは面倒である。そこでjfontsパッケージというLaTeXパッケージを作った。簡単な工夫だが、役に立つ。
+jfontsパッケージは、otfパッケージと併用することを前提としている。フォントを変えたいときはフォントのファイル名を書き換えればよい。
+jfonts.sty % % jfonts.sty %  \NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{jfonts} \def\jf@hminl{ToppanBunkyuMincho-Regular.otf} \def\jf@hminr{HiraMinProN-W3.otf} \def\jf@hminb{HiraMinProN-W6.otf} \def\jf@hgothr{HiraKakuProN-W3.otf} \def\jf@hgothb{HiraKakuProN-W6.otf} \def\jf@hgotheb{HiraKakuStdN-W8.otf} \def\jf@hmgothr{HiraMaruPro-W4.otf} \AtBeginDvi{%  % TEXT, 90JIS  \special{pdf:mapline hminl-h H \jf@hminl}%  \special{pdf:mapline hminl-v V \jf@hminl}%  \special{pdf:mapline hminr-h H \jf@hminr}%  \special{pdf:mapline hminr-v V \jf@hminr}%  \special{pdf:mapline hminb-h H \jf@hminb}%  \special{pdf:mapline hminb-v V \jf@hminb}%  \special{pdf:mapline hgothr-h H \jf@hgothr}%  \special{pdf:mapline hgothr-v V \jf@hgothr}%  \special{pdf:mapline hgothb-h H \jf@hgothb}%  \special{pdf:mapline hgothb-v V \jf@hgothb}%  \special{pdf:mapline hgotheb-h H \jf@hgotheb}%  \special{pdf:mapline hgotheb-v V \jf@hgotheb}%  \special{pdf:mapline hmgothr-h H \jf@hmgothr}%  \special{pdf:mapline hmgothr-v V \jf@hmgothr}%  % TEXT, JIS04  \special{pdf:mapline hminln-h H \jf@hminl}%  \special{pdf:mapline hminln-v V \jf@hminl}%  \special{pdf:mapline hminrn-h H \jf@hminr}%  \special{pdf:mapline hminrn-v V \jf@hminr}%  \special{pdf:mapline hminbn-h H \jf@hminb}%  \special{pdf:mapline hminbn-v V \jf@hminb}%  \special{pdf:mapline hgothrn-h H \jf@hgothr}%  \special{pdf:mapline hgothrn-v V \jf@hgothr}%  \special{pdf:mapline hgothbn-h H \jf@hgothb}%  \special{pdf:mapline hgothbn-v V \jf@hgothb}%  \special{pdf:mapline hgothebn-h H \jf@hgotheb}%  \special{pdf:mapline hgothebn-v V \jf@hgotheb}%  \special{pdf:mapline hmgothrn-h H \jf@hmgothr}%  \special{pdf:mapline hmgothrn-v V \jf@hmgothr}%  % CID  \special{pdf:mapline otf-cjml-h Identity-H \jf@hminl}%  \special{pdf:mapline otf-cjml-v Identity-V \jf@hminl}%  \special{pdf:mapline otf-cjmr-h Identity-H \jf@hminr/AJ16}%  \special{pdf:mapline otf-cjmr-v Identity-V \jf@hminr/AJ16}%  \special{pdf:mapline otf-cjmb-h Identity-H \jf@hminb/AJ16}%  \special{pdf:mapline otf-cjmb-v Identity-V \jf@hminb/AJ16}%  \special{pdf:mapline otf-cjgr-h Identity-H \jf@hgothr}%  \special{pdf:mapline otf-cjgr-v Identity-V \jf@hgothr}%  \special{pdf:mapline otf-cjgb-h Identity-H \jf@hgothb}%  \special{pdf:mapline otf-cjgb-v Identity-V \jf@hgothb}%  \special{pdf:mapline otf-cjge-h Identity-H \jf@hgotheb/AJ16}%  \special{pdf:mapline otf-cjge-v Identity-V \jf@hgotheb/AJ16}%  \special{pdf:mapline otf-cjmgr-h Identity-H \jf@hmgothr/AJ16}%  \special{pdf:mapline otf-cjmgr-v Identity-V \jf@hmgothr/AJ16}%  % Unicode 90JIS  \special{pdf:mapline otf-ujml-h UniJIS-UTF16-H \jf@hminl}%  \special{pdf:mapline otf-ujml-v UniJIS-UTF16-V \jf@hminl}%  \special{pdf:mapline otf-ujmr-h UniJIS-UTF16-H \jf@hminr}%  \special{pdf:mapline otf-ujmr-v UniJIS-UTF16-V \jf@hminr}%  \special{pdf:mapline otf-ujmb-h UniJIS-UTF16-H \jf@hminb}%  \special{pdf:mapline otf-ujmb-v UniJIS-UTF16-V \jf@hminb}%  \special{pdf:mapline otf-ujgr-h UniJIS-UTF16-H \jf@hgothr}%  \special{pdf:mapline otf-ujgr-v UniJIS-UTF16-V \jf@hgothr}%  \special{pdf:mapline otf-ujgb-h UniJIS-UTF16-H \jf@hgothb}%  \special{pdf:mapline otf-ujgb-v UniJIS-UTF16-V \jf@hgothb}%  \special{pdf:mapline otf-ujge-h UniJIS-UTF16-H \jf@hgotheb}%  \special{pdf:mapline otf-ujge-v UniJIS-UTF16-V \jf@hgotheb}%  \special{pdf:mapline otf-ujmgr-h UniJIS-UTF16-H \jf@hmgothr}%  \special{pdf:mapline otf-ujmgr-v UniJIS-UTF16-V \jf@hmgothr}%  % Unicode JIS04  \special{pdf:mapline otf-ujmln-h UniJIS2004-UTF16-H \jf@hminl}%  \special{pdf:mapline otf-ujmln-v UniJIS2004-UTF16-V \jf@hminl}%  \special{pdf:mapline otf-ujmrn-h UniJIS2004-UTF16-H \jf@hminr}%  \special{pdf:mapline otf-ujmrn-v UniJIS2004-UTF16-V \jf@hminr}%  \special{pdf:mapline otf-ujmbn-h UniJIS2004-UTF16-H \jf@hminb}%  \special{pdf:mapline otf-ujmbn-v UniJIS2004-UTF16-V \jf@hminb}%  \special{pdf:mapline otf-ujgrn-h UniJIS2004-UTF16-H \jf@hgothr}%  \special{pdf:mapline otf-ujgrn-v UniJIS2004-UTF16-V \jf@hgothr}%  \special{pdf:mapline otf-ujgbn-h UniJIS2004-UTF16-H \jf@hgothb}%  \special{pdf:mapline otf-ujgbn-v UniJIS2004-UTF16-V \jf@hgothb}%  \special{pdf:mapline otf-ujgen-h UniJIS2004-UTF16-H \jf@hgotheb}%  \special{pdf:mapline otf-ujgen-v UniJIS2004-UTF16-V \jf@hgotheb}%  \special{pdf:mapline otf-ujmgrn-h UniJIS2004-UTF16-H \jf@hmgothr}%  \special{pdf:mapline otf-ujmgrn-v UniJIS2004-UTF16-V \jf@hmgothr}% }% \if@otf@uplatex \AtBeginDvi{%  % TEXT, 90JIS  \special{pdf:mapline uphminl-h UniJIS-UTF16-H \jf@hminl}%  \special{pdf:mapline uphminl-v UniJIS-UTF16-V \jf@hminl}%  \special{pdf:mapline uphminr-h UniJIS-UTF16-H \jf@hminr}%  \special{pdf:mapline uphminr-v UniJIS-UTF16-V \jf@hminr}%  \special{pdf:mapline uphminb-h UniJIS-UTF16-H \jf@hminb}%  \special{pdf:mapline uphminb-v UniJIS-UTF16-V \jf@hminb}%  \special{pdf:mapline uphgothr-h UniJIS-UTF16-H \jf@hgothr}%  \special{pdf:mapline uphgothr-v UniJIS-UTF16-V \jf@hgothr}%  \special{pdf:mapline uphgothb-h UniJIS-UTF16-H \jf@hgothb}%  \special{pdf:mapline uphgothb-v UniJIS-UTF16-V \jf@hgothb}%  \special{pdf:mapline uphgotheb-h UniJIS-UTF16-H \jf@hgotheb}%  \special{pdf:mapline uphgotheb-v UniJIS-UTF16-V \jf@hgotheb}%  \special{pdf:mapline uphmgothr-h UniJIS-UTF16-H \jf@hmgothr}%  \special{pdf:mapline uphmgothr-v UniJIS-UTF16-V \jf@hmgothr}%  % TEXT, JIS04  \special{pdf:mapline uphminln-h UniJIS2004-UTF16-H \jf@hminl}%  \special{pdf:mapline uphminln-v UniJIS2004-UTF16-V \jf@hminl}%  \special{pdf:mapline uphminrn-h UniJIS2004-UTF16-H \jf@hminr}%  \special{pdf:mapline uphminrn-v UniJIS2004-UTF16-V \jf@hminr}%  \special{pdf:mapline uphminbn-h UniJIS2004-UTF16-H \jf@hminb}%  \special{pdf:mapline uphminbn-v UniJIS2004-UTF16-V \jf@hminb}%  \special{pdf:mapline uphgothrn-h UniJIS2004-UTF16-H \jf@hgothr}%  \special{pdf:mapline uphgothrn-v UniJIS2004-UTF16-V \jf@hgothr}%  \special{pdf:mapline uphgothbn-h UniJIS2004-UTF16-H \jf@hgothb}%  \special{pdf:mapline uphgothbn-v UniJIS2004-UTF16-V \jf@hgothb}%  \special{pdf:mapline uphgothebn-h UniJIS2004-UTF16-H \jf@hgotheb}%  \special{pdf:mapline uphgothebn-v UniJIS2004-UTF16-V \jf@hgotheb}%  \special{pdf:mapline uphmgothrn-h UniJIS2004-UTF16-H \jf@hmgothr}%  \special{pdf:mapline uphmgothrn-v UniJIS2004-UTF16-V \jf@hmgothr}%  }% \fi</description>
+    </item>
+    
+    <item>
+      <title>CTANにない欧文フォントをLaTeXにインストールする</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-03-29-font-install/</link>
+      <pubDate>Fri, 29 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-03-29-font-install/</guid>
+      <description>はじめに upLaTeXにおいて、CTANに存在する欧文フォントをインストールするのは容易だ。しかしCTANに存在しないフォントをインストールするのは難しい。
+困難の原因は、二つある。第一は、tfmファイルやmapファイルを生成するのが難しいことである。第二は、フォント設定ファイルの作り方が分かりづらいことである。
+そこで、備忘録を兼ね、以下にその方法を記す。
+一つのウェイトをインストールしてみる tfmなどの生成 フォントの形式は通常、otfやttfなどであるが、TeXはそれらを直接に扱うことができない。そこでtfmファイルなどのフォントファイルを生成する必要がある。面倒だが、フォントごとに別のtfmを生成せねばならない。
+tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルで「otftotfm &amp;ndash;version」と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。
+さて今回はGoogle Fontsに収録されているJosefin Slabというフォントをインストールしてみよう。まずは、一つのウェイト（Regular）だけをインストールしてみる。
+まず作業用ディレクトリを適当に作っておき、そこにJosefinSlab-Regular.ttfを入れておく。ターミナルで作業用ディレクトリに行き、次のコマンドを実行してみよう。
+otftotfm --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである1。一応、オプションの意味を説明しておこう。
+ --no-type1 --no-dotlessjは、「Type 1フォントへの変換を行わない」ということ、らしい。あまり理解できていない。 --mapfile=josefinslab.mapで、mapファイルの指定をする。 -e ec.encは、エンコーディングファイルの指定。ec.encを指定すると、T1エンコーディングになる。ちなみにtexnansi.encを指定するとLY1エンコーディングになる。エンコーディングって何なのかいまいち分かっていないが、私はT1エンコーディングにしておいて困ったことはない。 -n josefinslab-regularは、tfm名の指定。  また、-fkernとすればカーニングの、-fligaとすればリガチャの情報を、tfmに含ませることができる。Josefin Slabにはこれらの機能がなかったから上ではこのオプションをつけていないが、この機能があればつけたほうがよい。otfinfo -f JosefinSlab-Regular.ttfなどとすれば、どのような機能が備わっているかを確認できる。
+styファイルの作成 各種ファイルが生成できたならば、すかさず、josefinslab.styという名前でstyファイルを作る。
+% % josefinslab.sty % \AtBeginDvi{\special{pdf:mapfile josefinslab.map}}% 先程生成したmapファイルの読み込み \DeclareFontFamily{T1}{josefinslab}{}% TeXファイル内で使うフォント名を設定 \DeclareFontShape{T1}{josefinslab}{m}{n}{&amp;lt;-&amp;gt; josefinslab-regular}{}% 上で設定したフォント名と、先程生成したtfmファイルとを結びつける \endinput インストールできたかを確認 ここまでできたら、ほとんどインストールは完了したと言ってよい（今のままだと、各種ファイルがディレクトリにたくさん散らばっていて、気持ち悪いかもしれないが、この問題は次の節で解決する）。
+動作確認のため、作業用ディレクトリにTeXファイルを作って、フォントが埋め込まれるかをチェックしておこう。
+\documentclass[uplatex]{jsarticle} \usepackage{josefinslab} \begin{document} \romanfamily{josefinslab}\selectfont This is a test. \end{document} 「This is a test.」がJosefin Slabで表示されたら、ここまでの作業はうまくいったことになる。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,20 +6,35 @@
     <description>Recent content in Memo on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 19 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 11 Aug 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/tags/memo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Wordの傍点を青空文庫形式に変換する方法</title>
-      <link>https://qdaibungei.github.io/latex/documents/2017-03-19-bouten/</link>
-      <pubDate>Sun, 19 Mar 2017 00:00:00 +0000</pubDate>
+      <title>TeX Gyreフォントの使い方</title>
+      <link>https://qdaibungei.github.io/latex/documents/2017-08-11-texgyre/</link>
+      <pubDate>Fri, 11 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://qdaibungei.github.io/latex/documents/2017-03-19-bouten/</guid>
-      <description>以下の画像を参考に置換する。
-　置換用文字列は以下をコピペするとよい。
-? ^&amp;amp;［＃「^&amp;amp;」に傍点］</description>
+      <guid>https://qdaibungei.github.io/latex/documents/2017-08-11-texgyre/</guid>
+      <description>TeX Gyreのパッケージ名をすぐ忘れてしまうのでメモしておく。
+TeX Gyreフォント Adventor URW Gothic LにもとづくITC Avant Garde Gothic代用フォント。
+\usepackage[scale=0.9]{tgadventor} ファミリ名はqagである。
+Bonum URW Bookman LにもとづくITC Bookman代用フォント。
+\usepackage[scale=0.95]{tgbonum} ファミリ名はqbkである。
+Chorus URW Chancery L Medium ItalicにもとづくITC Zapf Chancery代用フォント。
+\usepackage[scale=0.95]{tgbonum} ファミリ名はqzcである。
+Cursor URW Nimbus Mono LにもとづくCourier代用フォント。
+\usepackage[scale=1]{tgcursor} ファミリ名はqcrである。
+Heros URW Nimbus Sans LにもとづくHelvetica代用フォント。
+\usepackage[scale=0.95]{tgheros} ファミリ名はqhvである。
+Pagella URW Palladio LにもとづくPalatino代用フォント。
+\usepackage{tgpagella} ファミリ名はqplである。
+Schola URW Century Schoolbook LにもとづくCentury Schoolbook代用フォント。
+\usepackage[scale=1]{tgschola} ファミリ名はqcsである。
+数式はfourierncと合わせる（tgscholaより先に読み込む）。
+Termes URW Nimbus Roman LにもとづくTimes代用フォント。
+\usepackage{qtxmath} % 数式を使う場合これを先に読み込む \usepackage[scale=1]{tgtermes} ファミリ名はqtmである。</description>
     </item>
     
     <item>
@@ -63,40 +78,6 @@ MyTeXpert 書籍ではなくネットの文書でLaTeXに入門するなら、�
 何だって……？＿そうじゃない。  ただし、後ろが三点リーダのときは全角空白がなくてもよい。
 相手がキチガイ博士だから、初めから本当にして聞いていない……？……ウハッ。  疑問符と感嘆符をセットで使う場合、
 なんだって！？  のように全角文字で ！？ と書くと見栄えが悪い（あと、編集がダルい）ので、これは半角で !? と書く。あるいは、⁉ を使ってもよい。</description>
-    </item>
-    
-    <item>
-      <title>Wordのオートインデント機能を停止させる</title>
-      <link>https://qdaibungei.github.io/latex/documents/2017-02-10-noautoindent/</link>
-      <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/documents/2017-02-10-noautoindent/</guid>
-      <description>はじめに Wordはおせっかい機能が多いことで有名である。中でも文芸サークルにおいて悪名高いのがオートインデント機能である。そこでここでは、このうざったいオートインデント機能が動作しないように設定する方法を記す。
-手順 まず、赤丸で囲ったところをクリック。
-　次に、オプションをクリック。
-　オートコレクトのオプションをクリック。
-　入力オートフォーマットタブの「行の始まりのスペースを字下げに変更する」のチェックボックスを外す。図は、チェックボックスを外した状態である。
-追記：「Tab/Space/BackSpaceキーでインデントとタブの設定を変更する」のチェックも外す必要があるらしい、という情報をネットで得た。私の環境では初めから外れていた。
-むすび オートインデント機能を切る方法は直感的に分かりづらい。Wordがそのような分かりづらい作りになっているのはなぜであろうか。まったく不可解である。もしかすると宇宙人の陰謀かもしれない。NASAなどが早急に原因究明にあたってくれることを強く望む。</description>
-    </item>
-    
-    <item>
-      <title>小説校正のための正規表現集</title>
-      <link>https://qdaibungei.github.io/latex/documents/2016-10-09-kousei/</link>
-      <pubDate>Sun, 09 Oct 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/documents/2016-10-09-kousei/</guid>
-      <description>背景  小説集の編集をやっている。 インデントは全角空白で表現、ただし文頭が括弧の場合は空白不要、などの表記ルールを（明示はしていないが暗黙のうちに）定めている。  問題  著者たちはパソコンに熟達している人ばかりでなく、そのためインデント規則など表記ルールが守られていない原稿がよく送られてくる。  解法  以下のような正規表現を使って置換する。置換すべき項目がリストアップしてあると便利なので、以下に記しておく。上が検索文字列、下が置換後文字列。  インデントがないとき全角空白を挿入 ^([^　「『（〈【〔《［｛〝\n\\])
-$1
-括弧前に空白があれば削除 ^　([「『（〈【〔《［｛〝])
-$1
-文末の不要な空白を削除 [ ]+$
-
-半角括弧→全角括弧 ((.+?))
-（$1）
-2連続で使用されている疑問符・感嘆符は半角に [！？]{2,}
-
-その他 青空文庫作業マニュアル【校正編】は参考になる。</description>
     </item>
     
   </channel>

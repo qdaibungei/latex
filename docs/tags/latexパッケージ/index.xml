@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LaTeXパッケージ on 文藝部LaTeX研究会</title>
+    <link>https://qdaibungei.github.io/latex/tags/latex%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8/</link>
+    <description>Recent content in LaTeXパッケージ on 文藝部LaTeX研究会</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://qdaibungei.github.io/latex/tags/latex%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hanmenパッケージを更新した</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-09-02-hanmen/</link>
+      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-09-02-hanmen/</guid>
+      <description> はじめに hanmenパッケージを一年半ぶりくらいに更新した。使いかたはここに記してある。ダウンロードはここからできる。
+改良点  オプションを追加し、ユーザーインターフェースを改良した。これにより、\usepackage[nodo=20mm]{hanmen}といったふうにノドの広さを直接指定したりできるようになった。 他にも色々と改良した。  </description>
+    </item>
+    
+    <item>
+      <title>jdashパッケージを更新した</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-07-14-jdash/</link>
+      <pubDate>Sun, 14 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-07-14-jdash/</guid>
+      <description> はじめに jdashパッケージを二年半ぶりくらいに更新した。使いかたはここに記してある。
+改良点  依存パッケージとして必須だったotf.styは、今回の変更により、必要なくなった。 ダッシュの形式を変更するマクロを使いやすいように作り変えた。 倍角ダッシュを、LaTeXの機能である\ruleによっても出力できるようにした。  </description>
+    </item>
+    
+    <item>
+      <title>jfontsパッケージ</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-03-30-jfonts/</link>
+      <pubDate>Sat, 30 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-03-30-jfonts/</guid>
+      <description> はじめに LaTeXでPDFに和文フォントを埋め込む際、いちいちmapファイルを書き換えるのは面倒である。そこでjfontsパッケージというLaTeXパッケージを作った。簡単な工夫だが、役に立つ。
+jfontsパッケージは、otfパッケージと併用することを前提としている。フォントを変えたいときはフォントのファイル名を書き換えればよい。
+jfonts.sty % % jfonts.sty %  \NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{jfonts} \def\jf@hminl{ToppanBunkyuMincho-Regular.otf} \def\jf@hminr{HiraMinProN-W3.otf} \def\jf@hminb{HiraMinProN-W6.otf} \def\jf@hgothr{HiraKakuProN-W3.otf} \def\jf@hgothb{HiraKakuProN-W6.otf} \def\jf@hgotheb{HiraKakuStdN-W8.otf} \def\jf@hmgothr{HiraMaruPro-W4.otf} \AtBeginDvi{%  % TEXT, 90JIS  \special{pdf:mapline hminl-h H \jf@hminl}%  \special{pdf:mapline hminl-v V \jf@hminl}%  \special{pdf:mapline hminr-h H \jf@hminr}%  \special{pdf:mapline hminr-v V \jf@hminr}%  \special{pdf:mapline hminb-h H \jf@hminb}%  \special{pdf:mapline hminb-v V \jf@hminb}%  \special{pdf:mapline hgothr-h H \jf@hgothr}%  \special{pdf:mapline hgothr-v V \jf@hgothr}%  \special{pdf:mapline hgothb-h H \jf@hgothb}%  \special{pdf:mapline hgothb-v V \jf@hgothb}%  \special{pdf:mapline hgotheb-h H \jf@hgotheb}%  \special{pdf:mapline hgotheb-v V \jf@hgotheb}%  \special{pdf:mapline hmgothr-h H \jf@hmgothr}%  \special{pdf:mapline hmgothr-v V \jf@hmgothr}%  % TEXT, JIS04  \special{pdf:mapline hminln-h H \jf@hminl}%  \special{pdf:mapline hminln-v V \jf@hminl}%  \special{pdf:mapline hminrn-h H \jf@hminr}%  \special{pdf:mapline hminrn-v V \jf@hminr}%  \special{pdf:mapline hminbn-h H \jf@hminb}%  \special{pdf:mapline hminbn-v V \jf@hminb}%  \special{pdf:mapline hgothrn-h H \jf@hgothr}%  \special{pdf:mapline hgothrn-v V \jf@hgothr}%  \special{pdf:mapline hgothbn-h H \jf@hgothb}%  \special{pdf:mapline hgothbn-v V \jf@hgothb}%  \special{pdf:mapline hgothebn-h H \jf@hgotheb}%  \special{pdf:mapline hgothebn-v V \jf@hgotheb}%  \special{pdf:mapline hmgothrn-h H \jf@hmgothr}%  \special{pdf:mapline hmgothrn-v V \jf@hmgothr}%  % CID  \special{pdf:mapline otf-cjml-h Identity-H \jf@hminl}%  \special{pdf:mapline otf-cjml-v Identity-V \jf@hminl}%  \special{pdf:mapline otf-cjmr-h Identity-H \jf@hminr/AJ16}%  \special{pdf:mapline otf-cjmr-v Identity-V \jf@hminr/AJ16}%  \special{pdf:mapline otf-cjmb-h Identity-H \jf@hminb/AJ16}%  \special{pdf:mapline otf-cjmb-v Identity-V \jf@hminb/AJ16}%  \special{pdf:mapline otf-cjgr-h Identity-H \jf@hgothr}%  \special{pdf:mapline otf-cjgr-v Identity-V \jf@hgothr}%  \special{pdf:mapline otf-cjgb-h Identity-H \jf@hgothb}%  \special{pdf:mapline otf-cjgb-v Identity-V \jf@hgothb}%  \special{pdf:mapline otf-cjge-h Identity-H \jf@hgotheb/AJ16}%  \special{pdf:mapline otf-cjge-v Identity-V \jf@hgotheb/AJ16}%  \special{pdf:mapline otf-cjmgr-h Identity-H \jf@hmgothr/AJ16}%  \special{pdf:mapline otf-cjmgr-v Identity-V \jf@hmgothr/AJ16}%  % Unicode 90JIS  \special{pdf:mapline otf-ujml-h UniJIS-UTF16-H \jf@hminl}%  \special{pdf:mapline otf-ujml-v UniJIS-UTF16-V \jf@hminl}%  \special{pdf:mapline otf-ujmr-h UniJIS-UTF16-H \jf@hminr}%  \special{pdf:mapline otf-ujmr-v UniJIS-UTF16-V \jf@hminr}%  \special{pdf:mapline otf-ujmb-h UniJIS-UTF16-H \jf@hminb}%  \special{pdf:mapline otf-ujmb-v UniJIS-UTF16-V \jf@hminb}%  \special{pdf:mapline otf-ujgr-h UniJIS-UTF16-H \jf@hgothr}%  \special{pdf:mapline otf-ujgr-v UniJIS-UTF16-V \jf@hgothr}%  \special{pdf:mapline otf-ujgb-h UniJIS-UTF16-H \jf@hgothb}%  \special{pdf:mapline otf-ujgb-v UniJIS-UTF16-V \jf@hgothb}%  \special{pdf:mapline otf-ujge-h UniJIS-UTF16-H \jf@hgotheb}%  \special{pdf:mapline otf-ujge-v UniJIS-UTF16-V \jf@hgotheb}%  \special{pdf:mapline otf-ujmgr-h UniJIS-UTF16-H \jf@hmgothr}%  \special{pdf:mapline otf-ujmgr-v UniJIS-UTF16-V \jf@hmgothr}%  % Unicode JIS04  \special{pdf:mapline otf-ujmln-h UniJIS2004-UTF16-H \jf@hminl}%  \special{pdf:mapline otf-ujmln-v UniJIS2004-UTF16-V \jf@hminl}%  \special{pdf:mapline otf-ujmrn-h UniJIS2004-UTF16-H \jf@hminr}%  \special{pdf:mapline otf-ujmrn-v UniJIS2004-UTF16-V \jf@hminr}%  \special{pdf:mapline otf-ujmbn-h UniJIS2004-UTF16-H \jf@hminb}%  \special{pdf:mapline otf-ujmbn-v UniJIS2004-UTF16-V \jf@hminb}%  \special{pdf:mapline otf-ujgrn-h UniJIS2004-UTF16-H \jf@hgothr}%  \special{pdf:mapline otf-ujgrn-v UniJIS2004-UTF16-V \jf@hgothr}%  \special{pdf:mapline otf-ujgbn-h UniJIS2004-UTF16-H \jf@hgothb}%  \special{pdf:mapline otf-ujgbn-v UniJIS2004-UTF16-V \jf@hgothb}%  \special{pdf:mapline otf-ujgen-h UniJIS2004-UTF16-H \jf@hgotheb}%  \special{pdf:mapline otf-ujgen-v UniJIS2004-UTF16-V \jf@hgotheb}%  \special{pdf:mapline otf-ujmgrn-h UniJIS2004-UTF16-H \jf@hmgothr}%  \special{pdf:mapline otf-ujmgrn-v UniJIS2004-UTF16-V \jf@hmgothr}% }% \if@otf@uplatex \AtBeginDvi{%  % TEXT, 90JIS  \special{pdf:mapline uphminl-h UniJIS-UTF16-H \jf@hminl}%  \special{pdf:mapline uphminl-v UniJIS-UTF16-V \jf@hminl}%  \special{pdf:mapline uphminr-h UniJIS-UTF16-H \jf@hminr}%  \special{pdf:mapline uphminr-v UniJIS-UTF16-V \jf@hminr}%  \special{pdf:mapline uphminb-h UniJIS-UTF16-H \jf@hminb}%  \special{pdf:mapline uphminb-v UniJIS-UTF16-V \jf@hminb}%  \special{pdf:mapline uphgothr-h UniJIS-UTF16-H \jf@hgothr}%  \special{pdf:mapline uphgothr-v UniJIS-UTF16-V \jf@hgothr}%  \special{pdf:mapline uphgothb-h UniJIS-UTF16-H \jf@hgothb}%  \special{pdf:mapline uphgothb-v UniJIS-UTF16-V \jf@hgothb}%  \special{pdf:mapline uphgotheb-h UniJIS-UTF16-H \jf@hgotheb}%  \special{pdf:mapline uphgotheb-v UniJIS-UTF16-V \jf@hgotheb}%  \special{pdf:mapline uphmgothr-h UniJIS-UTF16-H \jf@hmgothr}%  \special{pdf:mapline uphmgothr-v UniJIS-UTF16-V \jf@hmgothr}%  % TEXT, JIS04  \special{pdf:mapline uphminln-h UniJIS2004-UTF16-H \jf@hminl}%  \special{pdf:mapline uphminln-v UniJIS2004-UTF16-V \jf@hminl}%  \special{pdf:mapline uphminrn-h UniJIS2004-UTF16-H \jf@hminr}%  \special{pdf:mapline uphminrn-v UniJIS2004-UTF16-V \jf@hminr}%  \special{pdf:mapline uphminbn-h UniJIS2004-UTF16-H \jf@hminb}%  \special{pdf:mapline uphminbn-v UniJIS2004-UTF16-V \jf@hminb}%  \special{pdf:mapline uphgothrn-h UniJIS2004-UTF16-H \jf@hgothr}%  \special{pdf:mapline uphgothrn-v UniJIS2004-UTF16-V \jf@hgothr}%  \special{pdf:mapline uphgothbn-h UniJIS2004-UTF16-H \jf@hgothb}%  \special{pdf:mapline uphgothbn-v UniJIS2004-UTF16-V \jf@hgothb}%  \special{pdf:mapline uphgothebn-h UniJIS2004-UTF16-H \jf@hgotheb}%  \special{pdf:mapline uphgothebn-v UniJIS2004-UTF16-V \jf@hgotheb}%  \special{pdf:mapline uphmgothrn-h UniJIS2004-UTF16-H \jf@hmgothr}%  \special{pdf:mapline uphmgothrn-v UniJIS2004-UTF16-V \jf@hmgothr}%  }% \fi</description>
+    </item>
+    
+    <item>
+      <title>hanmenパッケージを更新した</title>
+      <link>https://qdaibungei.github.io/latex/documents/2018-01-18-hanmen/</link>
+      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2018-01-18-hanmen/</guid>
+      <description> はじめに hanmenパッケージを一年ぶりくらいに更新した。使いかたはここに記してある。
+変更した点  依存パッケージとして必須だったnombre_for_fancyhdr.styは、今回の変更により、必要なくなった。 Wオプションに非整数値を入れることができるようになった。これにより、段間を2.5文字分にするといった組版が可能となった。 Wオプションの挙動変更に伴い、グリッド線を表示するオプションの使いかたが変更された。これまでは\newhanmen{grid}と指定したが、今回から\newhanmen{g=50}というふうに指定する仕様とした。  </description>
+    </item>
+    
+    <item>
+      <title>hanmenパッケージ</title>
+      <link>https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/</link>
+      <pubDate>Sat, 18 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/</guid>
+      <description>はじめに hanmenパッケージというLaTeXパッケージを作った。ダウンロードはここからできる。
+hanmenパッケージとは、版面の設計1を厳密に行うためのパッケージである。たとえば、38字×40行で文書を作りたい、といったときにhanmenパッケージは有用である。
+従来、LaTeXでは版面の設計が煩雑であった2。とくに縦組みの場合、geometryパッケージが使えないので厄介である。そこで、縦組みでも版面設計がやりやすいようにと作ったのがhanmenパッケージである。
+基本的なアイディアはTomOne氏の『よくわかるLaTeX小説』による。
+なお、2017年2月18日現在、あべのり氏によって開発中のクラスファイルであるjlreq.clsは、従来のクラスファイルより圧倒的に版面設計が行いやすいようになっているようなので、jlreq.clsの安定版がリリースされたあかつきには、hanmenパッケージの存在意義は薄れゆくであろうと思われる。
+使い方 基本 基本的な使い方は簡単である。プリアンブルに次のように書き込む。
+\usepackage[Q=15,H=24,W=38,L=40]{hanmen} そうすると、
+ 文字サイズ　15級 行送り　24歯 行長　38字 行数　40行  に設定できる。Q は文字サイズの単位「級」に、H は行送りの単位「歯」に、W はwidthに、L はlinesに由来している。
+各種オプション グリッド線を表示させる（gに代入する値は上のWで指定した文字数と同じか、または近い整数値を入れる）。
+\usepackage[g=38]{hanmen} 　縦組みにする。
+\usepackage[tate]{hanmen} 　ヘッダ・フッタの位置の調整。
+\usepackage[headheight=13mm, headsep=1mm, footskip=3mm]{hanmen} 　デフォルトでは、版面は左右中央に配置される。これを、少しだけ小口側に寄せたり、天側に寄せたりしたい場合、以下のようにする。
+\usepackage[ko=3truemm]{hanmen}%% 3mm小口寄せ\usepackage[te=4truemm]{hanmen}%% 4mm天寄せ 　ノド、小口、天、地の広さを直接指定することもできる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない。もし間違えて両方指定した場合はエラーが出るようにしてある。
+% ノドと天の広さを指定 \usepackage[nodo=20mm, ten=15mm]{hanmen}% 小口と地の広さを指定 \usepackage[koguchi=20mm, chi=15mm]{hanmen} 　文字サイズ単位にQではなくptを使う。
+\usepackage[pt]{hanmen} % \usepackage[ptj]{hanmen} % Wordに合わせたptのサイズにするには ptj とすること。 　このパッケージは新ドキュメントクラス（jsbook.cls、jsarticle.clsなど）で使うことを想定している。旧ドキュメントクラス（jarticle.cls、tbook.clsなど）で使う場合、jisfontzoomオプションを付けないと、文字サイズが正しく設定されない。
+\usepackage[jisfontzoom]{hanmen} 　版面を一切いじらない。
+\usepackage[pass]{hanmen} 提供されるマクロ \newhanmen \newhanmen というマクロが提供される。これは、本文中で、</description>
+    </item>
+    
+    <item>
+      <title>jdashパッケージ</title>
+      <link>https://qdaibungei.github.io/latex/documents/2017-02-17-jdash/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2017-02-17-jdash/</guid>
+      <description>概要 jdashパッケージというLaTeXパッケージを作った。ダウンロードはここからできる。
+jdashというのはjapanese dashの略のつもりである。日本語文に現れる記号ダッシュ ― は、通常何個か並べて一本の線のようにして使うが、フォントによっては一本の線に見えない。一本の線のように見せるには工夫が必要だ。その工夫をパッケージ化したものがjdashパッケージだ。
+ところで、人によってはときおり放心状態で「あ～～～」と声にならない声を発したくなることがある。しかしこれでは、波ダッシュ ～ がつながって見えないのでいまいち放心状態であることが伝達されにくい。そこで波線をつなげられるような工夫が必要となる。jdashパッケージでは、その工夫をも盛り込んだ。
+使い方 ダッシュ この文章でも使っているようなふつうのダッシュ――あるいはダーシとも言う――を出力するには、\jdash という命令を使う。
+\jdash[2] のように数字を与えれば、この例の場合2字分の長さのダッシュが出力される。なお、2字分の長さのダッシュ（倍角ダッシュ）に限り、\―― という命令でも出力可能に設定してある。
+デフォルトでは、通常のダッシュ記号 ― を重ねることで一本につながったダッシュを出力するようにしている。このやり方は美文書などでも紹介されている有名なやり方である。
+しかしPDFで見たときダブって見える弱点もある。そこでPDFで閲覧するときのために、罫線 ─ を使った表示ができると都合がよい。そこで容易している命令が \jdashstyle である。
+\jdashstyle{―} % デフォルト \jdash[3] % ダブったダッシュが出る  \jdashstyle{─} % ダッシュ記号を罫線（U+2500）に変更 \jdash[3] % 罫線で出力される  \jdashstyle{rule} % ダッシュ記号を\ruleで生成されるものに変更 \jdash[3] % \ruleで出力される 波ダッシュ 「あ～～～～」と叫びたいとき、あるいはTeX言語話者らしく「えくすぱんどあふた～～～～！」と叫びたいときには波ダッシュがつながっていると便利だ。そのために \～ という命令を用意してある（wave dashの略のつもり）。\～ という命令を並べれば、波ダッシュ記号 ～ がいくらでもつながる。
+えくすぱんどあふた\～\～\～\～\～\～\～！ フォントによっては波線同士の食い込み量がまずくて、うまくつながらないかもしれない。その場合は \wdashKerningAmount{数字} という命令を使う。数字の単位は zw である。
+% \wdashKerningAmount{.25} % デフォルト。0.25zw分、波線が食い込む。 \wdashKerningAmount{.261} % 食い込み具合を変更。筑紫明朝はこのくらい食い込ませるとうまく波線がつながる。 なお、一部のライトノベルで使われているような波線 〰 の表示もできる。このために \wdashstyle という命令が容易されている。</description>
+    </item>
+    
+  </channel>
+</rss>

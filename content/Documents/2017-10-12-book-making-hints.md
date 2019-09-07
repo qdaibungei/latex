@@ -2,7 +2,7 @@
 layout: post
 title: LaTeXによる小説誌制作のヒント
 date: 2017-10-12
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "guide", "tips"]
 ---
 
 # 緒言

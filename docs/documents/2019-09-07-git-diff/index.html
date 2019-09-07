@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <title>版面数値計算｜文藝部LaTeX研究会</title>
+        <title>git diff で一文字ずつ差分表示する｜文藝部LaTeX研究会</title>
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
@@ -30,15 +30,21 @@
     <div class="content">
 
 <p class="title">
-    版面数値計算   <code><a href="/latex/tags/javascript">#JavaScript</a></code>  <code><a href="/latex/tags/dtp">#DTP</a></code> 
+    git diff で一文字ずつ差分表示する   <code><a href="/latex/tags/git">#Git</a></code>  <code><a href="/latex/tags/tips">#tips</a></code> 
     <br>
-    2017/3/28<br>
+    2019/9/7<br>
 </p>
-<p>版面の数値を計算するプログラムをJavaScriptで作った。</p>
 
-<p><a href="/latex/assets/html/layoutcal.html">layoutcal.html</a></p>
 
-<p>使い方はリンク先に書いてある。デザインをもう少し洗練させたかったが、デザイン力がないのでこのままで公開。</p>
+<h1 id="方法">方法</h1>
+
+<p>git diff で一文字ずつ差分表示するには次のようにすればよい。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git diff --color-words --word-diff-regex<span class="o">=</span><span class="s1">&#39;\\w+|[^[:space:]]&#39;</span></code></pre></div>
+<h1 id="参考文献">参考文献</h1>
+
+<ul>
+<li><a href="http://neos21.hatenablog.com/entry/2018/04/05/080000">git diff を1文字単位で出力する</a></li>
+</ul>
 
                     </div>
                 </main>

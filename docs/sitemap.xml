@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://qdaibungei.github.io/latex/documents/2019-09-07-git-diff/</loc>
+    <lastmod>2019-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://qdaibungei.github.io/latex/documents/2019-09-02-hanmen/</loc>
     <lastmod>2019-09-02T00:00:00+00:00</lastmod>
   </url>
@@ -143,13 +148,25 @@
   
   <url>
     <loc>https://qdaibungei.github.io/latex/tags/dtp/</loc>
-    <lastmod>2016-11-29T00:00:00+00:00</lastmod>
+    <lastmod>2017-03-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://qdaibungei.github.io/latex/documents/</loc>
-    <lastmod>2019-09-02T00:00:00+00:00</lastmod>
+    <lastmod>2019-09-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdaibungei.github.io/latex/tags/font/</loc>
+    <lastmod>2019-03-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdaibungei.github.io/latex/tags/git/</loc>
+    <lastmod>2019-09-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -172,8 +189,14 @@
   </url>
   
   <url>
+    <loc>https://qdaibungei.github.io/latex/tags/latex%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8/</loc>
+    <lastmod>2019-09-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qdaibungei.github.io/latex/tags/memo/</loc>
-    <lastmod>2017-03-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-08-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -185,7 +208,13 @@
   
   <url>
     <loc>https://qdaibungei.github.io/latex/tags/</loc>
-    <lastmod>2016-11-29T00:00:00+00:00</lastmod>
+    <lastmod>2017-03-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdaibungei.github.io/latex/tags/tips/</loc>
+    <lastmod>2019-09-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -197,7 +226,13 @@
   
   <url>
     <loc>https://qdaibungei.github.io/latex/</loc>
-    <lastmod>2019-09-02T00:00:00+00:00</lastmod>
+    <lastmod>2019-09-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://qdaibungei.github.io/latex/tags/%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE/</loc>
+    <lastmod>2016-10-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

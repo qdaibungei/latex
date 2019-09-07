@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on 文藝部LaTeX研究会</title>
+    <link>https://qdaibungei.github.io/latex/tags/git/</link>
+    <description>Recent content in Git on 文藝部LaTeX研究会</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 07 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://qdaibungei.github.io/latex/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>git diff で一文字ずつ差分表示する</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-09-07-git-diff/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-09-07-git-diff/</guid>
+      <description> 方法 git diff で一文字ずつ差分表示するには次のようにすればよい。
+git diff --color-words --word-diff-regex=&amp;#39;\\w+|[^[:space:]]&amp;#39; 参考文献  git diff を1文字単位で出力する  </description>
+    </item>
+    
+  </channel>
+</rss>
