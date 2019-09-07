@@ -2,7 +2,7 @@
 layout: post
 title: 初心者による初心者のための小説DTP入門の原稿の残骸
 date: 2016-11-29
-tags: DTP 小説
+tags: ["DTP"]
 ---
 
 

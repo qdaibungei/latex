@@ -2,7 +2,7 @@
 layout: post
 title: 校正割り振りスクリプト
 date: 2016-07-10
-tags: python
+tags: ["Python"]
 ---
 
 # はじめに

@@ -142,14 +142,20 @@
   </url>
   
   <url>
+    <loc>https://qdaibungei.github.io/latex/tags/dtp/</loc>
+    <lastmod>2016-11-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://qdaibungei.github.io/latex/documents/</loc>
     <lastmod>2019-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://qdaibungei.github.io/latex/tags/dtp-%E5%B0%8F%E8%AA%AC/</loc>
-    <lastmod>2016-11-29T00:00:00+00:00</lastmod>
+    <loc>https://qdaibungei.github.io/latex/tags/guide/</loc>
+    <lastmod>2017-10-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -166,8 +172,8 @@
   </url>
   
   <url>
-    <loc>https://qdaibungei.github.io/latex/tags/latex-%E8%A7%A3%E8%AA%AC/</loc>
-    <lastmod>2017-02-26T00:00:00+00:00</lastmod>
+    <loc>https://qdaibungei.github.io/latex/tags/memo/</loc>
+    <lastmod>2017-03-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -184,19 +190,7 @@
   </url>
   
   <url>
-    <loc>https://qdaibungei.github.io/latex/tags/tex/</loc>
-    <lastmod>2017-08-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qdaibungei.github.io/latex/tags/%E3%83%A1%E3%83%A2/</loc>
-    <lastmod>2017-02-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qdaibungei.github.io/latex/tags/%E3%83%A1%E3%83%A2-word/</loc>
+    <loc>https://qdaibungei.github.io/latex/tags/word/</loc>
     <lastmod>2017-03-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -204,18 +198,6 @@
   <url>
     <loc>https://qdaibungei.github.io/latex/</loc>
     <lastmod>2019-09-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qdaibungei.github.io/latex/tags/%E8%A7%A3%E8%AA%AC/</loc>
-    <lastmod>2017-02-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://qdaibungei.github.io/latex/tags/%E8%A7%A3%E8%AA%AC-word/</loc>
-    <lastmod>2017-02-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

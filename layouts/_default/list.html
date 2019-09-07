@@ -1,3 +1,10 @@
-<li>
-    <a href="{{ .Permalink }}">{{ .Title }}</a> ({{ .Date.Format "2006/1/2" }})
-</li>
+{{ partial "site_header.html" . }}
+{{ partial "menu_documents.html" . }}
+<h2>{{ .Title }}</h2>
+<ul>
+{{ range .Data.Pages }}
+    <li><a href="{{ .Permalink }}">{{ .Title }}</a>（{{ .Date.Format "2006/1/2" }}）</li>
+{{ end }}
+</ul>
+</body>
+<html>

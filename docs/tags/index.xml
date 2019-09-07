@@ -12,16 +12,25 @@
     
     
     <item>
-      <title>Dtp 小説</title>
-      <link>https://qdaibungei.github.io/latex/tags/dtp-%E5%B0%8F%E8%AA%AC/</link>
+      <title>DTP</title>
+      <link>https://qdaibungei.github.io/latex/tags/dtp/</link>
       <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://qdaibungei.github.io/latex/tags/dtp-%E5%B0%8F%E8%AA%AC/</guid>
+      <guid>https://qdaibungei.github.io/latex/tags/dtp/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Javascript</title>
+      <title>Guide</title>
+      <link>https://qdaibungei.github.io/latex/tags/guide/</link>
+      <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/tags/guide/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
       <link>https://qdaibungei.github.io/latex/tags/javascript/</link>
       <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
       
@@ -30,7 +39,7 @@
     </item>
     
     <item>
-      <title>Latex</title>
+      <title>LaTeX</title>
       <link>https://qdaibungei.github.io/latex/tags/latex/</link>
       <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
       
@@ -39,11 +48,11 @@
     </item>
     
     <item>
-      <title>Latex 解説</title>
-      <link>https://qdaibungei.github.io/latex/tags/latex-%E8%A7%A3%E8%AA%AC/</link>
-      <pubDate>Sun, 26 Feb 2017 00:00:00 +0000</pubDate>
+      <title>Memo</title>
+      <link>https://qdaibungei.github.io/latex/tags/memo/</link>
+      <pubDate>Sun, 19 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://qdaibungei.github.io/latex/tags/latex-%E8%A7%A3%E8%AA%AC/</guid>
+      <guid>https://qdaibungei.github.io/latex/tags/memo/</guid>
       <description></description>
     </item>
     
@@ -57,47 +66,11 @@
     </item>
     
     <item>
-      <title>Tex</title>
-      <link>https://qdaibungei.github.io/latex/tags/tex/</link>
-      <pubDate>Fri, 11 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/tags/tex/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>メモ</title>
-      <link>https://qdaibungei.github.io/latex/tags/%E3%83%A1%E3%83%A2/</link>
-      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/tags/%E3%83%A1%E3%83%A2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>メモ Word</title>
-      <link>https://qdaibungei.github.io/latex/tags/%E3%83%A1%E3%83%A2-word/</link>
+      <title>Word</title>
+      <link>https://qdaibungei.github.io/latex/tags/word/</link>
       <pubDate>Sun, 19 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://qdaibungei.github.io/latex/tags/%E3%83%A1%E3%83%A2-word/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>解説</title>
-      <link>https://qdaibungei.github.io/latex/tags/%E8%A7%A3%E8%AA%AC/</link>
-      <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/tags/%E8%A7%A3%E8%AA%AC/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>解説 Word</title>
-      <link>https://qdaibungei.github.io/latex/tags/%E8%A7%A3%E8%AA%AC-word/</link>
-      <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/tags/%E8%A7%A3%E8%AA%AC-word/</guid>
+      <guid>https://qdaibungei.github.io/latex/tags/word/</guid>
       <description></description>
     </item>
     

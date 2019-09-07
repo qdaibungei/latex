@@ -1,8 +1,9 @@
 {{ partial "site_header.html" . }}
 {{ partial "menu_documents.html" . }}
 <p class="title">
-    {{ .Title }}<br>
-    {{ .Date.Format "2006/1/2" }}
+    {{ .Title }} {{ with .Params.tags }} {{ range . }} <code><a href="{{ "/tags/" | relLangURL }}{{ lower . }}">#{{ . }}</a></code> {{ end }}{{ end }}
+    <br>
+    {{ .Date.Format "2006/1/2" }}<br>
 </p>
 {{ .Content }}
 {{ partial "site_footer.html" . }}

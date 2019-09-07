@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Guide on 文藝部LaTeX研究会</title>
+    <link>https://qdaibungei.github.io/latex/tags/guide/</link>
+    <description>Recent content in Guide on 文藝部LaTeX研究会</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Thu, 12 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://qdaibungei.github.io/latex/tags/guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LaTeXによる小説誌制作のヒント</title>
+      <link>https://qdaibungei.github.io/latex/documents/2017-10-12-book-making-hints/</link>
+      <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2017-10-12-book-making-hints/</guid>
+      <description>緒言 以下では、小説誌制作をLaTeXでおこなう場合のヒントを述べる。
+フォントの指定 LaTeXのデフォルトフォントはあまり小説向きではない。そこで以下のように記述しフォントを変更する。
+まず日本語フォントであるが、特にこだわりがないならば、とりあえず游明朝にしておくとよい。游明朝を使うには、以下のように書く（以下はuplatexを使うことを前提とした書き方である。いまどきわざわざplatexを使う理由はあるまい）。
+% uplatexでA5サイズの本を作る場合のdocumentclassの書きかた \documentclass[a5paper,papersize,uplatex]{jsbook} % 日本語フォントを游明朝にする \usepackage[deluxe,uplatex]{otf} \AtBeginDvi{\special{pdf:mapfile otf-up-yu-win10.map}}% Windows 10以外の場合は適宜変更せよ 欧文フォントも変更しておこう。
+% 欧文フォントの変更 \usepackage[scale=1.05]{cochineal}% この欧文フォントはわりと游明朝に合う \usepackage[scale=0.95,defaultsans]{opensans} jdashパッケージ 游明朝だと、ダッシュ――がつながらない。そこでjdashパッケージを導入し、これを使う。jdashパッケージについてはここを参照のこと。
+hanmenパッケージの使用 まずhanmenパッケージをダウンロードし、TeXファイルと同じフォルダへ入れる。
+そしてプリアンブルに以下を記述する。
+% 上のフォント設定をした後に書く \usepackage[Q=13,H=22,W=49,L=21,ko=3.875truemm,te=6.5truemm,footskip=2.47truemm,tate]{hanmen} % ついでに、欧文のベースラインなどを適当に変更しておこう \tbaselineshift=.3zw \kanjiskip=0zw plus .25zw minus .03125zw \xkanjiskip=.25zw plus .25zw minus .0625zw これで厳密な版面の設定が可能となる。厳密というのは、たとえば表と裏とで行が揃っているということである（厳密な設定をしないと、行がズレる。紙を透かして見ると行がズレているかどうか分かる）。
+hanmenパッケージの使い方の詳細はこの記事を参照のこと。
+\tcyマクロ LaTeXで縦書きをするさい、縦中横には\rensujiを使うよう言われる。しかし\rensujiだと前後のアキがおかしくなる（たとえば、行頭で\rensujiを使うとインデント量が狂う）。そこで\tcy命令を新たに作り、これを使うのがよい。
+\usepackage{plext} \makeatletter \chardef\nvlsty@zenkakuSpace=\jis&amp;#34;2121\relax \newcommand{\tcy}[1]{%  \nvlsty@zenkakuSpace\kern-1zw\relax \leavevmode\hbox to 1zw{%  \centering\rensuji*{#1}\relax }\relax \kern-1zw\nvlsty@zenkakuSpace } \makeatother 以上をプリアンブルなどに書いておく。使いかたは至ってかんたんで、\tcy{12}時、のようにすればよい。
+禁則処理の設定 縦書きの場合、禁則処理はほどほどに抑制しておくと商業出版物の組版に似せることができる。プリアンブルなどに以下を記述する。
+\clubpenalty=0 \widowpenalty=0 \jcharwidowpenalty=0 \displaywidowpenalty=0 \prebreakpenalty\jis&amp;#34;2147=10000 % 5000 ’ \postbreakpenalty\jis&amp;#34;2148=10000 % 5000 “ \prebreakpenalty\jis&amp;#34;2149=10000 % 5000 ” \inhibitxspcode`〒=2 \prebreakpenalty\jis&amp;#34;2133=10000 \prebreakpenalty\jis&amp;#34;2134=10000 \prebreakpenalty\jis&amp;#34;2135=10000 \prebreakpenalty\jis&amp;#34;2136=10000 \prebreakpenalty`ー=0 \prebreakpenalty`ぁ=0 \prebreakpenalty`ぃ=0 \prebreakpenalty`ぅ=0 \prebreakpenalty`ぇ=0 \prebreakpenalty`ぉ=0 \prebreakpenalty`っ=0 \prebreakpenalty`ゃ=0 \prebreakpenalty`ゅ=0 \prebreakpenalty`ょ=0 \prebreakpenalty\jis&amp;#34;246E=0 %ゎ \prebreakpenalty`ァ=0 \prebreakpenalty`ィ=0 \prebreakpenalty`ゥ=0 \prebreakpenalty`ェ=0 \prebreakpenalty`ォ=0 \prebreakpenalty`ッ=0 \prebreakpenalty`ャ=0 \prebreakpenalty`ュ=0 \prebreakpenalty`ョ=0 \prebreakpenalty\jis&amp;#34;256E=0 %ヮ \prebreakpenalty\jis&amp;#34;2575=0 %ヵ \prebreakpenalty\jis&amp;#34;2576=0 %ヶ \prebreakpenalty\jis&amp;#34;2139=0 %々 フッター 以前出した本のフッターの設定はだいたいこんな感じである。</description>
+    </item>
+    
+    <item>
+      <title>LaTeXによる小説組版法（初級）</title>
+      <link>https://qdaibungei.github.io/latex/documents/2017-02-26-latexnovel/</link>
+      <pubDate>Sun, 26 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2017-02-26-latexnovel/</guid>
+      <description>この記事は、LaTeXで小説を組版するにはどうすればよいかを具体的に解説するものである。理論的な話は最小限に留め、主として実践的な話題を取り上げる。つまり、具体的にどう手を動かせばLaTeXで小説が組版できるのかを解説する。
+コンピュータおよびLaTeXの初心者でも読めるように配慮したつもりだが、LaTeXの知識ゼロだと厳しいかもしれない。
+なお、以下の方法はあくまでも初心者向けの簡易的方法であり、私が普段LaTeXで組版している実際の現場の方法とはかなり異なる。
+電撃文庫の再現 雛形ファイルの用意 具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。
+まず、以下を novelstyle.sty という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
+ 　次に、以下の文字列を novel.tex という名で保存する。これが雛形ファイルとなる。
+\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} （ここに本文を書く） \end{document} 最後に、hanmen.styもダウンロードしておく。
+以上のファイルはすべて同じフォルダに入れておく。
+PDFファイルの生成 さて、あとは先程の雛形ファイルをPDF化できれば、ひとまずは成功である。
+コンピュータに詳しい人なら、PDF化は容易であろう。しかし、コンピュータに不慣れな人にはこれが難しく感じられるはずである。
+そこで、簡単にPDF化する方法として、以下のものを勧めたい（なお、以下の方法はWindows限定）。
+次の文字列を tex2pdf.bat という名で保存する1。
+cd %~dp0 uplatex novel dvipdfmx novel この tex2pdf.bat を、novel.tex と同じフォルダに入れておく。あとは、tex2pdf.bat をダブルクリックすると、見事PDFファイルが生成されるはずである。
+本文の書き方 上で、novel.tex というファイルを作った。それをここに再掲する。
+\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} （ここに本文を書く） \end{document} 基本 （ここに本文を書く） の部分に本文を書けばよい。たとえば以下のように書く。
+\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} 吾輩は猫である。名前はまだ無い。 どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。 \end{document} 通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、novelstyle.sty では、空行を挟まずとも段落分けできるようにしてある。つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。
+ルビ ルビを振りたいときは、ルビマクロが使える。
+\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} \ruby[h]{吾輩}{わが|はい}は猫である。名前はまだ無い。 どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番\ruby[h]{獰悪}{どう|あく}な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。 \end{document} ルビマクロの使い方は、LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～を参照せよ。</description>
+    </item>
+    
+  </channel>
+</rss>
