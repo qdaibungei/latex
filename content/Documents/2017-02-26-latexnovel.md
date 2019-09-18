@@ -2,7 +2,7 @@
 layout: post
 title: LaTeXによる小説組版法（初級）
 aliases:
-    - /documents/2017/02/26/latexnovel/
+    - /2017/02/26/latexnovel/
 date: 2017-02-26
 tags: ["LaTeX", "guide"]
 ---
