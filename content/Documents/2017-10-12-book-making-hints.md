@@ -1,6 +1,8 @@
 ---
 layout: post
 title: LaTeXによる小説誌制作のヒント
+aliases:
+    - /documents/2017/10/12/book-making-hints/
 date: 2017-10-12
 tags: ["LaTeX", "guide", "tips"]
 ---
