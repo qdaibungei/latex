@@ -35,7 +35,7 @@ tags: ["LaTeX", "guide"]
 \end{document}
 ```
 
-最後に、[hanmen.sty](https://gist.github.com/qdaibungei/5f6986fa99fc9a7d86122a7a9417d64e)もダウンロードしておく。
+最後に、[hanmen.sty]({{< ref "2017-02-18-hanmen.md" >}})もダウンロードしておく。
 
 以上のファイルはすべて同じフォルダに入れておく。
 
