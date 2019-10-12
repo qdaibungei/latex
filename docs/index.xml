@@ -6,10 +6,33 @@
     <description>Recent content on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 12 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LaTeXによる小説組版法・中級編――ベスト文集制作記録②</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-10-13-latexnovel/</link>
+      <pubDate>Sun, 13 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-10-13-latexnovel/</guid>
+      <description> 前回に引き続き、小説組版の方法を解説していく。今回は、扉ページの作り方である。
+扉 扉とは 「扉」とは、表紙をめくって最初にあるページのことである。書籍の題名などを書くページである。今回のベスト文集では、次のような扉を作った。
+我ながらシンプルでかっこいい扉である。「九大文学」という文字のフォントは、背表紙に使ったのと同じフォント（廻想体）を使っている。これにより統一感が出て、本全体のデザインのまとまりがよくなったはずである。
+ロゴ 扉の左下には、九大文藝部のロゴを配置してある。
+このロゴは、かなり昔にデザインされ、部誌で使用されていたものである。一時期このロゴはまったく使用されなくなっていたが、私が再び使い始めた。
+今回のベスト文集におけるロゴは、以前のロゴとは少しだけデザインが異なっている。欧文フォントは、以前のロゴとまったく同じもの（Classico）1を使用している。だが和文フォントは、本全体の雰囲気に合わせて「廻想体」を選択した（以前のロゴではヒラギノ明朝が使われていた）。
+文藝部の遺伝子は、少しずつアップデートされながらも、着実に継承されていく。
+LaTeXによる扉の作り方 LaTeXで扉を作るには通常、\title{九大文学}のように本のタイトルを指定し、\maketitleという命令を書き込むことによって扉を生成する。しかしこの方法では、扉ページのレイアウトを変更するのが非常に難しい。具体的には、クラスファイルを編集して\maketitleという命令を定義し直せばよいと思われるが、この方法は余程TeXに習熟している人でない限り実行困難であろう。今回作ったベスト文集のように、扉だけ横書きで、本文は縦書き、といったような複雑なレイアウトにする場合は、特に面倒だと思われる。
+そこで、扉を作るにあたっては、実現したいレイアウトを直接LaTeXの文法に従って書くほうが無難である。具体的には、私は以下のように記述して扉を作った（ただし、以下の記述のなかには独自に定義したマクロも多く含まれているので、これをそのままコピペしてもエラーが出るだけである。注意されたい）。
+\newhanmenII \newhanmen{tate,te=-2mm} \hanmenchangedir \thispagestyle{empty} \begingroup \vspace*{70mm} {\fontsize{30\bQ}{30H}\gtfamily\ebseries\romanfamily{agencyfb}\romanseries{bx}\selectfont\booktitlename} \leftskip-1zw \vspace{\fill} \parbox{9zw}{%  \begin{center} \fontsize{15\bQ}{16H}\classico \hspace*{0.18em}Kyushu \hspace{0.05em}Univ.\\ \vspace{-.2em}%  \mbox{}\hspace{-1.3zw}{\gtfamily\ebseries\fontsizeX 九州大学文藝部}\\ \vspace{-.1em}%  Literary Club \end{center} } \endgroup 何をやっているかというと、基本的には、「文字の大きさやフォントを切り替えつつ、\vspaceや\hspaceで文字の位置を調整して配置している」ということになる。すなわちWordなどと同じ要領でデザインすればよい。
+文字の大きさは、
+\fontsize{20Q}{25H}\selectfont のように書けば指定できる。また、フォントの指定をするには
+\kanjifamily{hmc}\romanfamily{qag}\selectfont のように書けばよい。フォント指定のマクロには\fontfamilyという命令もあるが、ここでは敢えて\fontfamilyではなく\kanjifamilyと\romanfamilyを使っている。こちらの命令を使えば、和文と欧文でまったく違うフォントを指定することが可能となるので、便利である。
+（次回に続く）
+ ほんとにまったく同じかどうかはちょっと分からないが、多分同じだと思う。少なくとも系統が完全に一緒であることは目視で確認できよう。 ↩   </description>
+    </item>
     
     <item>
       <title>LaTeXによる小説組版法・中級編――ベスト文集制作記録①</title>
