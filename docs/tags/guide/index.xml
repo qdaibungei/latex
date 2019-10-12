@@ -6,10 +6,32 @@
     <description>Recent content in Guide on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 12 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/tags/guide/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LaTeXによる小説組版法・中級編――ベスト文集制作記録①</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-10-12-latexnovel/</link>
+      <pubDate>Sat, 12 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-10-12-latexnovel/</guid>
+      <description>序 概要 この記事は、LaTeXで小説同人誌を作る方法を解説するものである。以前、初級編を執筆したときに、「中級編をいずれ書くつもりだ」と言いながら、ずっと書くのをサボり続けてきた。そこで今回、中級編を書き起こすことにした。
+なおこの記事は、ベスト文集の制作記録を兼ねている。
+ベスト文集とは 九大文藝部では、およそ四年に一度の頻度で『九大文学』という名の冊子を刊行することが慣わしとなっている。『九大文学』はいわゆるベスト文集、すなわちこれまで発行してきた部誌のなかから、秀逸と思われる作品を部員の投票によって選出し、一冊の本にまとめた文集である。
+先日、2019年度版のベスト文集が発行された。私も編集人の一人として、主に組版に携わらせていただいた。
+私はこれまで、長いこと小説同人誌の編集に携わってきた。その活動を通じて、小説同人誌の作り方についてのノウハウが蓄積されてきた。先日発行した2019年度版ベスト文集では、そのノウハウを遺憾なく発揮したつもりである。ベスト文集の制作記録を書くことを通じて、LaTeXによる小説同人誌の制作法を伝えられたらと願う。
+表紙データ 表紙 まずは表紙データの作り方から解説していこう。今回は、某君がGIMPで表紙を作ってくれた。英字だけのシンプルでかっこいい素敵な表紙だ。まるでペーパーバックのようである。
+さて、このような素敵なデザインの表紙をどうやって作るかであるが、これについては、残念ながら私から伝えられることは何もない。「GIMPやペイントや手書きなどで頑張って作って下さい」と言うほかない。
+私から言いたいことは、GIMPなどで作った表紙画像から、どうやって入稿用の表紙データを作るかである。
+LaTeXによる表紙データの作り方 表紙データをPDFで入稿するようにと規定している印刷所も多い。つまり入稿するためには、画像をPDF化しなければならないのだ。そこで、今回私はPNG形式の表紙データをLaTeXによってPDF化することにした。
+まず、表紙用の画像データをhyosi.pngというファイル名で保存しておくことにする。そして、次のようなTeXファイルを作る。
+\documentclass{article} \usepackage{pdfpages} \begin{document} \includepdf[fitpaper]{hyosi.png} \end{document} これをpdfLaTeXで処理すれば、PDF形式の表紙データが得られる。TeXは、画像をPDF化するのにも使えるのだ。便利なものである。
+PP加工 印刷所に入稿予約をするとき、表紙に使う紙を選ぶことができる。今回はペルーラ・スノーホワイトを使用した。これは、光を当てるときらきらと輝く紙である。この紙に、オプションとして、マットPP加工を施してもらった。
+なるべくPP加工を施してもらうことが大切である。PP加工をしておけば、本同士が擦れても塗料が剥がれることがないし、水にも多少耐性ができて丈夫になるので、PP加工はなるべく印刷所に頼んでやってもらおう。
+（次回に続く）</description>
+    </item>
     
     <item>
       <title>LaTeXによる小説誌制作のヒント</title>
