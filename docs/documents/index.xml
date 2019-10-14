@@ -6,10 +6,32 @@
     <description>Recent content in Documents on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 13 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/documents/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LaTeXによる小説組版法・中級編――ベスト文集制作記録③</title>
+      <link>https://qdaibungei.github.io/latex/documents/2019-10-14-latexnovel/</link>
+      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2019-10-14-latexnovel/</guid>
+      <description>前回に引き続き、小説組版の方法を解説していく。今回は、「目次」の作り方である。
+目次 目次のデザイン 今回のベスト文集では、目次は下図のようなデザインにした。このデザインは、某小説誌を参考に作った。
+ノンブル1のフォントには、源暎ノンブルを使った。たったこれだけの工夫でかなりデザインが引き締まる気がする。
+目次のデザイン（見開き版） 見開きで見ると、目次はこんな感じ。目次ページの始まりを示す中扉には、「九大文学＊目次」と書いた。この「九大文学」のフォントは、扉ページと同じく廻想体にしてある。逐一フォントを揃えていくことで本全体に統一感を出すためである。
+「九大文学」という文字だけのページ（最後の画像の左側）は、本文の始まりを明示するための中扉。
+LaTeXによる目次の作り方（通常時） 通常、LaTeXで目次を生成するには、\tableofcontentsという命令を使うことになっている。
+しかし、\tableofcontentsで上のような目次を作るのは結構難しい。なぜならば、第一に、デフォルトの\tableofcontentsでは、著者名と作品名をどちらも出力するということができないからだ（そもそもLaTeXのデフォルトの設定では、複数の著者名を扱うような仕組みがない）。
+第二に、\tableofcontentsで出力される目次のレイアウトを変更するのが難しい。\tableofcontentsを再定義してやればいいのだが、\tableofcontentsの元の定義はかなり複雑で、変更が面倒である。
+LaTeXによる目次の作り方（私家版） さてそこで私は、\tableofcontentsに代替しうるマクロを別途定義して使っている。そのマクロとは、以下に示すような\Mokujiマクロである。
+%% \Mokuji \newcommand{\Mokuji}[3]{%  #1\hskip1zw% 作品名  \textgt{#2}\hskip1zw% 著者名  \rensuji{\pageref{#3}}% ページ数 } このようなマクロを作っておいたうえで、本文内に次のように記述する。
+\Mokuji{走れメロス}{太宰治}{dazai}% 目次生成。引数は、\Mokuji{&amp;lt;作品名&amp;gt;}{&amp;lt;著者名&amp;gt;}{&amp;lt;ページ参照用ラベル&amp;gt;}とする。  %  \label{dazai}% 小説開始時点にラベルを張っておく % 以下、小説本文 すると、次のように出力される。
+基本的には、このように\Mokujiマクロを何個も使って目次を作ればよい。目次デザインを変えるためには、\Mokujiマクロの定義を適宜変更すればよい。
+ベスト文集では、\mokujiを次のように定義して使った。
+%% \mokuji \newcommand{\mokuji}[4]{%  \expandafter\ifx#4\relax \leavevmode\hbox to 14zw{}%  \else \leavevmode\hbox to 14zw{\rule[-1zw]{.4pt}{2zw}\kern.5zw\fontsize{12\bQ}{\baselineskip}\selectfont #4\hss}%  \fi \expandafter\ifx#2\relax \else \leavevmode\hbox to 6zw{%  \hss\textgt{\fontsize{12\bQ}{\baselineskip}\selectfont #2}%  }%  \fi \kern.5zw\rule[-1zw]{.4pt}{2zw}\kern.5zw #1 \def\qbook@mkj@page{\pageref{#3}}%  \expandafter\ifx\csname r@#3\endcsname\relax \def\qbook@mkj@page{?</description>
+    </item>
     
     <item>
       <title>LaTeXによる小説組版法・中級編――ベスト文集制作記録②</title>

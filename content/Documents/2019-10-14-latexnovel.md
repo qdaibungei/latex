@@ -3,7 +3,7 @@ layout: post
 title: LaTeXによる小説組版法・中級編――ベスト文集制作記録③
 date: 2019-10-14
 tags: ["LaTeX", "guide"]
-draft: true
+draft: false
 ---
 
 前回に引き続き、小説組版の方法を解説していく。今回は、「**目次**」の作り方である。
@@ -35,24 +35,45 @@ draft: true
 
 「九大文学」という文字だけのページ（最後の画像の左側）は、本文の始まりを明示するための中扉。
 
-## LaTeXによる目次の作り方
+## LaTeXによる目次の作り方（通常時）
 通常、LaTeXで目次を生成するには、`\tableofcontents`という命令を使うことになっている。
 
 しかし、`\tableofcontents`で上のような目次を作るのは結構難しい。なぜならば、第一に、デフォルトの`\tableofcontents`では、著者名と作品名をどちらも出力するということができないからだ（そもそもLaTeXのデフォルトの設定では、複数の著者名を扱うような仕組みがない）。
 
 第二に、`\tableofcontents`で出力される目次のレイアウトを変更するのが難しい。`\tableofcontents`を再定義してやればいいのだが、`\tableofcontents`の元の定義はかなり複雑で、変更が面倒である。
 
-さてそこで私は、`\tableofcontents`に代替しうるマクロを別途定義し、それを使うことにした。
-
-メモ：`\mokuji`マクロの必要最低限な部分を抽出して、定義の意図と使い方とを解説。
+## LaTeXによる目次の作り方（私家版）
+さてそこで私は、`\tableofcontents`に代替しうるマクロを別途定義して使っている。そのマクロとは、以下に示すような`\Mokuji`マクロである。
 
 ```LaTeX
-%% title & author names
-\newcommand{\chaptertitle}[1]{\def\qbook@chaptertitle{#1}}
-\newcommand{\chapterauthor}[1]{\def\qbook@chapterauthor{#1}}
-\chaptertitle{\relax}
-\chapterauthor{\relax}
+%% \Mokuji
+\newcommand{\Mokuji}[3]{%
+    #1\hskip1zw% 作品名
+    \textgt{#2}\hskip1zw% 著者名
+    \rensuji{\pageref{#3}}% ページ数
+}
+```
 
+このようなマクロを作っておいたうえで、本文内に次のように記述する。
+
+```LaTeX
+\Mokuji{走れメロス}{太宰治}{dazai}% 目次生成。引数は、\Mokuji{<作品名>}{<著者名>}{<ページ参照用ラベル>}とする。
+
+%
+
+\label{dazai}% 小説開始時点にラベルを張っておく
+% 以下、小説本文
+```
+
+すると、次のように出力される。
+
+![](/latex/assets/img/2019-10-14e.png)
+
+基本的には、このように`\Mokuji`マクロを何個も使って目次を作ればよい。目次デザインを変えるためには、`\Mokuji`マクロの定義を適宜変更すればよい。
+
+ベスト文集では、`\mokuji`を次のように定義して使った。
+
+```LaTeX
 %% \mokuji
 \newcommand{\mokuji}[4]{%
     \expandafter\ifx#4\relax
@@ -86,3 +107,7 @@ draft: true
     \fi
 }
 ```
+
+目次デザインがシンプルな割には定義が複雑である（これは、不要な記述も多々入っているためである。本当はもう少し簡潔に記述できる気がする）。
+
+（次回に続く）
