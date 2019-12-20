@@ -59,5 +59,31 @@ styファイルの作成 各種ファイルが生成できたならば、すか�
 \documentclass[uplatex]{jsarticle} \usepackage{josefinslab} \begin{document} \romanfamily{josefinslab}\selectfont This is a test. \end{document} 「This is a test.」がJosefin Slabで表示されたら、ここまでの作業はうまくいったことになる。</description>
     </item>
     
+    <item>
+      <title>TeX Gyreフォントの使い方</title>
+      <link>https://qdaibungei.github.io/latex/documents/2017-08-11-texgyre/</link>
+      <pubDate>Fri, 11 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2017-08-11-texgyre/</guid>
+      <description>TeX Gyreのパッケージ名をすぐ忘れてしまうのでメモしておく。
+TeX Gyreフォント Adventor URW Gothic LにもとづくITC Avant Garde Gothic代用フォント。
+\usepackage[scale=0.9]{tgadventor} ファミリ名はqagである。
+Bonum URW Bookman LにもとづくITC Bookman代用フォント。
+\usepackage[scale=0.95]{tgbonum} ファミリ名はqbkである。
+Chorus URW Chancery L Medium ItalicにもとづくITC Zapf Chancery代用フォント。
+\usepackage[scale=0.95]{tgbonum} ファミリ名はqzcである。
+Cursor URW Nimbus Mono LにもとづくCourier代用フォント。
+\usepackage[scale=1]{tgcursor} ファミリ名はqcrである。
+Heros URW Nimbus Sans LにもとづくHelvetica代用フォント。
+\usepackage[scale=0.95]{tgheros} ファミリ名はqhvである。
+Pagella URW Palladio LにもとづくPalatino代用フォント。
+\usepackage{tgpagella} ファミリ名はqplである。
+Schola URW Century Schoolbook LにもとづくCentury Schoolbook代用フォント。
+\usepackage[scale=1]{tgschola} ファミリ名はqcsである。
+数式はfourierncと合わせる（tgscholaより先に読み込む）。
+Termes URW Nimbus Roman LにもとづくTimes代用フォント。
+\usepackage{qtxmath} % 数式を使う場合これを先に読み込む \usepackage[scale=1]{tgtermes} ファミリ名はqtmである。</description>
+    </item>
+    
   </channel>
 </rss>

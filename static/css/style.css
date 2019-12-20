@@ -7,7 +7,7 @@ html{
 body{
     color: #333;
     font-size: 1.2em;
-    font-family: 'Lato', sans-serif;
+    font-family: Lato, sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -16,6 +16,7 @@ body{
     font-size: 1.4rem;
     padding: 10px 0px;
     display: block;
+    color: #767676;
 }
 .title:after {
     display: block;
@@ -98,14 +99,18 @@ a:hover{
     padding: 6px 0 10px;
     background-color: #333;
 }
+.header-wrapper {
+    width: 700px;
+    margin: 0 auto;
+}
 .wrapper{
-    width: 100%;
+    width: 700px;
     margin: 30px auto 40px;
 }
 .main{
     display: block;
-    width: auto;
-    margin: 0 20% 0;
+    width: 100%;
+    margin: 0 auto;
 }
 .content{
     line-height: 1.7;
@@ -542,7 +547,7 @@ img {
     display: marker;
     content: "注" counter(cnt);
     font-size: 1rem;
-    vertical-align: text-top;
+    vertical-align: top;
     text-decoration: none;
     letter-spacing: 1px;
     margin: 0 5px 0 1px;
@@ -566,6 +571,7 @@ img {
     content: "注";
     color: #fff;
     font-weight: bold;
+    word-break: keep-all;
 }
 .footnote-ref a {
     color: #fff;
@@ -647,6 +653,9 @@ blockquote {
         float: none;
         width: 100%;
         margin: auto;
+    }
+    .header-wrapper {
+        width: 100%;
     }
     .wrapper{
         margin: 0 auto 40px;
