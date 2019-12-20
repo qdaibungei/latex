@@ -607,6 +607,28 @@ blockquote {
     border-left: 2px solid #e8e8e8;
     padding-left: 13px;
 }
+.docs-date {
+    font-size: 1.2rem;
+    color: #767676;
+}
+.docs-date:before {
+    content: "（";
+}
+.docs-date:after {
+    content: "）";
+}
+.tag-count {
+    font-size: 1.2rem;
+    color: #767676;
+    margin-left: -2px;
+}
+.tag-count:before {
+    content: "（";
+}
+.tag-count:after {
+    content: "）";
+}
+
 
 @media (max-width: 768px) {
     .sidemenu{
@@ -616,39 +638,6 @@ blockquote {
     .content{
         line-height: 1.5;
     }
-    .mokuji{
-        /*font-weight: 400;
-        font-size: 2rem;
-        letter-spacing: 1px;
-        border-color: #1BA0E1;
-        border-style: solid;
-        border-width: 0 0 2px;
-        margin: 0 auto 0;
-        padding: 0 0 10px;
-        position: relative;*/
-        display: none;
-    }
-    /*.mokuji::after{
-        border-color: #1BA0E1 transparent transparent;
-        border-style: solid;
-        border-width: 8px 8px 0;
-        bottom: -8px;
-        content: "";
-        display: block;
-        left: 32px;
-        position: absolute;
-    }
-    .mokuji::before{
-        border-color: #fff transparent transparent;
-        border-style: solid;
-        border-width: 8px 8px 0;
-        bottom: -5px;
-        content: "";
-        display: block;
-        left: 32px;
-        position: absolute;
-        z-index: 1;
-    }*/
     .main{
         float: none;
         width: 100%;
@@ -679,14 +668,6 @@ blockquote {
     .mokuji-item a{
         display: inline;
         padding: 2px 0 2px 2px;
-    }
-    .kakugen{
-        margin: 20px auto 30px;
-        font-weight: 200;
-        width: 10.5rem;/*widthを指定することでスマホ用のとき中央揃えになる*/
-    }
-    .kakugen a{
-        font-weight: 400;
     }
     .bookindex-table td.c1{
         width: 30%;

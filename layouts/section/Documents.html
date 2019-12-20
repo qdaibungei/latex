@@ -5,13 +5,13 @@
 <h2>記事一覧</h2>
 <ul>
     {{ range .Data.Pages }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a>（{{ .Date.Format "2006/1/2" }}）</li>
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006/1/2" }}</span></li>
     {{ end }}
 </ul>
 <h2>タグ一覧</h2>
 <ul>
   {{ range .Site.Taxonomies.tags.ByCount }}
-    <li><a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">{{ .Term }}</a> ({{ .Count }})
+    <li><a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">{{ .Term }}</a><span class="tag-count">{{ .Count }}</span>
   {{ end }}
 </ul>
 {{ partial "site_footer.html" . }}
