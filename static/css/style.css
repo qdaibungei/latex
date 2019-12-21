@@ -361,22 +361,6 @@ a:hover{
 .mincho{
     font-family: 游明朝, YuMincho, 'ヒラギノ明朝 Pr6N', 'Hiragino Mincho Pr6N', 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', 'ヒラギノ明朝 StdN', 'Hiragino Mincho StdN', HiraMinProN-W3, HGP明朝B, HGS明朝B, HG明朝B, serif, 'Noto Sans Japanese';
 }
-.kakugen{
-    margin: 25px 10px 0 120px;
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.8;
-    height: 40rem;
-}
-.kakugen a{
-    text-decoration: none;
-    color: #333;
-    font-family: 'Noto Sans Japanese', serif;
-    font-weight: 700;
-}
-.kakugen a:hover{
-    color: #337ab7;
-}
 .sidemenu{
     float: right;
     width: 275px;
@@ -418,8 +402,6 @@ a:hover{
     transition: background-color 0.15s;
 }
 
-
-
 .icon{
     color: #fff;
     font-weight: 700;
@@ -451,11 +433,11 @@ img {
 }
 .button{
     display: inline-block;
-	background-color: #9ac4ed;
+    background-color: #9ac4ed;
     border: 2px solid #9ac4ed;
     border-radius: 2px;
     padding: 5px 1px 5px 7px;
-	color: #fff;
+    color: #fff;
     font-size: 1.4rem;
     letter-spacing: 1px;
 }
@@ -463,7 +445,7 @@ img {
     color: inherit;
 }
 .button:hover{
-	background-color: #fff;
+    background-color: #fff;
     border: 2px solid #9ac4ed;
     color: #9ac4ed;
     transition: 0.15s;
@@ -652,7 +634,7 @@ blockquote {
         width: 100%;
     }
     .global-nav{
-        margin: -36px 10px 0 10px;
+        margin: -36px 2px 0 10px;
     }
     .global-nav .nav-item{
         display: inline-block;
