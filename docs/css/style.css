@@ -48,16 +48,16 @@ a:hover{
 }
 
 .global-nav{
-    margin: -36px -30px 0 120px;
+    margin: -36px 0 0 120px;
     text-align: right;
 }
 .global-nav .nav-item{
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 0 0 50px;
 }
 .global-nav .nav-item a{
     display: inline-block;
-    width: 100px;
+    width: inherit;
     height: 30px;
     line-height: 30px;
     text-align: center;
@@ -70,7 +70,6 @@ a:hover{
 }
 .global-nav .nav-item.active a,
 .global-nav .nav-item a:hover{
-    /* border-bottom: 4px solid #1BA0E1; */
     color: #fff;
     text-decoration: none;
 }
@@ -80,18 +79,10 @@ a:hover{
 .logo{
     font-size: 30px;
     padding: 19px 6px;
-    /* width: 224px; */
     height: 86px;
-    /* background: url('../images/logo.png') no-repeat;
-    background-size: 52%;
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap; */
 }
 .logo a{
     display: block;
-    /* width: 118px;
-    height: 45px; */
     color: #fff;
     font-weight: 400;
     text-decoration: none;
@@ -286,26 +277,6 @@ a:hover{
     text-align: justify;
     text-justify: inter-ideograph;
 }
-.marusuji-list{
-    font-size: 1.4rem;
-    padding: 0;
-}
-.marusuji-item{
-   list-style-type: none;
-   padding-left: 1em;
-   text-indent: -1em;
-   text-align: justify;
-   text-justify: inter-ideograph;
- }
-.marusuji-item:first-child:before{ /* <ol>要素直下の 1番目の<li>要素のマーカ。 */
-   content: "\2460";  /* 丸数字1のUSCコード*/
- }
-.marusuji-item:first-child+.marusuji-item:before{/* <ol>要素直下の 2番目の<li>要素のマーカ。 */
-   content: "\2461";  /* 丸数字2のUSCコード*/
- }
-.marusuji-item:first-child+.marusuji-item+.marusuji-item:before{/* <ol>要素直下の 3番目の<li>要素のマーカ。 */
-   content: "\2462";  /* 丸数字3のUSCコード*/
-}
 
 .footer{
     margin-top: auto;
@@ -315,7 +286,6 @@ a:hover{
     color: #fff;
 }
 .horizontal-list{
-    /*width: 970px;*/
     margin: 0 auto;
     text-align: right;
     font-size: 0;
@@ -348,19 +318,6 @@ a:hover{
     color: transparent;
 }
 
-.tategaki{
-    -webkit-writing-mode: vertical-rl;
-    -ms-writing-mode: tb-rl;
-    writing-mode: vertical-rl;
-}
-.tcy{
-    -webkit-text-combine: horizontal;
-    -ms-text-combine-horizontal: all;
-    text-combine-upright: all;
-}
-.mincho{
-    font-family: 游明朝, YuMincho, 'ヒラギノ明朝 Pr6N', 'Hiragino Mincho Pr6N', 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', 'ヒラギノ明朝 StdN', 'Hiragino Mincho StdN', HiraMinProN-W3, HGP明朝B, HGS明朝B, HG明朝B, serif, 'Noto Sans Japanese';
-}
 .sidemenu{
     float: right;
     width: 275px;
@@ -472,12 +429,6 @@ img {
     background: #aee1fa; /*背景色*/
     color: #333333; /*文字色*/
 }
-.sesame_dot {
-    font-style: normal;
-    padding: 1px 0 0;
-    background: url("http://www.aozora.gr.jp/cards/css/kentenbosen/before/ten/boten.png") repeat-x;
-    background-size: 1em;
-}
 .marker{
     font-weight: 400;
     background: linear-gradient(transparent 60%, #aee1fa 60%);
@@ -499,14 +450,6 @@ img {
     text-transform: uppercase;
 }
 
-#fc2_footer{
-    background-color: #333;
-    padding: 15px;
-}
-#fc2_footer a{
-    color: #fff;
-    text-decoration: none;
-}
 .footnotes hr {
     display: none;
 }
@@ -634,14 +577,14 @@ blockquote {
         width: 100%;
     }
     .global-nav{
-        margin: -36px 2px 0 10px;
+        margin: -36px 10px 0 10px;
     }
     .global-nav .nav-item{
         display: inline-block;
         margin: 0 4px;
     }
     .global-nav .nav-item a{
-        width: 65px;
+        margin: 0 0 0 10px;
         font-size: 1.2rem;
     }
     .mokuji-list{
