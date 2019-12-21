@@ -48,16 +48,17 @@ a:hover{
 }
 
 .global-nav{
-    margin: -36px -30px 0 120px;
+    margin: -36px 0 0 120px;
     text-align: right;
 }
 .global-nav .nav-item{
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 0 0 50px;
 }
 .global-nav .nav-item a{
     display: inline-block;
-    width: 100px;
+    /* width: 100px; */
+    width: inherit;
     height: 30px;
     line-height: 30px;
     text-align: center;
@@ -634,14 +635,14 @@ blockquote {
         width: 100%;
     }
     .global-nav{
-        margin: -36px 2px 0 10px;
+        margin: -36px 10px 0 10px;
     }
     .global-nav .nav-item{
         display: inline-block;
         margin: 0 4px;
     }
     .global-nav .nav-item a{
-        width: 65px;
+        margin: 0 0 0 10px;
         font-size: 1.2rem;
     }
     .mokuji-list{
