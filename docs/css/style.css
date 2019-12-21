@@ -1,7 +1,6 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Courier+Prime:400,400i,700,700i&display=swap');
-@import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
 
 html{
     font-size: 62.5%;
@@ -49,7 +48,7 @@ a:hover{
 }
 
 .global-nav{
-    margin: -36px 0 0 120px;
+    margin: -36px -30px 0 120px;
     text-align: right;
 }
 .global-nav .nav-item{
