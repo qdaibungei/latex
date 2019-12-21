@@ -78,7 +78,7 @@ a:hover{
 }
 .logo{
     font-size: 30px;
-    padding: 19px 6px;
+    padding: 19px 6px 19px 0;
     height: 86px;
 }
 .logo a{
