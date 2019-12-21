@@ -1,10 +1,9 @@
 {{ partial "site_header.html" . }}
 {{ partial "menu_documents.html" . }}
 <h2>{{ .Title }}</h2>
-<ul>
+<p>
 {{ range .Data.Pages }}
-    <li><a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006/1/2" }}</span></li>
+    <a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006/1/2" }}</span><br>
 {{ end }}
-</ul>
-</body>
-<html>
+</p>
+{{ partial "site_footer.html" . }}

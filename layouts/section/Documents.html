@@ -3,15 +3,15 @@
 
 <h1>Documents</h1>
 <h2>記事一覧</h2>
-<ul>
+<p>
     {{ range .Data.Pages }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006/1/2" }}</span></li>
+        <a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006/1/2" }}</span><br>
     {{ end }}
-</ul>
+</p>
 <h2>タグ一覧</h2>
-<ul>
+<p>
   {{ range .Site.Taxonomies.tags.ByCount }}
-    <li><a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">{{ .Term }}</a><span class="tag-count">{{ .Count }}</span>
+    <a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">{{ .Term }}</a><span class="tag-count">{{ .Count }}</span><br>
   {{ end }}
-</ul>
+</p>
 {{ partial "site_footer.html" . }}
