@@ -576,6 +576,9 @@ blockquote {
         padding: 15px 15px 0 10px;
         width: 100%;
     }
+    .logo {
+        margin-left: 10px;
+    }
     .global-nav{
         margin: -36px 10px 0 10px;
     }
