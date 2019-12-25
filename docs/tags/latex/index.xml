@@ -285,19 +285,7 @@ Termes URW Nimbus Roman LにもとづくTimes代用フォント。
 なお、以下の方法はあくまでも初心者向けの簡易的方法であり、私が普段LaTeXで組版している実際の現場の方法とはかなり異なる。
 電撃文庫の再現 雛形ファイルの用意 具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。
 まず、以下を novelstyle.sty という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
- 　次に、以下の文字列を novel.tex という名で保存する。これが雛形ファイルとなる。
-\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} （ここに本文を書く） \end{document} 最後に、hanmen.styもダウンロードしておく。
-以上のファイルはすべて同じフォルダに入れておく。
-PDFファイルの生成 さて、あとは先程の雛形ファイルをPDF化できれば、ひとまずは成功である。
-コンピュータに詳しい人なら、PDF化は容易であろう。しかし、コンピュータに不慣れな人にはこれが難しく感じられるはずである。
-そこで、簡単にPDF化する方法として、以下のものを勧めたい（なお、以下の方法はWindows限定）。
-次の文字列を tex2pdf.bat という名で保存する1。
-cd %~dp0 uplatex novel dvipdfmx novel この tex2pdf.bat を、novel.tex と同じフォルダに入れておく。あとは、tex2pdf.bat をダブルクリックすると、見事PDFファイルが生成されるはずである。
-本文の書き方 上で、novel.tex というファイルを作った。それをここに再掲する。
-\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} （ここに本文を書く） \end{document} 基本 （ここに本文を書く） の部分に本文を書けばよい。たとえば以下のように書く。
-\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} 吾輩は猫である。名前はまだ無い。 どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。 \end{document} 通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、novelstyle.sty では、空行を挟まずとも段落分けできるようにしてある。つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。
-ルビ ルビを振りたいときは、ルビマクロが使える。
-\documentclass[a6paper,papersize,autodetect-engine]{jsbook} \usepackage{novelstyle} \begin{document} \ruby[h]{吾輩}{わが|はい}は猫である。名前はまだ無い。 どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番\ruby[h]{獰悪}{どう|あく}な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。 \end{document} ルビマクロの使い方は、LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～を参照せよ。</description>
+\NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{novelstyle} \RequirePackage[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]{hanmen} \RequirePackage[deluxe,uplatex]{otf} \RequirePackage{plext,pxrubrica}% plextは縦組み時に有用なパッケージ、pxrubricaはルビ振りに必要なパッケージ。  % %% header &amp;amp; footer % % ページ番号を出力するときは\thepageと書く。 \fancyhf{}% ヘッダー・フッターの初期化 \def\nvlsty@nombre{\textit{\thepage}} \def\nvlsty@booktitle{ここにタイトルを書く} \fancyhead[RE]{\vspace*{0pt}\scriptsize\nvlsty@nombre} \fancyhead[LO]{\vspace*{0pt}\footnotesize\nvlsty@nombre\hskip1zw\scriptsize\nvlsty@booktitle} % %% \tcy % % LaTeXの解説書では、縦中横に\rensujiを使うこととされているが、 % \rensujiだと無駄なアキが入ってしまいベタ組みできない。 % そこで、ここでは新たに\tcyを定義する。 \chardef\nvlsty@zenkakuSpace=\jis&amp;#34;2121\relax \def\tcy#1{%  \nvlsty@zenkakuSpace\kern-1zw\relax \leavevmode\hbox to 1zw{%  \centering\rensuji*{#1}%  }%  \kern-1zw\nvlsty@zenkakuSpace } % %% \xobeylines % % これは、空行をあけなくても段落分けできるようにする工夫。 % 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。 % \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。 % ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない。 {\catcode`\^^M=\active \gdef\xobeylines{\catcode`\^^M\active \def^^M{\par\leavevmode}}%  \global\def^^M{\par\leavevmode}% } \def\disobeylines{\catcode`\^^M=5 } \let\disxobeylines=\disobeylines \AtBeginDocument{\xobeylines}%% 本文開始直後から\xobeylinesが適用されるようにする。  % %% 全角アキ % % 疑問符などの後に全角空白文字「　」を使ってアキを作ると、疑問符が行末に来たとき空白が行頭に出てしまって都合が悪い。 % そこで、全角アキは以下のマクロで作る必要がある。 \newcommand{\zenkakuaki}{\hskip1zw plus .</description>
     </item>
     
     <item>

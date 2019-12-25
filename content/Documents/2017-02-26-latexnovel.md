@@ -21,7 +21,118 @@ tags: ["LaTeX", "guide"]
 
 まず、以下を `novelstyle.sty` という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
 
-<script src="https://gist.github.com/qdaibungei/2bebd353eaeefa5db076402c75e095cd.js"></script>
+```tex
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{novelstyle}
+
+\RequirePackage[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]{hanmen}
+\RequirePackage[deluxe,uplatex]{otf}
+\RequirePackage{plext,pxrubrica}% plextは縦組み時に有用なパッケージ、pxrubricaはルビ振りに必要なパッケージ。
+
+%
+%% header & footer
+%
+% ページ番号を出力するときは\thepageと書く。
+\fancyhf{}% ヘッダー・フッターの初期化
+\def\nvlsty@nombre{\textit{\thepage}}
+\def\nvlsty@booktitle{ここにタイトルを書く}
+\fancyhead[RE]{\vspace*{0pt}\scriptsize\nvlsty@nombre}
+\fancyhead[LO]{\vspace*{0pt}\footnotesize\nvlsty@nombre\hskip1zw\scriptsize\nvlsty@booktitle}
+
+%
+%% \tcy
+%
+% LaTeXの解説書では、縦中横に\rensujiを使うこととされているが、
+% \rensujiだと無駄なアキが入ってしまいベタ組みできない。
+% そこで、ここでは新たに\tcyを定義する。
+\chardef\nvlsty@zenkakuSpace=\jis"2121\relax
+\def\tcy#1{%
+    \nvlsty@zenkakuSpace\kern-1zw\relax
+    \leavevmode\hbox to 1zw{%
+        \centering\rensuji*{#1}%
+    }%
+    \kern-1zw\nvlsty@zenkakuSpace
+}
+
+%
+%% \xobeylines
+%
+% これは、空行をあけなくても段落分けできるようにする工夫。
+% 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。
+% \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。
+% ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない。
+{\catcode`\^^M=\active
+    \gdef\xobeylines{\catcode`\^^M\active \def^^M{\par\leavevmode}}%
+    \global\def^^M{\par\leavevmode}%
+}
+\def\disobeylines{\catcode`\^^M=5 }
+\let\disxobeylines=\disobeylines
+\AtBeginDocument{\xobeylines}%% 本文開始直後から\xobeylinesが適用されるようにする。
+
+%
+%% 全角アキ
+%
+% 疑問符などの後に全角空白文字「　」を使ってアキを作ると、疑問符が行末に来たとき空白が行頭に出てしまって都合が悪い。
+% そこで、全角アキは以下のマクロで作る必要がある。
+\newcommand{\zenkakuaki}{\hskip1zw plus .125zw minus 0.03125zw}
+% 二分アキ・四分アキなども、以下のマクロを使って出力する。
+\newcommand{\nibusibuaki}{\hskip.75zw plus .125zw minus 0.03125zw}
+\newcommand{\nibuaki}{\hskip.5zw plus .125zw minus 0.03125zw}
+\newcommand{\sibuaki}{\hskip.25zw plus .125zw minus 0.03125zw}
+
+
+%
+%% 値の調整
+%
+\tbaselineshift=.3zw%% 欧文出力位置の調整
+% 以下は、余計な空白が入らないようにするための設定。
+\parindent=0pt
+\parskip=0pt
+\parsep=0pt
+\partopsep=0pt
+% 以下は、禁則処理を抑制するためのもの。
+% ウィドウ処理などを厳密にやりすぎるとかえって見栄えが悪いので、
+% ここでは禁則処理を抑制しておく。
+\clubpenalty=0
+\widowpenalty=0
+\jcharwidowpenalty=0
+\displaywidowpenalty=0
+\prebreakpenalty\jis"2147=10000  % 5000 ’
+\postbreakpenalty\jis"2148=10000 % 5000 “
+\prebreakpenalty\jis"2149=10000  % 5000 ”
+\inhibitxspcode`〒=2
+\prebreakpenalty\jis"2133=10000
+\prebreakpenalty\jis"2134=10000
+\prebreakpenalty\jis"2135=10000
+\prebreakpenalty\jis"2136=10000
+\prebreakpenalty`ー=0
+\prebreakpenalty`ぁ=0
+\prebreakpenalty`ぃ=0
+\prebreakpenalty`ぅ=0
+\prebreakpenalty`ぇ=0
+\prebreakpenalty`ぉ=0
+\prebreakpenalty`っ=0
+\prebreakpenalty`ゃ=0
+\prebreakpenalty`ゅ=0
+\prebreakpenalty`ょ=0
+\prebreakpenalty\jis"246E=0     %ゎ
+\prebreakpenalty`ァ=0
+\prebreakpenalty`ィ=0
+\prebreakpenalty`ゥ=0
+\prebreakpenalty`ェ=0
+\prebreakpenalty`ォ=0
+\prebreakpenalty`ッ=0
+\prebreakpenalty`ャ=0
+\prebreakpenalty`ュ=0
+\prebreakpenalty`ョ=0
+\prebreakpenalty\jis"256E=0     %ヮ
+\prebreakpenalty\jis"2575=0     %ヵ
+\prebreakpenalty\jis"2576=0     %ヶ
+\prebreakpenalty\jis"2139=0     %々
+
+% \endinputはスタイルファイルの末尾に記すおまじない。
+\endinput
+```
 
 　
 

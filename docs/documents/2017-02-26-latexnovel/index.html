@@ -52,9 +52,116 @@
 <p>具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。</p>
 
 <p>まず、以下を <code>novelstyle.sty</code> という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。</p>
+<div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\NeedsTeXFormat</span><span class="nb">{</span>pLaTeX2e<span class="nb">}</span>
+<span class="k">\ProvidesPackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 
-<script src="https://gist.github.com/qdaibungei/2bebd353eaeefa5db076402c75e095cd.js"></script>
+<span class="k">\RequirePackage</span><span class="na">[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<span class="k">\RequirePackage</span><span class="na">[deluxe,uplatex]</span><span class="nb">{</span>otf<span class="nb">}</span>
+<span class="k">\RequirePackage</span><span class="nb">{</span>plext,pxrubrica<span class="nb">}</span><span class="c">% plextは縦組み時に有用なパッケージ、pxrubricaはルビ振りに必要なパッケージ。
+</span><span class="c"></span>
+<span class="c">%
+</span><span class="c">%% header &amp; footer
+</span><span class="c">%
+</span><span class="c">% ページ番号を出力するときは\thepageと書く。
+</span><span class="c"></span><span class="k">\fancyhf</span><span class="nb">{}</span><span class="c">% ヘッダー・フッターの初期化
+</span><span class="c"></span><span class="k">\def\nvlsty</span>@nombre<span class="nb">{</span><span class="k">\textit</span><span class="nb">{</span><span class="k">\thepage</span><span class="nb">}}</span>
+<span class="k">\def\nvlsty</span>@booktitle<span class="nb">{</span>ここにタイトルを書く<span class="nb">}</span>
+<span class="k">\fancyhead</span><span class="na">[RE]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\scriptsize\nvlsty</span>@nombre<span class="nb">}</span>
+<span class="k">\fancyhead</span><span class="na">[LO]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\footnotesize\nvlsty</span>@nombre<span class="k">\hskip</span>1zw<span class="k">\scriptsize\nvlsty</span>@booktitle<span class="nb">}</span>
 
+<span class="c">%
+</span><span class="c">%% \tcy
+</span><span class="c">%
+</span><span class="c">% LaTeXの解説書では、縦中横に\rensujiを使うこととされているが、
+</span><span class="c">% \rensujiだと無駄なアキが入ってしまいベタ組みできない。
+</span><span class="c">% そこで、ここでは新たに\tcyを定義する。
+</span><span class="c"></span><span class="k">\chardef\nvlsty</span>@zenkakuSpace=<span class="k">\jis</span>&#34;2121<span class="k">\relax</span>
+<span class="k">\def\tcy</span>#1<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\nvlsty</span>@zenkakuSpace<span class="k">\kern</span>-1zw<span class="k">\relax</span>
+    <span class="k">\leavevmode\hbox</span> to 1zw<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\centering\rensuji*</span><span class="nb">{</span>#1<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\kern</span>-1zw<span class="k">\nvlsty</span>@zenkakuSpace
+<span class="nb">}</span>
+
+<span class="c">%
+</span><span class="c">%% \xobeylines
+</span><span class="c">%
+</span><span class="c">% これは、空行をあけなくても段落分けできるようにする工夫。
+</span><span class="c">% 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。
+</span><span class="c">% \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。
+</span><span class="c">% ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない。
+</span><span class="c"></span><span class="nb">{</span><span class="k">\catcode</span>`<span class="k">\^</span><span class="nb">^</span>M=<span class="k">\active</span>
+    <span class="k">\gdef\xobeylines</span><span class="nb">{</span><span class="k">\catcode</span>`<span class="k">\^</span><span class="nb">^</span>M<span class="k">\active</span> <span class="k">\def</span><span class="nb">^^</span>M<span class="nb">{</span><span class="k">\par\leavevmode</span><span class="nb">}}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\global\def</span><span class="nb">^^</span>M<span class="nb">{</span><span class="k">\par\leavevmode</span><span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\def\disobeylines</span><span class="nb">{</span><span class="k">\catcode</span>`<span class="k">\^</span><span class="nb">^</span>M=5 <span class="nb">}</span>
+<span class="k">\let\disxobeylines</span>=<span class="k">\disobeylines</span>
+<span class="k">\AtBeginDocument</span><span class="nb">{</span><span class="k">\xobeylines</span><span class="nb">}</span><span class="c">%% 本文開始直後から\xobeylinesが適用されるようにする。
+</span><span class="c"></span>
+<span class="c">%
+</span><span class="c">%% 全角アキ
+</span><span class="c">%
+</span><span class="c">% 疑問符などの後に全角空白文字「　」を使ってアキを作ると、疑問符が行末に来たとき空白が行頭に出てしまって都合が悪い。
+</span><span class="c">% そこで、全角アキは以下のマクロで作る必要がある。
+</span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\zenkakuaki</span><span class="nb">}{</span><span class="k">\hskip</span>1zw plus .125zw minus 0.03125zw<span class="nb">}</span>
+<span class="c">% 二分アキ・四分アキなども、以下のマクロを使って出力する。
+</span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\nibusibuaki</span><span class="nb">}{</span><span class="k">\hskip</span>.75zw plus .125zw minus 0.03125zw<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\nibuaki</span><span class="nb">}{</span><span class="k">\hskip</span>.5zw plus .125zw minus 0.03125zw<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\sibuaki</span><span class="nb">}{</span><span class="k">\hskip</span>.25zw plus .125zw minus 0.03125zw<span class="nb">}</span>
+
+
+<span class="c">%
+</span><span class="c">%% 値の調整
+</span><span class="c">%
+</span><span class="c"></span><span class="k">\tbaselineshift</span>=.3zw<span class="c">%% 欧文出力位置の調整
+</span><span class="c">% 以下は、余計な空白が入らないようにするための設定。
+</span><span class="c"></span><span class="k">\parindent</span>=0pt
+<span class="k">\parskip</span>=0pt
+<span class="k">\parsep</span>=0pt
+<span class="k">\partopsep</span>=0pt
+<span class="c">% 以下は、禁則処理を抑制するためのもの。
+</span><span class="c">% ウィドウ処理などを厳密にやりすぎるとかえって見栄えが悪いので、
+</span><span class="c">% ここでは禁則処理を抑制しておく。
+</span><span class="c"></span><span class="k">\clubpenalty</span>=0
+<span class="k">\widowpenalty</span>=0
+<span class="k">\jcharwidowpenalty</span>=0
+<span class="k">\displaywidowpenalty</span>=0
+<span class="k">\prebreakpenalty\jis</span>&#34;2147=10000  <span class="c">% 5000 ’
+</span><span class="c"></span><span class="k">\postbreakpenalty\jis</span>&#34;2148=10000 <span class="c">% 5000 “
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2149=10000  <span class="c">% 5000 ”
+</span><span class="c"></span><span class="k">\inhibitxspcode</span>`〒=2
+<span class="k">\prebreakpenalty\jis</span>&#34;2133=10000
+<span class="k">\prebreakpenalty\jis</span>&#34;2134=10000
+<span class="k">\prebreakpenalty\jis</span>&#34;2135=10000
+<span class="k">\prebreakpenalty\jis</span>&#34;2136=10000
+<span class="k">\prebreakpenalty</span>`ー=0
+<span class="k">\prebreakpenalty</span>`ぁ=0
+<span class="k">\prebreakpenalty</span>`ぃ=0
+<span class="k">\prebreakpenalty</span>`ぅ=0
+<span class="k">\prebreakpenalty</span>`ぇ=0
+<span class="k">\prebreakpenalty</span>`ぉ=0
+<span class="k">\prebreakpenalty</span>`っ=0
+<span class="k">\prebreakpenalty</span>`ゃ=0
+<span class="k">\prebreakpenalty</span>`ゅ=0
+<span class="k">\prebreakpenalty</span>`ょ=0
+<span class="k">\prebreakpenalty\jis</span>&#34;246E=0     <span class="c">%ゎ
+</span><span class="c"></span><span class="k">\prebreakpenalty</span>`ァ=0
+<span class="k">\prebreakpenalty</span>`ィ=0
+<span class="k">\prebreakpenalty</span>`ゥ=0
+<span class="k">\prebreakpenalty</span>`ェ=0
+<span class="k">\prebreakpenalty</span>`ォ=0
+<span class="k">\prebreakpenalty</span>`ッ=0
+<span class="k">\prebreakpenalty</span>`ャ=0
+<span class="k">\prebreakpenalty</span>`ュ=0
+<span class="k">\prebreakpenalty</span>`ョ=0
+<span class="k">\prebreakpenalty\jis</span>&#34;256E=0     <span class="c">%ヮ
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2575=0     <span class="c">%ヵ
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2576=0     <span class="c">%ヶ
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2139=0     <span class="c">%々
+</span><span class="c"></span>
+<span class="c">% \endinputはスタイルファイルの末尾に記すおまじない。
+</span><span class="c"></span><span class="k">\endinput</span></code></pre></div>
 <p>　</p>
 
 <p>次に、以下の文字列を <code>novel.tex</code> という名で保存する。これが雛形ファイルとなる。</p>
