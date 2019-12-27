@@ -1,9 +1,12 @@
 {{ partial "site_header.html" . }}
 {{ partial "menu_documents.html" . }}
 <p class="title">
-    {{ .Title }} {{ with .Params.tags }} {{ range . }} <code><a href="{{ "/tags/" | relLangURL }}{{ lower . }}">#{{ . }}</a></code> {{ end }}{{ end }}
-    <br>
-    {{ .Date.Format "2006/1/2" }}<br>
+    {{ .Title }}<br>
+    tags: {{ with .Params.tags }} {{ range . }} <code><a href="{{ "/tags/" | relLangURL }}{{ lower . }}">#{{ . }}</a></code> {{ end }}{{ end }}<br>
 </p>
 {{ .Content }}
+<div class="showdate">
+    初版：{{ .Date.Format "2006年1月2日" }}<br>
+    最終更新：{{ .Lastmod.Format "2006年1月2日" }}<br>
+</div>
 {{ partial "site_footer.html" . }}

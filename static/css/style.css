@@ -33,6 +33,13 @@ body{
     border-top: 2px solid #ccc;
     margin: auto 0 15px;
 }
+.showdate {
+    text-align: right;
+    font-size: 1.4rem;
+    margin-top: 50px;
+    padding: 10px 0px;
+    color: #767676;
+}
 .about{
     padding: 80px 30px;
 }

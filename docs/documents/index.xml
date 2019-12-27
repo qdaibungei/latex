@@ -494,26 +494,29 @@ $1
       <pubDate>Sun, 29 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2016-05-29-yohaku-settei/</guid>
-      <description>はじめに この文書は、LaTeXで縦書き組版をするとき、余白をどう設定すればよいかを解説するものである。
-LaTeXの初心者／初級者にとって、余白の設定はかなり難しいものである（難しいならば余白はデフォルトのままで我慢してもよさそうなものだが、都合の悪いことにLaTeXのデフォルトの余白は広すぎて我慢できるものではない）。そこで、余白設定問題について取り上げ、わたしの理解が及んだ範囲で解説をおこなう。
-まず、余白設定のさいよく使われるパッケージであるgeometryパッケージを使うことの弊害を説明する。続いて、geometryパッケージに頼らず余白設定をするための方法のひとつを紹介する。
-geometryパッケージ 余白の設定と聞くと、一般的なLaTeXユーザはgeometryパッケージの利用を思いつくかもしれない。geometryパッケージは、たしかに便利だ。ふつう、LaTeXで余白の設定をしようとすると、なるべく簡潔に書こうとしても以下のように記述する必要があり、見た目が煩雑になりがちである（この例はgeometryパッケージのドキュメントからの引用）。
-\usepackage{calc} \setlength\textwidth{7in} \setlength\textheight{10in} \setlength\oddsidemargin{(\paperwidth-\textwidth)/2 - 1in} \setlength\topmargin{(\paperheight-\textheight-\headheight-\headsep-\footskip)/2 - 1in} ところがgeometryパッケージを使えば一発、
-\usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry} というふうに記述するだけで、上下左右の余白を指定できるのである（この場合、上下2cm左右1cmずつの余白を設定したことになる）。
-しかし、geometryパッケージにも欠点がいくつか存在する。
-字数と行数を指定するのが難しい たしかに、geometryパッケージは、Wordを使うときのように、たんに余白を指定したいだけのときならば、非常に使い勝手のよいパッケージである。しかし、geometryパッケージは、字数と行数を指定しようとすると、とたんに面倒になる。これが第一の欠点である。
-（もしかすれば、geometryパッケージで字数と行数をかんたんに設定する方法はあるのかもしれない。しかし、わたしの調べた範囲では、そのような方法は発見できなかった。）
-（追記：\usepackage[lines=41,textwidth=45zw]{geometry}のようにオプションを与えれば、字数と行数を指定できるらしいが、まだきちんと試してはいない。）
-字数と行数を指定したいときというのは、案外に多い。とくに、なんらかの書籍のレイアウトを真似したいときなどは、字数と行数をきっちり設定できると嬉しい。
-縦書きに対応していない じつは、geometryパッケージは縦書きに非対応である。今回の目標は縦書き組版であるため、geometryパッケージの使用は望ましくないということになる。
-（もっとも、lltjp-geometry.styというパッケージを使えば、むりやりgeometryパッケージを縦書きで使うことはできるらしいが、どのていど使える代物なのか、わたしは使ったことがないのでわからない。）
-ふつうは余白主体でなく版面主体 geometryパッケージは、余白を設定するためのパッケージである。しかし、ふつうDTPでは、組版作業の最初に上下左右の余白を決めるということはしない。ではなにを最初に決めるのかというと、版面である。版面設計をこそ、最初にすべきなのである。
+      <description>この記事では、LaTeX文書における余白の設定方法を解説する1。
+横書きの場合 geometryパッケージ 横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。
+% 45字×41行の設定にする \usepackage[textwidth=45zw,lines=41]{geometry} 字数・行数を指定するのではなく、余白を直接指定する場合、次のように書けばよい。
+% 上下に2cm、左右に1cmの余白を取る \usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry} hanmenパッケージ 拙作のhanmenパッケージを用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。
+\usepackage[Q=10,H=15,W=38,L=40,ptj]{hanmen} そうすると、
+ 文字サイズ　10pt 行送り　15pt 行長　38字 行数　40行  に設定できる。hanmenパッケージは縦書きにも対応しているので便利である。
+手動で設定 パッケージに頼らず、手動で余白を設定することもできる。例えば、字数・行数を指定する場合は次をプリアンブルに書く。
+% % 45字×41行の設定にする %  % 字数・行数マクロ定義 \def\mojiparline{45} \def\linesparpage{41} % 字数と行数 \textwidth = \mojiparline zw \textheight = \linesparpage\baselineskip \advance\textheight by -1\baselineskip \advance\textheight by 1zw % 版面を中央に（上下） \topmargin=\paperheight \advance\topmargin by -\textheight \divide\topmargin by 2 \advance\topmargin by -1truein \advance\topmargin by -\headheight \advance\topmargin by -\headsep % 版面を中央に（左右） \oddsidemargin=\paperwidth \advance\oddsidemargin by -\textwidth \divide\oddsidemargin by 2 \advance\oddsidemargin by -1truein \evensidemargin=\paperwidth \advance\evensidemargin by -\textwidth \divide\evensidemargin by 2 \advance\evensidemargin by -1truein % \topskip調整 \topskip = 0.</description>
+    </item>
+    
+    <item>
+      <title>LaTeXにおける版面設計</title>
+      <link>https://qdaibungei.github.io/latex/documents/2016-05-28-hanmen-sekkei/</link>
+      <pubDate>Sat, 28 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2016-05-28-hanmen-sekkei/</guid>
+      <description>はじめに 版面設計とは 普通、DTPでは、組版作業の最初に上下左右の余白を決めるということはしない。では何を最初に決めるのかというと、版面である。版面設計をこそ、最初にすべきなのである。
 版面設計とは、本文領域のレイアウトを設計することである。具体的には、一行あたり何文字にするか、1ページあたり何行にするか、そして字の大きさはどれくらいかを指定する作業だ。
-LaTeXにかぎらず、一般にDTPソフトで文章主体の冊子のレイアウトをつくるとき、ふつう版面から設計する。余白を先に決めてしまうと、「一行あたり何文字にするか、1ページあたり何行にするか、そして字の大きさはどれくらいか」が、余白に制約されてしまうからである。
-というわけで、LaTeXにおける余白設定方法を学ぶこととは、じつは、版面設計方法を学ぶことだったのである。
-版面設計の方法 それでは、版面を設計する方法を解説しよう。
-この方法は、一見複雑そうに見えるが、LaTeXの余白決定の仕組みを理解するという意味でもお勧めできる方法である。
-字数と行数 まずは字数と行数を設定してみよう。プリアンブルにつぎのように書いてみる。
+LaTeXにかぎらず、一般にDTPソフトで文章主体の冊子のレイアウトをつくるとき、普通、版面から設計する。余白を先に決めてしまうと、「一行あたり何文字にするか、1ページあたり何行にするか、そして字の大きさはどれくらいか」が、余白に制約されてしまうからである。
+それでは、版面を設計する方法を解説しよう。この方法は、一見複雑そうに見えるが、LaTeXの余白決定の仕組みを理解するという意味でもお勧めできる方法である。
+注意 なお、以下の内容をパッケージ化したものがhanmenパッケージである。逆に言うと、以下はhanmenパッケージの技術解説である。
+版面設計の方法 字数と行数 以下、縦書きの場合を想定して版面設計の方法を解説しよう。
+まずは字数と行数を設定してみよう。プリアンブルにつぎのように書いてみる。
 % 字数と行数 \textwidth = 46zw \textheight = 19\baselineskip \advance\textheight by -1\baselineskip \advance\textheight by 1zw これで、本文を46字×19行で組むことができる。
 \textwidth = 46zwは、字数の設定をしている部分である（縦の長さが46字ぶんになるよう設定している）。
 （なお、=を用いるやり方は、TeXの記法である。LaTeXでは\setlength{\textwidth}{46zw}などとする。LaTeXの記法も悪くはないのだが、TeXの記法のほうが簡潔に書けるので今回はこちらを採用する。）
@@ -523,7 +526,12 @@ LaTeXにかぎらず、一般にDTPソフトで文章主体の冊子のレイア
 本当は、読んで字のごとく、\textwidthとはテキスト領域の「横」幅を、\textheightとはテキスト領域の「縦」の長さを、それぞれ指すのである。しかし、ここで注意したいことは、縦書きLaTeXにおいて\textwidthと\textheightは役割が逆転してしまうということである。LaTeXはもともと、横書きのためのソフトだ。これを、いわばむりやり縦書きに利用しているので、縦横が逆転してしまうのである。したがって、たとえば\textwidthは、縦書きしているときにかぎり「テキスト領域の縦幅」を示すことになる。
 版面を中央に持っていく それでは、つぎいこう。
 じつは、字数と行数を指定しただけだと、テキスト領域が中央に来ず、端っこに寄った状態となってしまう。これはLaTeXの仕様上どうしようもない。
-そういうわけで、今度は版面を中央に持っていく設定だ。まずは上下を中央に持っていこう。</description>
+そういうわけで、今度は版面を中央に持っていく設定だ。まずは上下を中央に持っていこう。
+% 版面を中央に（上下） \topmargin=\paperheight \advance\topmargin by -\textwidth \divide\topmargin by 2 \advance\topmargin by -1truein \advance\topmargin by -\headheight \advance\topmargin by -\headsep まず\topmargin=\paperheightによって、上部の余白の長さ（\topmargin）を、紙の縦の長さ（\paperheight。これは縦書きでも意味は逆にならない）に合わせる。
+このままでは余白がありすぎる（というか紙面全部が余白となってしまう）のであるが、もちろんここから調整を重ねていって、徐々に望む結果に近づけてゆくのである。
+続く2行が、その調整である。\topmarginから\textwidth（テキストの縦の長さ）を引く（\advance\topmargin by -\textwidth）。そののち、\topmargin÷2（\divide\topmargin by 2）をする。こうすれば、上と下の余白が同じになり、版面が上下中央に来る。
+残りの、
+\advance\topmargin by -1truein \advance\topmargin by -\headheight \advance\topmargin by -\headsep はなんなのかというと、まあこれもちょっとした調整だと思っていただきたい。たとえば\advance\topmargin by -1trueinというのを説明すると、実はLaTeX文書にはもともと1インチの余白が設けられている。なぜデフォルトで1インチも余白が空いているのか、意味がわからないのだが、とにかく空いているので、これを引く必要があるのだ。ほか2つもそういった感じのものだと思ってください。詳しくはLaTeX入門書でも見てください。</description>
     </item>
     
   </channel>

@@ -5,7 +5,7 @@
 <h2>記事一覧</h2>
 <ul>
     {{ range .Data.Pages }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006/1/2" }}</span></li>
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006年1月2日" }}</span></li>
     {{ end }}
 </ul>
 <h2>タグ一覧</h2>

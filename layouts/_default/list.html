@@ -3,7 +3,7 @@
 <h2>{{ .Title }}</h2>
 <p>
 {{ range .Data.Pages }}
-    <a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006/1/2" }}</span><br>
+    <a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006年1月2日" }}</span><br>
 {{ end }}
 </p>
 {{ partial "site_footer.html" . }}

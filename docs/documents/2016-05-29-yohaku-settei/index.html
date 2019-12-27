@@ -42,146 +42,100 @@
     <div class="content">
 
 <p class="title">
-    LaTeX文書における余白の設定方法   <code><a href="/latex/tags/latex">#LaTeX</a></code> 
-    <br>
-    2016/5/29<br>
+    LaTeX文書における余白の設定方法<br>
+    tags:   <code><a href="/latex/tags/latex">#LaTeX</a></code> <br>
 </p>
 
 
-<h1 id="はじめに">はじめに</h1>
+<p>この記事では、LaTeX文書における余白の設定方法を解説する<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">1</a></sup>。</p>
 
-<p>この文書は、LaTeXで縦書き組版をするとき、余白をどう設定すればよいかを解説するものである。</p>
+<h1 id="横書きの場合">横書きの場合</h1>
 
-<p>LaTeXの初心者／初級者にとって、余白の設定はかなり難しいものである（難しいならば余白はデフォルトのままで我慢してもよさそうなものだが、都合の悪いことにLaTeXのデフォルトの余白は広すぎて我慢できるものではない）。そこで、余白設定問題について取り上げ、わたしの理解が及んだ範囲で解説をおこなう。</p>
+<h2 id="geometryパッケージ">geometryパッケージ</h2>
 
-<p>まず、余白設定のさいよく使われるパッケージであるgeometryパッケージを使うことの弊害を説明する。続いて、geometryパッケージに頼らず余白設定をするための方法のひとつを紹介する。</p>
+<p>横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 45字×41行の設定にする
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[textwidth=45zw,lines=41]</span><span class="nb">{</span>geometry<span class="nb">}</span></code></pre></div>
+<p>字数・行数を指定するのではなく、余白を直接指定する場合、次のように書けばよい。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 上下に2cm、左右に1cmの余白を取る
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[top=2cm, bottom=2cm, left=1cm, right=1cm]</span><span class="nb">{</span>geometry<span class="nb">}</span></code></pre></div>
+<h2 id="hanmenパッケージ">hanmenパッケージ</h2>
 
-<h1 id="geometryパッケージ">geometryパッケージ</h1>
+<p>拙作の<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmenパッケージ</a>を用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=10,H=15,W=38,L=40,ptj]</span><span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div>
+<p>そうすると、</p>
 
-<p>余白の設定と聞くと、一般的なLaTeXユーザはgeometryパッケージの利用を思いつくかもしれない。geometryパッケージは、たしかに便利だ。ふつう、LaTeXで余白の設定をしようとすると、なるべく簡潔に書こうとしても以下のように記述する必要があり、見た目が煩雑になりがちである（この例はgeometryパッケージのドキュメントからの引用）。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="nb">{</span>calc<span class="nb">}</span>
-<span class="k">\setlength\textwidth</span><span class="nb">{</span>7in<span class="nb">}</span>
-<span class="k">\setlength\textheight</span><span class="nb">{</span>10in<span class="nb">}</span>
-<span class="k">\setlength\oddsidemargin</span><span class="nb">{</span>(<span class="k">\paperwidth</span>-<span class="k">\textwidth</span>)/2 - 1in<span class="nb">}</span>
-<span class="k">\setlength\topmargin</span><span class="nb">{</span>(<span class="k">\paperheight</span>-<span class="k">\textheight</span>-<span class="k">\headheight</span>-<span class="k">\headsep</span>-<span class="k">\footskip</span>)/2 - 1in<span class="nb">}</span></code></pre></div>
-<p>ところがgeometryパッケージを使えば一発、</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[top=2cm, bottom=2cm, left=1cm, right=1cm]</span><span class="nb">{</span>geometry<span class="nb">}</span></code></pre></div>
-<p>というふうに記述するだけで、上下左右の余白を指定できるのである（この場合、上下2cm左右1cmずつの余白を設定したことになる）。</p>
+<ul>
+<li>文字サイズ　10pt</li>
+<li>行送り　　　15pt</li>
+<li>行長　　　　38字</li>
+<li>行数　　　　40行</li>
+</ul>
 
-<p>しかし、geometryパッケージにも欠点がいくつか存在する。</p>
+<p>に設定できる。hanmenパッケージは縦書きにも対応しているので便利である。</p>
 
-<h2 id="字数と行数を指定するのが難しい">字数と行数を指定するのが難しい</h2>
+<h2 id="手動で設定">手動で設定</h2>
 
-<p>たしかに、geometryパッケージは、Wordを使うときのように、たんに余白を指定したいだけのときならば、非常に使い勝手のよいパッケージである。しかし、geometryパッケージは、字数と行数を指定しようとすると、とたんに面倒になる。これが第一の欠点である。</p>
+<p>パッケージに頼らず、手動で余白を設定することもできる。例えば、字数・行数を指定する場合は次をプリアンブルに書く。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
+</span><span class="c">% 45字×41行の設定にする
+</span><span class="c">%
+</span><span class="c"></span>
+<span class="c">% 字数・行数マクロ定義
+</span><span class="c"></span><span class="k">\def\mojiparline</span><span class="nb">{</span>45<span class="nb">}</span>
+<span class="k">\def\linesparpage</span><span class="nb">{</span>41<span class="nb">}</span>
 
-<p>（もしかすれば、geometryパッケージで字数と行数をかんたんに設定する方法はあるのかもしれない。しかし、わたしの調べた範囲では、そのような方法は発見できなかった。）</p>
-
-<p>（追記：<code>\usepackage[lines=41,textwidth=45zw]{geometry}</code>のようにオプションを与えれば、字数と行数を指定できるらしいが、まだきちんと試してはいない。）</p>
-
-<p>字数と行数を指定したいときというのは、案外に多い。とくに、なんらかの書籍のレイアウトを真似したいときなどは、字数と行数をきっちり設定できると嬉しい。</p>
-
-<h2 id="縦書きに対応していない">縦書きに対応していない</h2>
-
-<p>じつは、geometryパッケージは縦書きに非対応である。今回の目標は縦書き組版であるため、geometryパッケージの使用は望ましくないということになる。</p>
-
-<p>（もっとも、<code>lltjp-geometry.sty</code>というパッケージを使えば、むりやりgeometryパッケージを縦書きで使うことはできるらしいが、どのていど使える代物なのか、わたしは使ったことがないのでわからない。）</p>
-
-<h2 id="ふつうは余白主体でなく版面主体">ふつうは余白主体でなく版面主体</h2>
-
-<p>geometryパッケージは、余白を設定するためのパッケージである。しかし、ふつうDTPでは、組版作業の最初に上下左右の余白を決めるということはしない。ではなにを最初に決めるのかというと、版面である。版面設計をこそ、最初にすべきなのである。</p>
-
-<p>版面設計とは、本文領域のレイアウトを設計することである。具体的には、一行あたり何文字にするか、1ページあたり何行にするか、そして字の大きさはどれくらいかを指定する作業だ。</p>
-
-<p>LaTeXにかぎらず、一般にDTPソフトで文章主体の冊子のレイアウトをつくるとき、ふつう版面から設計する。余白を先に決めてしまうと、「一行あたり何文字にするか、1ページあたり何行にするか、そして字の大きさはどれくらいか」が、余白に制約されてしまうからである。</p>
-
-<p>というわけで、LaTeXにおける余白設定方法を学ぶこととは、じつは、版面設計方法を学ぶことだったのである。</p>
-
-<h1 id="版面設計の方法">版面設計の方法</h1>
-
-<p>それでは、版面を設計する方法を解説しよう。</p>
-
-<p>この方法は、一見複雑そうに見えるが、LaTeXの余白決定の仕組みを理解するという意味でもお勧めできる方法である。</p>
-
-<h2 id="字数と行数">字数と行数</h2>
-
-<p>まずは字数と行数を設定してみよう。プリアンブルにつぎのように書いてみる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 字数と行数
-</span><span class="c"></span><span class="k">\textwidth</span> = 46zw
-<span class="k">\textheight</span> = 19<span class="k">\baselineskip</span>
+<span class="c">% 字数と行数
+</span><span class="c"></span><span class="k">\textwidth</span> = <span class="k">\mojiparline</span> zw
+<span class="k">\textheight</span> = <span class="k">\linesparpage\baselineskip</span>
 <span class="k">\advance\textheight</span> by -1<span class="k">\baselineskip</span>
-<span class="k">\advance\textheight</span> by 1zw</code></pre></div>
-<p>これで、本文を46字×19行で組むことができる。</p>
+<span class="k">\advance\textheight</span> by 1zw
 
-<p><code>\textwidth = 46zw</code>は、字数の設定をしている部分である（縦の長さが46字ぶんになるよう設定している）。</p>
-
-<p>（なお、<code>=</code>を用いるやり方は、TeXの記法である。LaTeXでは<code>\setlength{\textwidth}{46zw}</code>などとする。LaTeXの記法も悪くはないのだが、TeXの記法のほうが簡潔に書けるので今回はこちらを採用する。）</p>
-
-<p><code>\textheight = 19\baselineskip</code>は、行数の設定をしている部分である（横の長さが19ベースラインぶんになるよう設定している。1ページあたり19行となる）。なお<code>\baselineskip</code>とは、組版用語で「行送り」のことであり、「1字ぶんの長さ＋行間の長さ」のことである。</p>
-
-<p>以上2つの設定で基本的にはOKだ。では、残り2行はなんなのか。残り2行は、ちょっとした調整である。これを文章で説明しようとすると面倒なので省略する。どうしてこれらが必要なのかは、この2行をコメントアウトさせてみれば簡単にわかるから、興味がある人は試みられたい。</p>
-
-<p>なお、<code>\textwidth</code>と<code>\textheight</code>は逆ではないか、と思った人がいるかもしれない。<code>\textheight</code>と言いながら、そこで設定したのはテキスト領域の高さ（height）でなく横幅（width）だったからである。</p>
-
-<p>本当は、読んで字のごとく、<code>\textwidth</code>とはテキスト領域の「横」幅を、<code>\textheight</code>とはテキスト領域の「縦」の長さを、それぞれ指すのである。しかし、ここで注意したいことは、縦書きLaTeXにおいて<code>\textwidth</code>と<code>\textheight</code>は役割が逆転してしまうということである。LaTeXはもともと、横書きのためのソフトだ。これを、いわばむりやり縦書きに利用しているので、縦横が逆転してしまうのである。したがって、たとえば<code>\textwidth</code>は、縦書きしているときにかぎり「テキスト領域の縦幅」を示すことになる。</p>
-
-<h2 id="版面を中央に持っていく">版面を中央に持っていく</h2>
-
-<p>それでは、つぎいこう。</p>
-
-<p>じつは、字数と行数を指定しただけだと、テキスト領域が中央に来ず、端っこに寄った状態となってしまう。これはLaTeXの仕様上どうしようもない。</p>
-
-<p>そういうわけで、今度は版面を中央に持っていく設定だ。まずは上下を中央に持っていこう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 版面を中央に（上下）
+<span class="c">% 版面を中央に（上下）
 </span><span class="c"></span><span class="k">\topmargin</span>=<span class="k">\paperheight</span>
-<span class="k">\advance\topmargin</span> by -<span class="k">\textwidth</span>
+<span class="k">\advance\topmargin</span> by -<span class="k">\textheight</span>
 <span class="k">\divide\topmargin</span> by 2
 <span class="k">\advance\topmargin</span> by -1truein
 <span class="k">\advance\topmargin</span> by -<span class="k">\headheight</span>
-<span class="k">\advance\topmargin</span> by -<span class="k">\headsep</span></code></pre></div>
-<p>まず<code>\topmargin=\paperheight</code>によって、上部の余白の長さ（<code>\topmargin</code>）を、紙の縦の長さ（<code>\paperheight</code>。これは縦書きでも意味は逆にならない）に合わせる。</p>
+<span class="k">\advance\topmargin</span> by -<span class="k">\headsep</span>
 
-<p>このままでは余白がありすぎる（というか紙面全部が余白となってしまう）のであるが、もちろんここから調整を重ねていって、徐々に望む結果に近づけてゆくのである。</p>
-
-<p>続く2行が、その調整である。<code>\topmargin</code>から<code>\textwidth</code>（テキストの縦の長さ）を引く（<code>\advance\topmargin by -\textwidth</code>）。そののち、<code>\topmargin</code>÷2（<code>\divide\topmargin by 2</code>）をする。こうすれば、上と下の余白が同じになり、版面が上下中央に来る。</p>
-
-<p>残りの、</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\advance\topmargin</span> by -1truein
-<span class="k">\advance\topmargin</span> by -<span class="k">\headheight</span>
-<span class="k">\advance\topmargin</span> by -<span class="k">\headsep</span></code></pre></div>
-<p>はなんなのかというと、まあこれもちょっとした調整だと思っていただきたい。たとえば<code>\advance\topmargin by -1truein</code>というのを説明すると、実はLaTeX文書にはもともと1インチの余白が設けられている。なぜデフォルトで1インチも余白が空いているのか、意味がわからないのだが、とにかく空いているので、これを引く必要があるのだ。ほか2つもそういった感じのものだと思ってください。詳しくはLaTeX入門書でも見てください。</p>
-
-<p>左右も同じ感じで設定できる。上下とほとんど同じなので、説明はほぼ不要だろう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 版面を中央に（左右）
+<span class="c">% 版面を中央に（左右）
 </span><span class="c"></span><span class="k">\oddsidemargin</span>=<span class="k">\paperwidth</span>
-<span class="k">\advance\oddsidemargin</span> by -<span class="k">\textheight</span>
+<span class="k">\advance\oddsidemargin</span> by -<span class="k">\textwidth</span>
 <span class="k">\divide\oddsidemargin</span> by 2
 <span class="k">\advance\oddsidemargin</span> by -1truein
 <span class="k">\evensidemargin</span>=<span class="k">\paperwidth</span>
-<span class="k">\advance\evensidemargin</span> by -<span class="k">\textheight</span>
+<span class="k">\advance\evensidemargin</span> by -<span class="k">\textwidth</span>
 <span class="k">\divide\evensidemargin</span> by 2
-<span class="k">\advance\evensidemargin</span> by -1truein</code></pre></div>
-<p>なお、<code>\oddsidemargin</code>は、奇数ページの左余白を、<code>\evensidemargin</code>は偶数ページの左余白を、それぞれ示す。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 版面を中央に（左右）
-</span><span class="c"></span><span class="k">\oddsidemargin</span>=<span class="k">\paperwidth</span>
-<span class="k">\advance\oddsidemargin</span> by -<span class="k">\textheight</span>
-<span class="k">\divide\oddsidemargin</span> by 2
-<span class="k">\advance\oddsidemargin</span> by -1truein
-<span class="k">\evensidemargin</span>=<span class="k">\paperwidth</span>
-<span class="k">\advance\evensidemargin</span> by -<span class="k">\textheight</span>
-<span class="k">\divide\evensidemargin</span> by 2
-<span class="k">\advance\evensidemargin</span> by -1truein</code></pre></div>
-<h2 id="topskip">\topskip</h2>
+<span class="k">\advance\evensidemargin</span> by -1truein
 
-<p>縦書きなら<code>\topskip = 0.5zw</code>と、横書きなら<code>\topskip=0.88zw</code>と書いておくこと。</p>
+<span class="c">% \topskip調整
+</span><span class="c"></span><span class="k">\topskip</span> = 0.88zw</code></pre></div>
+<h1 id="縦書きの場合">縦書きの場合</h1>
 
-<h2 id="最終形はこれだ">最終形はこれだ</h2>
+<h2 id="hanmenパッケージ-1">hanmenパッケージ</h2>
 
-<p>前の例だと字数と行数の設定を変えるのがやりにくいので、これを抜き出して、こんなふうに定義しておくと便利だ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 字数・行数マクロ定義
-</span><span class="c"></span><span class="k">\def\mojiparline</span><span class="nb">{</span>46<span class="nb">}</span>
-<span class="k">\def\linesparpage</span><span class="nb">{</span>19<span class="nb">}</span></code></pre></div>
-<p>こうして、下の最終形が完成する。これをプリアンブルに記述しておけば、余白の設定は完璧である。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 字数・行数マクロ定義
+<p>geometryパッケージは縦書きに非対応である<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">2</a></sup>。しかし、例えば<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmenパッケージ</a>を用いると、縦書きでも余白の設定を行なえる。プリアンブルに次のように書き込む。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=10,H=15,W=38,L=40,ptj,tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div>
+<p>そうすると、</p>
+
+<ul>
+<li>文字サイズ　10pt</li>
+<li>行送り　　　15pt</li>
+<li>行長　　　　38字</li>
+<li>行数　　　　40行</li>
+</ul>
+
+<p>に設定できる。詳しい使い方は<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmenパッケージ</a>の記事を参照せよ。</p>
+
+<h2 id="手動で設定-1">手動で設定</h2>
+
+<p>手動で設定する場合、次をプリアンブルに書く。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
+</span><span class="c">% 46字×19行の設定にする
+</span><span class="c">%
+</span><span class="c"></span>
+<span class="c">% 字数・行数マクロ定義
 </span><span class="c"></span><span class="k">\def\mojiparline</span><span class="nb">{</span>46<span class="nb">}</span>
 <span class="k">\def\linesparpage</span><span class="nb">{</span>19<span class="nb">}</span>
 
@@ -211,13 +165,23 @@
 
 <span class="c">% \topskip調整
 </span><span class="c"></span><span class="k">\topskip</span> = 0.5zw</code></pre></div>
-<h1 id="参考文献">参考文献</h1>
+<p>手動で設定する方法は、一見煩雑であるが、やっていることはそんなに難しいことではない。詳しい解説は、<a href="https://qdaibungei.github.io/latex/documents/2016-05-28-hanmen-sekkei/">LaTeXにおける版面設計</a>を参照されたい。</p>
+<div class="footnotes">
 
-<ul>
-<li><a href="https://texwiki.texjp.org/?geometry">geometry（TeX wiki内の一項目）</a></li>
-<li>村上智一『<a href="http://p-act.sakura.ne.jp/PARALLEL_ACT/LaTeX-Dojin/">よくわかるLaTeX小説</a>』</li>
-</ul>
+<hr />
 
+<ol>
+<li id="fn:2">このサイト全体で、この記事が一番多く参照されていることに最近気づいた。しかも多分、参照している者の多くはLaTeX初心者である。そこで初心者向けに大幅に書き直してみた。昔載せていた記事は、<a href="https://qdaibungei.github.io/latex/documents/2016-05-28-hanmen-sekkei/">LaTeXにおける版面設計</a>に移動させた。必要に応じて参照されたい。
+ <a class="footnote-return" href="#fnref:2">↩</a></li>
+<li id="fn:1">もっとも、<code>lltjp-geometry.sty</code>というパッケージを使えば、むりやりgeometryパッケージを縦書きで使うことはできるらしいが、どのていど使える代物なのか、わたしは使ったことがないのでわからない。詳しくは<a href="https://texwiki.texjp.org/?geometry">geometry（TeX wiki内の一項目）</a>を参照のこと。
+ <a class="footnote-return" href="#fnref:1">↩</a></li>
+</ol>
+</div>
+
+<div class="showdate">
+    初版：2016年5月29日<br>
+    最終更新：2019年12月27日<br>
+</div>
                     </div>
                 </main>
             </div>
