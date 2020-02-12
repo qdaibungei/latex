@@ -19,13 +19,6 @@ body {
     display: block;
     color: #767676;
 }
-.title::after {
-    display: block;
-    width: 30px;
-    content: "";
-    border-top: 2px solid #ccc;
-    margin: 15px 0 auto;
-}
 .title::before {
     display: block;
     width: 100%;
@@ -33,12 +26,35 @@ body {
     border-top: 2px solid #ccc;
     margin: auto 0 15px;
 }
-.showdate {
-    text-align: right;
-    font-size: 1.4rem;
+.title::after {
+    display: block;
+    width: 30px;
+    content: "";
+    border-top: 2px solid #ccc;
+    margin: 15px 0 25px;
+}
+.showarticleinfo {
+    font-size: 1.2rem;
     margin-top: 50px;
     padding: 10px 0px;
     color: #767676;
+}
+.showarticleinfo .fas {
+    font-size: 5px;
+}
+.showarticleinfo::before {
+    display: block;
+    width: 30px;
+    content: "";
+    border-top: 2px solid #ccc;
+    margin: 25px 0 15px;
+}
+.showarticleinfo::after {
+    display: block;
+    width: 100%;
+    content: "";
+    border-top: 2px solid #ccc;
+    margin: 15px 0 auto;
 }
 .about {
     padding: 80px 30px;
@@ -487,6 +503,9 @@ p > code, li > code {
     padding: 1px;
     border-radius: 2px;
     background-color: #f7f7f7;
+}
+code > a:link, code > a:visited {
+    color: #767676;
 }
 blockquote {
     color: #828282;

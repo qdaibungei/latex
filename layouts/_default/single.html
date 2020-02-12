@@ -2,11 +2,11 @@
 {{ partial "menu_documents.html" . }}
 <p class="title">
     {{ .Title }}<br>
-    tags: {{ with .Params.tags }} {{ range . }} <code><a href="{{ "/tags/" | relLangURL }}{{ lower . }}">#{{ . }}</a></code> {{ end }}{{ end }}<br>
 </p>
 {{ .Content }}
-<div class="showdate">
-    初版：{{ .Date.Format "2006年1月2日" }}<br>
-    最終更新：{{ .Lastmod.Format "2006年1月2日" }}<br>
+<div class="showarticleinfo">
+    <i class="fas fa-clock"></i> {{ .Date.Format "2006年1月2日" }}<br>
+    <i class="fas fa-redo"></i> {{ .Lastmod.Format "2006年1月2日" }}<br>
+    <i class="fas fa-tags"></i> {{ with .Params.tags }} {{ range . }} <code><a href="{{ "/tags/" | relLangURL }}{{ lower . }}">#{{ . }}</a></code> {{ end }}{{ end }}<br>
 </div>
 {{ partial "site_footer.html" . }}
