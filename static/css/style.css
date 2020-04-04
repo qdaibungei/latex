@@ -414,12 +414,12 @@ img {
 
 
 ::selection {
-    background: #aee1fa; /*背景色*/
-    color: #333333; /*文字色*/
+    background: #ccc; /*背景色*/
+    color: #333; /*文字色*/
 }
 ::-moz-selection {
-    background: #aee1fa; /*背景色*/
-    color: #333333; /*文字色*/
+    background: #ccc; /*背景色*/
+    color: #333; /*文字色*/
 }
 .marker{
     font-weight: 400;
