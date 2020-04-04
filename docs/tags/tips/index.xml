@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tips on 文藝部LaTeX研究会</title>
+    <title>tips on 文藝部LaTeX研究会</title>
     <link>https://qdaibungei.github.io/latex/tags/tips/</link>
-    <description>Recent content in Tips on 文藝部LaTeX研究会</description>
+    <description>Recent content in tips on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Sat, 07 Sep 2019 00:00:00 +0000</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2019-09-07-git-diff/</guid>
-      <description> 方法 git diff で一文字ずつ差分表示するには次のようにすればよい。
+      <description>方法 git diff で一文字ずつ差分表示するには次のようにすればよい。
 git diff --color-words --word-diff-regex=&amp;#39;\\w+|[^[:space:]]&amp;#39; 参考文献  git diff を1文字単位で出力する  </description>
     </item>
     
@@ -34,7 +34,7 @@ LaTeXで混植をする方法の解説としては、これまでにも優れた
 CTANにあるjapanese-otfパッケージからbaseplとscriptというディレクトリをダウンロード。またmkjvfもダウンロードしておく。
 同様にjapanese-otf-uptexからbasepl、script、umkjvfをダウンロード。
 さらに次のスクリプトを作成する。
-#!/bin/sh  mkdir tfm mkdir vf # 普通にtfmファイルを生成 for face in r b do for hv in h v do ppltotf basepl/base-${hv}.pl yumin5go${face}-${hv} ppltotf basepl/base-${hv}.pl expyumin5go${face}-${hv} ppltotf basepl/brsg-${hv}.pl brsgyumin5go${face}-${hv} ppltotf basepl/brsg-${hv}.pl brsgexpyumin5go${face}-${hv} #  uppltotf -kanji=uptex basepl/ubase-${hv}.pl upyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubase-${hv}.pl upexpyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubrsg-${hv}.pl upbrsgyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubrsg-${hv}.pl upbrsgexpyumin5go${face}-${hv} done done # ここが混植のキモ。 # 混植しないときは引数二つでよかったが、混植のため引数は三つ。 # しかし仕組みはあまり理解できていない。 for face in r b do for hv in h v do perl mkjvf -m yumin5go${face}-${hv} hmin${face}-${hv} r-yumin5go${face}-${hv} perl mkjvf -m -sage brsgyumin5go${face}-${hv} hmin${face}-${hv} r-yumin5go${face}-${hv} perl mkjvf -m -expert expyumin5go${face}-${hv} hmin${face}-${hv} cidjmin${face} perl mkjvf -m -sage -expert brsgexpyumin5go${face}-${hv} hmin${face}-${hv} cidjmin${face} done done for face in r b do for hv in h v do perl umkjvf -m -ucs -sp 1 upyumin5go${face}-${hv} uphmin${face}-${hv} r-upyumin5go${face}-${hv} perl umkjvf -m -ucs -sp 1 -sage upbrsgyumin5go${face}-${hv} uphmin${face}-${hv} r-upyumin5go${face}-${hv} perl umkjvf -m -ucs -sp 1 -expert upexpyumin5go${face}-${hv} uphmin${face}-${hv} cidjmin${face} perl umkjvf -m -ucs -sp 1 -sage -expert upbrsgexpyumin5go${face}-${hv} uphmin${face}-${hv} cidjmin${face} done done echo &amp;#34;making tfm for supplementary plane .</description>
+#!/bin/sh  mkdir tfm mkdir vf # 普通にtfmファイルを生成 for face in r b do for hv in h v do ppltotf basepl/base-${hv}.pl yumin5go${face}-${hv} ppltotf basepl/base-${hv}.pl expyumin5go${face}-${hv} ppltotf basepl/brsg-${hv}.pl brsgyumin5go${face}-${hv} ppltotf basepl/brsg-${hv}.pl brsgexpyumin5go${face}-${hv} # uppltotf -kanji=uptex basepl/ubase-${hv}.pl upyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubase-${hv}.pl upexpyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubrsg-${hv}.pl upbrsgyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubrsg-${hv}.pl upbrsgexpyumin5go${face}-${hv} done done # ここが混植のキモ。 # 混植しないときは引数二つでよかったが、混植のため引数は三つ。 # しかし仕組みはあまり理解できていない。 for face in r b do for hv in h v do perl mkjvf -m yumin5go${face}-${hv} hmin${face}-${hv} r-yumin5go${face}-${hv} perl mkjvf -m -sage brsgyumin5go${face}-${hv} hmin${face}-${hv} r-yumin5go${face}-${hv} perl mkjvf -m -expert expyumin5go${face}-${hv} hmin${face}-${hv} cidjmin${face} perl mkjvf -m -sage -expert brsgexpyumin5go${face}-${hv} hmin${face}-${hv} cidjmin${face} done done for face in r b do for hv in h v do perl umkjvf -m -ucs -sp 1 upyumin5go${face}-${hv} uphmin${face}-${hv} r-upyumin5go${face}-${hv} perl umkjvf -m -ucs -sp 1 -sage upbrsgyumin5go${face}-${hv} uphmin${face}-${hv} r-upyumin5go${face}-${hv} perl umkjvf -m -ucs -sp 1 -expert upexpyumin5go${face}-${hv} uphmin${face}-${hv} cidjmin${face} perl umkjvf -m -ucs -sp 1 -sage -expert upbrsgexpyumin5go${face}-${hv} uphmin${face}-${hv} cidjmin${face} done done echo &amp;#34;making tfm for supplementary plane .</description>
     </item>
     
     <item>
@@ -55,7 +55,8 @@ otftotfm --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefin
 styファイルの作成 各種ファイルが生成できたならば、すかさず、josefinslab.styという名前でstyファイルを作る。
 % % josefinslab.sty % \AtBeginDvi{\special{pdf:mapfile josefinslab.map}}% 先程生成したmapファイルの読み込み \DeclareFontFamily{T1}{josefinslab}{}% TeXファイル内で使うフォント名を設定 \DeclareFontShape{T1}{josefinslab}{m}{n}{&amp;lt;-&amp;gt; josefinslab-regular}{}% 上で設定したフォント名と、先程生成したtfmファイルとを結びつける \endinput インストールできたかを確認 ここまでできたら、ほとんどインストールは完了したと言ってよい（今のままだと、各種ファイルがディレクトリにたくさん散らばっていて、気持ち悪いかもしれないが、この問題は次の節で解決する）。
 動作確認のため、作業用ディレクトリにTeXファイルを作って、フォントが埋め込まれるかをチェックしておこう。
-\documentclass[uplatex]{jsarticle} \usepackage{josefinslab} \begin{document} \romanfamily{josefinslab}\selectfont This is a test. \end{document} 「This is a test.」がJosefin Slabで表示されたら、ここまでの作業はうまくいったことになる。</description>
+\documentclass[uplatex]{jsarticle} \usepackage{josefinslab} \begin{document} \romanfamily{josefinslab}\selectfont This is a test. \end{document} 「This is a test.」がJosefin Slabで表示されたら、ここまでの作業はうまくいったことになる。
+すべてのウェイトをインストールする tfmなどの生成とインストール すべてのウェイトをインストールするには、同じことを全ウェイトで実行すればよい。</description>
     </item>
     
     <item>
@@ -64,7 +65,7 @@ styファイルの作成 各種ファイルが生成できたならば、すか�
       <pubDate>Fri, 12 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2018-01-12-burasage/</guid>
-      <description> 緒言 本稿は、otfパッケージによるぶら下げ組を改良するための方法を記すものである。
+      <description>緒言 本稿は、otfパッケージによるぶら下げ組を改良するための方法を記すものである。
 本論 otfパッケージにはburasageオプションがあり、これを利用するとぶら下げ組ができる。
 \usepackage[burasage]{otf} しかし、このぶら下げ組にはひとつ問題がある。句読点が行末に来たとき、必ずぶら下げ処理がおこなわれてしまうのである1。
 むろん、これはこれでひとつの立派な組版方針である。だが、行長が短いときに強制的にぶら下げ処理がおこなわれてしまうと、字間が開いてしまい、間延びした印象の組みかたになってしまう。よって、われわれとしては、ぶら下げ処理を少し抑制するように修正してみたい。これは、商業出版の本によく見られる組みかたでもある。
@@ -74,7 +75,8 @@ styファイルの作成 各種ファイルが生成できたならば、すか�
 句点と鉤括弧の場合だけ考えると、結局、以下のような置換が必要である。
  \。「 → \。\&amp;lt;「 \。」 → 。」 」\。 → 」\&amp;lt;\。  このような置換を、すべての括弧類と句読点との組み合わせを考えて、おこなえばよい。置換作業は手作業だと面倒きわまりないので、PythonなりRubyなりで置換スクリプトを組んで置換するのがよいであろう。
 結言 LaTeXのデフォルトは追い込み組であるが、これは商業出版にはあまり見られない。そこで上のような設定をし、ぶら下げ組にするか、追い出し組にするとよいのである。そうすれば、いっそう商業出版に近い組みかたが実現でき、嬉しい気分に浸れることであろう。
- ただし段落末尾はそのかぎりではない。 ↩   </description>
+  ただし段落末尾はそのかぎりではない。 &amp;#x21a9;&amp;#xfe0e;
+   </description>
     </item>
     
     <item>
@@ -112,7 +114,7 @@ pdfpagesパッケージの使いかた 大きさを指定して画像をPDF化�
 縦横比そのままに画像をPDF化する \documentclass{article} \usepackage{pdfpages} \begin{document} \includepdf[fitpaper]{image.jpg} \end{document} このようにfitpaperオプションつきで画像を読み込むと、画像の縦横比に合わせて用紙サイズが決定される。
 PDFファイルの連結 以下はA5サイズの本を作っているとき、左右のページをつなげてA4用紙に出力するやりかたである。デザインを確認したいときなどに有用である。
 \documentclass[a4paper,landscape]{article} \usepackage{pdfpages} \begin{document} \includepdf[pages={28,29},nup=2x1]{mybook.pdf} \end{document} pages={28,29}は28～29ページだけを読み込む設定、nupは複数ページを一枚に並べる設定である。nup=2x1は2行×1列で並べるという意味になる。
-自炊したPDFファイルの加工と連結 \documentclass{article} \usepackage{pdfpages} \usepackage[a5paper]{geometry} \begin{document} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{1.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{2.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{3.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{4.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{5.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{6.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{7.pdf} \end{document}\documentclass{article} \usepackage{pdfpages} \usepackage[a4paper,landscape]{geometry} \newcount\K \newcommand{\createPDF}{%  \K=0 \loop\ifnum\K&amp;lt;134 % while(K&amp;lt;pagecount)  \includepdf[pages=-,scale=1.15,offset=-12mm 2mm]{\the\K.png} \advance\K by 1 % K++  \repeat % end while } \begin{document} \createPDF \end{document} scaleオプションとoffsetオプションを指定してやると周囲の切り落としが可能となる。</description>
+自炊したPDFファイルの加工と連結 \documentclass{article} \usepackage{pdfpages} \usepackage[a5paper]{geometry} \begin{document} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{1.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{2.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{3.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{4.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{5.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{6.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{7.pdf} \end{document} \documentclass{article} \usepackage{pdfpages} \usepackage[a4paper,landscape]{geometry} \newcount\K \newcommand{\createPDF}{%  \K=0 \loop\ifnum\K&amp;lt;134 % while(K&amp;lt;pagecount)  \includepdf[pages=-,scale=1.15,offset=-12mm 2mm]{\the\K.png} \advance\K by 1 % K++  \repeat % end while } \begin{document} \createPDF \end{document} scaleオプションとoffsetオプションを指定してやると周囲の切り落としが可能となる。</description>
     </item>
     
     <item>
@@ -122,8 +124,7 @@ PDFファイルの連結 以下はA5サイズの本を作っているとき、�
       
       <guid>https://qdaibungei.github.io/latex/documents/2017-03-19-bouten/</guid>
       <description>以下の画像を参考に置換する。
-　置換用文字列は以下をコピペするとよい。
-? ^&amp;amp;［＃「^&amp;amp;」に傍点］</description>
+　置換用文字列は以下をコピペするとよい。</description>
     </item>
     
     <item>
@@ -147,18 +148,7 @@ PDFファイルの連結 以下はA5サイズの本を作っているとき、�
       <pubDate>Sun, 09 Oct 2016 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2016-10-09-kousei/</guid>
-      <description>背景  小説集の編集をやっている。 インデントは全角空白で表現、ただし文頭が括弧の場合は空白不要、などの表記ルールを（明示はしていないが暗黙のうちに）定めている。  問題  著者たちはパソコンに熟達している人ばかりでなく、そのためインデント規則など表記ルールが守られていない原稿がよく送られてくる。  解法  以下のような正規表現を使って置換する。置換すべき項目がリストアップしてあると便利なので、以下に記しておく。上が検索文字列、下が置換後文字列。  インデントがないとき全角空白を挿入 ^([^　「『（〈【〔《［｛〝\n\\])
-$1
-括弧前に空白があれば削除 ^　([「『（〈【〔《［｛〝])
-$1
-文末の不要な空白を削除 [ ]+$
-
-半角括弧→全角括弧 ((.+?))
-（$1）
-2連続で使用されている疑問符・感嘆符は半角に [！？]{2,}
-
-単純なミスをあらかじめ検知 がが|のの|をを|にに|へへ|とと|でで|やや|かか|もも|はは
-その他 青空文庫作業マニュアル【校正編】は参考になる。</description>
+      <description>背景  小説集の編集をやっている。 インデントは全角空白で表現、ただし文頭が括弧の場合は空白不要、などの表記ルールを（明示はしていないが暗黙のうちに）定めている。  問題  著者たちはパソコンに熟達している人ばかりでなく、そのためインデント規則など表記ルールが守られていない原稿がよく送られてくる。  解法  以下のような正規表現を使って置換する。置換すべき項目がリストアップしてあると便利なので、以下に記しておく。上が検索文字列、下が置換後文字列。  インデントがないとき全角空白を挿入 ^([^　「『（〈【〔《［｛〝\n\\])$1括弧前に空白があれば削除 ^　([「『（〈【〔《［｛〝])$1文末の不要な空白を削除 [ ]+$半角括弧→全角括弧 ((.+?))（$1）2連続で使用されている疑問符・感嘆符は半角に [！？]{2,}単純なミスをあらかじめ検知 がが|のの|をを|にに|へへ|とと|でで|やや|かか|もも|ははその他 青空文庫作業マニュアル【校正編】は参考になる。</description>
     </item>
     
   </channel>

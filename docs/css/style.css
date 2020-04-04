@@ -63,7 +63,7 @@ body {
     box-sizing: border-box;
 }
 a:link, a:visited, a:active {
-    color: #337ab7;
+    color: #85023e;
     text-decoration: none;
 }
 a:hover {
@@ -136,7 +136,7 @@ a:hover {
     font-weight: 400;
     font-size: 2rem;
     letter-spacing: 1px;
-    border-color: #1BA0E1;
+    border-color: #b94d7e;
     border-style: solid;
     border-width: 0 0 2px;
     margin: 45px auto 20px;
@@ -144,7 +144,7 @@ a:hover {
     position: relative;
 }
 .content h1::after {
-    border-color: #1BA0E1 transparent transparent;
+    border-color: #b94d7e transparent transparent;
     border-style: solid;
     border-width: 8px 8px 0;
     bottom: -8px;
@@ -169,7 +169,7 @@ a:hover {
     padding: 0 10px;
     margin: 35px 0 10px;
     font-size: 1.6rem;
-    border-left: 2px solid #1BA0E1;
+    border-left: 2px solid #b94d7e;
 }
 .content h1+h2 {
     margin: 0 0 10px;
@@ -178,7 +178,7 @@ a:hover {
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 5px;
-    color: #1BA0E1;
+    color: #b94d7e;
 }
 .content p {
     font-size: 1.4rem;
@@ -230,18 +230,33 @@ a:hover {
 .content ul {
     font-size: 1.4rem;
     position: relative;
-    margin-bottom: 2.1rem;
-    padding:0
+    margin-bottom: 1em;
+    padding: 0;
 }
 .content ul li {
     list-style: none;
-    padding-left: 1rem;
-    text-indent: -1rem;
+    position: relative;
+    padding-left: 1em;
     text-align: justify;
     text-justify: inter-ideograph;
 }
 .content ul li::before{
-    content:' • ';
+    position: absolute;
+    left: 0;
+    top: -0.06em;
+    content: '•';
+    padding: 0 0 0 0.25em;
+}
+.content li ul {
+    margin: 0 0 0 1em;
+    padding: 0;
+}
+.content li ul li::before{
+    content: '⁃';
+    position: absolute;
+    left: 0;
+    top: 0.01em;
+    padding: 0 0 0 0.25em;
 }
 .content ol{
     font-size: 1.4rem;
@@ -305,14 +320,14 @@ a:hover {
     padding: 0 10px 5px;
     margin-top: 20px;
     font-size: 1.4rem;
-    border-bottom: 2px solid #1BA0E1;
+    border-bottom: 2px solid #b94d7e;
 }
 .mokuji-list {
     font-size: 1.4rem;
     list-style: none;
     padding: 10px 0 10px;
     margin-bottom: 20px;
-    border-bottom: 2px solid #1BA0E1;
+    border-bottom: 2px solid #b94d7e;
 }
 .mokuji-item {
     padding: 3px 0 3px;
@@ -472,13 +487,13 @@ img {
     background: #777;
     padding: 1px 2px;
 }
-.footnote-ref a::before {
+a.footnote-ref::before {
     content: "注";
     color: #fff;
     font-weight: bold;
     word-break: keep-all;
 }
-.footnote-ref a {
+a.footnote-ref {
     color: #fff;
     font-weight: bold;
 }

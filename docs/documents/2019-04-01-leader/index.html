@@ -44,24 +44,15 @@
 <p class="title">
     三点リーダを並べる<br>
 </p>
-
-
 <h1 id="方法">方法</h1>
-
 <p>目次など、三点リーダを行長いっぱいまで並べる必要に迫られることがある。これをLaTeXで実現するためには<code>\leaders</code>を使う。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX">あ<span class="k">\kern</span>-.33333zw<span class="k">\leaders\hbox</span> to .33333zw<span class="nb">{</span><span class="k">\hss\raise</span>.3zw<span class="k">\hbox</span><span class="nb">{</span>.<span class="nb">}</span><span class="k">\hss</span><span class="nb">}</span><span class="k">\hfill</span> あ</code></pre></div>
-<p>こうすると、ピリオドを三点リーダと同じ間隔で行長いっぱいまで並べることができる。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX">あ<span class="k">\kern</span>-.33333zw<span class="k">\leaders\hbox</span> to .33333zw<span class="nb">{</span><span class="k">\hss\raise</span>.3zw<span class="k">\hbox</span><span class="nb">{</span>.<span class="nb">}</span><span class="k">\hss</span><span class="nb">}</span><span class="k">\hfill</span> あ
+</code></pre></div><p>こうすると、ピリオドを三点リーダと同じ間隔で行長いっぱいまで並べることができる。</p>
 <h1 id="結果">結果</h1>
-
 <p>組版結果は以下のようになる。</p>
-
-<p><img src="/latex/assets/img/2019-04-01.png" alt="" /></p>
-
+<p><img src="/latex/assets/img/2019-04-01.png" alt=""></p>
 <p>上は<code>\leaders</code>を使ったものであり、下は<code>…</code>（三点リーダ）を直接手作業で書き並べたものである。上と下でほぼ同じ形になっており、望ましい結果が得られていることが分かる。</p>
-
 <h1 id="参考文献">参考文献</h1>
-
 <ul>
 <li>藤田眞作『<a href="http://xymtex.my.coocan.jp/fujitas2/yatimata2/">LaTeX2eまくろの八衢</a>』（オンライン版）</li>
 </ul>

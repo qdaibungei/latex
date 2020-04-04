@@ -44,32 +44,22 @@
 <p class="title">
     和文フォントを混植する方法<br>
 </p>
-
-
 <h1 id="はじめに">はじめに</h1>
-
 <p>和文フォントは、平仮名や片仮名だけ別のフォントに置き換えて使用することがある。漢字は同じでも、平仮名が違えば、紙面の印象を大きく変えることができるからだ。このように、漢字と平仮名とで別のフォントを使うことを「混植」と言う。</p>
-
 <p>LaTeXで混植をする方法の解説としては、これまでにも優れた記事がいくつか存在している。例えば「<a href="http://p-act.sakura.ne.jp/PARALLEL_ACT/LaTeX-Dojin/Hiragino-Yuchiku5go-konshoku.html">ヒラギノ明朝W2と游築五号仮名W2混植方法</a>」など。しかしそこに書かれた方法は、いくぶんか簡略的なものだというきらいがある。otfパッケージのburasageオプションが使えなかったり、upLaTeXでは使えなかったりするのだ。</p>
-
 <p>そこで本稿では、上述の欠点への補足として、やや備忘録的に記事を書いてみたい。</p>
-
 <h1 id="必要なファイルの用意">必要なファイルの用意</h1>
-
 <p>まず、必要なファイルを揃えておこう。ここでは游明朝体と游明朝体五号かなの混植をしてみよう。</p>
-
 <p>CTANにある<a href="https://ctan.org/tex-archive/language/japanese/japanese-otf">japanese-otfパッケージ</a>からbaseplとscriptというディレクトリをダウンロード。またmkjvfもダウンロードしておく。</p>
-
 <p>同様に<a href="https://ctan.org/tex-archive/language/japanese/japanese-otf-uptex">japanese-otf-uptex</a>からbasepl、script、umkjvfをダウンロード。</p>
-
 <p>さらに次のスクリプトを作成する。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
 </span><span class="cp"></span>
 mkdir tfm
 mkdir vf
 
-<span class="c1"># 普通にtfmファイルを生成
-</span><span class="c1"></span><span class="k">for</span> face in r b
+<span class="c1"># 普通にtfmファイルを生成</span>
+<span class="k">for</span> face in r b
 <span class="k">do</span>
     <span class="k">for</span> hv in h v
     <span class="k">do</span>
@@ -77,18 +67,18 @@ mkdir vf
         ppltotf basepl/base-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl expyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
         ppltotf basepl/brsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl brsgyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
         ppltotf basepl/brsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl brsgexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
-        <span class="c1">#
-</span><span class="c1"></span>        uppltotf -kanji<span class="o">=</span>uptex basepl/ubase-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
+        #
+        uppltotf -kanji<span class="o">=</span>uptex basepl/ubase-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
         uppltotf -kanji<span class="o">=</span>uptex basepl/ubase-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
         uppltotf -kanji<span class="o">=</span>uptex basepl/ubrsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upbrsgyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
         uppltotf -kanji<span class="o">=</span>uptex basepl/ubrsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upbrsgexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
     <span class="k">done</span>
 <span class="k">done</span>
 
-<span class="c1"># ここが混植のキモ。
-</span><span class="c1"># 混植しないときは引数二つでよかったが、混植のため引数は三つ。
-</span><span class="c1"># しかし仕組みはあまり理解できていない。
-</span><span class="c1"></span><span class="k">for</span> face in r b
+<span class="c1"># ここが混植のキモ。</span>
+<span class="c1"># 混植しないときは引数二つでよかったが、混植のため引数は三つ。</span>
+<span class="c1"># しかし仕組みはあまり理解できていない。</span>
+<span class="k">for</span> face in r b
 <span class="k">do</span>
     <span class="k">for</span> hv in h v
     <span class="k">do</span>
@@ -116,13 +106,10 @@ perl script/mktfm_sp.pl
 perl script/mkutfvf_sp.pl
 
 mv *.tfm tfm/
-mv *.vf vf/</code></pre></div>
-<p>このスクリプトは、基本的にはmakeotfおよびumakeotfを参考にして適当に書き換えたものである。</p>
-
+mv *.vf vf/
+</code></pre></div><p>このスクリプトは、基本的にはmakeotfおよびumakeotfを参考にして適当に書き換えたものである。</p>
 <h1 id="各種ファイルの作成">各種ファイルの作成</h1>
-
 <p>先程作成したスクリプトを実行し、tfmファイルやvfファイルを生成する。そして$TEXMF下の適当な場所に配置する。</p>
-
 <p>最後に、otfパッケージを参考にして、yumin5go.styを作成する。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
 </span><span class="c">% yumin5go.sty
@@ -182,8 +169,8 @@ mv *.vf vf/</code></pre></div>
     <span class="k">\ymnVgo</span>@mapline<span class="nb">{</span>uphminb-v<span class="nb">}{</span>UniJIS-UTF16-V<span class="nb">}{</span>JJSYuMinchoPr6N-D.otf<span class="nb">}</span>
 <span class="k">\fi</span>
 
-<span class="k">\endinput</span></code></pre></div>
-<p>このstyファイルを読み込み、<code>\okfamily</code>とすれば游明朝体五号かなが使えるはずである。upLaTeXでも問題なく動作するはずだし、otfパッケージのburasageオプションもちゃんと機能する。</p>
+<span class="k">\endinput</span>
+</code></pre></div><p>このstyファイルを読み込み、<code>\okfamily</code>とすれば游明朝体五号かなが使えるはずである。upLaTeXでも問題なく動作するはずだし、otfパッケージのburasageオプションもちゃんと機能する。</p>
 
 <div class="showarticleinfo">
     <i class="fas fa-clock"></i> 2019年3月31日<br>

@@ -44,63 +44,37 @@
 <p class="title">
     小説校正のための正規表現集<br>
 </p>
-
-
 <h1 id="背景">背景</h1>
-
 <ul>
 <li>小説集の編集をやっている。</li>
 <li>インデントは全角空白で表現、ただし文頭が括弧の場合は空白不要、などの表記ルールを（明示はしていないが暗黙のうちに）定めている。</li>
 </ul>
-
 <h1 id="問題">問題</h1>
-
 <ul>
 <li>著者たちはパソコンに熟達している人ばかりでなく、そのためインデント規則など表記ルールが守られていない原稿がよく送られてくる。</li>
 </ul>
-
 <h1 id="解法">解法</h1>
-
 <ul>
 <li>以下のような正規表現を使って置換する。置換すべき項目がリストアップしてあると便利なので、以下に記しておく。上が検索文字列、下が置換後文字列。</li>
 </ul>
-
 <h2 id="インデントがないとき全角空白を挿入">インデントがないとき全角空白を挿入</h2>
-
-<p><textarea onclick="this.select();">^([^　「『（〈【〔《［｛〝\n\\])</textarea></p>
-
-<p><textarea onclick="this.select();">　$1</textarea></p>
-
+<p><!-- raw HTML omitted -->^([^　「『（〈【〔《［｛〝\n\\])<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->　$1<!-- raw HTML omitted --></p>
 <h2 id="括弧前に空白があれば削除">括弧前に空白があれば削除</h2>
-
-<p><textarea onclick="this.select();">^　([「『（〈【〔《［｛〝])</textarea></p>
-
-<p><textarea onclick="this.select();">$1</textarea></p>
-
+<p><!-- raw HTML omitted -->^　([「『（〈【〔《［｛〝])<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->$1<!-- raw HTML omitted --></p>
 <h2 id="文末の不要な空白を削除">文末の不要な空白を削除</h2>
-
-<p><textarea onclick="this.select();">[ 　]+$</textarea></p>
-
-<p><textarea onclick="this.select();" placeholder="（なし）"></textarea></p>
-
-<h2 id="半角括弧-全角括弧">半角括弧→全角括弧</h2>
-
-<p><textarea onclick="this.select();">((.+?))</textarea></p>
-
-<p><textarea onclick="this.select();">（$1）</textarea></p>
-
-<h2 id="2連続で使用されている疑問符-感嘆符は半角に">2連続で使用されている疑問符・感嘆符は半角に</h2>
-
-<p><textarea onclick="this.select();">[！？]{2,}</textarea></p>
-
-<p><textarea onclick="this.select();" placeholder="（置換ではなく検索して手動で訂正）"></textarea></p>
-
+<p><!-- raw HTML omitted -->[ 　]+$<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="半角括弧全角括弧">半角括弧→全角括弧</h2>
+<p><!-- raw HTML omitted -->((.+?))<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->（$1）<!-- raw HTML omitted --></p>
+<h2 id="2連続で使用されている疑問符感嘆符は半角に">2連続で使用されている疑問符・感嘆符は半角に</h2>
+<p><!-- raw HTML omitted -->[！？]{2,}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h2 id="単純なミスをあらかじめ検知">単純なミスをあらかじめ検知</h2>
-
-<p><textarea onclick="this.select();">がが|のの|をを|にに|へへ|とと|でで|やや|かか|もも|はは</textarea></p>
-
+<p><!-- raw HTML omitted -->がが|のの|をを|にに|へへ|とと|でで|やや|かか|もも|はは<!-- raw HTML omitted --></p>
 <h1 id="その他">その他</h1>
-
 <p><a href="http://www.aozora.gr.jp/aozora-manual/index-proofreading.html#proofreading04">青空文庫作業マニュアル【校正編】</a>は参考になる。</p>
 
 <div class="showarticleinfo">

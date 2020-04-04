@@ -44,16 +44,10 @@
 <p class="title">
     表題つきの四角い枠（四角いitembox環境）<br>
 </p>
-
-
 <h1 id="はじめに">はじめに</h1>
-
 <p>ascmac.styを用いると、itembox環境というものが使える。表題つきの丸い枠である。この枠は、レジュメなどを作るとき使い勝手がよい。</p>
-
 <p>ところで丸い枠ではなく四角い枠が使いたいときもある。こういうときはどうすればよいか。四角い枠を定義すればよい。以下は、ネットで見つけて拾ったものである。</p>
-
 <h1 id="fitembox環境の定義">fitembox環境の定義</h1>
-
 <p>以下、ネットで拾った「表題つきの四角い枠」の定義である。fitembox環境と名づけられている。使いかたはitembox環境と同じである。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
 </span><span class="c">% fitembox environment
@@ -75,12 +69,12 @@
     <span class="k">\hrule</span> height.4pt<span class="nb">}}</span>
     <span class="k">\noindent\hbox</span> to<span class="k">\linewidth</span><span class="nb">{</span><span class="c">%
 </span><span class="c"></span>        <span class="k">\vrule</span> width .4pt <span class="k">\hss</span> <span class="k">\box\scscb</span>@x <span class="k">\hss</span> <span class="k">\vrule</span> width .4pt<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\egroup\vskip</span>0pt<span class="nb">}</span></code></pre></div>
-<h1 id="使用例">使用例</h1>
+</span><span class="c"></span>    <span class="k">\egroup\vskip</span>0pt<span class="nb">}</span>
+</code></pre></div><h1 id="使用例">使用例</h1>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\begin</span><span class="nb">{</span>fitembox<span class="nb">}</span>[l]<span class="nb">{</span>夏目漱石<span class="nb">}</span>
     吾輩は猫である。
-<span class="k">\end</span><span class="nb">{</span>fitembox<span class="nb">}</span></code></pre></div>
-<p><img src="/latex/assets/img/2019-06-15.png" alt="" /></p>
+<span class="k">\end</span><span class="nb">{</span>fitembox<span class="nb">}</span>
+</code></pre></div><p><img src="/latex/assets/img/2019-06-15.png" alt=""></p>
 
 <div class="showarticleinfo">
     <i class="fas fa-clock"></i> 2019年6月15日<br>

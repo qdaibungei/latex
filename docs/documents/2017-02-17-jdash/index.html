@@ -44,26 +44,16 @@
 <p class="title">
     jdashパッケージ<br>
 </p>
-
-
 <h1 id="概要">概要</h1>
-
 <p>jdashパッケージというLaTeXパッケージを作った。<a href="https://gist.github.com/qdaibungei/4230bb59434ec1ba505bc94dbfde1898">ダウンロードはここからできる</a>。</p>
-
 <p>jdashというのはjapanese dashの略のつもりである。日本語文に現れる記号ダッシュ <code>―</code> は、通常何個か並べて一本の線のようにして使うが、フォントによっては一本の線に見えない。一本の線のように見せるには工夫が必要だ。その工夫をパッケージ化したものがjdashパッケージだ。</p>
-
 <p>ところで、人によってはときおり放心状態で「あ～～～」と声にならない声を発したくなることがある。しかしこれでは、波ダッシュ <code>～</code> がつながって見えないのでいまいち放心状態であることが伝達されにくい。そこで波線をつなげられるような工夫が必要となる。jdashパッケージでは、その工夫をも盛り込んだ。</p>
-
 <h1 id="使い方">使い方</h1>
-
 <h2 id="ダッシュ">ダッシュ</h2>
-
 <p>この文章でも使っているようなふつうのダッシュ――あるいはダーシとも言う――を出力するには、<code>\jdash</code> という命令を使う。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\jdash</span><span class="na">[2]</span></code></pre></div>
-<p>のように数字を与えれば、この例の場合2字分の長さのダッシュが出力される。なお、2字分の長さのダッシュ（倍角ダッシュ）に限り、<code>\――</code> という命令でも出力可能に設定してある。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\jdash</span><span class="na">[2]</span>
+</code></pre></div><p>のように数字を与えれば、この例の場合2字分の長さのダッシュが出力される。なお、2字分の長さのダッシュ（倍角ダッシュ）に限り、<code>\――</code> という命令でも出力可能に設定してある。</p>
 <p>デフォルトでは、通常のダッシュ記号 <code>―</code> を重ねることで一本につながったダッシュを出力するようにしている。このやり方は美文書などでも紹介されている有名なやり方である。</p>
-
 <p>しかしPDFで見たときダブって見える弱点もある。そこでPDFで閲覧するときのために、罫線 <code>─</code> を使った表示ができると都合がよい。そこで容易している命令が <code>\jdashstyle</code> である。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\jdashstyle</span><span class="nb">{</span>―<span class="nb">}</span> <span class="c">% デフォルト
 </span><span class="c"></span><span class="k">\jdash</span><span class="na">[3]</span> <span class="c">% ダブったダッシュが出る
@@ -72,19 +62,17 @@
 </span><span class="c"></span><span class="k">\jdash</span><span class="na">[3]</span> <span class="c">% 罫線で出力される
 </span><span class="c"></span>
 <span class="k">\jdashstyle</span><span class="nb">{</span>rule<span class="nb">}</span> <span class="c">% ダッシュ記号を\ruleで生成されるものに変更
-</span><span class="c"></span><span class="k">\jdash</span><span class="na">[3]</span> <span class="err">%</span> <span class="k">\rule</span>で出力される</code></pre></div>
-<h2 id="波ダッシュ">波ダッシュ</h2>
-
+</span><span class="c"></span><span class="k">\jdash</span><span class="na">[3]</span> <span class="c">% \ruleで出力される
+</span></code></pre></div><h2 id="波ダッシュ">波ダッシュ</h2>
 <p>「あ～～～～」と叫びたいとき、あるいはTeX言語話者らしく「えくすぱんどあふた～～～～！」と叫びたいときには波ダッシュがつながっていると便利だ。そのために <code>\～</code> という命令を用意してある（wave dashの略のつもり）。<code>\～</code> という命令を並べれば、波ダッシュ記号 <code>～</code> がいくらでもつながる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX">えくすぱんどあふた<span class="k">\～\～\～\～\～\～\～</span>！</code></pre></div>
-<p>フォントによっては波線同士の食い込み量がまずくて、うまくつながらないかもしれない。その場合は <code>\wdashKerningAmount{数字}</code> という命令を使う。数字の単位は <code>zw</code> である。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX">えくすぱんどあふた<span class="k">\～\～\～\～\～\～\～</span>！
+</code></pre></div><p>フォントによっては波線同士の食い込み量がまずくて、うまくつながらないかもしれない。その場合は <code>\wdashKerningAmount{数字}</code> という命令を使う。数字の単位は <code>zw</code> である。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% \wdashKerningAmount{.25} % デフォルト。0.25zw分、波線が食い込む。
-</span><span class="c"></span><span class="k">\wdashKerningAmount</span><span class="nb">{</span>.261<span class="nb">}</span> <span class="err">%</span> 食い込み具合を変更。筑紫明朝はこのくらい食い込ませるとうまく波線がつながる。</code></pre></div>
-<p>なお、一部のライトノベルで使われているような波線 <code>〰</code> の表示もできる。このために <code>\wdashstyle</code> という命令が容易されている。</p>
+</span><span class="c"></span><span class="k">\wdashKerningAmount</span><span class="nb">{</span>.261<span class="nb">}</span> <span class="c">% 食い込み具合を変更。筑紫明朝はこのくらい食い込ませるとうまく波線がつながる。
+</span></code></pre></div><p>なお、一部のライトノベルで使われているような波線 <code>〰</code> の表示もできる。このために <code>\wdashstyle</code> という命令が容易されている。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% \wdashstyle{〜} % デフォルト
-</span><span class="c"></span><span class="k">\wdashstyle</span><span class="nb">{</span>〰<span class="nb">}</span> <span class="err">%</span> 波線表示の切り替え</code></pre></div>
-<h1 id="結論">結論</h1>
-
+</span><span class="c"></span><span class="k">\wdashstyle</span><span class="nb">{</span>〰<span class="nb">}</span> <span class="c">% 波線表示の切り替え
+</span></code></pre></div><h1 id="結論">結論</h1>
 <p>とりあえず、使ってみるなり、使ってみないなりしてください。おしまい。</p>
 
 <div class="showarticleinfo">

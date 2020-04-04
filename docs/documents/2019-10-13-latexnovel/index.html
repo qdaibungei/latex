@@ -44,36 +44,20 @@
 <p class="title">
     LaTeXによる小説組版法・中級編――ベスト文集制作記録②<br>
 </p>
-
-
 <p>前回に引き続き、小説組版の方法を解説していく。今回は、<strong>扉ページ</strong>の作り方である。</p>
-
 <h1 id="扉">扉</h1>
-
 <h2 id="扉とは">扉とは</h2>
-
 <p>「<strong>扉</strong>」とは、表紙をめくって最初にあるページのことである。書籍の題名などを書くページである。今回のベスト文集では、次のような扉を作った。</p>
-
-<p><img src="/latex/assets/img/2019-10-13-tobira.png" alt="" /></p>
-
+<p><img src="/latex/assets/img/2019-10-13-tobira.png" alt=""></p>
 <p>我ながらシンプルでかっこいい扉である。「九大文学」という文字のフォントは、背表紙に使ったのと同じフォント（<a href="https://moji-waku.com/kaiso/">廻想体</a>）を使っている。これにより統一感が出て、本全体のデザインのまとまりがよくなったはずである。</p>
-
 <h2 id="ロゴ">ロゴ</h2>
-
 <p>扉の左下には、九大文藝部のロゴを配置してある。</p>
-
 <p>このロゴは、かなり昔にデザインされ、部誌で使用されていたものである。一時期このロゴはまったく使用されなくなっていたが、私が再び使い始めた。</p>
-
 <p>今回のベスト文集におけるロゴは、以前のロゴとは少しだけデザインが異なっている。欧文フォントは、以前のロゴとまったく同じもの（<a href="https://fonts.adobe.com/fonts/classico-urw">Classico</a>）を使用している。だが和文フォントは、本全体の雰囲気に合わせて「廻想体」を選択した（以前のロゴではヒラギノ明朝が使われていた）。</p>
-
 <p>文藝部の遺伝子は、少しずつアップデートされながらも、着実に継承されていく。</p>
-
-<p><img src="/latex/assets/img/2019-10-13-logo-compare.png" alt="" /></p>
-
+<p><img src="/latex/assets/img/2019-10-13-logo-compare.png" alt=""></p>
 <h2 id="latexによる扉の作り方">LaTeXによる扉の作り方</h2>
-
 <p>LaTeXで扉を作るには通常、<code>\title{九大文学}</code>のように本のタイトルを指定し、<code>\maketitle</code>という命令を書き込むことによって扉を生成する。しかしこの方法では、扉ページのレイアウトを変更するのが非常に難しい。具体的には、クラスファイルを編集して<code>\maketitle</code>という命令を定義し直せばよいと思われるが、この方法は余程TeXに習熟している人でない限り実行困難であろう。今回作ったベスト文集のように、扉だけ横書きで、本文は縦書き、といったような複雑なレイアウトにする場合は、特に面倒だと思われる。</p>
-
 <p>そこで、扉を作るにあたっては、実現したいレイアウトを直接LaTeXの文法に従って書くほうが無難である。具体的には、私は以下のように記述して扉を作った（ただし、以下の記述のなかには独自に定義したマクロも多く含まれているので、これをそのままコピペしてもエラーが出るだけである。注意されたい）。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\newhanmenII</span>
 <span class="k">\newhanmen</span><span class="nb">{</span>tate,te=-2mm<span class="nb">}</span>
@@ -97,16 +81,14 @@
     <span class="k">\end</span><span class="nb">{</span>center<span class="nb">}</span>
 <span class="nb">}</span>
 
-<span class="k">\endgroup</span></code></pre></div>
-<p>何をやっているかというと、基本的には、「文字の大きさやフォントを切り替えつつ、<code>\vspace</code>や<code>\hspace</code>で文字の位置を調整して配置している」ということになる。すなわちWordなどと同じ要領でデザインすればよい。</p>
-
+<span class="k">\endgroup</span>
+</code></pre></div><p>何をやっているかというと、基本的には、「文字の大きさやフォントを切り替えつつ、<code>\vspace</code>や<code>\hspace</code>で文字の位置を調整して配置している」ということになる。すなわちWordなどと同じ要領でデザインすればよい。</p>
 <p>文字の大きさは、</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\fontsize</span><span class="nb">{</span>20Q<span class="nb">}{</span>25H<span class="nb">}</span><span class="k">\selectfont</span></code></pre></div>
-<p>のように書けば指定できる。また、フォントの指定をするには</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\kanjifamily</span><span class="nb">{</span>hmc<span class="nb">}</span><span class="k">\romanfamily</span><span class="nb">{</span>qag<span class="nb">}</span><span class="k">\selectfont</span></code></pre></div>
-<p>のように書けばよい。フォント指定のマクロには<code>\fontfamily</code>という命令もあるが、ここでは敢えて<code>\fontfamily</code>ではなく<code>\kanjifamily</code>と<code>\romanfamily</code>を使っている。こちらの命令を使えば、和文と欧文でまったく違うフォントを指定することが可能となるので、便利である。</p>
-
-<p>（次回に続く）</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\fontsize</span><span class="nb">{</span>20Q<span class="nb">}{</span>25H<span class="nb">}</span><span class="k">\selectfont</span>
+</code></pre></div><p>のように書けば指定できる。また、フォントの指定をするには</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\kanjifamily</span><span class="nb">{</span>hmc<span class="nb">}</span><span class="k">\romanfamily</span><span class="nb">{</span>qag<span class="nb">}</span><span class="k">\selectfont</span>
+</code></pre></div><p>のように書けばよい。フォント指定のマクロには<code>\fontfamily</code>という命令もあるが、ここでは敢えて<code>\fontfamily</code>ではなく<code>\kanjifamily</code>と<code>\romanfamily</code>を使っている。こちらの命令を使えば、和文と欧文でまったく違うフォントを指定することが可能となるので、便利である。</p>
+<p>（<a href="https://qdaibungei.github.io/latex/documents/2019-10-14-latexnovel/">次回</a>に続く）</p>
 
 <div class="showarticleinfo">
     <i class="fas fa-clock"></i> 2019年10月13日<br>

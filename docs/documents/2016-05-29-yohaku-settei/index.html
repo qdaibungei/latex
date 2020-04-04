@@ -44,37 +44,27 @@
 <p class="title">
     LaTeX文書における余白の設定方法<br>
 </p>
-
-
-<p>この記事では、LaTeX文書における余白の設定方法を解説する<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">1</a></sup>。</p>
-
+<p>この記事では、LaTeX文書における余白の設定方法を解説する<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。</p>
 <h1 id="横書きの場合">横書きの場合</h1>
-
 <h2 id="geometryパッケージ">geometryパッケージ</h2>
-
 <p>横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 45字×41行の設定にする
-</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[textwidth=45zw,lines=41]</span><span class="nb">{</span>geometry<span class="nb">}</span></code></pre></div>
-<p>字数・行数を指定するのではなく、余白を直接指定する場合、次のように書けばよい。</p>
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[textwidth=45zw,lines=41]</span><span class="nb">{</span>geometry<span class="nb">}</span>
+</code></pre></div><p>字数・行数を指定するのではなく、余白を直接指定する場合、次のように書けばよい。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 上下に2cm、左右に1cmの余白を取る
-</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[top=2cm, bottom=2cm, left=1cm, right=1cm]</span><span class="nb">{</span>geometry<span class="nb">}</span></code></pre></div>
-<h2 id="hanmenパッケージ">hanmenパッケージ</h2>
-
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[top=2cm, bottom=2cm, left=1cm, right=1cm]</span><span class="nb">{</span>geometry<span class="nb">}</span>
+</code></pre></div><h2 id="hanmenパッケージ">hanmenパッケージ</h2>
 <p>拙作の<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmenパッケージ</a>を用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=10,H=15,W=38,L=40,ptj]</span><span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div>
-<p>そうすると、</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=10,H=15,W=38,L=40,ptj]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+</code></pre></div><p>そうすると、</p>
 <ul>
 <li>文字サイズ　10pt</li>
 <li>行送り　　　15pt</li>
 <li>行長　　　　38字</li>
 <li>行数　　　　40行</li>
 </ul>
-
 <p>に設定できる。hanmenパッケージは縦書きにも対応しているので便利である。</p>
-
 <h2 id="手動で設定">手動で設定</h2>
-
 <p>パッケージに頼らず、手動で余白を設定することもできる。例えば、字数・行数を指定する場合は次をプリアンブルに書く。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
 </span><span class="c">% 45字×41行の設定にする
@@ -109,26 +99,20 @@
 <span class="k">\advance\evensidemargin</span> by -1truein
 
 <span class="c">% \topskip調整
-</span><span class="c"></span><span class="k">\topskip</span> = 0.88zw</code></pre></div>
-<h1 id="縦書きの場合">縦書きの場合</h1>
-
+</span><span class="c"></span><span class="k">\topskip</span> = 0.88zw
+</code></pre></div><h1 id="縦書きの場合">縦書きの場合</h1>
 <h2 id="hanmenパッケージ-1">hanmenパッケージ</h2>
-
-<p>geometryパッケージは縦書きに非対応である<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">2</a></sup>。しかし、例えば<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmenパッケージ</a>を用いると、縦書きでも余白の設定を行なえる。プリアンブルに次のように書き込む。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=10,H=15,W=38,L=40,ptj,tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span></code></pre></div>
-<p>そうすると、</p>
-
+<p>geometryパッケージは縦書きに非対応である<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。しかし、例えば<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmenパッケージ</a>を用いると、縦書きでも余白の設定を行なえる。プリアンブルに次のように書き込む。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=10,H=15,W=38,L=40,ptj,tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+</code></pre></div><p>そうすると、</p>
 <ul>
 <li>文字サイズ　10pt</li>
 <li>行送り　　　15pt</li>
 <li>行長　　　　38字</li>
 <li>行数　　　　40行</li>
 </ul>
-
 <p>に設定できる。詳しい使い方は<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmenパッケージ</a>の記事を参照せよ。</p>
-
 <h2 id="手動で設定-1">手動で設定</h2>
-
 <p>手動で設定する場合、次をプリアンブルに書く。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
 </span><span class="c">% 46字×19行の設定にする
@@ -163,19 +147,19 @@
 <span class="k">\advance\evensidemargin</span> by -1truein
 
 <span class="c">% \topskip調整
-</span><span class="c"></span><span class="k">\topskip</span> = 0.5zw</code></pre></div>
-<p>手動で設定する方法は、一見煩雑であるが、やっていることはそんなに難しいことではない。詳しい解説は、<a href="https://qdaibungei.github.io/latex/documents/2016-05-28-hanmen-sekkei/">LaTeXにおける版面設計</a>を参照されたい。</p>
-<div class="footnotes">
-
-<hr />
-
+</span><span class="c"></span><span class="k">\topskip</span> = 0.5zw
+</code></pre></div><p>手動で設定する方法は、一見煩雑であるが、やっていることはそんなに難しいことではない。詳しい解説は、<a href="https://qdaibungei.github.io/latex/documents/2016-05-28-hanmen-sekkei/">LaTeXにおける版面設計</a>を参照されたい。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:2">最近この記事を大幅に書き直した。昔載せていた記事は、<a href="https://qdaibungei.github.io/latex/documents/2016-05-28-hanmen-sekkei/">LaTeXにおける版面設計</a>に移動させた。必要に応じて参照されたい。
- <a class="footnote-return" href="#fnref:2">↩</a></li>
-<li id="fn:1">もっとも、<code>lltjp-geometry.sty</code>というパッケージを使えば、無理矢理geometryパッケージを縦書きで使うことはできるらしいが、どの程度使える代物なのか、私は使ったことがないので分からない。詳しくは<a href="https://texwiki.texjp.org/?geometry">geometry（TeX wiki内の一項目）</a>を参照のこと。
- <a class="footnote-return" href="#fnref:1">↩</a></li>
+<li id="fn:1" role="doc-endnote">
+<p>最近この記事を大幅に書き直した。昔載せていた記事は、<a href="https://qdaibungei.github.io/latex/documents/2016-05-28-hanmen-sekkei/">LaTeXにおける版面設計</a>に移動させた。必要に応じて参照されたい。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>もっとも、<code>lltjp-geometry.sty</code>というパッケージを使えば、無理矢理geometryパッケージを縦書きで使うことはできるらしいが、どの程度使える代物なのか、私は使ったことがないので分からない。詳しくは<a href="https://texwiki.texjp.org/?geometry">geometry（TeX wiki内の一項目）</a>を参照のこと。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
 <div class="showarticleinfo">
     <i class="fas fa-clock"></i> 2016年5月29日<br>

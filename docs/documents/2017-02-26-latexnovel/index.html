@@ -44,20 +44,12 @@
 <p class="title">
     LaTeXによる小説組版法（初級）<br>
 </p>
-
-
 <p>この記事は、LaTeXで小説を組版するにはどうすればよいかを具体的に解説するものである。理論的な話は最小限に留め、主として実践的な話題を取り上げる。つまり、具体的にどう手を動かせばLaTeXで小説が組版できるのかを解説する。</p>
-
 <p>コンピュータおよびLaTeXの初心者でも読めるように配慮したつもりだが、LaTeXの知識ゼロだと厳しいかもしれない。</p>
-
 <p>なお、以下の方法はあくまでも初心者向けの簡易的方法であり、私が普段LaTeXで組版している実際の現場の方法とはかなり異なる。</p>
-
 <h1 id="電撃文庫の再現">電撃文庫の再現</h1>
-
 <h2 id="雛形ファイルの用意">雛形ファイルの用意</h2>
-
 <p>具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。</p>
-
 <p>まず、以下を <code>novelstyle.sty</code> という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。</p>
 <div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\NeedsTeXFormat</span><span class="nb">{</span>pLaTeX2e<span class="nb">}</span>
 <span class="k">\ProvidesPackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
@@ -168,99 +160,81 @@
 </span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2139=0     <span class="c">%々
 </span><span class="c"></span>
 <span class="c">% \endinputはスタイルファイルの末尾に記すおまじない。
-</span><span class="c"></span><span class="k">\endinput</span></code></pre></div>
-<p>　</p>
-
+</span><span class="c"></span><span class="k">\endinput</span>
+</code></pre></div><p>　</p>
 <p>次に、以下の文字列を <code>novel.tex</code> という名で保存する。これが雛形ファイルとなる。</p>
 <div class="highlight"><pre class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 （ここに本文を書く）
-<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span></code></pre></div>
-<p>最後に、<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmen.sty</a>もダウンロードしておく。</p>
-
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</code></pre></div><p>最後に、<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmen.sty</a>もダウンロードしておく。</p>
 <p>以上のファイルはすべて同じフォルダに入れておく。</p>
-
 <h2 id="pdfファイルの生成">PDFファイルの生成</h2>
-
 <p>さて、あとは先程の雛形ファイルをPDF化できれば、ひとまずは成功である。</p>
-
 <p>コンピュータに詳しい人なら、PDF化は容易であろう。しかし、コンピュータに不慣れな人にはこれが難しく感じられるはずである。</p>
-
 <p>そこで、簡単にPDF化する方法として、以下のものを勧めたい（なお、以下の方法はWindows限定）。</p>
-
-<p>次の文字列を <code>tex2pdf.bat</code> という名で保存する<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>。</p>
+<p>次の文字列を <code>tex2pdf.bat</code> という名で保存する<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> %~dp0
 uplatex novel
-dvipdfmx novel</code></pre></div>
-<p>この <code>tex2pdf.bat</code> を、<code>novel.tex</code> と同じフォルダに入れておく。あとは、<code>tex2pdf.bat</code> をダブルクリックすると、見事PDFファイルが生成されるはずである。</p>
-
+dvipdfmx novel
+</code></pre></div><p>この <code>tex2pdf.bat</code> を、<code>novel.tex</code> と同じフォルダに入れておく。あとは、<code>tex2pdf.bat</code> をダブルクリックすると、見事PDFファイルが生成されるはずである。</p>
 <h1 id="本文の書き方">本文の書き方</h1>
-
 <p>上で、<code>novel.tex</code> というファイルを作った。それをここに再掲する。</p>
 <div class="highlight"><pre class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 （ここに本文を書く）
-<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span></code></pre></div>
-<h2 id="基本">基本</h2>
-
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</code></pre></div><h2 id="基本">基本</h2>
 <p><code>（ここに本文を書く）</code> の部分に本文を書けばよい。たとえば以下のように書く。</p>
 <div class="highlight"><pre class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 　吾輩は猫である。名前はまだ無い。
 　どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。
-<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span></code></pre></div>
-<p>通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、<code>novelstyle.sty</code> では、空行を挟まずとも段落分けできるようにしてある。<strong>つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。</strong></p>
-
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</code></pre></div><p>通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、<code>novelstyle.sty</code> では、空行を挟まずとも段落分けできるようにしてある。<strong>つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。</strong></p>
 <h2 id="ルビ">ルビ</h2>
-
 <p>ルビを振りたいときは、ルビマクロが使える。</p>
 <div class="highlight"><pre class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 　<span class="k">\ruby</span><span class="na">[h]</span><span class="nb">{</span>吾輩<span class="nb">}{</span>わが|はい<span class="nb">}</span>は猫である。名前はまだ無い。
 　どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番<span class="k">\ruby</span><span class="na">[h]</span><span class="nb">{</span>獰悪<span class="nb">}{</span>どう|あく<span class="nb">}</span>な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。
-<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span></code></pre></div>
-<p>ルビマクロの使い方は、<a href="http://qiita.com/zr_tex8r/items/42466cbcbeb670a3a2dc">LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～</a>を参照せよ。</p>
-
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</code></pre></div><p>ルビマクロの使い方は、<a href="http://qiita.com/zr_tex8r/items/42466cbcbeb670a3a2dc">LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～</a>を参照せよ。</p>
 <h2 id="縦中横">縦中横</h2>
-
-<p>縦中横が使いたいときは、<code>\tcy</code> マクロが使える<sup class="footnote-ref" id="fnref:tcy"><a href="#fn:tcy">2</a></sup>。</p>
+<p>縦中横が使いたいときは、<code>\tcy</code> マクロが使える<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
 <div class="highlight"><pre class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 　<span class="k">\ruby</span><span class="na">[h]</span><span class="nb">{</span>吾輩<span class="nb">}{</span>わが|はい<span class="nb">}</span>は猫である。名前はまだ無い。
 　<span class="k">\tcy</span><span class="nb">{</span>12<span class="nb">}</span>時だ。そろそろお昼にしよう<span class="k">\tcy</span><span class="nb">{</span>!!<span class="nb">}</span>
-<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span></code></pre></div>
-<h2 id="疑問符-感嘆符の後の空白">疑問符・感嘆符の後の空白</h2>
-
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</code></pre></div><h2 id="疑問符感嘆符の後の空白">疑問符・感嘆符の後の空白</h2>
 <p>最後に、ちょっと面倒だが、疑問符・感嘆符の後の全角空白は、<code>\zenkakuaki</code> に置換する。</p>
 <div class="highlight"><pre class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 　<span class="k">\ruby</span><span class="na">[h]</span><span class="nb">{</span>吾輩<span class="nb">}{</span>わが|はい<span class="nb">}</span>は猫である。名前はまだ無い。
 　<span class="k">\tcy</span><span class="nb">{</span>12<span class="nb">}</span>時だ！<span class="k">\zenkakuaki</span><span class="nb">{}</span>そろそろお昼にしよう<span class="k">\tcy</span><span class="nb">{</span>!!<span class="nb">}</span><span class="k">\zenkakuaki</span><span class="nb">{}</span>ラーメンがいいな！
-<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span></code></pre></div>
-<p><code>！</code> と <code>？</code> だけは、直後に全角空白を入れないで記述しておくと、PDF化させたさいに自動的に全角アキを挿入してくれるから、最初からそのように書いてもよい。しかし、<code>\tcy{!!}</code> の直後には <code>\zenkakuaki</code> が必ず要る。</p>
-
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</code></pre></div><p><code>！</code> と <code>？</code> だけは、直後に全角空白を入れないで記述しておくと、PDF化させたさいに自動的に全角アキを挿入してくれるから、最初からそのように書いてもよい。しかし、<code>\tcy{!!}</code> の直後には <code>\zenkakuaki</code> が必ず要る。</p>
 <h1 id="まとめ">まとめ</h1>
-
 <p>上で見たように、LaTeXで小説を組版するのはそんなに難しいことではない。誰でもできることである。</p>
-
 <p>ただし、レイアウトを変更したり、扉ページを作ったりは少し難しいので、ここでは解説しなかった。後日、中級編を執筆する予定なので、そこで解説できればと思っている。</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">ファイル名は末尾に <code>.bat</code> があれば何でもよいが、ここでは &ldquo;tex to pdf&rdquo; という意味で <code>tex2pdf.bat</code> という名にした。
- <a class="footnote-return" href="#fnref:1">↩</a></li>
-<li id="fn:tcy">縦中横を実現するマクロとしては、plextパッケージですでに <code>\rensuji</code> が提供されている。しかし、<code>\rensuji</code> を直接使うとどうやら無駄に \xkanjiskip が挿入されてしまうようなので、ここでは独自に <code>\tcy</code> というマクロを使うこととした。
- <a class="footnote-return" href="#fnref:tcy">↩</a></li>
+<li id="fn:1" role="doc-endnote">
+<p>ファイル名は末尾に <code>.bat</code> があれば何でもよいが、ここでは &ldquo;tex to pdf&rdquo; という意味で <code>tex2pdf.bat</code> という名にした。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>縦中横を実現するマクロとしては、plextパッケージですでに <code>\rensuji</code> が提供されている。しかし、<code>\rensuji</code> を直接使うとどうやら無駄に \xkanjiskip が挿入されてしまうようなので、ここでは独自に <code>\tcy</code> というマクロを使うこととした。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
 <div class="showarticleinfo">
     <i class="fas fa-clock"></i> 2017年2月26日<br>

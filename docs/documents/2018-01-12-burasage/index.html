@@ -44,20 +44,13 @@
 <p class="title">
     otfパッケージのぶら下げ組をちょっと改良する<br>
 </p>
-
-
 <h1 id="緒言">緒言</h1>
-
 <p>本稿は、otfパッケージによるぶら下げ組を改良するための方法を記すものである。</p>
-
 <h1 id="本論">本論</h1>
-
 <p>otfパッケージにはburasageオプションがあり、これを利用するとぶら下げ組ができる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[burasage]</span><span class="nb">{</span>otf<span class="nb">}</span></code></pre></div>
-<p>しかし、このぶら下げ組にはひとつ問題がある。句読点が行末に来たとき、必ずぶら下げ処理がおこなわれてしまうのである<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[burasage]</span><span class="nb">{</span>otf<span class="nb">}</span>
+</code></pre></div><p>しかし、このぶら下げ組にはひとつ問題がある。句読点が行末に来たとき、必ずぶら下げ処理がおこなわれてしまうのである<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。</p>
 <p>むろん、これはこれでひとつの立派な組版方針である。だが、行長が短いときに強制的にぶら下げ処理がおこなわれてしまうと、字間が開いてしまい、間延びした印象の組みかたになってしまう。よって、われわれとしては、ぶら下げ処理を少し抑制するように修正してみたい。これは、商業出版の本によく見られる組みかたでもある。</p>
-
 <p>そこで、プリアンブルなどに以下のように記述し、<code>\。</code>と<code>\、</code>というマクロを作る。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\if</span>@burasage
     <span class="k">\def\、</span><span class="nb">{</span><span class="c">%
@@ -69,35 +62,27 @@
 </span><span class="c"></span><span class="k">\else</span>
     <span class="k">\def\、</span><span class="nb">{</span><span class="k">\nobreak\makebox</span><span class="na">[1zw][l]</span><span class="nb">{</span>、<span class="nb">}}</span><span class="c">%
 </span><span class="c"></span>    <span class="k">\def\。</span><span class="nb">{</span><span class="k">\nobreak\makebox</span><span class="na">[1zw][l]</span><span class="nb">{</span>。<span class="nb">}}</span><span class="c">%
-</span><span class="c"></span><span class="k">\fi</span></code></pre></div>
-<p>あとは、文章中の句読点すべてを<code>\。</code>および<code>\、</code>で置き換えればよい。すると、burasageオプション時には適度にぶら下げが抑制された組みかたとなる。また、burasageオプションを外したときには、追い出し組となる。</p>
-
+</span><span class="c"></span><span class="k">\fi</span>
+</code></pre></div><p>あとは、文章中の句読点すべてを<code>\。</code>および<code>\、</code>で置き換えればよい。すると、burasageオプション時には適度にぶら下げが抑制された組みかたとなる。また、burasageオプションを外したときには、追い出し組となる。</p>
 <h2 id="細かい調整">細かい調整</h2>
-
 <p>ただし、このままでは句読点と括弧類とが並んだとき、空きが広くなりすぎてしまう。たとえば、<code>\。「</code>のように、句読点の直後に始め括弧が来た場合、<code>\。\&lt;「</code>とする（つまり<code>\&lt;</code>を追加する）ことが必要となる。</p>
-
 <p>句点と鉤括弧の場合だけ考えると、結局、以下のような置換が必要である。</p>
-
 <ul>
 <li><code>\。「</code> → <code>\。\&lt;「</code></li>
 <li><code>\。」</code> → <code>。」</code></li>
 <li><code>」\。</code> → <code>」\&lt;\。</code></li>
 </ul>
-
 <p>このような置換を、すべての括弧類と句読点との組み合わせを考えて、おこなえばよい。置換作業は手作業だと面倒きわまりないので、PythonなりRubyなりで置換スクリプトを組んで置換するのがよいであろう。</p>
-
 <h1 id="結言">結言</h1>
-
 <p>LaTeXのデフォルトは追い込み組であるが、これは商業出版にはあまり見られない。そこで上のような設定をし、ぶら下げ組にするか、追い出し組にするとよいのである。そうすれば、いっそう商業出版に近い組みかたが実現でき、嬉しい気分に浸れることであろう。</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">ただし段落末尾はそのかぎりではない。
- <a class="footnote-return" href="#fnref:1">↩</a></li>
+<li id="fn:1" role="doc-endnote">
+<p>ただし段落末尾はそのかぎりではない。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
 <div class="showarticleinfo">
     <i class="fas fa-clock"></i> 2018年1月12日<br>

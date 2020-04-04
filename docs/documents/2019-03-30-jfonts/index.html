@@ -44,15 +44,10 @@
 <p class="title">
     jfontsパッケージ<br>
 </p>
-
-
 <h1 id="はじめに">はじめに</h1>
-
 <p>LaTeXでPDFに和文フォントを埋め込む際、いちいちmapファイルを書き換えるのは面倒である。そこでjfontsパッケージというLaTeXパッケージを作った。簡単な工夫だが、役に立つ。</p>
-
 <p>jfontsパッケージは、otfパッケージと併用することを前提としている。フォントを変えたいときはフォントのファイル名を書き換えればよい。</p>
-
-<h1 id="jfonts-sty">jfonts.sty</h1>
+<h1 id="jfontssty">jfonts.sty</h1>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
 </span><span class="c">% jfonts.sty
 </span><span class="c">%
@@ -178,7 +173,8 @@
 </span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
 </span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
 </span><span class="c"></span>    <span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="k">\fi</span></code></pre></div>
+</span><span class="c"></span><span class="k">\fi</span>
+</code></pre></div>
 <div class="showarticleinfo">
     <i class="fas fa-clock"></i> 2019年3月30日<br>
     <i class="fas fa-redo"></i> 2019年3月30日<br>

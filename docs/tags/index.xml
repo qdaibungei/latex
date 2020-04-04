@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 文藝部LaTeX研究会</title>
@@ -6,53 +6,17 @@
     <description>Recent content in Tags on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 28 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>DTP</title>
-      <link>https://qdaibungei.github.io/latex/tags/dtp/</link>
-      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/tags/dtp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Font</title>
-      <link>https://qdaibungei.github.io/latex/tags/font/</link>
-      <pubDate>Sun, 31 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/tags/font/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>https://qdaibungei.github.io/latex/tags/git/</link>
-      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Guide</title>
+      <title>guide</title>
       <link>https://qdaibungei.github.io/latex/tags/guide/</link>
       <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/tags/guide/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JavaScript</title>
-      <link>https://qdaibungei.github.io/latex/tags/javascript/</link>
-      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/tags/javascript/</guid>
       <description></description>
     </item>
     
@@ -66,6 +30,24 @@
     </item>
     
     <item>
+      <title>Git</title>
+      <link>https://qdaibungei.github.io/latex/tags/git/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tips</title>
+      <link>https://qdaibungei.github.io/latex/tags/tips/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/tags/tips/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>LaTeXパッケージ</title>
       <link>https://qdaibungei.github.io/latex/tags/latex%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8/</link>
       <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
@@ -75,7 +57,16 @@
     </item>
     
     <item>
-      <title>Memo</title>
+      <title>font</title>
+      <link>https://qdaibungei.github.io/latex/tags/font/</link>
+      <pubDate>Sun, 31 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/tags/font/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>memo</title>
       <link>https://qdaibungei.github.io/latex/tags/memo/</link>
       <pubDate>Fri, 11 Aug 2017 00:00:00 +0000</pubDate>
       
@@ -84,20 +75,20 @@
     </item>
     
     <item>
-      <title>Python</title>
-      <link>https://qdaibungei.github.io/latex/tags/python/</link>
-      <pubDate>Sun, 10 Jul 2016 00:00:00 +0000</pubDate>
+      <title>DTP</title>
+      <link>https://qdaibungei.github.io/latex/tags/dtp/</link>
+      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://qdaibungei.github.io/latex/tags/python/</guid>
+      <guid>https://qdaibungei.github.io/latex/tags/dtp/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Tips</title>
-      <link>https://qdaibungei.github.io/latex/tags/tips/</link>
-      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
+      <title>JavaScript</title>
+      <link>https://qdaibungei.github.io/latex/tags/javascript/</link>
+      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://qdaibungei.github.io/latex/tags/tips/</guid>
+      <guid>https://qdaibungei.github.io/latex/tags/javascript/</guid>
       <description></description>
     </item>
     
@@ -116,6 +107,15 @@
       <pubDate>Sun, 09 Oct 2016 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/tags/%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://qdaibungei.github.io/latex/tags/python/</link>
+      <pubDate>Sun, 10 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/tags/python/</guid>
       <description></description>
     </item>
     

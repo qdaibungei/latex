@@ -44,68 +44,43 @@
 <p class="title">
     LaTeXによる小説組版法・中級編――ベスト文集制作記録③<br>
 </p>
-
-
 <p>前回に引き続き、小説組版の方法を解説していく。今回は、「<strong>目次</strong>」の作り方である。</p>
-
 <h1 id="目次">目次</h1>
-
 <h2 id="目次のデザイン">目次のデザイン</h2>
-
 <p>今回のベスト文集では、目次は下図のようなデザインにした。このデザインは、<a href="https://www.gentosha.co.jp/s/gento/">某小説誌</a>を参考に作った。</p>
-
-<p>ノンブル<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>のフォントには、<a href="https://okoneya.jp/font/download.html#dl-genb">源暎ノンブル</a>を使った。たったこれだけの工夫でかなりデザインが引き締まる気がする。</p>
-
-<!-- ![](/latex/assets/img/2019-10-14a.png) -->
-
-<p><img src="/latex/assets/img/2019-10-14b.png" alt="" /></p>
-
-<!-- ![](/latex/assets/img/2019-10-14c.png) -->
-
-<!-- ![](/latex/assets/img/2019-10-14d.png) -->
-
-<h2 id="目次のデザイン-見開き版">目次のデザイン（見開き版）</h2>
-
+<p>ノンブル<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>のフォントには、<a href="https://okoneya.jp/font/download.html#dl-genb">源暎ノンブル</a>を使った。たったこれだけの工夫でかなりデザインが引き締まる気がする。</p>
+<!-- raw HTML omitted -->
+<p><img src="/latex/assets/img/2019-10-14b.png" alt=""></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="目次のデザイン見開き版">目次のデザイン（見開き版）</h2>
 <p>見開きで見ると、目次はこんな感じ。目次ページの始まりを示す中扉には、「九大文学＊目次」と書いた。この「九大文学」のフォントは、扉ページと同じく<a href="https://moji-waku.com/kaiso/">廻想体</a>にしてある。逐一フォントを揃えていくことで本全体に統一感を出すためである。</p>
-
-<p><img src="/latex/assets/img/2019-10-14-2in1a.png" alt="" /></p>
-
-<p><img src="/latex/assets/img/2019-10-14-2in1b.png" alt="" /></p>
-
-<p><img src="/latex/assets/img/2019-10-14-2in1c.png" alt="" /></p>
-
+<p><img src="/latex/assets/img/2019-10-14-2in1a.png" alt=""></p>
+<p><img src="/latex/assets/img/2019-10-14-2in1b.png" alt=""></p>
+<p><img src="/latex/assets/img/2019-10-14-2in1c.png" alt=""></p>
 <p>「九大文学」という文字だけのページ（最後の画像の左側）は、本文の始まりを明示するための中扉。</p>
-
-<h2 id="latexによる目次の作り方-通常時">LaTeXによる目次の作り方（通常時）</h2>
-
+<h2 id="latexによる目次の作り方通常時">LaTeXによる目次の作り方（通常時）</h2>
 <p>通常、LaTeXで目次を生成するには、<code>\tableofcontents</code>という命令を使うことになっている。</p>
-
 <p>しかし、<code>\tableofcontents</code>で上のような目次を作るのは結構難しい。なぜならば、第一に、デフォルトの<code>\tableofcontents</code>では、著者名と作品名をどちらも出力するということができないからだ（そもそもLaTeXのデフォルトの設定では、複数の著者名を扱うような仕組みがない）。</p>
-
 <p>第二に、<code>\tableofcontents</code>で出力される目次のレイアウトを変更するのが難しい。<code>\tableofcontents</code>を再定義してやればいいのだが、<code>\tableofcontents</code>の元の定義はかなり複雑で、変更が面倒である。</p>
-
-<h2 id="latexによる目次の作り方-私家版">LaTeXによる目次の作り方（私家版）</h2>
-
+<h2 id="latexによる目次の作り方私家版">LaTeXによる目次の作り方（私家版）</h2>
 <p>さてそこで私は、<code>\tableofcontents</code>に代替しうるマクロを別途定義して使っている。そのマクロとは、以下に示すような<code>\Mokuji</code>マクロである。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%% \Mokuji
 </span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\Mokuji</span><span class="nb">}</span>[3]<span class="nb">{</span><span class="c">%
 </span><span class="c"></span>    #1<span class="k">\hskip</span>1zw<span class="c">% 作品名
 </span><span class="c"></span>    <span class="k">\textgt</span><span class="nb">{</span>#2<span class="nb">}</span><span class="k">\hskip</span>1zw<span class="c">% 著者名
 </span><span class="c"></span>    <span class="k">\rensuji</span><span class="nb">{</span><span class="k">\pageref</span><span class="nb">{</span>#3<span class="nb">}}</span><span class="c">% ページ数
-</span><span class="c"></span><span class="nb">}</span></code></pre></div>
-<p>このようなマクロを作っておいたうえで、本文内に次のように記述する。</p>
+</span><span class="c"></span><span class="nb">}</span>
+</code></pre></div><p>このようなマクロを作っておいたうえで、本文内に次のように記述する。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\Mokuji</span><span class="nb">{</span>走れメロス<span class="nb">}{</span>太宰治<span class="nb">}{</span>dazai<span class="nb">}</span><span class="c">% 目次生成。引数は、\Mokuji{&lt;作品名&gt;}{&lt;著者名&gt;}{&lt;ページ参照用ラベル&gt;}とする。
 </span><span class="c"></span>
 <span class="c">%
 </span><span class="c"></span>
 <span class="k">\label</span><span class="nb">{</span>dazai<span class="nb">}</span><span class="c">% 小説開始時点にラベルを張っておく
-</span><span class="c"></span><span class="err">%</span> 以下、小説本文</code></pre></div>
-<p>すると、次のように出力される。</p>
-
-<p><img src="/latex/assets/img/2019-10-14e.png" alt="" /></p>
-
+</span><span class="c">% 以下、小説本文
+</span></code></pre></div><p>すると、次のように出力される。</p>
+<p><img src="/latex/assets/img/2019-10-14e.png" alt=""></p>
 <p>基本的には、このように<code>\Mokuji</code>マクロを何個も使って目次を作ればよい。目次デザインを変えるためには、<code>\Mokuji</code>マクロの定義を適宜変更すればよい。</p>
-
 <p>ベスト文集では、<code>\mokuji</code>を次のように定義して使った。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%% \mokuji
 </span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mokuji</span><span class="nb">}</span>[4]<span class="nb">{</span><span class="c">%
@@ -138,19 +113,17 @@
 </span><span class="c"></span>            <span class="nb">}</span><span class="c">%
 </span><span class="c"></span>        <span class="k">\fi</span>
     <span class="k">\fi</span>
-<span class="nb">}</span></code></pre></div>
-<p>目次デザインがシンプルな割には定義が複雑である（これは、不要な記述も多々入っているためである。本当はもう少し簡潔に記述できる気がする）。</p>
-
+<span class="nb">}</span>
+</code></pre></div><p>目次デザインがシンプルな割には定義が複雑である（これは、不要な記述も多々入っているためである。本当はもう少し簡潔に記述できる気がする）。</p>
 <p>（次回に続く）</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">ノンブルとは印刷用語で、ページ番号のこと。
- <a class="footnote-return" href="#fnref:1">↩</a></li>
+<li id="fn:1" role="doc-endnote">
+<p>ノンブルとは印刷用語で、ページ番号のこと。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
 <div class="showarticleinfo">
     <i class="fas fa-clock"></i> 2019年10月14日<br>
