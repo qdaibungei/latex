@@ -175,14 +175,19 @@ a:hover {
     margin: 0 0 10px;
 }
 .content h3 {
-    font-size: 1.4rem;
+    display: inline-block;
+    font-size: 1.3rem;
     font-weight: 700;
-    margin-bottom: 5px;
-    color: #b94d7e;
+    border-bottom: 2px dotted #b94d7e;
+    margin: 10px 0 15px;
+    padding: 0;
+}
+.content h1+h3, .content h2+h3 {
+    margin: 5px 0 15px;
 }
 .content p {
     font-size: 1.4rem;
-    margin-bottom: 2.1rem;
+    margin-bottom: 1em;
     text-align: justify;
     text-justify: inter-ideograph;
 }
