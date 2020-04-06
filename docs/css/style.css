@@ -47,6 +47,10 @@ body {
     font-size: 1.2rem;
     margin-right: 0.3rem;
 }
+.content .showarticleinfo code a {
+    color: inherit;
+    border-bottom: none;
+}
 .showarticleinfo::before {
     display: block;
     width: 30px;
@@ -67,12 +71,14 @@ body {
 *, *::before, *::after {
     box-sizing: border-box;
 }
-a:link, a:visited, a:active {
-    color: #85023e;
+.content a:link, a:visited, a:active {
+    color: #333;
     text-decoration: none;
+    border-bottom: 1px dotted #333;
 }
-a:hover {
-    text-decoration: underline;
+.content a:hover {
+    text-decoration: none;
+    border-bottom: none;
 }
 
 .global-nav {
@@ -141,6 +147,7 @@ a:hover {
     font-weight: 400;
     font-size: 2rem;
     letter-spacing: 1px;
+    color: #85023e;
     border-color: #b94d7e;
     border-style: solid;
     border-width: 0 0 2px;
@@ -471,12 +478,17 @@ img {
     line-height: 1.5;
 }
 .footnotes ol li {
+    position: relative;
     list-style-type: none;
     list-style-position: inside;
     counter-increment: cnt;
     margin-bottom: 0.85em;
+    padding-left: 2em;
 }
 .footnotes ol li::before {
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
     display: marker;
     content: "注" counter(cnt);
     font-size: 1rem;
@@ -489,6 +501,7 @@ img {
     padding: 1px 2px;
     color: #fff;
     font-weight: bold;
+    line-height: 1em;
 }
 .footnote-ref {
     font-size: 1rem;
@@ -500,22 +513,25 @@ img {
     background: #777;
     padding: 1px 2px;
 }
-a.footnote-ref::before {
+.content a.footnote-ref::before {
     content: "注";
     color: #fff;
     font-weight: bold;
     word-break: keep-all;
 }
-a.footnote-ref {
+.content a.footnote-ref {
     color: #fff;
     font-weight: bold;
+    border-bottom: none;
 }
 #disqus_thread {
     margin-top: 80px;
 }
-/* strong {
-    background: linear-gradient(transparent 60%, #73efff 60%);
-} */
+strong {
+    font-weight: 700;
+    color: #85023e;
+}
+
 .content textarea {
     width: 100%;
     padding: 1em 5px 0 5px;
