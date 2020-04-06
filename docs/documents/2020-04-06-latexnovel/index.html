@@ -119,7 +119,10 @@
 </ul>
 <p>これは、「頁数節約のため一頁あたりの文字数を多めにしつつ、最大限、可読性も確保する」というコンセプトのもとで、幾度も調整を重ねて設計したものである。</p>
 <p>具体的には次のように記述してLaTeXで実現している（細かい解説は面倒なので割愛）。</p>
-<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% papersize
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% ドキュメントクラス読み込み時にA5サイズ指定
+</span><span class="c"></span><span class="k">\documentclass</span><span class="na">[a5paper,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
+
+<span class="c">%% papersize
 </span><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>papersize=<span class="k">\the\paperwidth</span>,<span class="k">\the\paperheight</span><span class="nb">}}</span><span class="c">% 通常
 </span><span class="c">% 本文に上下左右3mmの塗り足しを作る細工
 </span><span class="c">% \newdimen\stockwidth

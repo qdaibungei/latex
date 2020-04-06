@@ -111,6 +111,9 @@ tags: ["LaTeX", "guide"]
 具体的には次のように記述してLaTeXで実現している（細かい解説は面倒なので割愛）。
 
 ```latex
+%% ドキュメントクラス読み込み時にA5サイズ指定
+\documentclass[a5paper,autodetect-engine]{jsbook}
+
 %% papersize
 \AtBeginDvi{\special{papersize=\the\paperwidth,\the\paperheight}}% 通常
 % 本文に上下左右3mmの塗り足しを作る細工
