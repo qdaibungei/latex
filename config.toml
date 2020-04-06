@@ -6,3 +6,5 @@ pygmentsUseClasses = true
 pygmentsCodefences = true
 publishDir = "docs"
 enableGitInfo = true
+[markup.goldmark.renderer]
+    unsafe = true

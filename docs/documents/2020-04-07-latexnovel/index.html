@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155017107-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-155017107-1');
+        </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>LaTeXによる小説組版法・中級編――ベスト文集制作記録⑤｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+        <script src="https://kit.fontawesome.com/593b5b099a.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-wrapper">
+                <h1 class="logo">
+                    <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+                </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex"><i class="fas fa-home"></i> HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about"><i class="fas fa-info-circle"></i> About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents"><i class="fas fa-book"></i> Docs</a></li>
+    </ul>
+</nav>
+</div>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<p class="title">
+    LaTeXによる小説組版法・中級編――ベスト文集制作記録⑤<br>
+</p>
+<h1 id="本文の組み方版面篇">本文の組み方②・版面篇</h1>
+<h2 id="版面設計">版面設計</h2>
+<h3 id="紙サイズ">紙サイズ</h3>
+<p>今回はA5サイズを使用した。A5サイズは、文庫サイズなどに比べて安く作れるので、同人誌界隈ではよく使用される。文藝部にはそこまでお金がないので、今回もA5サイズ以外に選択の余地はなかった。</p>
+<h3 id="文字サイズ">文字サイズ</h3>
+<p>『九大文学』では、文字サイズは13Qとした<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。13Qくらいが、大きすぎず小さすぎず、ちょうどよい塩梅ではあるまいか。<strong>初心者は文字サイズを小さくして失敗してしまいがちなので、注意</strong>すること。印刷所に入稿する前に、家庭用プリンターで本文を印刷してみて、どれくらいの文字サイズになっているかを確認するのが最も安全である。</p>
+<h3 id="行送り">行送り</h3>
+<p>行送りは、19.5Hとした。これは、文字サイズの1.5倍である（それゆえ行間は文字サイズの0.5倍である）。これは、行間の設定としてはかなり狭めである。一般には、行送りは文字サイズの1.5〜2倍程度がよいとされている。</p>
+<h3 id="行長行数">行長・行数</h3>
+<p>行長は26字、行数は24行とした。二段組とし、段間は2.5字分とした。</p>
+<h3 id="ノド">ノド</h3>
+<p>ノド側の余白を狭くしすぎると、文字が食われてしまって読みづらい。したがって、ノドの広さは約20mmは欲しい。今回は、ノドは18mm取った。</p>
+<h3 id="まとめ">まとめ</h3>
+<p>まとめると、版面は次のような設定にしたことになる。</p>
+<ul>
+<li>紙はA5サイズ</li>
+<li>文字サイズ13Q</li>
+<li>行送り19.5H</li>
+<li>26字×24行×2段組</li>
+<li>段間2.5字分</li>
+<li>ノドの広さは18mm</li>
+</ul>
+<p>これは、「頁数節約のため一頁あたりの文字数を多めにしつつ、最大限、可読性も確保する」というコンセプトのもとで、幾度も調整を重ねて設計したものである。</p>
+<h2 id="なるべくベタ組にする工夫">なるべくベタ組にする工夫</h2>
+<p>小説の本文は、ベタ組にするのがよい。ベタ組とは、方眼紙に字を埋めるがごとく、字間を空けずに組むことである。次の画像のように組むということである。</p>
+<p><img src="/latex/assets/img/2020-04-07.png" alt=""></p>
+<h3 id="hanmenstyの使用">hanmen.styの使用</h3>
+<p>LaTeXの標準機能でベタ組を実現するのは案外難しい。そこで、<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmen.sty</a>を使用する。これを用いれば、確実にベタ組が実現できる。</p>
+<h3 id="句読点閉じ括弧の処理疑問符感嘆符後の空白">句読点、閉じ括弧の処理、疑問符感嘆符後の空白</h3>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>「Q」とは「級」という意味で、文字サイズの単位の一つ。13Qは約9.2ptである。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+<div class="showarticleinfo">
+    <i class="far fa-calendar-alt"></i> 2020年4月7日<br>
+    
+    <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/guide">#guide</a></code> <br>
+</div>
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2020 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+
