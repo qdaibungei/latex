@@ -90,6 +90,93 @@
 </ul>
 <p>創英角ポップ体やMS明朝は言うまでもなく、ほのか明朝やはれのそら明朝も小説には向いていない<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
 <p>最も確実にフォントを選ぶには、フォントの公式サイトに行って、そのフォントがいかなる用途を想定して作られたかを確認するのがよい。こうすれば、フォントのセンスに自信がなくても、小説向きかどうかをある程度見極めることができよう。</p>
+<h2 id="九大文学では">九大文学では</h2>
+<p>今回、『九大文学』では基本的に游明朝を採用した。ただし本文の一部には游明朝体五号かなを使用し、小さなアクセントとした。</p>
+<p>欧文は、游明朝にはCochinealを、游明朝体五号かなにはfbbを合わせた。</p>
+<h1 id="本文の組み方版面設計篇">本文の組み方②・版面設計篇</h1>
+<h2 id="各種パラメータ">各種パラメータ</h2>
+<h3 id="紙サイズ">紙サイズ</h3>
+<p>今回はA5サイズを使用した。A5サイズは、文庫サイズなどに比べて安く作れるので、同人誌界隈ではよく使用される。文藝部にはそこまでお金がないので、今回もA5サイズ以外に選択の余地はなかった。</p>
+<h3 id="文字サイズ">文字サイズ</h3>
+<p>『九大文学』では、文字サイズは13Qとした<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>。13Qくらいが、大きすぎず小さすぎず、ちょうどよい塩梅ではあるまいか。</p>
+<p><strong>初心者は文字サイズを小さくして失敗してしまいがちなので、注意</strong>すること。印刷所に入稿する前に、家庭用プリンターで本文を印刷してみて、どれくらいの文字サイズになっているかを確認するのが最も安全である。</p>
+<h3 id="行送り">行送り</h3>
+<p>行送りは、19.5Hとした。これは、文字サイズの1.5倍である（それゆえ行間は文字サイズの0.5倍である）。これは、行間の設定としてはかなり狭めである。一般には、行送りは文字サイズの1.5〜2倍程度がよいとされている。</p>
+<p>なお、フォントによって、行送りを広く取ったほうがよいもの、狭くても読みやすいものがある。したがって行送りはフォントを選んだ後に決めるべきであろう。今回は游明朝だから行送りを狭めにしたが、例えばヒラギノ明朝であればもう少し広めに取ったほうがよい。</p>
+<h3 id="行長行数">行長・行数</h3>
+<p>行長は26字、行数は24行とした。二段組とし、段間は2.5字分とした。</p>
+<h3 id="ノド">ノド</h3>
+<p>ノド側の余白を狭くしすぎると、文字が食われてしまって読みづらい。A5で縦書きの場合、ノドの広さは約20mmは欲しい<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>。今回は、ノドは18mm取った。</p>
+<h2 id="latexでの実現方法">LaTeXでの実現方法</h2>
+<p>まとめると、版面は次のような設定にしたことになる。</p>
+<ul>
+<li>紙はA5サイズ</li>
+<li>文字サイズ13Q</li>
+<li>行送り19.5H</li>
+<li>26字×24行×2段組</li>
+<li>段間2.5字分</li>
+<li>ノドの広さは18mm</li>
+</ul>
+<p>これは、「頁数節約のため一頁あたりの文字数を多めにしつつ、最大限、可読性も確保する」というコンセプトのもとで、幾度も調整を重ねて設計したものである。</p>
+<p>具体的には次のように記述してLaTeXで実現している（細かい解説は面倒なので割愛）。</p>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% papersize
+</span><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>papersize=<span class="k">\the\paperwidth</span>,<span class="k">\the\paperheight</span><span class="nb">}}</span><span class="c">% 通常
+</span><span class="c">% 本文に上下左右3mmの塗り足しを作る細工
+</span><span class="c">% \newdimen\stockwidth
+</span><span class="c">% \newdimen\stockheight
+</span><span class="c">% \setlength{\stockwidth}{\paperwidth}
+</span><span class="c">% \setlength{\stockheight}{\paperheight}
+</span><span class="c">% \advance\stockwidth by 6mm
+</span><span class="c">% \advance\stockheight by 6mm
+</span><span class="c">% \advance\voffset by 3mm
+</span><span class="c">% \advance\hoffset by 3mm
+</span><span class="c">% \AtBeginDvi{\special{papersize=\the\stockwidth,\the\stockheight}}
+</span><span class="c"></span>
+<span class="c">%% layout
+</span><span class="c"></span><span class="k">\newcounter</span><span class="nb">{</span>dangumi<span class="nb">}</span>
+<span class="k">\setcounter</span><span class="nb">{</span>dangumi<span class="nb">}{</span>0<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\newhanmenI</span><span class="nb">}{</span><span class="c">%
+</span><span class="c"></span>    <span class="c">% H = ((19.5/4)*(24-1)/(22-1))*4
+</span><span class="c"></span>    <span class="c">% TBmargin: (210-((13/4)*50))/2=23.75
+</span><span class="c"></span>    <span class="c">% ko=(newhanmenIIに追随), te=23.75-16.4325=7.3175
+</span><span class="c"></span>    <span class="c">% (3.25*6)=19.5
+</span><span class="c"></span>    <span class="c">% footskip=(newhanmenIIに追随)
+</span><span class="c"></span>    <span class="k">\newhanmen</span><span class="nb">{</span>Q=13,H=21.357142857,W=50,L=22,ko=0mm,te=-7.3175mm,nodo=18mm,chi=<span class="k">\relax</span>,footskip=3.25mm,tate<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="c">% \pagegridon{g=50,column=1}
+</span><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[RE]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[LO]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@lhasira<span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\newhanmenII</span><span class="nb">}{</span><span class="c">%
+</span><span class="c"></span>    <span class="c">% RLmargin: (148-(19.5/4)*(24-1)-(13/4))/2=16.3125, TBmargin: (210-((13/4)*54.5))/2=16.4375
+</span><span class="c"></span>    <span class="c">% ko=18−16.3125=1.6875, te=1
+</span><span class="c"></span>    <span class="k">\newhanmen</span><span class="nb">{</span>Q=13,H=19.5,W=54.5,L=24,ko=0mm,te=0mm,nodo=18mm,chi=<span class="k">\relax</span>,footskip=3.25mm,tate<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="c">% \pagegridon{g=26,column=2,columnskip=28.5}
+</span><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[RE]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[LO]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@lhasira<span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\fancyhf</span><span class="nb">{}</span>
+<span class="k">\def\qbook</span>@nombre<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">{</span><span class="k">\fontsizeXI\geneinombre\thepage</span><span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\def\qbook</span>@lhasira<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">{</span><span class="k">\fontsizeIX\qbook</span>@chaptertitle<span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\def\qbook</span>@rhasira<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">{</span><span class="k">\fontsizeX\gtfamily\selectfont</span>
+    <span class="k">\booktitlename</span><span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\newenvironment</span><span class="nb">{</span>honbun<span class="nb">}{</span><span class="c">% 環境の名称はmymulticolsくらいでよいかも
+</span><span class="c"></span>    <span class="k">\ifnum\value</span><span class="nb">{</span>dangumi<span class="nb">}</span>=1
+    <span class="k">\fi</span>
+    <span class="k">\ifnum\value</span><span class="nb">{</span>dangumi<span class="nb">}</span>&gt;1
+        <span class="k">\multicolsep</span>=0pt
+        <span class="k">\begin</span><span class="nb">{</span>multicols*<span class="nb">}{</span><span class="k">\value</span><span class="nb">{</span>dangumi<span class="nb">}}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\fi</span><span class="nb">}{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\ifnum\value</span><span class="nb">{</span>dangumi<span class="nb">}</span>&gt;1
+        <span class="k">\end</span><span class="nb">{</span>multicols*<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\fi</span>
+<span class="nb">}</span>
+</code></pre></div><p>　</p>
 <p>（<a href="https://qdaibungei.github.io/latex/documents/2020-04-07-latexnovel/">次回</a>に続く）</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
@@ -99,6 +186,12 @@
 </li>
 <li id="fn:2" role="doc-endnote">
 <p>なぜわざわざ、ほのか明朝とはれのそら明朝を取り上げたのかというと、最近の文藝部の部誌に使われていたからである。今時の後輩たちは市販の小説本を読んだことがないのか……？　と思わせるほど、小説っぽくないフォント選定であった。いや、フォントを工夫すること自体はありがたいことなんですけどね。というかこんなところで批判的なことを言わずに直接言えよという声が聞こえてきそう。すみません直接言う勇気はありませんでした。後輩たちが楽しく活動できているならそれでいいんです。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>「Q」とは「級」という意味で、文字サイズの単位の一つ。13Qは約9.2ptである。 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>横書きの場合は、縦書きよりもさらにノドを広く取ったほうが読みやすい。A5で横書きの場合、20mmでは狭い。 <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
