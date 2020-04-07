@@ -475,10 +475,10 @@ img {
 .footnotes p {
     display: inline;
     font-size: 0.85em;
-    line-height: 1.5;
 }
 .footnotes ol li {
     position: relative;
+    line-height: 1.5;
     list-style-type: none;
     list-style-position: inside;
     counter-increment: cnt;
@@ -488,7 +488,7 @@ img {
 .footnotes ol li::before {
     position: absolute;
     left: -0.25em;
-    top: 0.5rem;
+    top: 0.35rem;
     display: marker;
     content: "注" counter(cnt);
     font-size: 1rem;
