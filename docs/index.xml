@@ -17,7 +17,9 @@
       <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2020-04-08-latexnovel/</guid>
-      <description></description>
+      <description>本文の組み方④・テキストからTeXへ変換する篇 ダッシュ 倍角ダッシュや波ダッシュは、jdash.styを用いてマクロ定義してある。このマクロを使うため、次のように置換処理を行なう。
+jdashes = [&amp;#39;—&amp;#39;,&amp;#39;―&amp;#39;,&amp;#39;─&amp;#39;] wdashes = [&amp;#39;〜&amp;#39;,&amp;#39;～&amp;#39;] def jdash_replace(x): for jdash in jdashes: if x.find(jdash) &amp;gt; -1: for y in range(30,2,-1): x = x.replace(jdash*y,&amp;#39;{\\jdash[&amp;#39;+str(y)+&amp;#39;]&amp;#39;+&amp;#39;}&amp;#39;) x = x.replace(jdash*2,&amp;#39;\\――&amp;#39;) return x def wdash_replace(x): for wdash in wdashes: if x.find(wdash) &amp;gt; -1: for y in range(20,1,-1): x = re.sub(wdash*y,(&amp;#39;\\&amp;#39;+wdash)*y,x) return x 濁点マクロ 例えば、平仮名の「な」に濁点を打ちたくなることがある。このような場合には濁点マクロを作っておくと便利だ。
+LaTeXでのマクロ定義 %% dakutens \newcommand{\dakuten}[1]{%  \jghostguarded{%  \leavevmode\hbox to 1zw{%  \rensuji{\hbox to 1zw{#1\hspace*{-0.25zw}゛}}%  }%  }% } \newcommand{\handakuten}[1]{%  \jghostguarded{%  \leavevmode\hbox to 1zw{%  \rensuji{\hbox to 1zw{#1\hspace*{-0.</description>
     </item>
     
     <item>

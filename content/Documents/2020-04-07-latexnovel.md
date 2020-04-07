@@ -72,6 +72,9 @@ def num_replace(s):
     for x in nums:
         s = s.replace(x[0],'\\tcy{'+x[1]+'}')
     return s
+def percent_replace(x):
+    x = x.replace('％', '\\tcy{\\%}')
+    return x
 ```
 
 ## 禁則処理の抑制

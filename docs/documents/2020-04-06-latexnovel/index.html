@@ -121,6 +121,7 @@
 <p>具体的には次のように記述してLaTeXで実現している（細かい解説は面倒なので割愛）。</p>
 <div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% ドキュメントクラス読み込み時にA5サイズ指定
 </span><span class="c"></span><span class="k">\documentclass</span><span class="na">[a5paper,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="na">[tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 
 <span class="c">%% papersize
 </span><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>papersize=<span class="k">\the\paperwidth</span>,<span class="k">\the\paperheight</span><span class="nb">}}</span><span class="c">% 通常
@@ -179,7 +180,9 @@
         <span class="k">\end</span><span class="nb">{</span>multicols*<span class="nb">}</span><span class="c">%
 </span><span class="c"></span>    <span class="k">\fi</span>
 <span class="nb">}</span>
-</code></pre></div><p>　</p>
+</code></pre></div><p>以上の設定により、『九大文学』の本文組版はこのような仕上がりとなった。</p>
+<p><img src="/latex/assets/img/2020-04-06.jpg" alt=""></p>
+<p>　</p>
 <p>（<a href="https://qdaibungei.github.io/latex/documents/2020-04-07-latexnovel/">次回</a>に続く）</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>

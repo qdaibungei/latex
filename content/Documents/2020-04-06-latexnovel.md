@@ -113,6 +113,7 @@ tags: ["LaTeX", "guide", "font"]
 ```latex
 %% ドキュメントクラス読み込み時にA5サイズ指定
 \documentclass[a5paper,autodetect-engine]{jsbook}
+\usepackage[tate]{hanmen}
 
 %% papersize
 \AtBeginDvi{\special{papersize=\the\paperwidth,\the\paperheight}}% 通常
@@ -172,6 +173,10 @@ tags: ["LaTeX", "guide", "font"]
     \fi
 }
 ```
+
+以上の設定により、『九大文学』の本文組版はこのような仕上がりとなった。
+
+![](/latex/assets/img/2020-04-06.jpg)
 
 　
 
