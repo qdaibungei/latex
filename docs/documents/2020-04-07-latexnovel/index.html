@@ -54,7 +54,6 @@
 <div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% 字間・行間の設定
 </span><span class="c"></span><span class="k">\kanjiskip</span>=0zw plus .25zw minus .03125zw
 <span class="k">\xkanjiskip</span>=.25zw plus .25zw minus .0625zw
-<span class="k">\parindent</span>=0zw
 <span class="k">\parskip</span>=0zw
 <span class="k">\parsep</span>=0zw
 <span class="k">\partopsep</span>=0zw
@@ -140,8 +139,8 @@
 </span></code></pre></div><p>縦書きの場合、禁則処理をこのように抑制したほうが商業誌の組み方に近づけられる。</p>
 <h2 id="約物の処理">約物の処理</h2>
 <p>LaTeXの標準設定では、約物（句読点、括弧、中黒、疑問符・感嘆符など）に関してはベタ組にならない。そこで、さらにベタ組にするためには以下のような工夫が必要である。</p>
+<p>まず、LaTeXで約物用のマクロ定義を行なう。続いて、Pythonでプレーンテキストを加工するための関数を定義する（詳しい解説は面倒なので割愛）。</p>
 <h3 id="latex側のマクロ定義">LaTeX側のマクロ定義</h3>
-<p>まずLaTeXで次のように約物用のマクロ定義を行なう。</p>
 <div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% punctuations
 </span><span class="c">%%%% 句読点
 </span><span class="c"></span><span class="k">\if</span>@burasage
@@ -176,7 +175,8 @@
 <span class="k">\def\‐</span><span class="nb">{</span><span class="k">\jghostguarded</span><span class="nb">{</span><span class="k">\leavevmode\hbox</span> to 1zw<span class="nb">{</span><span class="k">\hss\rule</span><span class="na">[-.25H]</span><span class="nb">{</span>.4zw<span class="nb">}{</span>.55H<span class="nb">}</span><span class="k">\hss</span><span class="nb">}}}</span><span class="c">% 必要に応じて使用
 </span><span class="c"></span><span class="k">\def\：</span><span class="nb">{</span><span class="k">\ifydir</span> ：<span class="k">\else\CID</span><span class="nb">{</span>12101<span class="nb">}</span><span class="k">\fi</span><span class="nb">}</span>
 <span class="c">%%%% インデント
-</span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\normalIndent</span><span class="nb">}{</span><span class="k">\hskip</span>1zw<span class="nb">}</span>
+</span><span class="c"></span><span class="k">\parindent</span>=0zw
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\normalIndent</span><span class="nb">}{</span><span class="k">\hskip</span>1zw<span class="nb">}</span>
 <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\bracketIndentAmount</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="k">\def\bracketIndent</span><span class="nb">{</span><span class="k">\hskip</span>#1zw<span class="k">\&lt;</span><span class="nb">}}</span>
 <span class="k">\bracketIndentAmount</span><span class="nb">{</span>0.5<span class="nb">}</span>
 </code></pre></div><h3 id="pythonによる約物の調整">Pythonによる約物の調整</h3>
@@ -200,7 +200,7 @@
     <span class="p">[</span><span class="s1">&#39;??&#39;</span><span class="p">,</span><span class="s1">&#39;QueQue&#39;</span><span class="p">]</span>
 <span class="p">]</span>
 <span class="n">kutotens</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;、&#39;</span><span class="p">,</span><span class="s1">&#39;。&#39;</span><span class="p">]</span>
-<span class="k">def</span> <span class="nf">txt_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">punctuation_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="c1"># インデント処理</span>
     <span class="k">for</span> <span class="n">bracket</span> <span class="ow">in</span> <span class="n">brackets</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^&#39;</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="sa">r</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">bracketIndent}&#39;</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">)</span>
@@ -246,11 +246,11 @@
         <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">・}&#39;</span><span class="p">,</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&lt;{</span><span class="se">\\</span><span class="s1">・}&#39;</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;．&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">．&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span>
-</code></pre></div>
+</code></pre></div><p>　</p>
+<p>（<a href="https://qdaibungei.github.io/latex/documents/2020-04-08-latexnovel/">次回</a>に続く）</p>
+
 <div class="showarticleinfo">
     <i class="far fa-calendar-alt"></i> 2020年4月7日<br>
-    
-        <i class="fas fa-history"></i> 2020年4月6日<br>
     
     <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/guide">#guide</a></code> <br>
 </div>

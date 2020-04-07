@@ -22,7 +22,6 @@ LaTeXの標準機能でベタ組を実現するのは案外難しい。そこで
 %% 字間・行間の設定
 \kanjiskip=0zw plus .25zw minus .03125zw
 \xkanjiskip=.25zw plus .25zw minus .0625zw
-\parindent=0zw
 \parskip=0zw
 \parsep=0zw
 \partopsep=0zw
@@ -124,9 +123,9 @@ def num_replace(s):
 ## 約物の処理
 LaTeXの標準設定では、約物（句読点、括弧、中黒、疑問符・感嘆符など）に関してはベタ組にならない。そこで、さらにベタ組にするためには以下のような工夫が必要である。
 
-### LaTeX側のマクロ定義
-まずLaTeXで次のように約物用のマクロ定義を行なう。
+まず、LaTeXで約物用のマクロ定義を行なう。続いて、Pythonでプレーンテキストを加工するための関数を定義する（詳しい解説は面倒なので割愛）。
 
+### LaTeX側のマクロ定義
 ```latex
 %% punctuations
 %%%% 句読点
@@ -162,6 +161,7 @@ LaTeXの標準設定では、約物（句読点、括弧、中黒、疑問符・
 \def\‐{\jghostguarded{\leavevmode\hbox to 1zw{\hss\rule[-.25H]{.4zw}{.55H}\hss}}}% 必要に応じて使用
 \def\：{\ifydir ：\else\CID{12101}\fi}
 %%%% インデント
+\parindent=0zw
 \newcommand{\normalIndent}{\hskip1zw}
 \newcommand{\bracketIndentAmount}[1]{\def\bracketIndent{\hskip#1zw\<}}
 \bracketIndentAmount{0.5}
@@ -189,7 +189,7 @@ exque = [
     ['??','QueQue']
 ]
 kutotens = ['、','。']
-def txt_replace(x):
+def punctuation_replace(x):
     # インデント処理
     for bracket in brackets:
         x = re.sub(r'^'+bracket[0],r'{\\bracketIndent}'+bracket[0],x)
@@ -236,3 +236,7 @@ def txt_replace(x):
     x = x.replace('．', '\\．')
     return x
 ```
+
+　
+
+（[次回]({{< ref "2020-04-08-latexnovel.md" >}})に続く）

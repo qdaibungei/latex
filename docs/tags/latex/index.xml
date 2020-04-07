@@ -6,10 +6,19 @@
     <description>Recent content in LaTeX on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/tags/latex/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LaTeXによる小説組版法・中級編――ベスト文集制作記録⑥</title>
+      <link>https://qdaibungei.github.io/latex/documents/2020-04-08-latexnovel/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2020-04-08-latexnovel/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>LaTeXによる小説組版法・中級編――ベスト文集制作記録⑤</title>
@@ -20,7 +29,7 @@
       <description>本文の組み方③・ベタ組篇 小説の本文は、ベタ組にするのがよい。ベタ組とは、方眼紙に字を埋めるがごとく、字間を空けずに組むことである。次の画像のように組むということである。
 hanmen.styの使用 LaTeXの標準機能でベタ組を実現するのは案外難しい。そこで、hanmen.styを使用する。これを用いると、ほとんどの場合問題なくベタ組にできる。
 ベタ組のための基本設定 次の設定をしておくと字間や行間が広がりにくい。
-%% 字間・行間の設定 \kanjiskip=0zw plus .25zw minus .03125zw \xkanjiskip=.25zw plus .25zw minus .0625zw \parindent=0zw \parskip=0zw \parsep=0zw \partopsep=0zw 縦中横 LaTeXで縦書きをする際、縦中横には\rensujiを使うよう言われる。しかし\rensujiだと無駄に\xkanjiskipが挿入されてしまい、ベタ組にならない。そこで\tcy命令を新たに作り、これを使うのがよい。
+%% 字間・行間の設定 \kanjiskip=0zw plus .25zw minus .03125zw \xkanjiskip=.25zw plus .25zw minus .0625zw \parskip=0zw \parsep=0zw \partopsep=0zw 縦中横 LaTeXで縦書きをする際、縦中横には\rensujiを使うよう言われる。しかし\rensujiだと無駄に\xkanjiskipが挿入されてしまい、ベタ組にならない。そこで\tcy命令を新たに作り、これを使うのがよい。
 \usepackage{pxghost} %% \tcy \newcommand{\tcy}[1]{%  \jghostguarded{%  \leavevmode\hbox to 1zw{%  \centering\rensuji*{#1}%  }%  }% } 数字やアルファベットを自動で縦中横にするために、『九大文学』製作時にはPythonで次の関数を作って置換した。
 nums = [ [&amp;#39;０&amp;#39;,&amp;#39;0&amp;#39;],[&amp;#39;１&amp;#39;,&amp;#39;1&amp;#39;],[&amp;#39;２&amp;#39;,&amp;#39;2&amp;#39;],[&amp;#39;３&amp;#39;,&amp;#39;3&amp;#39;],[&amp;#39;４&amp;#39;,&amp;#39;4&amp;#39;], [&amp;#39;５&amp;#39;,&amp;#39;5&amp;#39;],[&amp;#39;６&amp;#39;,&amp;#39;6&amp;#39;],[&amp;#39;７&amp;#39;,&amp;#39;7&amp;#39;],[&amp;#39;８&amp;#39;,&amp;#39;8&amp;#39;],[&amp;#39;９&amp;#39;,&amp;#39;9&amp;#39;] ] alphabets = [ [&amp;#39;Ａ&amp;#39;,&amp;#39;A&amp;#39;],[&amp;#39;Ｂ&amp;#39;,&amp;#39;B&amp;#39;],[&amp;#39;Ｃ&amp;#39;,&amp;#39;C&amp;#39;],[&amp;#39;Ｄ&amp;#39;,&amp;#39;D&amp;#39;],[&amp;#39;Ｅ&amp;#39;,&amp;#39;E&amp;#39;], [&amp;#39;Ｆ&amp;#39;,&amp;#39;F&amp;#39;],[&amp;#39;Ｇ&amp;#39;,&amp;#39;G&amp;#39;],[&amp;#39;Ｈ&amp;#39;,&amp;#39;H&amp;#39;],[&amp;#39;Ｉ&amp;#39;,&amp;#39;I&amp;#39;],[&amp;#39;Ｊ&amp;#39;,&amp;#39;J&amp;#39;], [&amp;#39;Ｋ&amp;#39;,&amp;#39;K&amp;#39;],[&amp;#39;Ｌ&amp;#39;,&amp;#39;L&amp;#39;],[&amp;#39;Ｍ&amp;#39;,&amp;#39;M&amp;#39;],[&amp;#39;Ｎ&amp;#39;,&amp;#39;N&amp;#39;],[&amp;#39;Ｏ&amp;#39;,&amp;#39;O&amp;#39;], [&amp;#39;Ｐ&amp;#39;,&amp;#39;P&amp;#39;],[&amp;#39;Ｑ&amp;#39;,&amp;#39;Q&amp;#39;],[&amp;#39;Ｒ&amp;#39;,&amp;#39;R&amp;#39;],[&amp;#39;Ｓ&amp;#39;,&amp;#39;S&amp;#39;],[&amp;#39;Ｔ&amp;#39;,&amp;#39;T&amp;#39;], [&amp;#39;Ｕ&amp;#39;,&amp;#39;U&amp;#39;],[&amp;#39;Ｖ&amp;#39;,&amp;#39;V&amp;#39;],[&amp;#39;Ｗ&amp;#39;,&amp;#39;W&amp;#39;],[&amp;#39;Ｘ&amp;#39;,&amp;#39;X&amp;#39;],[&amp;#39;Ｙ&amp;#39;,&amp;#39;Y&amp;#39;], [&amp;#39;Ｚ&amp;#39;,&amp;#39;Z&amp;#39;], [&amp;#39;ａ&amp;#39;,&amp;#39;a&amp;#39;],[&amp;#39;ｂ&amp;#39;,&amp;#39;b&amp;#39;],[&amp;#39;ｃ&amp;#39;,&amp;#39;c&amp;#39;],[&amp;#39;ｄ&amp;#39;,&amp;#39;d&amp;#39;],[&amp;#39;ｅ&amp;#39;,&amp;#39;e&amp;#39;], [&amp;#39;ｆ&amp;#39;,&amp;#39;f&amp;#39;],[&amp;#39;ｇ&amp;#39;,&amp;#39;g&amp;#39;],[&amp;#39;ｈ&amp;#39;,&amp;#39;h&amp;#39;],[&amp;#39;ｉ&amp;#39;,&amp;#39;i&amp;#39;],[&amp;#39;ｊ&amp;#39;,&amp;#39;j&amp;#39;], [&amp;#39;ｋ&amp;#39;,&amp;#39;k&amp;#39;],[&amp;#39;ｌ&amp;#39;,&amp;#39;l&amp;#39;],[&amp;#39;ｍ&amp;#39;,&amp;#39;m&amp;#39;],[&amp;#39;ｎ&amp;#39;,&amp;#39;n&amp;#39;],[&amp;#39;ｏ&amp;#39;,&amp;#39;o&amp;#39;], [&amp;#39;ｐ&amp;#39;,&amp;#39;p&amp;#39;],[&amp;#39;ｑ&amp;#39;,&amp;#39;q&amp;#39;],[&amp;#39;ｒ&amp;#39;,&amp;#39;r&amp;#39;],[&amp;#39;ｓ&amp;#39;,&amp;#39;s&amp;#39;],[&amp;#39;ｔ&amp;#39;,&amp;#39;t&amp;#39;], [&amp;#39;ｕ&amp;#39;,&amp;#39;u&amp;#39;],[&amp;#39;ｖ&amp;#39;,&amp;#39;v&amp;#39;],[&amp;#39;ｗ&amp;#39;,&amp;#39;w&amp;#39;],[&amp;#39;ｘ&amp;#39;,&amp;#39;x&amp;#39;],[&amp;#39;ｙ&amp;#39;,&amp;#39;y&amp;#39;], [&amp;#39;ｚ&amp;#39;,&amp;#39;z&amp;#39;] ] def alphabet_replace(s): for x in alphabets: s = s.</description>
     </item>
