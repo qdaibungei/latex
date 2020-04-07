@@ -13,10 +13,70 @@ tags: ["LaTeX", "guide"]
 ![](/latex/assets/img/2020-04-07.png)
 
 ## hanmen.styの使用
-LaTeXの標準機能でベタ組を実現するのは案外難しい。そこで、[hanmen.sty]({{< ref "2017-02-18-hanmen.md">}})を使用する。これを用いれば、確実にベタ組が実現できる。
+LaTeXの標準機能でベタ組を実現するのは案外難しい。そこで、[hanmen.sty]({{< ref "2017-02-18-hanmen.md">}})を使用する。これを用いると、ほとんどの場合問題なくベタ組にできる。
+
+## ベタ組のための基本設定
+次の設定をしておくと字間や行間が広がりにくい。
+
+```latex
+%% 字間・行間の設定
+\kanjiskip=0zw plus .25zw minus .03125zw
+\xkanjiskip=.25zw plus .25zw minus .0625zw
+\parindent=0zw
+\parskip=0zw
+\parsep=0zw
+\partopsep=0zw
+```
+
+## 縦中横
+LaTeXで縦書きをする際、縦中横には`\rensuji`を使うよう言われる。しかし`\rensuji`だと無駄に\xkanjiskipが挿入されてしまい、ベタ組にならない。そこで`\tcy`命令を新たに作り、これを使うのがよい。
+
+```latex
+\usepackage{pxghost}
+
+%% \tcy
+\newcommand{\tcy}[1]{%
+    \jghostguarded{%
+        \leavevmode\hbox to 1zw{%
+            \centering\rensuji*{#1}%
+        }%
+    }%
+}
+```
+
+数字やアルファベットを自動で縦中横にするために、『九大文学』製作時にはPythonで次の関数を作って置換した。
+
+```python
+nums = [
+    ['０','0'],['１','1'],['２','2'],['３','3'],['４','4'],
+    ['５','5'],['６','6'],['７','7'],['８','8'],['９','9']
+]
+alphabets = [
+    ['Ａ','A'],['Ｂ','B'],['Ｃ','C'],['Ｄ','D'],['Ｅ','E'],
+    ['Ｆ','F'],['Ｇ','G'],['Ｈ','H'],['Ｉ','I'],['Ｊ','J'],
+    ['Ｋ','K'],['Ｌ','L'],['Ｍ','M'],['Ｎ','N'],['Ｏ','O'],
+    ['Ｐ','P'],['Ｑ','Q'],['Ｒ','R'],['Ｓ','S'],['Ｔ','T'],
+    ['Ｕ','U'],['Ｖ','V'],['Ｗ','W'],['Ｘ','X'],['Ｙ','Y'],
+    ['Ｚ','Z'],
+    ['ａ','a'],['ｂ','b'],['ｃ','c'],['ｄ','d'],['ｅ','e'],
+    ['ｆ','f'],['ｇ','g'],['ｈ','h'],['ｉ','i'],['ｊ','j'],
+    ['ｋ','k'],['ｌ','l'],['ｍ','m'],['ｎ','n'],['ｏ','o'],
+    ['ｐ','p'],['ｑ','q'],['ｒ','r'],['ｓ','s'],['ｔ','t'],
+    ['ｕ','u'],['ｖ','v'],['ｗ','w'],['ｘ','x'],['ｙ','y'],
+    ['ｚ','z']
+]
+def alphabet_replace(s):
+    for x in alphabets:
+        s = s.replace(x[0],'\\tcy{'+x[1]+'}')
+    return s
+def num_replace(s):
+    for x in nums:
+        s = s.replace(x[0],'\\tcy{'+x[1]+'}')
+    return s
+```
 
 ## 禁則処理の抑制
-
+禁則処理が多いとベタ組になりにくい。そこで禁則処理を程々に抑制する。
 
 ```latex
 %% penalties
@@ -59,12 +119,17 @@ LaTeXの標準機能でベタ組を実現するのは案外難しい。そこで
 \prebreakpenalty\jis"2144=0     %…
 ```
 
-## 句読点、閉じ括弧、中黒、疑問符・感嘆符後の空白、縦中横
-LaTeXの標準設定では、句読点、閉じ括弧、中黒、疑問符・感嘆符後の空白に関してはベタ組にならない。そこで、さらにベタ組にするためには以下のような工夫が必要である。
+縦書きの場合、禁則処理をこのように抑制したほうが商業誌の組み方に近づけられる。
 
-### 句読点
+## 約物の処理
+LaTeXの標準設定では、約物（句読点、括弧、中黒、疑問符・感嘆符など）に関してはベタ組にならない。そこで、さらにベタ組にするためには以下のような工夫が必要である。
+
+### LaTeX側のマクロ定義
+まずLaTeXで次のように約物用のマクロ定義を行なう。
+
 ```latex
 %% punctuations
+%%%% 句読点
 \if@burasage
     \def\、{%
         \@ifnextchar\par{、}{、\hbox{}}%
@@ -76,14 +141,55 @@ LaTeXの標準設定では、句読点、閉じ括弧、中黒、疑問符・感
     \def\、{\nobreak\makebox[1zw][l]{、}}%
     \def\。{\nobreak\makebox[1zw][l]{。}}%
 \fi
+%%%% 疑問符・感嘆符
+\newcommand{\QueEx}{\nobreak ⁈\<}
+\newcommand{\QueQue}{\nobreak ⁇\<}
+\newcommand{\ExQue}{\nobreak ⁉\<}
+\newcommand{\ExEx}{\nobreak ‼\<}
+\newcommand{\Que}{\nobreak ？\<}
+\newcommand{\Ex}{\nobreak ！\<}
+\newcommand{\ExExExEx}{\nobreak{\tcy{!!!!}}}
+\newcommand{\ExExEx}{\nobreak{\tcy{!!!}}}
+\newcommand{\zenkakuaki}{\hskip1zw plus .125zw minus 0.03125zw}
+\newcommand{\nibusibuaki}{\hskip.75zw plus .125zw minus 0.03125zw}
+\newcommand{\nibuaki}{\hskip.5zw plus .125zw minus 0.03125zw}
+\newcommand{\minusnibuaki}{\hskip-.5zw plus .125zw minus 0.03125zw}
+\newcommand{\sibuaki}{\hskip.25zw plus .125zw minus 0.03125zw}
+%%%% その他約物
+\def\・{\jghostguarded{\leavevmode\hbox to 1zw{・}}}
+\def\……{\jghostguarded{\hbox to 2zw{……}}}
+\def\．{\jghostguarded{\leavevmode\hbox to 1zw{\raise.6zw\hbox{.}}}}
+\def\‐{\jghostguarded{\leavevmode\hbox to 1zw{\hss\rule[-.25H]{.4zw}{.55H}\hss}}}% 必要に応じて使用
+\def\：{\ifydir ：\else\CID{12101}\fi}
+%%%% インデント
+\newcommand{\normalIndent}{\hskip1zw}
+\newcommand{\bracketIndentAmount}[1]{\def\bracketIndent{\hskip#1zw\<}}
+\bracketIndentAmount{0.5}
 ```
 
-### 閉じ括弧
+### Pythonによる約物の調整
 ```python
+brackets = [
+    ['「','」'],['『','』'],['（','）'],['〈','〉'],
+    ['【','】'],['〔','〕'],['《','》'],['［','］'],
+    ['｛','｝'],['〝','〟'],['“','”'],['‘','’']
+]
+exque = [
+    ['‼','ExEx'],
+    ['⁉','ExQue'],
+    ['⁈','QueEx'],
+    ['⁇','QueQue'],
+    ['！','Ex'],
+    ['？','Que'],
+    ['!!!!','ExExExEx'],
+    ['!!!','ExExEx'],
+    ['!!','ExEx'],
+    ['!?','ExQue'],
+    ['?!','QueEx'],
+    ['??','QueQue']
+]
+kutotens = ['、','。']
 def txt_replace(x):
-    # 段落を区切る
-    x = x.replace('\r\n','\n')
-    x = x.replace('\n','\n\n')
     # インデント処理
     for bracket in brackets:
         x = re.sub(r'^'+bracket[0],r'{\\bracketIndent}'+bracket[0],x)
@@ -115,7 +221,8 @@ def txt_replace(x):
             x = x.replace('\\'+kutoten+bracket[1], kutoten+bracket[1])
             x = x.replace(bracket[1]+'\\hbox{}\\'+kutoten, bracket[1]+'\\<\\'+kutoten)
     x = x.replace('\。\。\。', r'。。。')
-    # 縦組み用約物
+    # その他約物
+    x = re.sub('([^…])(……)([^…])',r'\1\\……\3',x)
     x = x.replace('・','{\\・}')
     x = x.replace('‐','{\\‐}')
     x = x.replace('：','{\\：}')
@@ -128,24 +235,4 @@ def txt_replace(x):
         x = x.replace(bracket[1]+'{\\・}',bracket[1]+'\\<{\\・}')
     x = x.replace('．', '\\．')
     return x
-```
-
-### 中黒
-　
-
-### 疑問符・感嘆符後の空白
-　
-
-### 縦中横
-LaTeXで縦書きをするさい、縦中横には`\rensuji`を使うよう言われる。しかし`\rensuji`だと前後のアキがおかしくなる（たとえば、行頭で`\rensuji`を使うとインデント量が狂う）。そこで`\tcy`命令を新たに作り、これを使うのがよい。
-
-```latex
-\usepackage{pxghost}
-\newcommand{\tcy}[1]{%
-    \jghostguarded{%
-        \leavevmode\hbox to 1zw{%
-            \centering\rensuji*{#1}%
-        }%
-    }%
-}
 ```

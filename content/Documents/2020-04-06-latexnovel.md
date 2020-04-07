@@ -2,7 +2,7 @@
 layout: post
 title: LaTeXによる小説組版法・中級編――ベスト文集制作記録④
 date: 2020-04-06
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "guide", "font"]
 ---
 
 # 本文の組み方①・フォント篇
