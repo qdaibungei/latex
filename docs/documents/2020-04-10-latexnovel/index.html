@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155017107-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-155017107-1');
+        </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>ベスト文集制作記録⑧（本文の組み方⑤・作品タイトル篇）｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+        <script src="https://kit.fontawesome.com/593b5b099a.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-wrapper">
+                <h1 class="logo">
+                    <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+                </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex"><i class="fas fa-home"></i> HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about"><i class="fas fa-info-circle"></i> About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents"><i class="fas fa-book"></i> Docs</a></li>
+    </ul>
+</nav>
+</div>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<p class="title">
+    ベスト文集制作記録⑧（本文の組み方⑤・作品タイトル篇）<br>
+</p>
+<h1 id="本文の組み方作品タイトル篇">本文の組み方⑤・作品タイトル篇</h1>
+<h2 id="デザイン">デザイン</h2>
+<p>作品タイトルは以下のようなデザインとした。紙面を節約するために、タイトルを本文の右隣りに置くデザインとした。</p>
+<p><img src="/latex/assets/img/2020-04-09.jpg" alt=""></p>
+<h2 id="latexによる章の作り方通常時">LaTeXによる章の作り方（通常時）</h2>
+<p>普通、LaTeXで作品タイトルや章タイトルを出力するには、<code>\chapter</code>という命令を使う。<code>\chapter{作品タイトル}</code>のようにすればよい。</p>
+<p>しかし今回は、<code>\chapter</code>に代替しうるマクロを独自に定義してこれを使った。なぜかというと、<code>\chapter</code>の定義を変更してデザインを変えるのが面倒であったからだ。LaTeXにもう少し詳しければ<code>\chapter</code>を再定義して用いたほうがよいであろう。</p>
+<h2 id="latexによる章の作り方私家版">LaTeXによる章の作り方（私家版）</h2>
+<p>上のような作品タイトルの出力をLaTeXで実現するために、次のようなマクロを組んだ。</p>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% title &amp; author names
+</span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\booktitlename</span><span class="nb">}{</span><span class="k">\relax</span><span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\chaptertitle</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="k">\def\qbook</span>@chaptertitle<span class="nb">{</span>#1<span class="nb">}}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\chapterauthor</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="k">\def\qbook</span>@chapterauthor<span class="nb">{</span>#1<span class="nb">}}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\chapterauthorruby</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="k">\def\qbook</span>@chapterauthorruby<span class="nb">{</span>#1<span class="nb">}}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\chapterfirstappearance</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="k">\expandafter\qbook</span>@fa#1//<span class="k">\@</span>nil<span class="nb">}</span>
+<span class="k">\def\qbook</span>@fa#1/#2/#3/#4<span class="k">\@</span>nil<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\def\qbook</span>@fa@year<span class="nb">{</span>#1<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\def\qbook</span>@fa@gou<span class="nb">{</span>#2<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\def\qbook</span>@fa@booktitle<span class="nb">{</span>#3<span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\chaptertitle</span><span class="nb">{</span><span class="k">\relax</span><span class="nb">}</span>
+<span class="k">\chapterauthor</span><span class="nb">{</span><span class="k">\relax</span><span class="nb">}</span>
+<span class="k">\chapterauthorruby</span><span class="nb">{</span><span class="k">\relax</span><span class="nb">}</span>
+<span class="k">\chapterfirstappearance</span><span class="nb">{</span><span class="k">\relax</span>/<span class="k">\relax</span>/<span class="k">\relax</span><span class="nb">}</span>
+
+<span class="c">%% \makechapter
+</span><span class="c">% \let\qbook@orig@tcy=\tcy
+</span><span class="c"></span><span class="k">\def\qbook</span>@5gyobox#1<span class="nb">{</span><span class="k">\leavevmode\hbox</span> to 5<span class="k">\baselineskip</span><span class="nb">{</span><span class="k">\yoko</span>#1<span class="k">\hfill</span><span class="nb">}}</span>
+<span class="k">\def\qbook</span>@makechapter<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\begingroup</span>
+    <span class="k">\ifnum\value</span><span class="nb">{</span>dangumi<span class="nb">}</span>=1
+        <span class="k">\hspace*</span><span class="nb">{</span>-4.5zw<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\fi</span>
+    <span class="k">\qbook</span>@5gyobox<span class="nb">{</span><span class="k">\rule</span><span class="nb">{</span>70mm<span class="nb">}{</span>.4mm<span class="nb">}}</span>
+    <span class="k">\qbook</span>@5gyobox<span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>12<span class="k">\bQ</span><span class="nb">}{</span>12H<span class="nb">}</span><span class="k">\agencyfb</span> The BEST SELECTION of<span class="k">\phantom</span><span class="nb">{</span>y<span class="nb">}}</span><span class="k">\kern</span>.05em
+    <span class="k">\qbook</span>@5gyobox<span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>12<span class="k">\bQ</span><span class="nb">}{</span>12H<span class="nb">}</span><span class="k">\agencyfb</span> Kyushu University<span class="nb">}</span><span class="k">\kern</span>.05em
+    <span class="k">\qbook</span>@5gyobox<span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>12<span class="k">\bQ</span><span class="nb">}{</span>12H<span class="nb">}</span><span class="k">\agencyfb</span> Literary Club<span class="nb">}</span><span class="k">\kern</span>.05em
+    <span class="k">\qbook</span>@5gyobox<span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>12<span class="k">\bQ</span><span class="nb">}{</span>12H<span class="nb">}</span><span class="k">\agencyfb</span> Works<span class="nb">}</span>
+    <span class="k">\qbook</span>@5gyobox<span class="nb">{</span><span class="k">\rule</span><span class="nb">{</span>70mm<span class="nb">}{</span>.4mm<span class="nb">}}</span>
+    <span class="k">\begingroup</span>
+    <span class="k">\kanjiskip</span>=-2H plus 0zw minus 0zw
+    <span class="nb">{</span><span class="k">\hskip</span>2zw<span class="k">\fontsize</span><span class="nb">{</span>35<span class="k">\bQ</span><span class="nb">}{</span>35H<span class="nb">}</span><span class="k">\selectfont\parbox</span><span class="nb">{</span>16zw<span class="nb">}{</span><span class="k">\mgfamily\romanfamily</span><span class="nb">{</span>fbb-TLF<span class="nb">}</span><span class="k">\selectfont\qbook</span>@chaptertitle<span class="nb">}}</span><span class="k">\par</span>
+    <span class="k">\endgroup</span>
+    <span class="k">\vspace</span><span class="nb">{</span>-.08<span class="k">\baselineskip</span><span class="nb">}</span>
+    <span class="k">\hfill\leavevmode\hbox</span> to 0pt<span class="nb">{</span><span class="k">\yoko</span><span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>8<span class="k">\bQ</span><span class="nb">}{</span>8H<span class="nb">}</span><span class="k">\ttfamily</span> Author:<span class="k">\phantom</span><span class="nb">{</span>y<span class="nb">}}</span><span class="k">\hfill</span><span class="nb">}</span><span class="k">\kern</span>.2mm
+    <span class="k">\leavevmode\hbox</span> to 0pt<span class="nb">{</span><span class="k">\yoko\rule</span><span class="nb">{</span>70mm<span class="nb">}{</span>.125mm<span class="nb">}}</span><span class="k">\kern</span>1mm
+    <span class="k">\leavevmode\hbox</span> to 0pt<span class="nb">{</span><span class="k">\yoko\textgt</span><span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>10<span class="k">\bQ</span><span class="nb">}{</span>10H<span class="nb">}</span><span class="k">\selectfont\qbook</span>@chapterauthor<span class="nb">}</span><span class="k">\hfill</span><span class="nb">}</span>
+    <span class="k">\leavevmode\hbox</span> to 0pt<span class="nb">{</span><span class="k">\yoko\textgt</span><span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\fontsize</span><span class="nb">{</span>7<span class="k">\bQ</span><span class="nb">}{</span>7H<span class="nb">}</span><span class="k">\selectfont</span>
+        <span class="k">\expandafter\ifx\qbook</span>@chapterauthorruby<span class="k">\relax</span> 　<span class="k">\else</span> （<span class="k">\qbook</span>@chapterauthorruby）<span class="k">\fi</span><span class="nb">}</span><span class="k">\hfill</span>
+    <span class="nb">}</span><span class="k">\kern</span>2.5zw
+    <span class="k">\leavevmode\hbox</span> to 0pt<span class="nb">{</span><span class="k">\yoko</span><span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>8<span class="k">\bQ</span><span class="nb">}{</span>8H<span class="nb">}</span><span class="k">\ttfamily</span> Included in:<span class="k">\phantom</span><span class="nb">{</span>y<span class="nb">}}</span><span class="k">\hfill</span><span class="nb">}</span><span class="k">\kern</span>.2mm
+    <span class="k">\leavevmode\hbox</span> to 0pt<span class="nb">{</span><span class="k">\yoko\rule</span><span class="nb">{</span>70mm<span class="nb">}{</span>.125mm<span class="nb">}}</span>
+    <span class="k">\leavevmode\hbox</span> to 0pt<span class="nb">{</span><span class="k">\vbox</span> to 0pt<span class="nb">{</span><span class="k">\vspace</span><span class="nb">{</span>-5<span class="k">\baselineskip</span><span class="nb">}</span>
+            <span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>&lt;y&gt;[b]<span class="nb">{</span>5<span class="k">\baselineskip</span><span class="nb">}</span>
+                <span class="k">\fontsize</span><span class="nb">{</span>7<span class="k">\bQ</span><span class="nb">}{</span>10H<span class="nb">}</span><span class="k">\selectfont\par</span>
+                <span class="k">\textgt</span><span class="nb">{</span><span class="k">\qbook</span>@fa@year<span class="k">\kern</span>.125zw 年度<span class="k">\qbook</span>@fa@gou 号<span class="k">\\\qbook</span>@fa@booktitle<span class="nb">}</span>
+            <span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+        <span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span>
+    <span class="k">\vspace</span><span class="nb">{</span>1.67mm<span class="nb">}</span>
+    <span class="k">\endgroup</span>
+<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\makechapter</span><span class="nb">}{</span><span class="k">\qbook</span>@makechapter<span class="nb">}</span>
+</code></pre></div><p>本文での記述は以下のようにしてある。</p>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\chaptertitle</span><span class="nb">{</span>走れメロス<span class="nb">}</span>
+<span class="k">\chapterauthor</span><span class="nb">{</span>太宰治<span class="nb">}</span>
+<span class="k">\chapterauthorruby</span><span class="nb">{</span>だざい・おさむ<span class="nb">}</span>
+<span class="k">\chapterfirstappearance</span><span class="nb">{</span>????/？？/『？？？？？』<span class="nb">}</span>
+<span class="k">\setcounter</span><span class="nb">{</span>dangumi<span class="nb">}{</span>2<span class="nb">}</span><span class="k">\newhanmenII</span>
+<span class="k">\makechapter</span>
+<span class="k">\gyoaki</span><span class="na">[2]</span>
+<span class="k">\begin</span><span class="nb">{</span>honbun<span class="nb">}</span>
+　メロスは激怒した。必ず、かの邪智暴虐《じゃち　ぼうぎゃく》の王を除かなければならぬと決意した。<span class="c">% 以下略
+</span><span class="c"></span><span class="k">\end</span><span class="nb">{</span>honbun<span class="nb">}</span>
+</code></pre></div><p>　</p>
+<p>（<a href="https://qdaibungei.github.io/latex/documents/2020-04-11-latexnovel/">次回</a>に続く）</p>
+
+<div class="showarticleinfo">
+    <i class="far fa-calendar-alt"></i> 2020年4月10日<br>
+    
+    <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/guide">#guide</a></code> <br>
+</div>
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2020 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+

@@ -12,7 +12,7 @@
         </script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <title>LaTeXによる小説組版法・中級編――ベスト文集制作記録⑥｜文藝部LaTeX研究会</title>
+        <title>ベスト文集制作記録⑥（本文の組み方③・ベタ組篇）｜文藝部LaTeX研究会</title>
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
@@ -42,138 +42,215 @@
     <div class="content">
 
 <p class="title">
-    LaTeXによる小説組版法・中級編――ベスト文集制作記録⑥<br>
+    ベスト文集制作記録⑥（本文の組み方③・ベタ組篇）<br>
 </p>
-<h1 id="本文の組み方テキストからtexへ変換する篇">本文の組み方④・テキストからTeXへ変換する篇</h1>
-<h2 id="ダッシュ">ダッシュ</h2>
-<p>倍角ダッシュや波ダッシュは、<a href="https://qdaibungei.github.io/latex/documents/2017-02-17-jdash/">jdash.sty</a>を用いてマクロ定義してある。このマクロを使うため、次のように置換処理を行なう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">jdashes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;—&#39;</span><span class="p">,</span><span class="s1">&#39;―&#39;</span><span class="p">,</span><span class="s1">&#39;─&#39;</span><span class="p">]</span>
-<span class="n">wdashes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;〜&#39;</span><span class="p">,</span><span class="s1">&#39;～&#39;</span><span class="p">]</span>
-<span class="k">def</span> <span class="nf">jdash_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">jdash</span> <span class="ow">in</span> <span class="n">jdashes</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">jdash</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-                <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">jdash</span><span class="o">*</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">jdash[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="o">+</span><span class="s1">&#39;}&#39;</span><span class="p">)</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">jdash</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">――&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x</span>
-<span class="k">def</span> <span class="nf">wdash_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">wdash</span> <span class="ow">in</span> <span class="n">wdashes</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">wdash</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-                <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">wdash</span><span class="o">*</span><span class="n">y</span><span class="p">,(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">wdash</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x</span>
-</code></pre></div><h2 id="濁点マクロ">濁点マクロ</h2>
-<p>例えば、平仮名の「な」に濁点を打ちたくなることがある。このような場合には濁点マクロを作っておくと便利だ。</p>
-<h3 id="latexでのマクロ定義">LaTeXでのマクロ定義</h3>
-<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% dakutens
-</span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\dakuten</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="c">%
+<h1 id="本文の組み方ベタ組篇">本文の組み方③・ベタ組篇</h1>
+<p>小説の本文は、ベタ組にするのがよい。ベタ組とは、方眼紙に字を埋めるがごとく、字間を空けずに組むことである。次の画像のように組むということである。</p>
+<p><img src="/latex/assets/img/2020-04-07.png" alt=""></p>
+<h2 id="hanmenstyの使用">hanmen.styの使用</h2>
+<p>LaTeXの標準機能でベタ組を実現するのは案外難しい。そこで、<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmen.sty</a>を使用する。これを用いると、ベタ組を実現しやすい。</p>
+<h2 id="ベタ組のための基本設定">ベタ組のための基本設定</h2>
+<p>次の設定をしておくと字間や行間が広がりにくく、ベタ組を実現しやすい。</p>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% 字間・行間の設定
+</span><span class="c"></span><span class="k">\kanjiskip</span>=0zw plus .25zw minus .03125zw
+<span class="k">\xkanjiskip</span>=.25zw plus .25zw minus .0625zw
+<span class="k">\parskip</span>=0zw
+<span class="k">\parsep</span>=0zw
+<span class="k">\partopsep</span>=0zw
+</code></pre></div><h2 id="縦中横">縦中横</h2>
+<p>LaTeXで縦書きをする際、縦中横には<code>\rensuji</code>を使うよう言われる。しかし<code>\rensuji</code>だと無駄に\xkanjiskipが挿入されてしまい、ベタ組にならない。そこで<code>\tcy</code>命令を新たに作り、これを使うのがよい。</p>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\usepackage</span><span class="nb">{</span>pxghost<span class="nb">}</span>
+
+<span class="c">%% \tcy
+</span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\tcy</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="c">%
 </span><span class="c"></span>    <span class="k">\jghostguarded</span><span class="nb">{</span><span class="c">%
 </span><span class="c"></span>        <span class="k">\leavevmode\hbox</span> to 1zw<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>            <span class="k">\rensuji</span><span class="nb">{</span><span class="k">\hbox</span> to 1zw<span class="nb">{</span>#1<span class="k">\hspace*</span><span class="nb">{</span>-0.25zw<span class="nb">}</span>゛<span class="nb">}}</span><span class="c">%
+</span><span class="c"></span>            <span class="k">\centering\rensuji*</span><span class="nb">{</span>#1<span class="nb">}</span><span class="c">%
 </span><span class="c"></span>        <span class="nb">}</span><span class="c">%
 </span><span class="c"></span>    <span class="nb">}</span><span class="c">%
 </span><span class="c"></span><span class="nb">}</span>
-<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\handakuten</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\jghostguarded</span><span class="nb">{</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\leavevmode\hbox</span> to 1zw<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>            <span class="k">\rensuji</span><span class="nb">{</span><span class="k">\hbox</span> to 1zw<span class="nb">{</span>#1<span class="k">\hspace*</span><span class="nb">{</span>-0.25zw<span class="nb">}</span>゜<span class="nb">}}</span>
-        <span class="nb">}</span><span class="c">%
+</code></pre></div><p>数字やアルファベットを自動で縦中横にするために、『九大文学』製作時にはPythonで次の関数を作って置換した。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;０&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">],[</span><span class="s1">&#39;１&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">],[</span><span class="s1">&#39;２&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">],[</span><span class="s1">&#39;３&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">],[</span><span class="s1">&#39;４&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;５&#39;</span><span class="p">,</span><span class="s1">&#39;5&#39;</span><span class="p">],[</span><span class="s1">&#39;６&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">],[</span><span class="s1">&#39;７&#39;</span><span class="p">,</span><span class="s1">&#39;7&#39;</span><span class="p">],[</span><span class="s1">&#39;８&#39;</span><span class="p">,</span><span class="s1">&#39;8&#39;</span><span class="p">],[</span><span class="s1">&#39;９&#39;</span><span class="p">,</span><span class="s1">&#39;9&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">alphabets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;Ａ&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｂ&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｃ&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｄ&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｅ&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Ｆ&#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｇ&#39;</span><span class="p">,</span><span class="s1">&#39;G&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｈ&#39;</span><span class="p">,</span><span class="s1">&#39;H&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｉ&#39;</span><span class="p">,</span><span class="s1">&#39;I&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｊ&#39;</span><span class="p">,</span><span class="s1">&#39;J&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Ｋ&#39;</span><span class="p">,</span><span class="s1">&#39;K&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｌ&#39;</span><span class="p">,</span><span class="s1">&#39;L&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｍ&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｎ&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｏ&#39;</span><span class="p">,</span><span class="s1">&#39;O&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Ｐ&#39;</span><span class="p">,</span><span class="s1">&#39;P&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｑ&#39;</span><span class="p">,</span><span class="s1">&#39;Q&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｒ&#39;</span><span class="p">,</span><span class="s1">&#39;R&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｓ&#39;</span><span class="p">,</span><span class="s1">&#39;S&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｔ&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Ｕ&#39;</span><span class="p">,</span><span class="s1">&#39;U&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｖ&#39;</span><span class="p">,</span><span class="s1">&#39;V&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｗ&#39;</span><span class="p">,</span><span class="s1">&#39;W&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｘ&#39;</span><span class="p">,</span><span class="s1">&#39;X&#39;</span><span class="p">],[</span><span class="s1">&#39;Ｙ&#39;</span><span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Ｚ&#39;</span><span class="p">,</span><span class="s1">&#39;Z&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;ａ&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">],[</span><span class="s1">&#39;ｂ&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">],[</span><span class="s1">&#39;ｃ&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],[</span><span class="s1">&#39;ｄ&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">],[</span><span class="s1">&#39;ｅ&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;ｆ&#39;</span><span class="p">,</span><span class="s1">&#39;f&#39;</span><span class="p">],[</span><span class="s1">&#39;ｇ&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">],[</span><span class="s1">&#39;ｈ&#39;</span><span class="p">,</span><span class="s1">&#39;h&#39;</span><span class="p">],[</span><span class="s1">&#39;ｉ&#39;</span><span class="p">,</span><span class="s1">&#39;i&#39;</span><span class="p">],[</span><span class="s1">&#39;ｊ&#39;</span><span class="p">,</span><span class="s1">&#39;j&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;ｋ&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">],[</span><span class="s1">&#39;ｌ&#39;</span><span class="p">,</span><span class="s1">&#39;l&#39;</span><span class="p">],[</span><span class="s1">&#39;ｍ&#39;</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">],[</span><span class="s1">&#39;ｎ&#39;</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">],[</span><span class="s1">&#39;ｏ&#39;</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;ｐ&#39;</span><span class="p">,</span><span class="s1">&#39;p&#39;</span><span class="p">],[</span><span class="s1">&#39;ｑ&#39;</span><span class="p">,</span><span class="s1">&#39;q&#39;</span><span class="p">],[</span><span class="s1">&#39;ｒ&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">],[</span><span class="s1">&#39;ｓ&#39;</span><span class="p">,</span><span class="s1">&#39;s&#39;</span><span class="p">],[</span><span class="s1">&#39;ｔ&#39;</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;ｕ&#39;</span><span class="p">,</span><span class="s1">&#39;u&#39;</span><span class="p">],[</span><span class="s1">&#39;ｖ&#39;</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">],[</span><span class="s1">&#39;ｗ&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">],[</span><span class="s1">&#39;ｘ&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">],[</span><span class="s1">&#39;ｙ&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;ｚ&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="k">def</span> <span class="nf">alphabet_replace</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">alphabets</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">tcy{&#39;</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;}&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+<span class="k">def</span> <span class="nf">num_replace</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">tcy{&#39;</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;}&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+<span class="k">def</span> <span class="nf">percent_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;％&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">tcy{</span><span class="se">\\</span><span class="s1">%}&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</code></pre></div><h2 id="禁則処理の抑制">禁則処理の抑制</h2>
+<p>禁則処理が多いとベタ組になりにくい。そこで禁則処理を程々に抑制する。</p>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% penalties
+</span><span class="c"></span><span class="k">\clubpenalty</span>=0
+<span class="k">\widowpenalty</span>=0
+<span class="k">\jcharwidowpenalty</span>=0
+<span class="k">\displaywidowpenalty</span>=0
+<span class="k">\prebreakpenalty\jis</span>&#34;2147=10000  <span class="c">% 5000 ’
+</span><span class="c"></span><span class="k">\postbreakpenalty\jis</span>&#34;2148=10000 <span class="c">% 5000 “
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2149=10000  <span class="c">% 5000 ”
+</span><span class="c"></span><span class="k">\inhibitxspcode</span>`〒=2
+<span class="k">\prebreakpenalty\jis</span>&#34;2133=10000
+<span class="k">\prebreakpenalty\jis</span>&#34;2134=10000
+<span class="k">\prebreakpenalty\jis</span>&#34;2135=10000
+<span class="k">\prebreakpenalty\jis</span>&#34;2136=10000
+<span class="k">\prebreakpenalty</span>`ー=0
+<span class="k">\prebreakpenalty</span>`ぁ=0
+<span class="k">\prebreakpenalty</span>`ぃ=0
+<span class="k">\prebreakpenalty</span>`ぅ=0
+<span class="k">\prebreakpenalty</span>`ぇ=0
+<span class="k">\prebreakpenalty</span>`ぉ=0
+<span class="k">\prebreakpenalty</span>`っ=0
+<span class="k">\prebreakpenalty</span>`ゃ=0
+<span class="k">\prebreakpenalty</span>`ゅ=0
+<span class="k">\prebreakpenalty</span>`ょ=0
+<span class="k">\prebreakpenalty\jis</span>&#34;246E=0     <span class="c">%ゎ
+</span><span class="c"></span><span class="k">\prebreakpenalty</span>`ァ=0
+<span class="k">\prebreakpenalty</span>`ィ=0
+<span class="k">\prebreakpenalty</span>`ゥ=0
+<span class="k">\prebreakpenalty</span>`ェ=0
+<span class="k">\prebreakpenalty</span>`ォ=0
+<span class="k">\prebreakpenalty</span>`ッ=0
+<span class="k">\prebreakpenalty</span>`ャ=0
+<span class="k">\prebreakpenalty</span>`ュ=0
+<span class="k">\prebreakpenalty</span>`ョ=0
+<span class="k">\prebreakpenalty\jis</span>&#34;256E=0     <span class="c">%ヮ
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2575=0     <span class="c">%ヵ
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2576=0     <span class="c">%ヶ
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2139=0     <span class="c">%々
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2144=0     <span class="c">%…
+</span></code></pre></div><p>縦書きの場合、禁則処理をこのように抑制したほうが商業誌の組み方に近づけられる。</p>
+<h2 id="約物の処理">約物の処理</h2>
+<p>LaTeXの標準設定では、約物（句読点、括弧、中黒、疑問符・感嘆符など）に関してはベタ組にならない。そこで、さらにベタ組にするためには以下のような工夫が必要である。</p>
+<p>まず、LaTeXで約物用のマクロ定義を行なう。続いて、Pythonでプレーンテキストを加工するための関数を定義する（詳しい解説は面倒なので割愛）。</p>
+<h3 id="latex側のマクロ定義">LaTeX側のマクロ定義</h3>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% punctuations
+</span><span class="c">%%%% 句読点
+</span><span class="c"></span><span class="k">\if</span>@burasage
+    <span class="k">\def\、</span><span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\@</span>ifnextchar<span class="k">\par</span><span class="nb">{</span>、<span class="nb">}{</span>、<span class="k">\hbox</span><span class="nb">{}}</span><span class="c">%
 </span><span class="c"></span>    <span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="nb">}</span>
-</code></pre></div><h3 id="pythonでの置換処理">Pythonでの置換処理</h3>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">dakuten_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ぁ-ヴ])゛&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">dakuten{\1}&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ぁ-ヴ])゜&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">handakuten{\1}&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</span><span class="c"></span>    <span class="k">\def\。</span><span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\@</span>ifnextchar<span class="k">\par</span><span class="nb">{</span>。<span class="nb">}{</span>。<span class="k">\hbox</span><span class="nb">{}}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="k">\else</span>
+    <span class="k">\def\、</span><span class="nb">{</span><span class="k">\nobreak\makebox</span><span class="na">[1zw][l]</span><span class="nb">{</span>、<span class="nb">}}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\def\。</span><span class="nb">{</span><span class="k">\nobreak\makebox</span><span class="na">[1zw][l]</span><span class="nb">{</span>。<span class="nb">}}</span><span class="c">%
+</span><span class="c"></span><span class="k">\fi</span>
+<span class="c">%%%% 疑問符・感嘆符
+</span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\QueEx</span><span class="nb">}{</span><span class="k">\nobreak</span> ⁈<span class="k">\&lt;</span><span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\QueQue</span><span class="nb">}{</span><span class="k">\nobreak</span> ⁇<span class="k">\&lt;</span><span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\ExQue</span><span class="nb">}{</span><span class="k">\nobreak</span> ⁉<span class="k">\&lt;</span><span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\ExEx</span><span class="nb">}{</span><span class="k">\nobreak</span> ‼<span class="k">\&lt;</span><span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\Que</span><span class="nb">}{</span><span class="k">\nobreak</span> ？<span class="k">\&lt;</span><span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\Ex</span><span class="nb">}{</span><span class="k">\nobreak</span> ！<span class="k">\&lt;</span><span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\ExExExEx</span><span class="nb">}{</span><span class="k">\nobreak</span><span class="nb">{</span><span class="k">\tcy</span><span class="nb">{</span>!!!!<span class="nb">}}}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\ExExEx</span><span class="nb">}{</span><span class="k">\nobreak</span><span class="nb">{</span><span class="k">\tcy</span><span class="nb">{</span>!!!<span class="nb">}}}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\zenkakuaki</span><span class="nb">}{</span><span class="k">\hskip</span>1zw plus .125zw minus 0.03125zw<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\nibusibuaki</span><span class="nb">}{</span><span class="k">\hskip</span>.75zw plus .125zw minus 0.03125zw<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\nibuaki</span><span class="nb">}{</span><span class="k">\hskip</span>.5zw plus .125zw minus 0.03125zw<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\minusnibuaki</span><span class="nb">}{</span><span class="k">\hskip</span>-.5zw plus .125zw minus 0.03125zw<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\sibuaki</span><span class="nb">}{</span><span class="k">\hskip</span>.25zw plus .125zw minus 0.03125zw<span class="nb">}</span>
+<span class="c">%%%% その他約物
+</span><span class="c"></span><span class="k">\def\・</span><span class="nb">{</span><span class="k">\jghostguarded</span><span class="nb">{</span><span class="k">\leavevmode\hbox</span> to 1zw<span class="nb">{</span>・<span class="nb">}}}</span>
+<span class="k">\def\…</span>…<span class="nb">{</span><span class="k">\jghostguarded</span><span class="nb">{</span><span class="k">\hbox</span> to 2zw<span class="nb">{</span>……<span class="nb">}}}</span>
+<span class="k">\def\．</span><span class="nb">{</span><span class="k">\jghostguarded</span><span class="nb">{</span><span class="k">\leavevmode\hbox</span> to 1zw<span class="nb">{</span><span class="k">\raise</span>.6zw<span class="k">\hbox</span><span class="nb">{</span>.<span class="nb">}}}}</span>
+<span class="k">\def\‐</span><span class="nb">{</span><span class="k">\jghostguarded</span><span class="nb">{</span><span class="k">\leavevmode\hbox</span> to 1zw<span class="nb">{</span><span class="k">\hss\rule</span><span class="na">[-.25H]</span><span class="nb">{</span>.4zw<span class="nb">}{</span>.55H<span class="nb">}</span><span class="k">\hss</span><span class="nb">}}}</span><span class="c">% 必要に応じて使用
+</span><span class="c"></span><span class="k">\def\：</span><span class="nb">{</span><span class="k">\ifydir</span> ：<span class="k">\else\CID</span><span class="nb">{</span>12101<span class="nb">}</span><span class="k">\fi</span><span class="nb">}</span>
+<span class="c">%%%% インデント
+</span><span class="c"></span><span class="k">\parindent</span>=0zw
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\normalIndent</span><span class="nb">}{</span><span class="k">\hskip</span>1zw<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\bracketIndentAmount</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="k">\def\bracketIndent</span><span class="nb">{</span><span class="k">\hskip</span>#1zw<span class="k">\&lt;</span><span class="nb">}}</span>
+<span class="k">\bracketIndentAmount</span><span class="nb">{</span>0.5<span class="nb">}</span>
+</code></pre></div><h3 id="pythonによる約物の調整">Pythonによる約物の調整</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">brackets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;「&#39;</span><span class="p">,</span><span class="s1">&#39;」&#39;</span><span class="p">],[</span><span class="s1">&#39;『&#39;</span><span class="p">,</span><span class="s1">&#39;』&#39;</span><span class="p">],[</span><span class="s1">&#39;（&#39;</span><span class="p">,</span><span class="s1">&#39;）&#39;</span><span class="p">],[</span><span class="s1">&#39;〈&#39;</span><span class="p">,</span><span class="s1">&#39;〉&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;【&#39;</span><span class="p">,</span><span class="s1">&#39;】&#39;</span><span class="p">],[</span><span class="s1">&#39;〔&#39;</span><span class="p">,</span><span class="s1">&#39;〕&#39;</span><span class="p">],[</span><span class="s1">&#39;《&#39;</span><span class="p">,</span><span class="s1">&#39;》&#39;</span><span class="p">],[</span><span class="s1">&#39;［&#39;</span><span class="p">,</span><span class="s1">&#39;］&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;｛&#39;</span><span class="p">,</span><span class="s1">&#39;｝&#39;</span><span class="p">],[</span><span class="s1">&#39;〝&#39;</span><span class="p">,</span><span class="s1">&#39;〟&#39;</span><span class="p">],[</span><span class="s1">&#39;“&#39;</span><span class="p">,</span><span class="s1">&#39;”&#39;</span><span class="p">],[</span><span class="s1">&#39;‘&#39;</span><span class="p">,</span><span class="s1">&#39;’&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">exque</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;‼&#39;</span><span class="p">,</span><span class="s1">&#39;ExEx&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;⁉&#39;</span><span class="p">,</span><span class="s1">&#39;ExQue&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;⁈&#39;</span><span class="p">,</span><span class="s1">&#39;QueEx&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;⁇&#39;</span><span class="p">,</span><span class="s1">&#39;QueQue&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;！&#39;</span><span class="p">,</span><span class="s1">&#39;Ex&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;？&#39;</span><span class="p">,</span><span class="s1">&#39;Que&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;!!!!&#39;</span><span class="p">,</span><span class="s1">&#39;ExExExEx&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;!!!&#39;</span><span class="p">,</span><span class="s1">&#39;ExExEx&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;!!&#39;</span><span class="p">,</span><span class="s1">&#39;ExEx&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;!?&#39;</span><span class="p">,</span><span class="s1">&#39;ExQue&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;?!&#39;</span><span class="p">,</span><span class="s1">&#39;QueEx&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;??&#39;</span><span class="p">,</span><span class="s1">&#39;QueQue&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">kutotens</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;、&#39;</span><span class="p">,</span><span class="s1">&#39;。&#39;</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">punctuation_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># インデント処理</span>
+    <span class="k">for</span> <span class="n">bracket</span> <span class="ow">in</span> <span class="n">brackets</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^&#39;</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="sa">r</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">bracketIndent}&#39;</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^　&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">normalIndent}&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># 閉じ括弧</span>
+    <span class="k">for</span> <span class="n">bracket</span> <span class="ow">in</span> <span class="n">brackets</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hbox{}&#39;</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hbox{}}&#39;</span><span class="p">,</span> <span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;}&#39;</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hbox{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hbox{}\&lt;&#39;</span><span class="p">,</span> <span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;\&lt;&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">bracket2</span> <span class="ow">in</span> <span class="n">brackets</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hbox{}&#39;</span><span class="o">+</span><span class="n">bracket2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hbox{}{</span><span class="se">\\</span><span class="s1">minusnibuaki}&#39;</span><span class="o">+</span><span class="n">bracket2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hbox{}&#39;</span><span class="o">+</span><span class="n">bracket2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">bracket2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1"># 疑問符と感嘆符</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">exque</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;　&#39;</span><span class="p">,</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">zenkakuaki</span><span class="se">\\</span><span class="s1">hbox{}}&#39;</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;{&#39;</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;}&#39;</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([0-9a-zA-Z]){</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;}&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1&#39;</span><span class="o">+</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">bracket</span> <span class="ow">in</span> <span class="n">brackets</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">exque</span><span class="p">:</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hbox{}{</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;\&lt;&#39;</span><span class="o">+</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">zenkakuaki</span><span class="se">\\</span><span class="s1">hbox{}}&#39;</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">zenkakuaki</span><span class="se">\\</span><span class="s1">hbox{}}</span><span class="se">\\</span><span class="s1">&lt;&#39;</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1"># 句点と読点</span>
+    <span class="k">for</span> <span class="n">kutoten</span> <span class="ow">in</span> <span class="n">kutotens</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">kutoten</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">kutoten</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">bracket</span> <span class="ow">in</span> <span class="n">brackets</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">kutoten</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">kutoten</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&lt;&#39;</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">kutoten</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">kutoten</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hbox{}</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">kutoten</span><span class="p">,</span> <span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&lt;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">kutoten</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;\。\。\。&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;。。。&#39;</span><span class="p">)</span>
+    <span class="c1"># その他約物</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;([^…])(……)([^…])&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;\1</span><span class="se">\\</span><span class="s1">……\3&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;・&#39;</span><span class="p">,</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">・}&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;‐&#39;</span><span class="p">,</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">‐}&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;：&#39;</span><span class="p">,</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">：}&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;〝&#39;</span><span class="p">,</span><span class="s1">&#39;“&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;〟&#39;</span><span class="p">,</span><span class="s1">&#39;”&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;“&#39;</span><span class="p">,</span><span class="s1">&#39;〝</span><span class="se">\\</span><span class="s1">nobreak &#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;”&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">nobreak 〟&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">bracket</span> <span class="ow">in</span> <span class="n">brackets</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">・}&#39;</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">・</span><span class="se">\\</span><span class="s1">&lt;&#39;</span><span class="o">+</span><span class="n">bracket</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">・}&#39;</span><span class="p">,</span><span class="n">bracket</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&lt;{</span><span class="se">\\</span><span class="s1">・}&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;．&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">．&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span>
-</code></pre></div><h2 id="圏点">圏点</h2>
-<p>「カクヨム」などの小説投稿サイトでは、<code>《《圏点》》</code>という記法で圏点を入力することができる。この記法を自動でLaTeXマクロへと置換できるようにしておくと都合がよい。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">kakuyomu_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;《《(.+?)》》&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">kenten{\1}&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x</span>
-</code></pre></div><h2 id="段落を区切る">段落を区切る</h2>
-<p>LaTeX記法では、段落を区切るためには段落間に空行を挿入せねばならない。そこで次のような置換を行なう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">honbun</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">def</span> <span class="nf">txt_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="c1"># 段落を区切る</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="c1"># 空行の挿入</span>
-    <span class="k">global</span> <span class="n">honbun</span>
-    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;^</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">honbun</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">honbun</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;^</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">gyoaki\n&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x</span>
-</code></pre></div><h2 id="pythonスクリプトの本体">Pythonスクリプトの本体</h2>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">sys</span><span class="o">,</span><span class="nn">codecs</span><span class="o">,</span><span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">nkf</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">argv</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
-<span class="n">pre_document</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span><span class="se">\\</span><span class="s1">documentclass[a5paper,papersize,autodetect-engine]{jsbook}
-</span><span class="s1"></span><span class="se">\\</span><span class="s1">input{settings}
-</span><span class="s1"></span><span class="se">\\</span><span class="s1">begin{document}
-</span><span class="s1">&#39;&#39;&#39;</span>
-<span class="n">post_document</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span><span class="se">\\</span><span class="s1">end{document}
-</span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">open_close</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="n">f_out_name</span><span class="p">):</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="n">f_in</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">nkf</span><span class="o">.</span><span class="n">guess</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span>
-    <span class="n">f_out</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f_out_name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="n">f_in</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-    <span class="n">lines2</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">global</span> <span class="n">honbun</span>
-    <span class="c1"># for x in lines:</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">kakuyomu_replace</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;《&#39;</span> <span class="ow">or</span> <span class="s1">&#39;》&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="n">ruby_replace</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">aozora_replace</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">txt_replace</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">lines2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">honbun</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">lines2</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">pre_document</span><span class="p">)</span>
-    <span class="n">lines2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">post_document</span><span class="p">)</span>
-    <span class="n">f_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines2</span><span class="p">))</span>
-    <span class="n">f_in</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="n">f_out</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s1">&#39;input any file name&#39;</span>
-    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s1">&#39;too many file names&#39;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-                <span class="n">f_in_name</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">f_out_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\.txt$&#39;</span><span class="p">,</span><span class="s1">&#39;.tex&#39;</span><span class="p">,</span><span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-                <span class="n">open_close</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="n">f_out_name</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-                    <span class="n">f_in_name</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">file</span>
-                    <span class="n">f_out_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\.txt$&#39;</span><span class="p">,</span><span class="s1">&#39;.tex&#39;</span><span class="p">,</span><span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">file</span><span class="p">)</span>
-                    <span class="n">open_close</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="n">f_out_name</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-                <span class="k">print</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">f_in_name</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">f_out_name</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-                <span class="n">open_close</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="n">f_out_name</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-                    <span class="k">print</span> <span class="nb">file</span>
-                    <span class="n">f_in_name</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">file</span>
-                    <span class="n">f_out_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\.txt$&#39;</span><span class="p">,</span><span class="s1">&#39;.tex&#39;</span><span class="p">,</span><span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">file</span><span class="p">)</span>
-                    <span class="n">open_close</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="n">f_out_name</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</code></pre></div><p>解説は面倒になってきたのでまたしても割愛。</p>
-<p>　</p>
-<p>（次回に続く）</p>
+</code></pre></div><p>　</p>
+<p>（<a href="https://qdaibungei.github.io/latex/documents/2020-04-09-latexnovel/">次回</a>に続く）</p>
 
 <div class="showarticleinfo">
     <i class="far fa-calendar-alt"></i> 2020年4月8日<br>

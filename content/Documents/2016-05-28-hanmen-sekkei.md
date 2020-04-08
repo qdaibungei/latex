@@ -2,7 +2,6 @@
 layout: post
 title: LaTeXにおける版面設計
 date: 2016-05-28
-lastmod: 2019-12-27
 tags: ["LaTeX"]
 ---
 

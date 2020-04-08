@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155017107-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-155017107-1');
+        </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>ベスト文集制作記録⑩（奥付）｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+        <script src="https://kit.fontawesome.com/593b5b099a.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-wrapper">
+                <h1 class="logo">
+                    <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+                </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex"><i class="fas fa-home"></i> HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about"><i class="fas fa-info-circle"></i> About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents"><i class="fas fa-book"></i> Docs</a></li>
+    </ul>
+</nav>
+</div>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<p class="title">
+    ベスト文集制作記録⑩（奥付）<br>
+</p>
+<h1 id="奥付">奥付</h1>
+<p>奥付は次のようなデザインにした<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。奥付でもやはり書籍タイトルに<a href="https://moji-waku.com/kaiso/">廻想体</a>を使い、統一感を出した。</p>
+<p><img src="/latex/assets/img/2020-04-12.png" alt=""></p>
+<p>LaTeXでは次のように実現してある。</p>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% macro for colophon
+</span><span class="c"></span><span class="k">\makeatletter</span>
+<span class="k">\def\@</span>thisdate#1/#2/#3/#4<span class="k">\@</span>nil<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\thisyear</span><span class="nb">}{</span>#1<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\thismonth</span><span class="nb">}{</span>#2<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\thisday</span><span class="nb">}{</span>#3<span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\def\thisdate</span>#1<span class="nb">{</span><span class="k">\expandafter\@</span>thisdate#1//<span class="k">\@</span>nil<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\bookmaker</span><span class="nb">}</span>[2]<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    ■<span class="k">\leavevmode\hbox</span> to 2.7zw<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="nb">{</span><span class="k">\gtfamily\bfseries\fontsizeX</span> #1<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    ―<span class="k">\kern</span>-.7zw<span class="k">\―</span>―#2<span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\fontcredit</span><span class="nb">}</span>[2]<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\leavevmode\hbox</span> to 6zw<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\hfill\emph</span><span class="nb">{</span>#1<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">{</span><span class="k">\kern</span>1.5zw<span class="k">\okfamily</span> #2<span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\makeatother</span>
+
+<span class="c">%% colophon
+</span><span class="c"></span><span class="k">\newhanmen</span><span class="nb">{</span>Q=11.5,H=19,W=58,L=21,ko=2mm,koguchi=<span class="k">\relax</span>,nodo=<span class="k">\relax</span>,chi=16.4375mm,tate<span class="nb">}</span>
+<span class="c">% \pagegridon{g=56}
+</span><span class="c"></span><span class="k">\thispagestyle</span><span class="nb">{</span>empty<span class="nb">}</span>
+<span class="k">\columnsep</span>=4zw
+<span class="k">\begin</span><span class="nb">{</span>multicols*<span class="nb">}{</span>2<span class="nb">}</span>
+<span class="k">\parbox</span>&lt;y&gt;[c]<span class="nb">{</span><span class="k">\textheight</span><span class="nb">}{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\fontcredit</span><span class="nb">{</span>組版処理<span class="nb">}{</span><span class="k">\LaTeXe</span><span class="nb">}</span><span class="k">\\</span>
+
+    <span class="k">\fontcredit</span><span class="nb">{</span>使用書体<span class="nb">}{}{</span><span class="k">\raise</span>-.125zw<span class="k">\hbox</span><span class="nb">{</span><span class="k">\gtfamily\ebseries\fontsize</span><span class="nb">{</span>14<span class="k">\bQ</span><span class="nb">}{</span>19H<span class="nb">}</span><span class="k">\selectfont</span> <span class="k">\kern</span>-.1zw 廻<span class="k">\kern</span>-.25zw 想<span class="k">\kern</span>-.25zw 体<span class="nb">}</span>＋<span class="nb">{</span><span class="k">\agencyfb</span> Agency FB<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈表紙〉<span class="nb">}</span><span class="k">\\</span>
+    <span class="k">\fontcredit</span><span class="nb">{}{</span><span class="k">\raise</span>-.125zw<span class="k">\hbox</span><span class="nb">{</span><span class="k">\gtfamily\ebseries\fontsize</span><span class="nb">{</span>14<span class="k">\bQ</span><span class="nb">}{</span>19H<span class="nb">}</span><span class="k">\selectfont</span> <span class="k">\kern</span>-.1zw 廻<span class="k">\kern</span>-.25zw 想<span class="k">\kern</span>-.25zw 体<span class="nb">}</span>＋<span class="nb">{</span><span class="k">\classico</span> Classico<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈ロゴ〉<span class="nb">}</span><span class="k">\\</span>
+    <span class="k">\fontcredit</span><span class="nb">{}{{</span><span class="k">\mcfamily</span> 游明朝体R＋Cochineal<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈本文・ルビ・柱〉<span class="nb">}</span><span class="k">\\</span>
+    <span class="k">\fontcredit</span><span class="nb">{}{</span>游明朝体五号かなR＋fbb<span class="k">\fontsizeVIII</span> 〈本文〉<span class="nb">}</span><span class="k">\\</span>
+    <span class="k">\fontcredit</span><span class="nb">{}{{</span><span class="k">\mgfamily</span> 筑紫Aオールド明朝R<span class="nb">}</span>＋fbb<span class="k">\fontsizeVIII</span> 〈各作品タイトル〉<span class="nb">}</span><span class="k">\\</span>
+    <span class="k">\fontcredit</span><span class="nb">{}{{</span><span class="k">\gtfamily</span> 游ゴシック体M<span class="nb">}</span>＋<span class="k">\textgt</span><span class="nb">{</span>Open Sans Regular<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈見出し・作品情報〉<span class="nb">}</span><span class="k">\\</span>
+    <span class="k">\fontcredit</span><span class="nb">{}{</span><span class="k">\emph</span><span class="nb">{</span>筑紫ゴシックD<span class="nb">}</span>＋<span class="k">\emph</span><span class="nb">{</span>Open Sans Semibold<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈強調・小見出し〉<span class="nb">}</span><span class="k">\\</span>
+    <span class="k">\fontcredit</span><span class="nb">{}{</span><span class="k">\texttt</span><span class="nb">{</span>Nimbus15 Mono Narrow<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈作品情報〉<span class="nb">}</span><span class="k">\\</span>
+    <span class="k">\fontcredit</span><span class="nb">{}{</span>源暎ノンブル<span class="k">\fontsizeVIII</span> 〈ノンブル〉<span class="nb">}</span>
+<span class="nb">}</span>
+<span class="k">\columnbreak</span>
+
+<span class="k">\thisdate</span><span class="nb">{</span>2019/10/04<span class="nb">}</span>
+<span class="k">\leftskip</span>=-6zw
+<span class="k">\okfamily</span>
+<span class="k">\vspace*</span><span class="nb">{</span>.5zw<span class="nb">}</span>
+<span class="k">\vspace*</span><span class="nb">{</span>-1mm<span class="nb">}</span>
+<span class="k">\rule</span><span class="nb">{</span><span class="k">\linewidth</span> + 6zw<span class="nb">}{</span>1mm<span class="nb">}</span>
+<span class="k">\obeylines</span>
+<span class="k">\gyodori</span><span class="nb">{</span>2<span class="nb">}{{</span><span class="k">\gtfamily\ebseries\fontsize</span><span class="nb">{</span>25<span class="k">\bQ</span><span class="nb">}{</span>25H<span class="nb">}</span><span class="k">\selectfont\booktitlename</span><span class="nb">}</span><span class="k">\kern</span>.25zw<span class="nb">{</span><span class="k">\fontsizeIX</span> ［きゅうだいぶんがく］<span class="nb">}}</span>
+<span class="k">\gyodori</span><span class="nb">{</span>2<span class="nb">}{</span>■<span class="k">\kansuji\thisyear</span> 年<span class="k">\kansuji\thismonth</span> 月<span class="k">\kansuji\thisday</span> 日　第一版第一刷発行<span class="nb">}</span>
+<span class="k">\bookmaker</span><span class="nb">{</span>編集者<span class="nb">}{</span>＊＊＊＊＋＊＊＊＊<span class="nb">}</span>
+<span class="k">\bookmaker</span><span class="nb">{</span>発行者<span class="nb">}{</span>＊＊＊＊＊<span class="nb">}</span>
+<span class="k">\bookmaker</span><span class="nb">{</span>印刷者<span class="nb">}{</span>＊＊＊＊<span class="nb">}</span>
+<span class="k">\bookmaker</span><span class="nb">{</span>印刷所<span class="nb">}{</span>＊＊＊＊＊＊＊＊＊<span class="nb">}</span>
+<span class="k">\bookmaker</span><span class="nb">{</span>発行所<span class="nb">}{</span>九州大学文藝部<span class="nb">}</span>
+<span class="k">\gyodori</span><span class="nb">{</span>4<span class="nb">}{</span><span class="k">\includegraphics</span><span class="na">[angle=90,width=5zw]</span><span class="nb">{</span>hanko.eps<span class="nb">}}</span>
+<span class="k">\vspace*</span><span class="nb">{</span>-4<span class="k">\baselineskip</span><span class="nb">}</span>
+<span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}</span>福岡市西区元岡七四四番地
+<span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}</span>郵便番号八一九―〇三九五
+<span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}{</span><span class="k">\fontsize</span><span class="nb">{</span>10.5<span class="k">\bQ</span><span class="nb">}{</span>19trueH<span class="nb">}</span><span class="k">\selectfont</span> Website: <span class="k">\url</span><span class="nb">{</span>https://kyudai-bungeiclub.wixsite.com/kyudai-bungei<span class="nb">}}</span>
+<span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}{</span><span class="k">\fontsize</span><span class="nb">{</span>10.5<span class="k">\bQ</span><span class="nb">}{</span>19trueH<span class="nb">}</span><span class="k">\selectfont</span> Twitter: @kyudaibungei<span class="nb">}</span>
+<span class="k">\vspace</span><span class="nb">{</span>-.25<span class="k">\baselineskip</span><span class="nb">}</span>
+<span class="k">\rule</span><span class="nb">{</span><span class="k">\linewidth</span> + 6zw<span class="nb">}{</span>.125truemm<span class="nb">}</span>
+<span class="k">\vspace</span><span class="nb">{</span>-.25<span class="k">\baselineskip</span><span class="nb">}</span>
+造本には十分注意しておりますが、乱丁・落丁の場合は、お取り替えいたしますので九州大学文藝部までご連絡ください。
+本書の一部あるいは全部を無断で転写・複写することは法律で認められた場合を除き、著作権の侵害にあたります。
+<span class="k">\textcopyright</span><span class="nb">{}</span> Kyushu University Literary Club and Authors <span class="k">\thisyear</span> <span class="k">\hfill</span> Printed in Japan
+<span class="k">\disobeylines</span>
+<span class="k">\rule</span><span class="nb">{</span><span class="k">\linewidth</span> + 6zw<span class="nb">}{</span>1mm<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>multicols*<span class="nb">}</span>
+</code></pre></div><h2 id="印鑑画像">印鑑画像</h2>
+<p>奥付に使われている印鑑の画像は、修正を施して画質を向上させてから用いた<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
+<p><img src="/latex/assets/img/2020-04-12a.jpg" alt=""></p>
+<p>　</p>
+<p>（<a href="https://qdaibungei.github.io/latex/documents/2020-04-12-latexnovel/">次回</a>に続く）</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>この奥付のデザインは、2015年度学祭号『伊都計劃』を制作したときに作ったもので、それ以来気に入ってずっと使い続けている。アイディアの元となったのは橋本淳一郎『<a href="https://www.hanmoto.com/bd/isbn/9784061542914">神の仕掛けた玩具</a>』（講談社サイエンティフィク、2006年）の奥付である。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>なお、「修正前」に比べて「修正後」は印鑑の線を細くしすぎなのではないかとの印象を持った方がいるかもしれない。しかし、その印象は誤っている。実は、「修正後」の画像は「修正前」の画像から直接生成したのではない。「修正前」とある画像よりもさらに古い印鑑画像が文藝部のOneDriveに残っており、そちらはもっと線が細かったのである。つまり、元々は「修正後」の画像のように線は細めであった。それが、いつの間にか太くされ、ついでに線がジャギジャギにされており、いわば改悪されていたのであった。それゆえ、修正の方向性は決して誤ってはいない。上で提示した比較画像は、修正後の綺麗さをより際立たせるために、改悪されたバージョンとの比較をしてみたまでである。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+<div class="showarticleinfo">
+    <i class="far fa-calendar-alt"></i> 2020年4月12日<br>
+    
+    <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/guide">#guide</a></code> <br>
+</div>
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2020 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+

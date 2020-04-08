@@ -1,6 +1,6 @@
 ---
 layout: post
-title: LaTeXによる小説組版法・中級編――ベスト文集制作記録②
+title: ベスト文集制作記録②（扉）
 date: 2019-10-13
 tags: ["LaTeX", "guide"]
 ---

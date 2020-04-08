@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155017107-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-155017107-1');
+        </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>ベスト文集制作記録⑦（本文の組み方④・テキストからTeXへ変換する篇）｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+        <script src="https://kit.fontawesome.com/593b5b099a.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-wrapper">
+                <h1 class="logo">
+                    <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+                </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex"><i class="fas fa-home"></i> HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about"><i class="fas fa-info-circle"></i> About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents"><i class="fas fa-book"></i> Docs</a></li>
+    </ul>
+</nav>
+</div>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<p class="title">
+    ベスト文集制作記録⑦（本文の組み方④・テキストからTeXへ変換する篇）<br>
+</p>
+<h1 id="本文の組み方テキストからtexへ変換する篇">本文の組み方④・テキストからTeXへ変換する篇</h1>
+<h2 id="ダッシュ">ダッシュ</h2>
+<p>倍角ダッシュや波ダッシュは、<a href="https://qdaibungei.github.io/latex/documents/2017-02-17-jdash/">jdash.sty</a>を用いてマクロ定義してある。このマクロを使うため、次のように置換処理を行なう。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">jdashes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;—&#39;</span><span class="p">,</span><span class="s1">&#39;―&#39;</span><span class="p">,</span><span class="s1">&#39;─&#39;</span><span class="p">]</span>
+<span class="n">wdashes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;〜&#39;</span><span class="p">,</span><span class="s1">&#39;～&#39;</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">jdash_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">jdash</span> <span class="ow">in</span> <span class="n">jdashes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">jdash</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">jdash</span><span class="o">*</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;{</span><span class="se">\\</span><span class="s1">jdash[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="o">+</span><span class="s1">&#39;}&#39;</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">jdash</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">――&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+<span class="k">def</span> <span class="nf">wdash_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">wdash</span> <span class="ow">in</span> <span class="n">wdashes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">wdash</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">wdash</span><span class="o">*</span><span class="n">y</span><span class="p">,(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">wdash</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</code></pre></div><h2 id="濁点マクロ">濁点マクロ</h2>
+<p>例えば、平仮名の「な」に濁点を打ちたくなることがある。このような場合には濁点マクロを作っておくと便利だ。</p>
+<h3 id="latexでのマクロ定義">LaTeXでのマクロ定義</h3>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% dakutens
+</span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\dakuten</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\jghostguarded</span><span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\leavevmode\hbox</span> to 1zw<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>            <span class="k">\rensuji</span><span class="nb">{</span><span class="k">\hbox</span> to 1zw<span class="nb">{</span>#1<span class="k">\hspace*</span><span class="nb">{</span>-0.25zw<span class="nb">}</span>゛<span class="nb">}}</span><span class="c">%
+</span><span class="c"></span>        <span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\handakuten</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\jghostguarded</span><span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\leavevmode\hbox</span> to 1zw<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>            <span class="k">\rensuji</span><span class="nb">{</span><span class="k">\hbox</span> to 1zw<span class="nb">{</span>#1<span class="k">\hspace*</span><span class="nb">{</span>-0.25zw<span class="nb">}</span>゜<span class="nb">}}</span>
+        <span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+</code></pre></div><h3 id="pythonでの置換処理">Pythonでの置換処理</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">dakuten_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ぁ-ヴ])゛&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">dakuten{\1}&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ぁ-ヴ])゜&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">handakuten{\1}&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</code></pre></div><h2 id="圏点">圏点</h2>
+<p>「カクヨム」などの小説投稿サイトでは、<code>《《圏点》》</code>という記法で圏点を入力することができる。この記法を自動でLaTeXマクロへと置換できるようにしておくと都合がよい。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">kakuyomu_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;《《(.+?)》》&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">kenten{\1}&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</code></pre></div><h2 id="段落を区切る">段落を区切る</h2>
+<p>LaTeX記法では、段落を区切るためには段落間に空行を挿入せねばならない。そこで次のような置換を行なう。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">honbun</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">def</span> <span class="nf">txt_replace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># 段落を区切る</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># 空行の挿入</span>
+    <span class="k">global</span> <span class="n">honbun</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;^</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">honbun</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">honbun</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;^</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">gyoaki\n&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</code></pre></div><h2 id="pythonスクリプトの本体">Pythonスクリプトの本体</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">sys</span><span class="o">,</span><span class="nn">codecs</span><span class="o">,</span><span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nkf</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">argv</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
+<span class="n">pre_document</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span><span class="se">\\</span><span class="s1">documentclass[a5paper,papersize,autodetect-engine]{jsbook}
+</span><span class="s1"></span><span class="se">\\</span><span class="s1">input{settings}
+</span><span class="s1"></span><span class="se">\\</span><span class="s1">begin{document}
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="n">post_document</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span><span class="se">\\</span><span class="s1">end{document}
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">open_close</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="n">f_out_name</span><span class="p">):</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">f_in</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">nkf</span><span class="o">.</span><span class="n">guess</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span>
+    <span class="n">f_out</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f_out_name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f_in</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">lines2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">global</span> <span class="n">honbun</span>
+    <span class="c1"># for x in lines:</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">kakuyomu_replace</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;《&#39;</span> <span class="ow">or</span> <span class="s1">&#39;》&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">ruby_replace</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">aozora_replace</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">txt_replace</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">lines2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">honbun</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">lines2</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">pre_document</span><span class="p">)</span>
+    <span class="n">lines2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">post_document</span><span class="p">)</span>
+    <span class="n">f_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines2</span><span class="p">))</span>
+    <span class="n">f_in</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">f_out</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s1">&#39;input any file name&#39;</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s1">&#39;too many file names&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">f_in_name</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">f_out_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\.txt$&#39;</span><span class="p">,</span><span class="s1">&#39;.tex&#39;</span><span class="p">,</span><span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">open_close</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="n">f_out_name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="n">f_in_name</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">file</span>
+                    <span class="n">f_out_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\.txt$&#39;</span><span class="p">,</span><span class="s1">&#39;.tex&#39;</span><span class="p">,</span><span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">file</span><span class="p">)</span>
+                    <span class="n">open_close</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="n">f_out_name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">print</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">f_in_name</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">f_out_name</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">open_close</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="n">f_out_name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="k">print</span> <span class="nb">file</span>
+                    <span class="n">f_in_name</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">file</span>
+                    <span class="n">f_out_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\.txt$&#39;</span><span class="p">,</span><span class="s1">&#39;.tex&#39;</span><span class="p">,</span><span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">file</span><span class="p">)</span>
+                    <span class="n">open_close</span><span class="p">(</span><span class="n">f_in_name</span><span class="p">,</span><span class="n">f_out_name</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div><p>解説は面倒になってきたのでまたしても割愛。</p>
+<p>　</p>
+<p>（<a href="https://qdaibungei.github.io/latex/documents/2020-04-10-latexnovel/">次回</a>に続く）</p>
+
+<div class="showarticleinfo">
+    <i class="far fa-calendar-alt"></i> 2020年4月9日<br>
+    
+    <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/guide">#guide</a></code> <br>
+</div>
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2020 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+

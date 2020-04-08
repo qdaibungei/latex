@@ -12,7 +12,7 @@
         </script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <title>font｜文藝部LaTeX研究会</title>
+        <title>ベスト文集制作記録⑨（著者コメント欄）｜文藝部LaTeX研究会</title>
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
@@ -41,20 +41,26 @@
 <main class="main">
     <div class="content">
 
-<h2>font</h2>
-<p>
-
-    <a href="https://qdaibungei.github.io/latex/documents/2020-04-06-latexnovel/">ベスト文集制作記録④（本文の組み方①・フォント篇）</a><span class="docs-date">2020年4月6日</span><br>
-
-    <a href="https://qdaibungei.github.io/latex/documents/2019-03-31-konsyoku/">和文フォントを混植する方法</a><span class="docs-date">2019年3月31日</span><br>
-
-    <a href="https://qdaibungei.github.io/latex/documents/2019-03-30-jfonts/">jfontsパッケージ</a><span class="docs-date">2019年3月30日</span><br>
-
-    <a href="https://qdaibungei.github.io/latex/documents/2019-03-29-font-install/">CTANにない欧文フォントをLaTeXにインストールする</a><span class="docs-date">2019年3月29日</span><br>
-
-    <a href="https://qdaibungei.github.io/latex/documents/2017-08-11-texgyre/">TeX Gyreフォントの使い方</a><span class="docs-date">2017年8月11日</span><br>
-
+<p class="title">
+    ベスト文集制作記録⑨（著者コメント欄）<br>
 </p>
+<h1 id="著者コメント欄">著者コメント欄</h1>
+<p>ベスト文集の終わりのほうに、著者コメント欄を設けた。</p>
+<p><img src="/latex/assets/img/2020-04-11.png" alt=""></p>
+<p>版面設定は次のようにした。見開きに収めたかったので、文字サイズは10.5Qとかなり小さめ。</p>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\newhanmen</span><span class="nb">{</span>Q=10.5,H=15.75,W=66.5,L=29,tate,ko=0mm,te=0mm,nodo=<span class="k">\relax</span>,koguchi=14.625mm,chi=16.4375mm,footskip=3.25mm<span class="nb">}</span>
+</code></pre></div><p>「著者コメント」とあるタイトル部分は、次のコードにより出力した。</p>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\fboxsep</span>=.25zw
+<span class="k">\definecolor</span><span class="nb">{</span>creditgray<span class="nb">}{</span>gray<span class="nb">}{</span>0.1<span class="nb">}</span>
+<span class="k">\colorbox</span><span class="nb">{</span>creditgray<span class="nb">}{</span><span class="k">\emph</span><span class="nb">{</span><span class="k">\color</span><span class="nb">{</span>white<span class="nb">}</span>~著者コメント<span class="nb">}}{</span><span class="k">\color</span><span class="nb">{</span>creditgray<span class="nb">}</span><span class="k">\rule</span><span class="na">[-.75zw]</span><span class="nb">{</span>59.75zw<span class="nb">}{</span>1.5zw<span class="nb">}}</span>
+</code></pre></div><p>　</p>
+<p>（<a href="https://qdaibungei.github.io/latex/documents/2020-04-12-latexnovel/">次回</a>に続く）</p>
+
+<div class="showarticleinfo">
+    <i class="far fa-calendar-alt"></i> 2020年4月11日<br>
+    
+    <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/guide">#guide</a></code> <br>
+</div>
                     </div>
                 </main>
             </div>

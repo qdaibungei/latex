@@ -2,7 +2,6 @@
 layout: post
 title: LaTeX文書における余白の設定方法
 date: 2016-05-29
-lastmod: 2019-12-27
 tags: ["LaTeX"]
 ---
 
