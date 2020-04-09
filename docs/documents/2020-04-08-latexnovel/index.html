@@ -140,7 +140,18 @@
 </span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2139=0     <span class="c">%々
 </span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2144=0     <span class="c">%…
 </span></code></pre></div><p>縦書きの場合、禁則処理をこのように抑制したほうが商業誌の組み方に近づけられる。</p>
-<h2 id="約物の処理">約物の処理</h2>
+<p>なお<code>\@tfor</code>を用いるともっと簡潔に記述できる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\clubpenalty</span>=0
+<span class="k">\widowpenalty</span>=0
+<span class="k">\jcharwidowpenalty</span>=0
+<span class="k">\displaywidowpenalty</span>=0
+<span class="k">\prebreakpenalty\jis</span>&#34;2147=10000 <span class="c">% 5000 ’
+</span><span class="c"></span><span class="k">\postbreakpenalty\jis</span>&#34;2148=10000 <span class="c">% 5000 “
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2149=10000 <span class="c">% 5000 ”
+</span><span class="c"></span><span class="k">\inhibitxspcode</span>`〒=2
+<span class="k">\@</span>tfor<span class="k">\@</span>i:=ヽヾゝゞ々〻<span class="k">\do</span><span class="nb">{</span><span class="k">\expandafter\prebreakpenalty\expandafter</span>`<span class="k">\@</span>i =10000<span class="nb">}</span>
+<span class="k">\@</span>tfor<span class="k">\@</span>i:=ーぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ…<span class="k">\do</span><span class="nb">{</span><span class="k">\expandafter\prebreakpenalty\expandafter</span>`<span class="k">\@</span>i =0<span class="nb">}</span>
+</code></pre></div><h2 id="約物の処理">約物の処理</h2>
 <p>LaTeXの標準設定では、約物（句読点、括弧、中黒、疑問符・感嘆符など）に関してはベタ組にならない。そこで、さらにベタ組にするためには以下のような工夫が必要である。</p>
 <p>まず、LaTeXで約物用のマクロ定義を行なう。続いて、Pythonでプレーンテキストを加工するための関数を定義する（詳しい解説は面倒なので割愛）。</p>
 <h3 id="latex側のマクロ定義">LaTeX側のマクロ定義</h3>

@@ -121,6 +121,21 @@ def percent_replace(x):
 
 縦書きの場合、禁則処理をこのように抑制したほうが商業誌の組み方に近づけられる。
 
+なお`\@tfor`を用いるともっと簡潔に記述できる。
+
+```latex
+\clubpenalty=0
+\widowpenalty=0
+\jcharwidowpenalty=0
+\displaywidowpenalty=0
+\prebreakpenalty\jis"2147=10000 % 5000 ’
+\postbreakpenalty\jis"2148=10000 % 5000 “
+\prebreakpenalty\jis"2149=10000 % 5000 ”
+\inhibitxspcode`〒=2
+\@tfor\@i:=ヽヾゝゞ々〻\do{\expandafter\prebreakpenalty\expandafter`\@i =10000}
+\@tfor\@i:=ーぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ…\do{\expandafter\prebreakpenalty\expandafter`\@i =0}
+```
+
 ## 約物の処理
 LaTeXの標準設定では、約物（句読点、括弧、中黒、疑問符・感嘆符など）に関してはベタ組にならない。そこで、さらにベタ組にするためには以下のような工夫が必要である。
 
