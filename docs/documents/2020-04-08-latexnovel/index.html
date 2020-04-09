@@ -100,7 +100,7 @@
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;％&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">tcy{</span><span class="se">\\</span><span class="s1">%}&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span>
 </code></pre></div><h2 id="禁則処理の抑制">禁則処理の抑制</h2>
-<p>禁則処理が多いとベタ組になりにくい。そこで禁則処理を程々に抑制する。</p>
+<p>禁則処理が多いとベタ組になりにくい。そこで禁則処理を程々に抑制する。縦書きの場合、禁則処理をこのように抑制したほうが商業誌の組み方に近づけられもする。</p>
 <div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% penalties
 </span><span class="c"></span><span class="k">\clubpenalty</span>=0
 <span class="k">\widowpenalty</span>=0
@@ -139,8 +139,7 @@
 </span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2576=0     <span class="c">%ヶ
 </span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2139=0     <span class="c">%々
 </span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2144=0     <span class="c">%…
-</span></code></pre></div><p>縦書きの場合、禁則処理をこのように抑制したほうが商業誌の組み方に近づけられる。</p>
-<p>なお<code>\@tfor</code>を用いるともっと簡潔に記述できる。</p>
+</span></code></pre></div><p>後になって思ったことだが、「々」の禁則処理はもう少し厳し目にしたほうがよかったかもしれない。また、禁則処理の抑制は<code>\@tfor</code>を用いるともっと簡潔に記述できるようだ。</p>
 <div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\clubpenalty</span>=0
 <span class="k">\widowpenalty</span>=0
 <span class="k">\jcharwidowpenalty</span>=0
@@ -265,6 +264,8 @@
 
 <div class="showarticleinfo">
     <i class="far fa-calendar-alt"></i> 2020年4月8日<br>
+    
+        <i class="fas fa-history"></i> 2020年4月9日<br>
     
     <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/guide">#guide</a></code> <br>
 </div>
