@@ -174,6 +174,16 @@
 </span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
 </span><span class="c"></span>    <span class="nb">}</span><span class="c">%
 </span><span class="c"></span><span class="k">\fi</span>
+</code></pre></div><h1 id="追記">追記</h1>
+<p>いまだとTeX Liveに収録されているpxchfonパッケージがあるので、これを使って次のように書くのがラクである。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[noalphabet]</span><span class="nb">{</span>pxchfon<span class="nb">}</span>
+<span class="k">\setlightminchofont</span><span class="nb">{</span>ToppanBunkyuMincho-Regular.otf<span class="nb">}</span>
+<span class="k">\setminchofont</span><span class="nb">{</span>HiraMinProN-W3.otf<span class="nb">}</span>
+<span class="k">\setboldminchofont</span><span class="nb">{</span>HiraMinProN-W6.otf<span class="nb">}</span>
+<span class="k">\setgothicfont</span><span class="nb">{</span>HiraKakuProN-W3.otf<span class="nb">}</span>
+<span class="k">\setboldgothicfont</span><span class="nb">{</span>HiraKakuProN-W6.otf<span class="nb">}</span>
+<span class="k">\setxboldgothicfont</span><span class="nb">{</span>HiraKakuStdN-W8.otf<span class="nb">}</span>
+<span class="k">\setmarugothicfont</span><span class="nb">{</span>HiraMaruPro-W4.otf<span class="nb">}</span>
 </code></pre></div>
 <div class="showarticleinfo">
     <i class="far fa-calendar-alt"></i> 2019年3月30日<br>
