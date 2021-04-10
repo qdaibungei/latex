@@ -6,7 +6,11 @@
     <description>Recent content in guide on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 13 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://qdaibungei.github.io/latex/tags/guide/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://qdaibungei.github.io/latex/tags/guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>ベスト文集制作記録⑪（入稿）</title>
       <link>https://qdaibungei.github.io/latex/documents/2020-04-13-latexnovel/</link>
