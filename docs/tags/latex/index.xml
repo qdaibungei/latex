@@ -321,7 +321,7 @@ hanmenパッケージの使い方の詳細はこの記事を参照のこと。
 \tcyマクロ LaTeXで縦書きをするさい、縦中横には\rensujiを使うよう言われる。しかし\rensujiだと前後のアキがおかしくなる（たとえば、行頭で\rensujiを使うとインデント量が狂う）。そこで\tcy命令を新たに作り、これを使うのがよい。
 \usepackage{plext} \makeatletter \chardef\nvlsty@zenkakuSpace=\jis&amp;#34;2121\relax \newcommand{\tcy}[1]{%  \nvlsty@zenkakuSpace\kern-1zw\relax \leavevmode\hbox to 1zw{%  \centering\rensuji*{#1}\relax }\relax \kern-1zw\nvlsty@zenkakuSpace } \makeatother 以上をプリアンブルなどに書いておく。使いかたは至ってかんたんで、\tcy{12}時、のようにすればよい。
 禁則処理の設定 縦書きの場合、禁則処理はほどほどに抑制しておくと商業出版物の組版に似せることができる。プリアンブルなどに以下を記述する。
-\clubpenalty=0 \widowpenalty=0 \jcharwidowpenalty=0 \displaywidowpenalty=0 \prebreakpenalty\jis&amp;#34;2147=10000 % 5000 ’ \postbreakpenalty\jis&amp;#34;2148=10000 % 5000 “ \prebreakpenalty\jis&amp;#34;2149=10000 % 5000 ” \inhibitxspcode`〒=2 \prebreakpenalty\jis&amp;#34;2133=10000 \prebreakpenalty\jis&amp;#34;2134=10000 \prebreakpenalty\jis&amp;#34;2135=10000 \prebreakpenalty\jis&amp;#34;2136=10000 \prebreakpenalty`ー=0 \prebreakpenalty`ぁ=0 \prebreakpenalty`ぃ=0 \prebreakpenalty`ぅ=0 \prebreakpenalty`ぇ=0 \prebreakpenalty`ぉ=0 \prebreakpenalty`っ=0 \prebreakpenalty`ゃ=0 \prebreakpenalty`ゅ=0 \prebreakpenalty`ょ=0 \prebreakpenalty\jis&amp;#34;246E=0 %ゎ \prebreakpenalty`ァ=0 \prebreakpenalty`ィ=0 \prebreakpenalty`ゥ=0 \prebreakpenalty`ェ=0 \prebreakpenalty`ォ=0 \prebreakpenalty`ッ=0 \prebreakpenalty`ャ=0 \prebreakpenalty`ュ=0 \prebreakpenalty`ョ=0 \prebreakpenalty\jis&amp;#34;256E=0 %ヮ \prebreakpenalty\jis&amp;#34;2575=0 %ヵ \prebreakpenalty\jis&amp;#34;2576=0 %ヶ \prebreakpenalty\jis&amp;#34;2139=0 %々 フッター 以前出した本のフッターの設定はだいたいこんな感じである。</description>
+\makeatletter \def\hoge@set@prebreakpenalty#1#2{%  \@tfor\@tempa:=#1\do{\expandafter\prebreakpenalty\expandafter`\@tempa =#2}} \clubpenalty=0 \widowpenalty=0 \jcharwidowpenalty=0 \displaywidowpenalty=0 \prebreakpenalty\jis&amp;#34;2147=10000 % 5000 ’ \postbreakpenalty\jis&amp;#34;2148=10000 % 5000 “ \prebreakpenalty\jis&amp;#34;2149=10000 % 5000 ” \inhibitxspcode`〒=2 \hoge@set@prebreakpenalty{ヽヾゝゞ々〻}{10000} \hoge@set@prebreakpenalty{ーぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ…}{0} \makeatother フッター 以前出した本のフッターの設定はだいたいこんな感じである。</description>
     </item>
     
     <item>
@@ -406,11 +406,11 @@ Termes URW Nimbus Roman LにもとづくTimes代用フォント。
 使い方 基本 基本的な使い方は簡単である。プリアンブルに次のように書き込む。
 \usepackage[Q=15,H=24,W=38,L=40]{hanmen} そうすると、
  文字サイズ　15級 行送り　24歯 行長　38字 行数　40行  に設定できる。Q は文字サイズの単位「級」に、H は行送りの単位「歯」に、W はwidthに、L はlinesに由来している。
-各種オプション grid グリッド線を表示させる（gに代入する値は上のWで指定した文字数と同じか、または近い整数値を入れる）。
+各種オプション g グリッド線を表示させる（gに代入する値は上のWで指定した文字数と同じか、または近い整数値を入れる）。これで原稿用紙のようなマス目を表示させることができる。
 \usepackage[g=38]{hanmen} tate 縦組みにする。
 \usepackage[tate]{hanmen} ヘッダ・フッタ ヘッダ・フッタの位置の調整。
 \usepackage[headheight=13mm, headsep=1mm, footskip=3mm]{hanmen} 上下左右の余白調整 デフォルトでは、版面は左右中央に配置される。これを、少しだけ小口側に寄せたり、天側に寄せたりしたい場合、以下のようにする（このオプションは正直インターフェースが微妙なので現在私自身は使っていないが、古い文書も処理できるよう残しておいた）。
-\usepackage[ko=3truemm]{hanmen}%% 3mm小口寄せ % \usepackage[te=4truemm]{hanmen}%% 4mm天寄せ ノド、小口、天、地の広さを直接指定することもできる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない。もし間違えて両方指定した場合はエラーが出るようにしてある。
+\usepackage[ko=3mm]{hanmen}%% 3mm小口寄せ % \usepackage[te=4mm]{hanmen}%% 4mm天寄せ ノド、小口、天、地の広さを直接指定することもできる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない。もし間違えて両方指定した場合はエラーが出るようにしてある。
 % ノドと天の広さを指定 \usepackage[nodo=20mm, ten=15mm]{hanmen} % 小口と地の広さを指定 \usepackage[koguchi=20mm, chi=15mm]{hanmen} また、ノド、小口、天、地の広さを直接指定するだけでなく、既存の値に加算することもできる（それぞれ、addnodo、addkoguchi、addten、addchiというオプションで指定できる。なおこれらオプションは同時に指定してもエラーは生じない）。
 % ノドと天の広さを指定した後、広さを足す \usepackage[nodo=20mm, ten=15mm, addnodo=5mm, addten=1zw]{hanmen}% ノドは25mm、天は15mm+1zwで指定される % 小口と地の広さを指定した後、広さを足す \usepackage[koguchi=20mm, chi=15mm, addkoguchi=-5mm, addchi=2mm]{hanmen}% 小口は15mm、地は17mmで指定される 文字サイズ単位 文字サイズ単位にQではなくptを使う。</description>
     </item>

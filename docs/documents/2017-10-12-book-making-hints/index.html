@@ -89,43 +89,21 @@
 </code></pre></div><p>以上をプリアンブルなどに書いておく。使いかたは至ってかんたんで、<code>\tcy{12}時</code>、のようにすればよい。</p>
 <h1 id="禁則処理の設定">禁則処理の設定</h1>
 <p>縦書きの場合、禁則処理はほどほどに抑制しておくと商業出版物の組版に似せることができる。プリアンブルなどに以下を記述する。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\clubpenalty</span>=0
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\makeatletter</span>
+<span class="k">\def\hoge</span>@set@prebreakpenalty#1#2<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\@</span>tfor<span class="k">\@</span>tempa:=#1<span class="k">\do</span><span class="nb">{</span><span class="k">\expandafter\prebreakpenalty\expandafter</span>`<span class="k">\@</span>tempa =#2<span class="nb">}}</span>
+<span class="k">\clubpenalty</span>=0
 <span class="k">\widowpenalty</span>=0
 <span class="k">\jcharwidowpenalty</span>=0
 <span class="k">\displaywidowpenalty</span>=0
-<span class="k">\prebreakpenalty\jis</span>&#34;2147=10000  <span class="c">% 5000 ’
+<span class="k">\prebreakpenalty\jis</span>&#34;2147=10000 <span class="c">% 5000 ’
 </span><span class="c"></span><span class="k">\postbreakpenalty\jis</span>&#34;2148=10000 <span class="c">% 5000 “
-</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2149=10000  <span class="c">% 5000 ”
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2149=10000 <span class="c">% 5000 ”
 </span><span class="c"></span><span class="k">\inhibitxspcode</span>`〒=2
-<span class="k">\prebreakpenalty\jis</span>&#34;2133=10000
-<span class="k">\prebreakpenalty\jis</span>&#34;2134=10000
-<span class="k">\prebreakpenalty\jis</span>&#34;2135=10000
-<span class="k">\prebreakpenalty\jis</span>&#34;2136=10000
-<span class="k">\prebreakpenalty</span>`ー=0
-<span class="k">\prebreakpenalty</span>`ぁ=0
-<span class="k">\prebreakpenalty</span>`ぃ=0
-<span class="k">\prebreakpenalty</span>`ぅ=0
-<span class="k">\prebreakpenalty</span>`ぇ=0
-<span class="k">\prebreakpenalty</span>`ぉ=0
-<span class="k">\prebreakpenalty</span>`っ=0
-<span class="k">\prebreakpenalty</span>`ゃ=0
-<span class="k">\prebreakpenalty</span>`ゅ=0
-<span class="k">\prebreakpenalty</span>`ょ=0
-<span class="k">\prebreakpenalty\jis</span>&#34;246E=0     <span class="c">%ゎ
-</span><span class="c"></span><span class="k">\prebreakpenalty</span>`ァ=0
-<span class="k">\prebreakpenalty</span>`ィ=0
-<span class="k">\prebreakpenalty</span>`ゥ=0
-<span class="k">\prebreakpenalty</span>`ェ=0
-<span class="k">\prebreakpenalty</span>`ォ=0
-<span class="k">\prebreakpenalty</span>`ッ=0
-<span class="k">\prebreakpenalty</span>`ャ=0
-<span class="k">\prebreakpenalty</span>`ュ=0
-<span class="k">\prebreakpenalty</span>`ョ=0
-<span class="k">\prebreakpenalty\jis</span>&#34;256E=0     <span class="c">%ヮ
-</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2575=0     <span class="c">%ヵ
-</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2576=0     <span class="c">%ヶ
-</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2139=0     <span class="c">%々
-</span></code></pre></div><h1 id="フッター">フッター</h1>
+<span class="k">\hoge</span>@set@prebreakpenalty<span class="nb">{</span>ヽヾゝゞ々〻<span class="nb">}{</span>10000<span class="nb">}</span>
+<span class="k">\hoge</span>@set@prebreakpenalty<span class="nb">{</span>ーぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ…<span class="nb">}{</span>0<span class="nb">}</span>
+<span class="k">\makeatother</span>
+</code></pre></div><h1 id="フッター">フッター</h1>
 <p>以前出した本のフッターの設定はだいたいこんな感じである。</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="nb">{</span>fancyhdr<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="na">[scale=0.9]</span><span class="nb">{</span>tgadventor<span class="nb">}</span>
