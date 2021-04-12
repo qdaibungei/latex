@@ -5,10 +5,6 @@
     <link>https://qdaibungei.github.io/latex/categories/</link>
     <description>Recent content in Categories on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language>
-    
-	<atom:link href="https://qdaibungei.github.io/latex/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>ja</language><atom:link href="https://qdaibungei.github.io/latex/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

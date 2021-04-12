@@ -6,11 +6,7 @@
     <description>Recent content in Git on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 07 Sep 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://qdaibungei.github.io/latex/tags/git/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 07 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://qdaibungei.github.io/latex/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>git diff で一文字ずつ差分表示する</title>
       <link>https://qdaibungei.github.io/latex/documents/2019-09-07-git-diff/</link>
