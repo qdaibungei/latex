@@ -131,6 +131,8 @@
 <p><code>\showhanmen</code>は、現在設定している版面設計の値を出力するコマンド。例えば、ノドの広さを指定したときに、小口の広さがいくらになっているか確認したい、というときこのコマンドは便利である。</p>
 <h3 id="calchanmen"><code>\calchanmen</code></h3>
 <p>自分で定義しておきながら、使い方を忘れた。例えば、本文ページとおまけページとで文字サイズや組方向を変えたいというときがあるが、おまけページを作るとき何字×何行にすれば本文ページと余白の広さが同じくらいになるかを計算してくれる、というコマンドだったはず……。</p>
+<h2 id="clearevenpageclearoddpage"><code>\clearevenpage</code>、<code>\clearoddpage</code></h2>
+<p><code>\clearevenpage</code>は偶数ページになるまで<code>\clearpage</code>するコマンド。<code>\clearoddpage</code>は奇数ページになるまで<code>\clearpage</code>するコマンド。既存のコマンドに<code>\cleardoublepage</code>があるが、このコマンドは縦書きのとき不便なので新たにコマンドを定義したわけである。</p>
 <h1 id="提供される機能">提供される機能</h1>
 <h2 id="正確な単位の導入">正確な単位の導入</h2>
 <p><code>\bQ</code> および <code>\bbp</code> を導入した。これによって、和文文字に関して、より正確に文字サイズを設定できるようになった。</p>
