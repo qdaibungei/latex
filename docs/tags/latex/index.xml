@@ -6,7 +6,22 @@
     <description>Recent content in LaTeX on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 13 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://qdaibungei.github.io/latex/tags/latex/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Apr 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://qdaibungei.github.io/latex/tags/latex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hanmenパッケージのグリッド線表示機能だけを利用する</title>
+      <link>https://qdaibungei.github.io/latex/documents/2021-04-12-hanmen-grid/</link>
+      <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2021-04-12-hanmen-grid/</guid>
+      <description>jlreq.clsで版面設計を行なうときでも、グリッド線が表示できると都合がよい。この場合、hanmen.styのpassオプションを用いるとよい。
+\documentclass[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=41]{jlreq} \usepackage[Q=14,H=24.5,W=45,L=41,g=45,pass]{hanmen} \usepackage{bxjalipsum} \begin{document} \jalipsum[4-6]{wagahai} \end{document} こうすると、次の結果を得る。
+確かにグリッド線がうまく表示されている。ただし現状、縦書き時にはグリッド線が少しずれて表示されてしまう。後日修正したい。</description>
+    </item>
+    
     <item>
       <title>ベスト文集制作記録⑪（入稿）</title>
       <link>https://qdaibungei.github.io/latex/documents/2020-04-13-latexnovel/</link>

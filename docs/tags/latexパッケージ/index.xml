@@ -6,7 +6,11 @@
     <description>Recent content in LaTeXパッケージ on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 30 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://qdaibungei.github.io/latex/tags/latex%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://qdaibungei.github.io/latex/tags/latex%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>jfontsパッケージ</title>
       <link>https://qdaibungei.github.io/latex/documents/2019-03-30-jfonts/</link>

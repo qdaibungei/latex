@@ -12,7 +12,7 @@
         </script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <title>memo｜文藝部LaTeX研究会</title>
+        <title>hanmenパッケージのグリッド線表示機能だけを利用する｜文藝部LaTeX研究会</title>
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
@@ -41,18 +41,25 @@
 <main class="main">
     <div class="content">
 
-<h2>memo</h2>
-<p>
-
-    <a href="https://qdaibungei.github.io/latex/documents/2021-04-12-hanmen-grid/">hanmenパッケージのグリッド線表示機能だけを利用する</a><span class="docs-date">2021年4月12日</span><br>
-
-    <a href="https://qdaibungei.github.io/latex/documents/2017-08-11-texgyre/">TeX Gyreフォントの使い方</a><span class="docs-date">2017年8月11日</span><br>
-
-    <a href="https://qdaibungei.github.io/latex/documents/2017-02-25-bookmake/">本作りに役立つサイト</a><span class="docs-date">2017年2月25日</span><br>
-
-    <a href="https://qdaibungei.github.io/latex/documents/2017-02-11-input/">小説を入力する方法</a><span class="docs-date">2017年2月11日</span><br>
-
+<p class="title">
+    hanmenパッケージのグリッド線表示機能だけを利用する<br>
 </p>
+<p>jlreq.clsで版面設計を行なうときでも、グリッド線が表示できると都合がよい。この場合、hanmen.styの<code>pass</code>オプションを用いるとよい。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="na">[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=41]</span><span class="nb">{</span>jlreq<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="na">[Q=14,H=24.5,W=45,L=41,g=45,pass]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>bxjalipsum<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<span class="k">\jalipsum</span><span class="na">[4-6]</span><span class="nb">{</span>wagahai<span class="nb">}</span>    
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</code></pre></div><p>こうすると、次の結果を得る。</p>
+<p><img src="/latex/assets/img/2021-04-12.png" alt=""></p>
+<p>確かにグリッド線がうまく表示されている。ただし現状、縦書き時にはグリッド線が少しずれて表示されてしまう。後日修正したい。</p>
+
+<div class="showarticleinfo">
+    <i class="far fa-calendar-alt"></i> 2021年4月12日<br>
+    
+    <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/memo">#memo</a></code> <br>
+</div>
                     </div>
                 </main>
             </div>
