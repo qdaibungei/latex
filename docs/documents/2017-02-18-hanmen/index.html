@@ -110,17 +110,9 @@
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\newhanmen</span><span class="nb">{</span>Q=11.5,H=19,W=42,L=17<span class="nb">}</span>
 </code></pre></div><p>などとすると、文書の途中から基本版面を再設定できるマクロである。上記のオプションはすべてここでも使うことができる。</p>
 <p>　</p>
-<p>なお、一度代入した値は、<code>\newhanmen</code> においてもそのまま保持される。したがって、</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=13, nodo=20mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
-<span class="k">\newhanmen</span><span class="nb">{</span>ten=20mm<span class="nb">}</span>
-</code></pre></div><p>とした場合、<code>Q=13</code> や <code>nodo=20mm</code> といった値はリセットされず、そのまま使われる。それゆえ、</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=13, nodo=20mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
-<span class="k">\newhanmen</span><span class="nb">{</span>koguchi=20mm<span class="nb">}</span>
-</code></pre></div><p>とするとエラーとなる（ノドと小口を両方同時に指定することはできないため）。このような場合、次のように明示的にノドの広さをリセットしてやる必要がある。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=13, nodo=20mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
-<span class="k">\newhanmen</span><span class="nb">{</span>nodo=<span class="k">\relax</span>, koguchi=20mm<span class="nb">}</span>
-</code></pre></div><h2 id="switchwritingdirection"><code>\switchwritingdirection</code></h2>
-<p>本文領域はそのままに、組方向だけ変えたい場合に使えるのが <code>\switchwritingdirection</code> である<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>。本文中、このコマンドを記述すると組方向だけが切り替わる。例えば、横書きのときこのコマンドを挿入すると、その箇所で<code>\clearpage</code>され、次ページから縦書きになる。</p>
+<p>なお、一度代入した値は、<code>\newhanmen</code>を実行するごとにリセットされる<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>。例えば<code>\usepackage[Q=13, nodo=20mm]{hanmen}</code>とオプションつきでパッケージを読み込んでいた場合に、<code>\newhanmen</code>後もノドの広さを20mmに保ちたいなら、必ず<code>\newhanmen{Q=15, nodo=20mm}</code>のようにノドの広さをもう一度指定しなければならない。</p>
+<h2 id="switchwritingdirection"><code>\switchwritingdirection</code></h2>
+<p>本文領域はそのままに、組方向だけ変えたい場合に使えるのが <code>\switchwritingdirection</code> である<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>。本文中、このコマンドを記述すると組方向だけが切り替わる。例えば、横書きのときこのコマンドを挿入すると、その箇所で<code>\clearpage</code>され、次ページから縦書きになる。</p>
 <h2 id="pagegridon"><code>\pagegridon</code></h2>
 <p><code>\usepackage[g=50]{hanmen}</code> とやる代わりに、<code>\pagegridon{g=50}</code> としてもグリッド線を表示できる。また、</p>
 <div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\pagegridon</span><span class="nb">{</span>g=26, column=2, columnskip=28.5<span class="nb">}</span>
@@ -162,6 +154,7 @@
 </ul>
 <h2 id="2020年5月15日">2020年5月15日</h2>
 <ul>
+<li>ユーザーインターフェースをやや改良した。</li>
 <li>コマンドの名称を変更した（旧コマンドも残してある）。</li>
 <li>いくつか機能追加した（addnodoやdevelopなどのオプションを追加）。</li>
 <li>逆に、削除した機能もある。<code>\fontsizeX</code>などのフォントサイズ変更用コマンドは使っていなかったので削除した。</li>
@@ -177,7 +170,10 @@
 <p>煩雑と言っても、原理を理解するのはそれほど難しいことではない。「<a href="http://d.hatena.ne.jp/Rion778/20091002/1254482262">1ページ当たりの行数，文字数と周囲の余白を設定する</a>」（外部サイト）に書いてあるように設定すればよいだけではある。ただし記述量が多く、プリアンブルに気軽に置いておける感じではない。そこでパッケージ化する必要が出てくるわけである。なお、あべのり氏によって開発中（2017年2月18日現在）のクラスファイルである<a href="https://github.com/abenori/jlreq">jlreq.cls</a>は、従来のクラスファイルより圧倒的に版面設計が行いやすいようになっているようだ。したがってこれを使うというのもよい手であろう。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>このコマンドはもともと<code>\hanmenchangedir</code>という名称だったがやや妙な命名だったと思い直し、命名し直した。ただし旧バージョン時に作成された文書にも対応できるよう、<code>\hanmenchangedir</code>というコマンドも<code>\switchwritingdirection</code>のコピーとして残してある。 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>旧バージョン（v0.7以前）では、<code>\usepackage[Q=13, nodo=20mm]{hanmen}</code>とした場合、<code>Q=13</code> や <code>nodo=20mm</code> といった値はリセットされず、そのまま使われたため、さらに続けて<code>\newhanmen{koguchi=20mm}</code>とするとエラーとなっていた（<code>nodo</code>と<code>koguchi</code>を同時に指定することはできないため）。しかしこの挙動は分かりづらいと思われたため、仕様を変更した。つまり<code>\newhanmen</code>したとき最初に指定した値は引き継がれずそのつどリセットされるようにした。なお、旧バージョンで作成した文書は現バージョンのhanmenパッケージでも処理できるので、後方互換性は維持されている。 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>旧バージョン（v0.7以前）ではこのコマンドは<code>\hanmenchangedir</code>という名称だったが、やや妙な命名だったと思い直し、命名し直した。ただし旧バージョン時に作成された文書にも対応できるよう、<code>\hanmenchangedir</code>というコマンドも<code>\switchwritingdirection</code>のコピーとして残してある。 <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>

@@ -220,16 +220,6 @@ git diff --color-words --word-diff-regex=&amp;#39;\\w+|[^[:space:]]&amp;#39; 参
     </item>
     
     <item>
-      <title>hanmenパッケージを更新した</title>
-      <link>https://qdaibungei.github.io/latex/documents/2019-09-02-hanmen/</link>
-      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/documents/2019-09-02-hanmen/</guid>
-      <description>はじめに hanmenパッケージを一年半ぶりくらいに更新した。使いかたはここに記してある。ダウンロードはここからできる。
-改良点  オプションを追加し、ユーザーインターフェースを改良した。これにより、\usepackage[nodo=20mm]{hanmen}といったふうにノドの広さを直接指定したりできるようになった。 他にも色々と改良した。  </description>
-    </item>
-    
-    <item>
       <title>表題つきの四角い枠（四角いitembox環境）</title>
       <link>https://qdaibungei.github.io/latex/documents/2019-06-15-fitembox/</link>
       <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
@@ -301,16 +291,6 @@ styファイルの作成 各種ファイルが生成できたならば、すか�
 動作確認のため、作業用ディレクトリにTeXファイルを作って、フォントが埋め込まれるかをチェックしておこう。
 \documentclass[uplatex]{jsarticle} \usepackage{josefinslab} \begin{document} \romanfamily{josefinslab}\selectfont This is a test. \end{document} 「This is a test.」がJosefin Slabで表示されたら、ここまでの作業はうまくいったことになる。
 すべてのウェイトをインストールする tfmなどの生成とインストール すべてのウェイトをインストールするには、同じことを全ウェイトで実行すればよい。</description>
-    </item>
-    
-    <item>
-      <title>hanmenパッケージを更新した</title>
-      <link>https://qdaibungei.github.io/latex/documents/2018-01-18-hanmen/</link>
-      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/documents/2018-01-18-hanmen/</guid>
-      <description>はじめに hanmenパッケージを一年ぶりくらいに更新した。使いかたはここに記してある。
-変更した点  依存パッケージとして必須だったnombre_for_fancyhdr.styは、今回の変更により、必要なくなった。 Wオプションに非整数値を入れることができるようになった。これにより、段間を2.5文字分にするといった組版が可能となった。 Wオプションの挙動変更に伴い、グリッド線を表示するオプションの使いかたが変更された。これまでは\newhanmen{grid}と指定したが、今回から\newhanmen{g=50}というふうに指定する仕様とした。  </description>
     </item>
     
     <item>
