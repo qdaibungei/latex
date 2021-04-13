@@ -1,11 +1,11 @@
 ---
 layout: post
-title: hanmenパッケージのグリッド線表示機能だけを利用する
+title: LaTeXで本文領域にマス目を表示させる
 date: 2021-04-12
 tags: ["LaTeX", "memo"]
 ---
 
-jlreq.clsで版面設計を行なうときでも、グリッド線が表示できると都合がよい。この場合、hanmen.styの`pass`オプションを用いるとよい。
+jlreq.clsで版面設計を行なうときでも、グリッド線（マス目）が表示できると都合がよい。この場合、hanmen.styの`pass`オプションを用いるとよい。
 
 ```LaTeX
 \documentclass[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=41]{jlreq}

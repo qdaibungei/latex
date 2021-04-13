@@ -6,18 +6,30 @@
     <description>Recent content in LaTeX on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 12 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Apr 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/tags/latex/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>hanmenパッケージのグリッド線表示機能だけを利用する</title>
+      <title>半角漢数字を出力するコマンド</title>
+      <link>https://qdaibungei.github.io/latex/documents/2021-04-13-hankakukansuji/</link>
+      <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2021-04-13-hankakukansuji/</guid>
+      <description>半角漢数字（正式名称ではないと思うが）は、少し昔の本の目次などで使われている。いまどきの本ではあまり見かけないが、かっこいいので私は好きである。
+半角漢数字は、LaTeXだとotfパッケージの\CIDを用いれば簡単に出力できる。しかしCIDをいちいち調べないといけないのが面倒だ。そこで\hankakukansujiというコマンドを作ってみた。
+次をhoge.texなどのファイル名で保存し、upLaTeXで実行する。
+\documentclass[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=21, tate]{jlreq} \usepackage[uplatex]{otf}% \CIDを用いるため必須 \usepackage[noalphabet]{pxchfon} \setminchofont{HiraMinProN-W3.otf}% 半角漢数字が存在するフォントを選ぶ %% 半角漢数字出力コマンド \makeatletter \newcounter{qbcl@c@hk} \newcommand{\hankakukansuji}[1]{%  \@tfor\@tempa:=#1\do{%  \setcounter{qbcl@c@hk}{0}%  \@whilenum\value{qbcl@c@hk}&amp;lt;10\do{%  \ifnum\@tempa=\theqbcl@c@hk \addtocounter{qbcl@c@hk}{10185}\CID{\theqbcl@c@hk}\addtocounter{qbcl@c@hk}{-10185}%  \fi \addtocounter{qbcl@c@hk}{1}%  }%  }% } \makeatother \begin{document} \hankakukansuji{764980} \end{document} すると次の結果を得る。</description>
+    </item>
+    
+    <item>
+      <title>LaTeXで本文領域にマス目を表示させる</title>
       <link>https://qdaibungei.github.io/latex/documents/2021-04-12-hanmen-grid/</link>
       <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2021-04-12-hanmen-grid/</guid>
-      <description>jlreq.clsで版面設計を行なうときでも、グリッド線が表示できると都合がよい。この場合、hanmen.styのpassオプションを用いるとよい。
+      <description>jlreq.clsで版面設計を行なうときでも、グリッド線（マス目）が表示できると都合がよい。この場合、hanmen.styのpassオプションを用いるとよい。
 \documentclass[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=41]{jlreq} \usepackage[Q=14,H=24.5,W=45,L=41,g=45,pass]{hanmen} \usepackage{bxjalipsum} \begin{document} \jalipsum[4-6]{wagahai} \end{document} こうすると、次の結果を得る。
 確かにグリッド線がうまく表示されている。ただし現状、縦書き時にはグリッド線が少しずれて表示されてしまう。後日修正したい。</description>
     </item>
@@ -418,16 +430,16 @@ Termes URW Nimbus Roman LにもとづくTimes代用フォント。
  https://gist.github.com/qdaibungei/5f6986fa99fc9a7d86122a7a9417d64e  hanmenパッケージとは、版面の設計1を厳密に行うためのパッケージである。たとえば、38字×40行で文書を作りたい、といったときにhanmenパッケージは有用である。
 従来、LaTeXでは版面の設計が煩雑であった2。特に縦組みの場合、geometryパッケージが使えないので厄介である。そこで、縦組みでも版面設計がやりやすいようにと作ったのがhanmenパッケージである。
 基本的なアイディアはTomOne氏の『よくわかるLaTeX小説』による。
-使い方 基本 基本的な使い方は簡単である。プリアンブルに次のように書き込む。
+基本的な使い方 基本的な使い方は簡単である。プリアンブルに次のように書き込む。
 \usepackage[Q=15,H=24,W=38,L=40]{hanmen} そうすると、
- 文字サイズ　15級 行送り　24歯 行長　38字 行数　40行  に設定できる。Q は文字サイズの単位「級」に、H は行送りの単位「歯」に、W はwidthに、L はlinesに由来している。
+ 文字サイズ　15級 行送り　24歯 行長　38字 行数　40行  に設定できる。Q は文字サイズの単位「級」に、H は行送りの単位「歯」に、W はwidthに、L はlinesに由来している。なお、デフォルトではQ=11.5、H=19、W=42、L=17に設定してある。
 各種オプション g グリッド線を表示させる（gに代入する値は上のWで指定した文字数と同じか、または近い整数値を入れる）。これで原稿用紙のようなマス目を表示させることができる。
 \usepackage[g=38]{hanmen} tate 縦組みにする。
 \usepackage[tate]{hanmen} ヘッダ・フッタ ヘッダ・フッタの位置の調整。
 \usepackage[headheight=13mm, headsep=1mm, footskip=3mm]{hanmen} 上下左右の余白調整 デフォルトでは、版面は左右中央に配置される。これを、少しだけ小口側に寄せたり、天側に寄せたりしたい場合、以下のようにする（このオプションは正直インターフェースが微妙なので現在私自身は使っていないが、古い文書も処理できるよう残しておいた）。
 \usepackage[ko=3mm]{hanmen}%% 3mm小口寄せ % \usepackage[te=4mm]{hanmen}%% 4mm天寄せ ノド、小口、天、地の広さを直接指定することもできる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない。もし間違えて両方指定した場合はエラーが出るようにしてある。
-% ノドと天の広さを指定 \usepackage[nodo=20mm, ten=15mm]{hanmen} % 小口と地の広さを指定 \usepackage[koguchi=20mm, chi=15mm]{hanmen} また、ノド、小口、天、地の広さを直接指定するだけでなく、既存の値に加算することもできる（それぞれ、addnodo、addkoguchi、addten、addchiというオプションで指定できる。なおこれらオプションは同時に指定してもエラーは生じない）。
-% ノドと天の広さを指定した後、広さを足す \usepackage[nodo=20mm, ten=15mm, addnodo=5mm, addten=1zw]{hanmen}% ノドは25mm、天は15mm+1zwで指定される % 小口と地の広さを指定した後、広さを足す \usepackage[koguchi=20mm, chi=15mm, addkoguchi=-5mm, addchi=2mm]{hanmen}% 小口は15mm、地は17mmで指定される 文字サイズ単位 文字サイズ単位にQではなくptを使う。</description>
+% ノドと天の広さを指定 \usepackage[nodo=20mm, ten=15mm]{hanmen} % 小口と地の広さを指定 % \usepackage[koguchi=20mm, chi=15mm]{hanmen} また、ノド、小口、天、地の広さを直接指定するだけでなく、既存の値に加算することもできる（それぞれ、addnodo、addkoguchi、addten、addchiというオプションで指定できる。なおこれらオプションは同時に指定してもエラーは生じない）。
+% ノドと天の広さを指定した後、広さを足す \usepackage[nodo=20mm, ten=15mm, addnodo=5mm, addten=1zw]{hanmen}% ノドは25mm、天は15mm+1zwで指定される % 小口と地の広さを指定した後、広さを足す % \usepackage[koguchi=20mm, chi=15mm, addkoguchi=-5mm, addchi=2mm]{hanmen}% 小口は15mm、地は17mmで指定される 文字サイズ単位 文字サイズ単位にQではなくptを使う。</description>
     </item>
     
     <item>

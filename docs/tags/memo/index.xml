@@ -6,18 +6,30 @@
     <description>Recent content in memo on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 12 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Apr 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://qdaibungei.github.io/latex/tags/memo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>hanmenパッケージのグリッド線表示機能だけを利用する</title>
+      <title>半角漢数字を出力するコマンド</title>
+      <link>https://qdaibungei.github.io/latex/documents/2021-04-13-hankakukansuji/</link>
+      <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2021-04-13-hankakukansuji/</guid>
+      <description>半角漢数字（正式名称ではないと思うが）は、少し昔の本の目次などで使われている。いまどきの本ではあまり見かけないが、かっこいいので私は好きである。
+半角漢数字は、LaTeXだとotfパッケージの\CIDを用いれば簡単に出力できる。しかしCIDをいちいち調べないといけないのが面倒だ。そこで\hankakukansujiというコマンドを作ってみた。
+次をhoge.texなどのファイル名で保存し、upLaTeXで実行する。
+\documentclass[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=21, tate]{jlreq} \usepackage[uplatex]{otf}% \CIDを用いるため必須 \usepackage[noalphabet]{pxchfon} \setminchofont{HiraMinProN-W3.otf}% 半角漢数字が存在するフォントを選ぶ %% 半角漢数字出力コマンド \makeatletter \newcounter{qbcl@c@hk} \newcommand{\hankakukansuji}[1]{%  \@tfor\@tempa:=#1\do{%  \setcounter{qbcl@c@hk}{0}%  \@whilenum\value{qbcl@c@hk}&amp;lt;10\do{%  \ifnum\@tempa=\theqbcl@c@hk \addtocounter{qbcl@c@hk}{10185}\CID{\theqbcl@c@hk}\addtocounter{qbcl@c@hk}{-10185}%  \fi \addtocounter{qbcl@c@hk}{1}%  }%  }% } \makeatother \begin{document} \hankakukansuji{764980} \end{document} すると次の結果を得る。</description>
+    </item>
+    
+    <item>
+      <title>LaTeXで本文領域にマス目を表示させる</title>
       <link>https://qdaibungei.github.io/latex/documents/2021-04-12-hanmen-grid/</link>
       <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2021-04-12-hanmen-grid/</guid>
-      <description>jlreq.clsで版面設計を行なうときでも、グリッド線が表示できると都合がよい。この場合、hanmen.styのpassオプションを用いるとよい。
+      <description>jlreq.clsで版面設計を行なうときでも、グリッド線（マス目）が表示できると都合がよい。この場合、hanmen.styのpassオプションを用いるとよい。
 \documentclass[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=41]{jlreq} \usepackage[Q=14,H=24.5,W=45,L=41,g=45,pass]{hanmen} \usepackage{bxjalipsum} \begin{document} \jalipsum[4-6]{wagahai} \end{document} こうすると、次の結果を得る。
 確かにグリッド線がうまく表示されている。ただし現状、縦書き時にはグリッド線が少しずれて表示されてしまう。後日修正したい。</description>
     </item>

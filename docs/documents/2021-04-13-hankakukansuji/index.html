@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155017107-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-155017107-1');
+        </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>半角漢数字を出力するコマンド｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+        <script src="https://kit.fontawesome.com/593b5b099a.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-wrapper">
+                <h1 class="logo">
+                    <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+                </h1>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex"><i class="fas fa-home"></i> HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about"><i class="fas fa-info-circle"></i> About</a></li>
+        <li class="nav-item active"><a href="https://qdaibungei.github.io/latex/documents"><i class="fas fa-book"></i> Docs</a></li>
+    </ul>
+</nav>
+</div>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<p class="title">
+    半角漢数字を出力するコマンド<br>
+</p>
+<p>半角漢数字（正式名称ではないと思うが）は、少し昔の本の目次などで使われている。いまどきの本ではあまり見かけないが、かっこいいので私は好きである。</p>
+<p>半角漢数字は、LaTeXだとotfパッケージの<code>\CID</code>を用いれば簡単に出力できる。しかしCIDをいちいち調べないといけないのが面倒だ。そこで<code>\hankakukansuji</code>というコマンドを作ってみた。</p>
+<p>次を<code>hoge.tex</code>などのファイル名で保存し、upLaTeXで実行する。</p>
+<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="na">[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=21, tate]</span><span class="nb">{</span>jlreq<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="na">[uplatex]</span><span class="nb">{</span>otf<span class="nb">}</span><span class="c">% \CIDを用いるため必須
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[noalphabet]</span><span class="nb">{</span>pxchfon<span class="nb">}</span>
+<span class="k">\setminchofont</span><span class="nb">{</span>HiraMinProN-W3.otf<span class="nb">}</span><span class="c">% 半角漢数字が存在するフォントを選ぶ
+</span><span class="c">%% 半角漢数字出力コマンド
+</span><span class="c"></span><span class="k">\makeatletter</span>
+<span class="k">\newcounter</span><span class="nb">{</span>qbcl@c@hk<span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\hankakukansuji</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="c">%
+</span><span class="c"></span>    <span class="k">\@</span>tfor<span class="k">\@</span>tempa:=#1<span class="k">\do</span><span class="nb">{</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\setcounter</span><span class="nb">{</span>qbcl@c@hk<span class="nb">}{</span>0<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>        <span class="k">\@</span>whilenum<span class="k">\value</span><span class="nb">{</span>qbcl@c@hk<span class="nb">}</span>&lt;10<span class="k">\do</span><span class="nb">{</span><span class="c">%
+</span><span class="c"></span>            <span class="k">\ifnum\@</span>tempa=<span class="k">\theqbcl</span>@c@hk
+                <span class="k">\addtocounter</span><span class="nb">{</span>qbcl@c@hk<span class="nb">}{</span>10185<span class="nb">}</span><span class="k">\CID</span><span class="nb">{</span><span class="k">\theqbcl</span>@c@hk<span class="nb">}</span><span class="k">\addtocounter</span><span class="nb">{</span>qbcl@c@hk<span class="nb">}{</span>-10185<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>            <span class="k">\fi</span>
+            <span class="k">\addtocounter</span><span class="nb">{</span>qbcl@c@hk<span class="nb">}{</span>1<span class="nb">}</span><span class="c">%
+</span><span class="c"></span>        <span class="nb">}</span><span class="c">%
+</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span><span class="c"></span><span class="nb">}</span>
+<span class="k">\makeatother</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<span class="k">\hankakukansuji</span><span class="nb">{</span>764980<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</code></pre></div><p>すると次の結果を得る。</p>
+<p><img src="/latex/assets/img/2021-04-13.png" alt=""></p>
+
+<div class="showarticleinfo">
+    <i class="far fa-calendar-alt"></i> 2021年4月13日<br>
+    
+    <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/memo">#memo</a></code> <br>
+</div>
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2021 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+
