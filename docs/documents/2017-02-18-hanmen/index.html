@@ -155,6 +155,11 @@
 <ul>
 <li>細かなバグを修正。</li>
 </ul>
+<h1 id="既知の問題">既知の問題</h1>
+<ul>
+<li><code>\usepackage</code>する際にadjustfontsizeオプションをつけると、<code>\newhanmen</code>でadjustfontsizeオプションをつけなくても<code>\normalsize</code>以外のフォントサイズ変更コマンドが自動的に更新されてしまう。これは私の意図通りの挙動ではない（実用上はあまり問題はないが）。いっそadjustfontsizeオプションを廃止してつねにフォントサイズ変更コマンドを更新するようにしたほうがよいかもしれない。</li>
+<li>otfパッケージのオプションで<code>scale=1</code>と指定するような場合に対応できていない。そもそもjlreq.cls同様、フォントスケールは自由に定義できるようにしたほうがよいかもしれない。</li>
+</ul>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -165,7 +170,7 @@
 <p>煩雑と言っても、原理を理解するのはそれほど難しいことではない。「<a href="http://d.hatena.ne.jp/Rion778/20091002/1254482262">1ページ当たりの行数，文字数と周囲の余白を設定する</a>」（外部サイト）に書いてあるように設定すればよいだけではある。ただし記述量が多く、プリアンブルに気軽に置いておける感じではない。そこでパッケージ化する必要が出てくるわけである。なお、あべのり氏によって開発中（2017年2月18日現在）のクラスファイルである<a href="https://github.com/abenori/jlreq">jlreq.cls</a>は、従来のクラスファイルより圧倒的に版面設計が行いやすいようになっているようだ。したがってこれを使うというのもよい手であろう。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>旧バージョン（v0.7以前）では、<code>\usepackage[Q=13, nodo=20mm]{hanmen}</code>とした場合、<code>Q=13</code> や <code>nodo=20mm</code> といった値はリセットされず、そのまま使われたため、さらに続けて<code>\newhanmen{koguchi=20mm}</code>とするとエラーとなっていた（<code>nodo</code>と<code>koguchi</code>を同時に指定することはできないため）。しかしこの挙動は分かりづらいと思われたため、仕様を変更した。つまり<code>\newhanmen</code>したとき最初に指定した値は引き継がれずそのつどリセットされるようにした。なお、旧バージョンで作成した文書は現バージョンのhanmenパッケージでも処理できるので、後方互換性は維持されている。 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>旧バージョン（v0.7以前）では、<code>\usepackage[Q=13, nodo=20mm]{hanmen}</code>とした場合、<code>Q=13</code> や <code>nodo=20mm</code> といった値はリセットされず、そのまま使われたため、さらに続けて<code>\newhanmen{koguchi=20mm}</code>とするとエラーとなっていた（<code>nodo</code>と<code>koguchi</code>を同時に指定することはできないため）。しかしこの挙動は分かりづらいと思われたため、仕様を変更した。つまり<code>\newhanmen</code>したとき最初に指定した値は引き継がれずそのつどリセットされるようにした。 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
 <p>旧バージョン（v0.7以前）ではこのコマンドは<code>\hanmenchangedir</code>という名称だったが、やや妙な命名だったと思い直し、命名し直した。ただし旧バージョン時に作成された文書にも対応できるよう、<code>\hanmenchangedir</code>というコマンドも<code>\switchwritingdirection</code>のコピーとして残してある。 <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
@@ -176,7 +181,7 @@
 <div class="showarticleinfo">
     <i class="far fa-calendar-alt"></i> 2017年2月18日<br>
     
-        <i class="fas fa-history"></i> 2021年4月13日<br>
+        <i class="fas fa-history"></i> 2021年6月10日<br>
     
     <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/latex%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8">#LaTeXパッケージ</a></code> <br>
 </div>
