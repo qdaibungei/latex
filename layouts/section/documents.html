@@ -3,11 +3,14 @@
 
 <div class="title">Documents</div>
 <h2>タグ一覧</h2>
-<ul>
+<!-- <ul>
   {{ range .Site.Taxonomies.tags.ByCount }}
     <li><a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">{{ .Term }}</a><span class="tag-count">{{ .Count }}</span></li>
   {{ end }}
-</ul>
+</ul> -->
+{{ range .Site.Taxonomies.tags.ByCount }}
+  <div class="tags"><a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">#{{ .Term }}</a><span class="tag-count">{{ .Count }}</span></div>
+{{ end }}
 <h2>記事一覧</h2>
 <ul>
     {{ range .Data.Pages }}
