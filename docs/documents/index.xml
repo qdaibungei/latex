@@ -308,7 +308,7 @@ jfonts.sty % % jfonts.sty %  \NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{jfonts} 
 困難の原因は、二つある。第一は、tfmファイルやmapファイルを生成するのが難しいことである。第二は、フォント設定ファイルの作り方が分かりづらいことである。
 そこで、備忘録を兼ね、以下にその方法を記す。
 一つのウェイトをインストールしてみる tfmなどの生成 フォントの形式は通常、otfやttfなどであるが、TeXはそれらを直接に扱うことができない。そこでtfmファイルなどのフォントファイルを生成する必要がある。面倒だが、フォントごとに別のtfmを生成せねばならない。
-tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルで「otftotfm &amp;ndash;version」と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。
+tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルでotftotfm --versionと打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。
 さて今回はGoogle Fontsに収録されているJosefin Slabというフォントをインストールしてみよう。まずは、一つのウェイト（Regular）だけをインストールしてみる。
 まず作業用ディレクトリを適当に作っておき、そこにJosefinSlab-Regular.ttfを入れておく。ターミナルで作業用ディレクトリに行き、次のコマンドを実行してみよう。
 otftotfm --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである1。一応、オプションの意味を説明しておこう。

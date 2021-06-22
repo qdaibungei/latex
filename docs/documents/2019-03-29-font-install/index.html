@@ -51,7 +51,7 @@
 <h1 id="一つのウェイトをインストールしてみる">一つのウェイトをインストールしてみる</h1>
 <h2 id="tfmなどの生成">tfmなどの生成</h2>
 <p>フォントの形式は通常、otfやttfなどであるが、TeXはそれらを直接に扱うことができない。そこでtfmファイルなどのフォントファイルを生成する必要がある。面倒だが、フォントごとに別のtfmを生成せねばならない。</p>
-<p>tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルで「otftotfm &ndash;version」と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。</p>
+<p>tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルで<code>otftotfm --version</code>と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。</p>
 <p>さて今回はGoogle Fontsに収録されている<a href="https://fonts.google.com/specimen/Josefin+Slab?category=Serif">Josefin Slab</a>というフォントをインストールしてみよう。まずは、一つのウェイト（Regular）だけをインストールしてみる。</p>
 <p>まず作業用ディレクトリを適当に作っておき、そこにJosefinSlab-Regular.ttfを入れておく。ターミナルで作業用ディレクトリに行き、次のコマンドを実行してみよう。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
