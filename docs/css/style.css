@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Round');
 
 
 html {
@@ -44,6 +45,16 @@ body {
 }
 .showarticleinfo .fas {
     font-size: 1.05rem;
+}
+.header .material-icons-round {
+    font-size: 1.3em;
+    display: inline-flex;
+    vertical-align: text-bottom;
+}
+.showarticleinfo .material-icons-round {
+    font-size: 1.2em;
+    display: inline-flex;
+    vertical-align: text-bottom;
 }
 .showarticleinfo code {
     font-size: 1.2rem;
