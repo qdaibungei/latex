@@ -47,7 +47,7 @@
 <p>半角漢数字（正式名称ではないと思うが）は、少し昔の本の目次などで使われている。いまどきの本ではあまり見かけないが、かっこいいので私は好きである。</p>
 <p>半角漢数字は、LaTeXだとotfパッケージの<code>\CID</code>を用いれば簡単に出力できる。しかしCIDをいちいち調べないといけないのが面倒だ。そこで<code>\hankakukansuji</code>というコマンドを作ってみた。</p>
 <p>次を<code>hoge.tex</code>などのファイル名で保存し、upLaTeXで実行する。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="na">[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=21, tate]</span><span class="nb">{</span>jlreq<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="na">[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=21, tate]</span><span class="nb">{</span>jlreq<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="na">[uplatex]</span><span class="nb">{</span>otf<span class="nb">}</span><span class="c">% \CIDを用いるため必須
 </span><span class="c"></span><span class="k">\usepackage</span><span class="na">[noalphabet]</span><span class="nb">{</span>pxchfon<span class="nb">}</span>
 <span class="k">\setminchofont</span><span class="nb">{</span>HiraMinProN-W3.otf<span class="nb">}</span><span class="c">% 半角漢数字が存在するフォントを選ぶ

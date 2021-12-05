@@ -54,7 +54,7 @@
 <p>tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルで<code>otftotfm --version</code>と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。</p>
 <p>さて今回はGoogle Fontsに収録されている<a href="https://fonts.google.com/specimen/Josefin+Slab?category=Serif">Josefin Slab</a>というフォントをインストールしてみよう。まずは、一つのウェイト（Regular）だけをインストールしてみる。</p>
 <p>まず作業用ディレクトリを適当に作っておき、そこにJosefinSlab-Regular.ttfを入れておく。ターミナルで作業用ディレクトリに行き、次のコマンドを実行してみよう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
 </code></pre></div><p>すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。一応、オプションの意味を説明しておこう。</p>
 <ul>
 <li><code>--no-type1 --no-dotlessj</code>は、「Type 1フォントへの変換を行わない」ということ、らしい。あまり理解できていない。</li>
@@ -65,7 +65,7 @@
 <p>また、<code>-fkern</code>とすればカーニングの、<code>-fliga</code>とすればリガチャの情報を、tfmに含ませることができる。Josefin Slabにはこれらの機能がなかったから上ではこのオプションをつけていないが、この機能があればつけたほうがよい。<code>otfinfo -f JosefinSlab-Regular.ttf</code>などとすれば、どのような機能が備わっているかを確認できる。</p>
 <h2 id="styファイルの作成">styファイルの作成</h2>
 <p>各種ファイルが生成できたならば、すかさず、josefinslab.styという名前でstyファイルを作る。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
 </span><span class="c">% josefinslab.sty
 </span><span class="c">%
 </span><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile josefinslab.map<span class="nb">}}</span><span class="c">% 先程生成したmapファイルの読み込み
@@ -75,7 +75,7 @@
 </code></pre></div><h2 id="インストールできたかを確認">インストールできたかを確認</h2>
 <p>ここまでできたら、ほとんどインストールは完了したと言ってよい（今のままだと、各種ファイルがディレクトリにたくさん散らばっていて、気持ち悪いかもしれないが、この問題は次の節で解決する）。</p>
 <p>動作確認のため、作業用ディレクトリにTeXファイルを作って、フォントが埋め込まれるかをチェックしておこう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="na">[uplatex]</span><span class="nb">{</span>jsarticle<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="na">[uplatex]</span><span class="nb">{</span>jsarticle<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>josefinslab<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 <span class="k">\romanfamily</span><span class="nb">{</span>josefinslab<span class="nb">}</span><span class="k">\selectfont</span>
@@ -85,7 +85,7 @@ This is a test.
 <h1 id="すべてのウェイトをインストールする">すべてのウェイトをインストールする</h1>
 <h2 id="tfmなどの生成とインストール">tfmなどの生成とインストール</h2>
 <p>すべてのウェイトをインストールするには、同じことを全ウェイトで実行すればよい。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
 otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular-italic JosefinSlab-RegularItalic.ttf
 otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-light JosefinSlab-Light.ttf
 otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-light-italic JosefinSlab-LightItalic.ttf
@@ -96,7 +96,7 @@ otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.m
 otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-bold JosefinSlab-Bold.ttf
 otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-bold-italic JosefinSlab-BoldItalic.ttf
 </code></pre></div><p>このままでは各種ファイルでディレクトリがごちゃごちゃする。そこで○○○.tfmはtfmフォルダ直下のjosefinslabフォルダに、○○○.vfはvfフォルダ直下のjosefinslabフォルダに、というような塩梅で移動させておく。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir vf/
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir vf/
 mkdir tfm/
 mkdir map/
 mkdir enc/
@@ -112,7 +112,7 @@ mv *.enc enc/josefinslab/
 <p>mapファイルが読み込めずエラーが生ずる場合、<code>$ sudo mktexlsr</code>を実行して情報を更新する。</p>
 <h2 id="styファイルの生成とインストール">styファイルの生成とインストール</h2>
 <p>さらにstyファイルを作る。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
 </span><span class="c">% josefinslab.sty
 </span><span class="c">%
 </span><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile josefinslab.map<span class="nb">}}</span>
@@ -132,7 +132,7 @@ mv *.enc enc/josefinslab/
 <h1 id="scaleオプションの追加">scaleオプションの追加</h1>
 <p>scaleオプションを追加しておくと便利である（既存の欧文フォントのパッケージには大抵scaleオプションがある）。scaleオプションとは、<code>\usepackage[scale=0.9]{josefinslab}</code>などとすれば欧文が0.9倍の大きさで印字されるようなオプション機能である。</p>
 <p>scaleオプションを実装するためには、styファイルを少しばかり書き換えるだけでよろしい。具体的には以下のようにする（煩雑になるのを避けるためウェイトは二種類のみにしてある）。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
 </span><span class="c">% josefinslab.sty
 </span><span class="c">%
 </span><span class="c"></span>
@@ -165,10 +165,10 @@ mv *.enc enc/josefinslab/
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>ここでエラーが出てtfmファイルが生成されない場合、ec.encをネットで検索してダウンロードし、作業用ディレクトリに置いておくこと。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>ここでエラーが出てtfmファイルが生成されない場合、ec.encをネットで検索してダウンロードし、作業用ディレクトリに置いておくこと。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p><code>$TEXMF</code>とは、TeXとMETAFONTという意味で、各種パッケージが収められるディレクトリのこと。その場所は複数あるので「<code>$TEXMF</code>」という変数の形でよく表記される。<code>$TEXMF</code>の場所が分からない場合、ターミナルで<code>kpsewhich -var-value TEXMF</code>を実行すれば、調べられる。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><code>$TEXMF</code>とは、TeXとMETAFONTという意味で、各種パッケージが収められるディレクトリのこと。その場所は複数あるので「<code>$TEXMF</code>」という変数の形でよく表記される。<code>$TEXMF</code>の場所が分からない場合、ターミナルで<code>kpsewhich -var-value TEXMF</code>を実行すれば、調べられる。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -176,7 +176,7 @@ mv *.enc enc/josefinslab/
 <div class="showarticleinfo">
     <i class="far fa-calendar-alt"></i> 2019年3月29日<br>
     
-        <i class="fas fa-history"></i> 2019年9月7日<br>
+        <i class="fas fa-history"></i> 2021年6月22日<br>
     
     <i class="fas fa-tags"></i>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/font">#font</a></code>  <code><a href="/latex/tags/tips">#tips</a></code> <br>
 </div>

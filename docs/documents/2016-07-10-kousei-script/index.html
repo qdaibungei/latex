@@ -60,7 +60,7 @@
 </ul>
 <h2 id="解法">解法</h2>
 <p>以下に示すpythonスクリプトを書いた。すべての可能な組み合わせを考えて、標準偏差を出し、標準偏差の最も低い組み合わせを出力するようにしてある。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: utf-8 -*-</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 
@@ -119,9 +119,9 @@
             <span class="n">goodp</span> <span class="o">=</span> <span class="n">p</span>
             <span class="n">listhozon</span> <span class="o">=</span> <span class="n">list3</span>
 <span class="k">del</span> <span class="n">goodp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">sd</span>
-<span class="k">print</span> <span class="n">goodp</span>
-<span class="k">print</span> <span class="n">listhozon</span>
+<span class="nb">print</span> <span class="n">sd</span>
+<span class="nb">print</span> <span class="n">goodp</span>
+<span class="nb">print</span> <span class="n">listhozon</span>
 </code></pre></div><h1 id="追記">追記</h1>
 <p>流石に適当すぎて、リストが多すぎるとすぐフリーズしてしまうことが判明した。やっぱりそうか。悲しい。メモリを食い過ぎてしまうのだ。改善したいがなかなか資料が見つからない。<a href="http://pythonlife.seesaa.net/article/243207369.html">ここ</a>などが参考になるかもしれない。</p>
 <h1 id="さらに追記">さらに追記</h1>

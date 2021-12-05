@@ -49,14 +49,14 @@
 <h1 id="フォントの指定">フォントの指定</h1>
 <p>LaTeXのデフォルトフォントはあまり小説向きではない。そこで以下のように記述しフォントを変更する。</p>
 <p>まず日本語フォントであるが、特にこだわりがないならば、とりあえず游明朝にしておくとよい。游明朝を使うには、以下のように書く（以下はuplatexを使うことを前提とした書き方である。いまどきわざわざplatexを使う理由はあるまい）。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% uplatexでA5サイズの本を作る場合のdocumentclassの書きかた
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% uplatexでA5サイズの本を作る場合のdocumentclassの書きかた
 </span><span class="c"></span><span class="k">\documentclass</span><span class="na">[a5paper,papersize,uplatex]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 
 <span class="c">% 日本語フォントを游明朝にする
 </span><span class="c"></span><span class="k">\usepackage</span><span class="na">[deluxe,uplatex]</span><span class="nb">{</span>otf<span class="nb">}</span>
 <span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile otf-up-yu-win10.map<span class="nb">}}</span><span class="c">% Windows 10以外の場合は適宜変更せよ
 </span></code></pre></div><p>欧文フォントも変更しておこう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 欧文フォントの変更
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 欧文フォントの変更
 </span><span class="c"></span><span class="k">\usepackage</span><span class="na">[scale=1.05]</span><span class="nb">{</span>cochineal<span class="nb">}</span><span class="c">% この欧文フォントはわりと游明朝に合う
 </span><span class="c"></span><span class="k">\usepackage</span><span class="na">[scale=0.95,defaultsans]</span><span class="nb">{</span>opensans<span class="nb">}</span>
 </code></pre></div><h1 id="jdashパッケージ">jdashパッケージ</h1>
@@ -64,7 +64,7 @@
 <h1 id="hanmenパッケージの使用">hanmenパッケージの使用</h1>
 <p>まず<a href="https://gist.github.com/qdaibungei/5f6986fa99fc9a7d86122a7a9417d64e">hanmenパッケージ</a>をダウンロードし、TeXファイルと同じフォルダへ入れる。</p>
 <p>そしてプリアンブルに以下を記述する。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 上のフォント設定をした後に書く
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 上のフォント設定をした後に書く
 </span><span class="c"></span><span class="k">\usepackage</span><span class="na">[Q=13,H=22,W=49,L=21,ko=3.875truemm,te=6.5truemm,footskip=2.47truemm,tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 
 <span class="c">% ついでに、欧文のベースラインなどを適当に変更しておこう
@@ -75,7 +75,7 @@
 <p>hanmenパッケージの使い方の詳細は<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">この記事</a>を参照のこと。</p>
 <h1 id="tcyマクロ">\tcyマクロ</h1>
 <p>LaTeXで縦書きをするさい、縦中横には<code>\rensuji</code>を使うよう言われる。しかし<code>\rensuji</code>だと前後のアキがおかしくなる（たとえば、行頭で<code>\rensuji</code>を使うとインデント量が狂う）。そこで<code>\tcy</code>命令を新たに作り、これを使うのがよい。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="nb">{</span>plext<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="nb">{</span>plext<span class="nb">}</span>
 <span class="k">\makeatletter</span>
 <span class="k">\chardef\nvlsty</span>@zenkakuSpace=<span class="k">\jis</span>&#34;2121<span class="k">\relax</span>
 <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\tcy</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="c">%
@@ -89,7 +89,7 @@
 </code></pre></div><p>以上をプリアンブルなどに書いておく。使いかたは至ってかんたんで、<code>\tcy{12}時</code>、のようにすればよい。</p>
 <h1 id="禁則処理の設定">禁則処理の設定</h1>
 <p>縦書きの場合、禁則処理はほどほどに抑制しておくと商業出版物の組版に似せることができる。プリアンブルなどに以下を記述する。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\makeatletter</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\makeatletter</span>
 <span class="k">\def\hoge</span>@set@prebreakpenalty#1#2<span class="nb">{</span><span class="c">%
 </span><span class="c"></span>    <span class="k">\@</span>tfor<span class="k">\@</span>tempa:=#1<span class="k">\do</span><span class="nb">{</span><span class="k">\expandafter\prebreakpenalty\expandafter</span>`<span class="k">\@</span>tempa =#2<span class="nb">}}</span>
 <span class="k">\clubpenalty</span>=0
@@ -105,7 +105,7 @@
 <span class="k">\makeatother</span>
 </code></pre></div><h1 id="フッター">フッター</h1>
 <p>以前出した本のフッターの設定はだいたいこんな感じである。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="nb">{</span>fancyhdr<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="nb">{</span>fancyhdr<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="na">[scale=0.9]</span><span class="nb">{</span>tgadventor<span class="nb">}</span>
 <span class="k">\makeatletter</span>
 <span class="k">\def\qbook</span>@chaptertitle<span class="nb">{</span>タイトル<span class="nb">}</span>

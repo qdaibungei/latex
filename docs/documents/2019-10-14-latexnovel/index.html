@@ -65,14 +65,14 @@
 <p>第二に、<code>\tableofcontents</code>で出力される目次のレイアウトを変更するのが難しい。<code>\tableofcontents</code>を再定義してやればいいのだが、<code>\tableofcontents</code>の元の定義はかなり複雑で、変更が面倒である。</p>
 <h2 id="latexによる目次の作り方私家版">LaTeXによる目次の作り方（私家版）</h2>
 <p>さてそこで私は、<code>\tableofcontents</code>に代替しうるマクロを別途定義して使っている。そのマクロとは、以下に示すような<code>\Mokuji</code>マクロである。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%% \Mokuji
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%% \Mokuji
 </span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\Mokuji</span><span class="nb">}</span>[3]<span class="nb">{</span><span class="c">%
 </span><span class="c"></span>    #1<span class="k">\hskip</span>1zw<span class="c">% 作品名
 </span><span class="c"></span>    <span class="k">\textgt</span><span class="nb">{</span>#2<span class="nb">}</span><span class="k">\hskip</span>1zw<span class="c">% 著者名
 </span><span class="c"></span>    <span class="k">\rensuji</span><span class="nb">{</span><span class="k">\pageref</span><span class="nb">{</span>#3<span class="nb">}}</span><span class="c">% ページ数
 </span><span class="c"></span><span class="nb">}</span>
 </code></pre></div><p>このようなマクロを作っておいたうえで、本文内に次のように記述する。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\Mokuji</span><span class="nb">{</span>走れメロス<span class="nb">}{</span>太宰治<span class="nb">}{</span>dazai<span class="nb">}</span><span class="c">% 目次生成。引数は、\Mokuji{&lt;作品名&gt;}{&lt;著者名&gt;}{&lt;ページ参照用ラベル&gt;}とする。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\Mokuji</span><span class="nb">{</span>走れメロス<span class="nb">}{</span>太宰治<span class="nb">}{</span>dazai<span class="nb">}</span><span class="c">% 目次生成。引数は、\Mokuji{&lt;作品名&gt;}{&lt;著者名&gt;}{&lt;ページ参照用ラベル&gt;}とする。
 </span><span class="c"></span>
 <span class="c">%
 </span><span class="c"></span>
@@ -82,7 +82,7 @@
 <p><img src="/latex/assets/img/2019-10-14e.png" alt=""></p>
 <p>基本的には、このように<code>\Mokuji</code>マクロを何個も使って目次を作ればよい。目次デザインを変えるためには、<code>\Mokuji</code>マクロの定義を適宜変更すればよい。</p>
 <p>ベスト文集では、<code>\mokuji</code>を次のように定義して使った。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%% \mokuji
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%% \mokuji
 </span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mokuji</span><span class="nb">}</span>[4]<span class="nb">{</span><span class="c">%
 </span><span class="c"></span>    <span class="k">\expandafter\ifx</span>#4<span class="k">\relax</span>
         <span class="k">\leavevmode\hbox</span> to 14zw<span class="nb">{}</span><span class="c">%
@@ -125,7 +125,7 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>ノンブルとは印刷用語で、ページ番号のこと。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>ノンブルとは印刷用語で、ページ番号のこと。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>

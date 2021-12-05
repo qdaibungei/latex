@@ -53,7 +53,7 @@
 <p>CTANにある<a href="https://ctan.org/tex-archive/language/japanese/japanese-otf">japanese-otfパッケージ</a>からbaseplとscriptというディレクトリをダウンロード。またmkjvfもダウンロードしておく。</p>
 <p>同様に<a href="https://ctan.org/tex-archive/language/japanese/japanese-otf-uptex">japanese-otf-uptex</a>からbasepl、script、umkjvfをダウンロード。</p>
 <p>さらに次のスクリプトを作成する。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
 </span><span class="cp"></span>
 mkdir tfm
 mkdir vf
@@ -67,7 +67,7 @@ mkdir vf
         ppltotf basepl/base-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl expyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
         ppltotf basepl/brsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl brsgyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
         ppltotf basepl/brsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl brsgexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
-        #
+        <span class="c1">#</span>
         uppltotf -kanji<span class="o">=</span>uptex basepl/ubase-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
         uppltotf -kanji<span class="o">=</span>uptex basepl/ubase-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upexpyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
         uppltotf -kanji<span class="o">=</span>uptex basepl/ubrsg-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>.pl upbrsgyumin5go<span class="si">${</span><span class="nv">face</span><span class="si">}</span>-<span class="si">${</span><span class="nv">hv</span><span class="si">}</span>
@@ -111,7 +111,7 @@ mv *.vf vf/
 <h1 id="各種ファイルの作成">各種ファイルの作成</h1>
 <p>先程作成したスクリプトを実行し、tfmファイルやvfファイルを生成する。そして$TEXMF下の適当な場所に配置する。</p>
 <p>最後に、otfパッケージを参考にして、yumin5go.styを作成する。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
 </span><span class="c">% yumin5go.sty
 </span><span class="c">%
 </span><span class="c"></span>

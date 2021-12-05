@@ -60,7 +60,7 @@
 <h2 id="latexによる表紙データの作り方">LaTeXによる表紙データの作り方</h2>
 <p>表紙データをPDFで入稿するようにと規定している印刷所も多い。つまり入稿するためには、画像をPDF化しなければならないのだ。そこで、今回私はPNG形式の表紙データをLaTeXによってPDF化することにした。</p>
 <p>まず、表紙用の画像データを<code>hyosi.png</code>というファイル名で保存しておくことにする。そして、次のようなTeXファイルを作る。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 <span class="k">\includepdf</span><span class="na">[fitpaper]</span><span class="nb">{</span>hyosi.png<span class="nb">}</span>
@@ -75,7 +75,7 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>などとエラそうに書いているが、所詮は素人の手すさびにすぎない。間違ったことが書かれてあっても、大目に見ていただきたい。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>などとエラそうに書いているが、所詮は素人の手すさびにすぎない。間違ったことが書かれてあっても、大目に見ていただきたい。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>

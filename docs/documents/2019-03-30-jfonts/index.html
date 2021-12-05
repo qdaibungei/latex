@@ -48,7 +48,7 @@
 <p>LaTeXでPDFに和文フォントを埋め込む際、いちいちmapファイルを書き換えるのは面倒である。そこでjfontsパッケージというLaTeXパッケージを作った。簡単な工夫だが、役に立つ。</p>
 <p>jfontsパッケージは、otfパッケージと併用することを前提としている。フォントを変えたいときはフォントのファイル名を書き換えればよい。</p>
 <h1 id="jfontssty">jfonts.sty</h1>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
 </span><span class="c">% jfonts.sty
 </span><span class="c">%
 </span><span class="c"></span>
@@ -176,7 +176,7 @@
 </span><span class="c"></span><span class="k">\fi</span>
 </code></pre></div><h1 id="追記">追記</h1>
 <p>いまだとTeX Liveに収録されているpxchfonパッケージがあるので、これを使って次のように書くのがラクである。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[noalphabet]</span><span class="nb">{</span>pxchfon<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[noalphabet]</span><span class="nb">{</span>pxchfon<span class="nb">}</span>
 <span class="k">\setlightminchofont</span><span class="nb">{</span>ToppanBunkyuMincho-Regular.otf<span class="nb">}</span>
 <span class="k">\setmediumminchofont</span><span class="nb">{</span>HiraMinProN-W3.otf<span class="nb">}</span>
 <span class="k">\setboldminchofont</span><span class="nb">{</span>HiraMinProN-W6.otf<span class="nb">}</span>

@@ -48,9 +48,9 @@
 <p>ベスト文集の終わりのほうに、著者コメント欄を設けた。</p>
 <p><img src="/latex/assets/img/2020-04-11.png" alt=""></p>
 <p>版面設定は次のようにした。見開きに収めたかったので、文字サイズは10.5Qとかなり小さめ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\newhanmen</span><span class="nb">{</span>Q=10.5,H=15.75,W=66.5,L=29,tate,ko=0mm,te=0mm,nodo=<span class="k">\relax</span>,koguchi=14.625mm,chi=16.4375mm,footskip=3.25mm<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\newhanmen</span><span class="nb">{</span>Q=10.5,H=15.75,W=66.5,L=29,tate,ko=0mm,te=0mm,nodo=<span class="k">\relax</span>,koguchi=14.625mm,chi=16.4375mm,footskip=3.25mm<span class="nb">}</span>
 </code></pre></div><p>「著者コメント」とあるタイトル部分は、次のコードにより出力した。</p>
-<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\fboxsep</span>=.25zw
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\fboxsep</span>=.25zw
 <span class="k">\definecolor</span><span class="nb">{</span>creditgray<span class="nb">}{</span>gray<span class="nb">}{</span>0.1<span class="nb">}</span>
 <span class="k">\colorbox</span><span class="nb">{</span>creditgray<span class="nb">}{</span><span class="k">\emph</span><span class="nb">{</span><span class="k">\color</span><span class="nb">{</span>white<span class="nb">}</span>~著者コメント<span class="nb">}}{</span><span class="k">\color</span><span class="nb">{</span>creditgray<span class="nb">}</span><span class="k">\rule</span><span class="na">[-.75zw]</span><span class="nb">{</span>59.75zw<span class="nb">}{</span>1.5zw<span class="nb">}}</span>
 </code></pre></div><p>　</p>

@@ -6,11 +6,7 @@
     <description>Recent content in Word on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 19 Mar 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://qdaibungei.github.io/latex/tags/word/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 19 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://qdaibungei.github.io/latex/tags/word/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Wordの傍点を青空文庫形式に変換する方法</title>
       <link>https://qdaibungei.github.io/latex/documents/2017-03-19-bouten/</link>
@@ -19,7 +15,7 @@
       <guid>https://qdaibungei.github.io/latex/documents/2017-03-19-bouten/</guid>
       <description>以下の画像を参考に置換する。
 　置換用文字列は以下をコピペするとよい。
-? ^&amp;amp;［＃「^&amp;amp;」に傍点］</description>
+? ^&amp;［＃「^&amp;」に傍点］ </description>
     </item>
     
     <item>

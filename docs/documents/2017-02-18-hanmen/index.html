@@ -53,7 +53,7 @@
 <p>従来、LaTeXでは版面の設計が煩雑であった。特に縦組みの場合、geometryパッケージが使えないので厄介である<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。そこで、縦組みでも版面設計がやりやすいようにと作ったのがhanmenパッケージである。</p>
 <h1 id="基本的な使い方">基本的な使い方</h1>
 <p>基本的な使い方は簡単である。プリアンブルに次のように書き込む。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=15,H=24,W=38,L=40]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=15,H=24,W=38,L=40]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </code></pre></div><p>そうすると、</p>
 <ul>
 <li>文字サイズ　15級</li>
@@ -65,54 +65,54 @@
 <h1 id="各種オプション">各種オプション</h1>
 <h2 id="g">g</h2>
 <p>グリッド線を表示させる（<code>g</code>に代入する値は上の<code>W</code>で指定した文字数と同じか、または近い整数値を入れる）。これで原稿用紙のようなマス目を表示させることができる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[g=38]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[g=38]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </code></pre></div><h2 id="tate">tate</h2>
 <p>縦組みにする。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </code></pre></div><h2 id="ヘッダフッタ">ヘッダ・フッタ</h2>
 <p>ヘッダ・フッタの位置の調整。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[headheight=13mm, headsep=1mm, footskip=3mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[headheight=13mm, headsep=1mm, footskip=3mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </code></pre></div><h2 id="上下左右の余白調整">上下左右の余白調整</h2>
 <p>デフォルトでは、版面は左右中央に配置される。これを、少しだけ小口側に寄せたり、天側に寄せたりしたい場合、以下のようにする（このオプションは正直インターフェースが微妙なので現在私自身は使っていないが、古い文書も処理できるよう残しておいた）。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[ko=3mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">%% 3mm小口寄せ
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[ko=3mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">%% 3mm小口寄せ
 </span><span class="c">% \usepackage[te=4mm]{hanmen}%% 4mm天寄せ
 </span></code></pre></div><p>ノド、小口、天、地の広さを直接指定することもできる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない。もし間違えて両方指定した場合はエラーが出るようにしてある。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% ノドと天の広さを指定
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% ノドと天の広さを指定
 </span><span class="c"></span><span class="k">\usepackage</span><span class="na">[nodo=20mm, ten=15mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 <span class="c">% 小口と地の広さを指定
 </span><span class="c">% \usepackage[koguchi=20mm, chi=15mm]{hanmen}
 </span></code></pre></div><p>また、ノド、小口、天、地の広さを直接指定するだけでなく、既存の値に加算することもできる（それぞれ、<code>addnodo</code>、<code>addkoguchi</code>、<code>addten</code>、<code>addchi</code>というオプションで指定できる。なおこれらオプションは同時に指定してもエラーは生じない）。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% ノドと天の広さを指定した後、広さを足す
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% ノドと天の広さを指定した後、広さを足す
 </span><span class="c"></span><span class="k">\usepackage</span><span class="na">[nodo=20mm, ten=15mm, addnodo=5mm, addten=1zw]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">% ノドは25mm、天は15mm+1zwで指定される
 </span><span class="c">% 小口と地の広さを指定した後、広さを足す
 </span><span class="c">% \usepackage[koguchi=20mm, chi=15mm, addkoguchi=-5mm, addchi=2mm]{hanmen}% 小口は15mm、地は17mmで指定される
 </span></code></pre></div><h2 id="文字サイズ単位">文字サイズ単位</h2>
 <p>文字サイズ単位にQではなくptを使う。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=13, pt]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">% 文字サイズが13ptになる
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[Q=13, pt]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">% 文字サイズが13ptになる
 </span><span class="c">% \usepackage[Q=13, ptj]{hanmen} % Wordに合わせたptのサイズにするには ptj とすること。
 </span></code></pre></div><h2 id="jisfontzoom">jisfontzoom</h2>
 <p>このパッケージは新ドキュメントクラス（jsbook.cls、jsarticle.clsなど）で使うことを想定している。旧ドキュメントクラス（jarticle.cls、tbook.clsなど）で使う場合、jisfontzoomオプションを付けないと、文字サイズが正しく設定されない。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[jisfontzoom]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[jisfontzoom]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </code></pre></div><h2 id="adjustfontsize">adjustfontsize</h2>
 <p>hanmenパッケージのデフォルトの動作では、<code>\normalsize</code>しか再定義されない。<code>\small</code>なども文字サイズを変更するには次のオプションをつける。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[adjustfontsize]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[adjustfontsize]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </code></pre></div><h2 id="develop">develop</h2>
 <p>開発用コマンドが使えるようになるオプション。開発用コマンドについては<a href="#showhanmencalchanmen">下記</a>参照。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[develop]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[develop]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </code></pre></div><h2 id="pass">pass</h2>
 <p>版面を一切いじらない。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[pass]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[pass]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </code></pre></div><h1 id="提供されるコマンド">提供されるコマンド</h1>
 <h2 id="newhanmen">\newhanmen</h2>
 <p><code>\newhanmen</code> というコマンドが提供される。これは、本文中で、</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\newhanmen</span><span class="nb">{</span>Q=11.5,H=19,W=42,L=17<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\newhanmen</span><span class="nb">{</span>Q=11.5,H=19,W=42,L=17<span class="nb">}</span>
 </code></pre></div><p>などとすると、文書の途中から基本版面を再設定できるコマンドである。上記のオプションはすべてここでも使うことができる。</p>
 <p>なお、一度代入した値は、<code>\newhanmen</code>を実行するごとにリセットされる<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>。例えば<code>\usepackage[Q=13, nodo=20mm]{hanmen}</code>とオプションつきでパッケージを読み込んでいた場合に、<code>\newhanmen</code>後もノドの広さを20mmに保ちたいなら、必ず<code>\newhanmen{Q=15, nodo=20mm}</code>のようにノドの広さをもう一度指定しなければならない。</p>
 <h2 id="switchwritingdirection">\switchwritingdirection</h2>
 <p>本文領域はそのままに、組方向だけ変えたい場合に使えるのが <code>\switchwritingdirection</code> である<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>。本文中、このコマンドを記述すると組方向だけが切り替わる。例えば、横書きのときこのコマンドを挿入すると、その箇所で<code>\clearpage</code>され、次ページから縦書きになる。</p>
 <h2 id="pagegridon">\pagegridon</h2>
 <p><code>\usepackage[g=50]{hanmen}</code> とやる代わりに、<code>\pagegridon{g=50}</code> としてもグリッド線を表示できる。また、</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\pagegridon</span><span class="nb">{</span>g=26, column=2, columnskip=28.5<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\pagegridon</span><span class="nb">{</span>g=26, column=2, columnskip=28.5<span class="nb">}</span>
 </code></pre></div><p>とすると、26字×2段組の場合にもうまくグリッド線が表示される。columnskipは、一段の文字数＋段間の広さ。この例だと、一段が26字あり、段間の広さが2.5字分あるとの想定で（26+2.5=28.5なので）<code>columnskip=28.5</code> としてある（段間の広さをミリメートルで指定できるようにもしたかったが、技術力不足により実現していない）。</p>
 <h2 id="showhanmencalchanmen">\showhanmen、\calchanmen</h2>
 <p><code>\showhanmen</code>は、現在設定している版面設計の値を出力するコマンド。例えば、ノドの広さを指定したときに、小口の広さがいくらになっているか確認したい、というときこのコマンドは便利である。</p>
@@ -167,16 +167,16 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>「版面の設計」とは何かについては、詳しくは「<a href="http://t2publisher.xrea.jp/forme/layout.shtml">基本版面（レイアウト）の設計</a>」（外部サイト）などを参照せよ。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>「版面の設計」とは何かについては、詳しくは「<a href="http://t2publisher.xrea.jp/forme/layout.shtml">基本版面（レイアウト）の設計</a>」（外部サイト）などを参照せよ。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>ただしこの状況は、阿部紀行氏によって開発中の<a href="https://github.com/abenori/jlreq">jlreq.cls</a>の登場により変化しつつある。このクラスファイルは、従来のクラスファイルに比べて非常に柔軟であり、縦書きの場合でもごく容易に版面設計が行なえるようになっている。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>ただしこの状況は、阿部紀行氏によって開発中の<a href="https://github.com/abenori/jlreq">jlreq.cls</a>の登場により変化しつつある。このクラスファイルは、従来のクラスファイルに比べて非常に柔軟であり、縦書きの場合でもごく容易に版面設計が行なえるようになっている。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>旧バージョン（v0.7以前）では、<code>\usepackage[Q=13, nodo=20mm]{hanmen}</code>とした場合、<code>Q=13</code> や <code>nodo=20mm</code> といった値はリセットされず、そのまま使われたため、さらに続けて<code>\newhanmen{koguchi=20mm}</code>とするとエラーとなっていた（<code>nodo</code>と<code>koguchi</code>を同時に指定することはできないため）。しかしこの挙動は分かりづらいと思われたため、仕様を変更した。つまり<code>\newhanmen</code>したとき最初に指定した値は引き継がれずそのつどリセットされるようにした。 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>旧バージョン（v0.7以前）では、<code>\usepackage[Q=13, nodo=20mm]{hanmen}</code>とした場合、<code>Q=13</code> や <code>nodo=20mm</code> といった値はリセットされず、そのまま使われたため、さらに続けて<code>\newhanmen{koguchi=20mm}</code>とするとエラーとなっていた（<code>nodo</code>と<code>koguchi</code>を同時に指定することはできないため）。しかしこの挙動は分かりづらいと思われたため、仕様を変更した。つまり<code>\newhanmen</code>したとき最初に指定した値は引き継がれずそのつどリセットされるようにした。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
-<p>旧バージョン（v0.7以前）ではこのコマンドは<code>\hanmenchangedir</code>という名称だったが、やや妙な命名だったと思い直し、命名し直した。ただし旧バージョン時に作成された文書にも対応できるよう、<code>\hanmenchangedir</code>というコマンドも<code>\switchwritingdirection</code>のコピーとして残してある。 <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>旧バージョン（v0.7以前）ではこのコマンドは<code>\hanmenchangedir</code>という名称だったが、やや妙な命名だったと思い直し、命名し直した。ただし旧バージョン時に作成された文書にも対応できるよう、<code>\hanmenchangedir</code>というコマンドも<code>\switchwritingdirection</code>のコピーとして残してある。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>

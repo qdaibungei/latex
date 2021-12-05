@@ -53,7 +53,7 @@
 <p>しかし今回は、<code>\chapter</code>に代替しうるマクロを独自に定義してこれを使った。なぜかというと、<code>\chapter</code>の定義を変更してデザインを変えるのが面倒であったからだ。LaTeXにもう少し詳しければ<code>\chapter</code>を再定義して用いたほうがよいであろう。</p>
 <h2 id="latexによる章の作り方私家版">LaTeXによる章の作り方（私家版）</h2>
 <p>上のような作品タイトルの出力をLaTeXで実現するために、次のようなマクロを組んだ。</p>
-<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% title &amp; author names
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% title &amp; author names
 </span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\booktitlename</span><span class="nb">}{</span><span class="k">\relax</span><span class="nb">}</span>
 <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\chaptertitle</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="k">\def\qbook</span>@chaptertitle<span class="nb">{</span>#1<span class="nb">}}</span>
 <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\chapterauthor</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="k">\def\qbook</span>@chapterauthor<span class="nb">{</span>#1<span class="nb">}}</span>
@@ -110,7 +110,7 @@
 <span class="nb">}</span>
 <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\makechapter</span><span class="nb">}{</span><span class="k">\qbook</span>@makechapter<span class="nb">}</span>
 </code></pre></div><p>本文での記述は以下のようにしてある。</p>
-<div class="highlight"><pre class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\chaptertitle</span><span class="nb">{</span>走れメロス<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="k">\chaptertitle</span><span class="nb">{</span>走れメロス<span class="nb">}</span>
 <span class="k">\chapterauthor</span><span class="nb">{</span>太宰治<span class="nb">}</span>
 <span class="k">\chapterauthorruby</span><span class="nb">{</span>だざい・おさむ<span class="nb">}</span>
 <span class="k">\chapterfirstappearance</span><span class="nb">{</span>????/？？/『？？？？？』<span class="nb">}</span>

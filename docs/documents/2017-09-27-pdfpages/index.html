@@ -51,7 +51,7 @@
 <h1 id="pdfpagesパッケージの使いかた">pdfpagesパッケージの使いかた</h1>
 <h2 id="大きさを指定して画像をpdf化する">大きさを指定して画像をPDF化する</h2>
 <p>以下を<code>hoge.tex</code>という拡張子で保存し、<code>pdflatex hoge.tex</code>とすれば<code>hoge.pdf</code>というPDFファイルが生成される。</p>
-<div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="na">[papersize={308.341truemm,216truemm}]</span><span class="nb">{</span>geometry<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
@@ -59,7 +59,7 @@
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </code></pre></div><p><code>\includepdf</code>という命令で画像ファイルを読み込み、出力しているだけである。<code>geometry</code>パッケージにより画像の縦横の長さを設定することが可能である。</p>
 <h2 id="縦横比そのままに画像をpdf化する">縦横比そのままに画像をPDF化する</h2>
-<div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 <span class="k">\includepdf</span><span class="na">[fitpaper]</span><span class="nb">{</span>image.jpg<span class="nb">}</span>
@@ -67,14 +67,14 @@
 </code></pre></div><p>このように<code>fitpaper</code>オプションつきで画像を読み込むと、画像の縦横比に合わせて用紙サイズが決定される。</p>
 <h2 id="pdfファイルの連結">PDFファイルの連結</h2>
 <p>以下はA5サイズの本を作っているとき、左右のページをつなげてA4用紙に出力するやりかたである。デザインを確認したいときなどに有用である。</p>
-<div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="na">[a4paper,landscape]</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="na">[a4paper,landscape]</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 <span class="k">\includepdf</span><span class="na">[pages={28,29},nup=2x1]</span><span class="nb">{</span>mybook.pdf<span class="nb">}</span>
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </code></pre></div><p><code>pages={28,29}</code>は28～29ページだけを読み込む設定、<code>nup</code>は複数ページを一枚に並べる設定である。<code>nup=2x1</code>は2行×1列で並べるという意味になる。</p>
 <h2 id="自炊したpdfファイルの加工と連結">自炊したPDFファイルの加工と連結</h2>
-<div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="na">[a5paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
@@ -86,7 +86,7 @@
 <span class="k">\includepdf</span><span class="na">[pages=-,scale=1.25,offset=-14mm -23mm]</span><span class="nb">{</span>6.pdf<span class="nb">}</span>
 <span class="k">\includepdf</span><span class="na">[pages=-,scale=1.25,offset=-14mm -23mm]</span><span class="nb">{</span>7.pdf<span class="nb">}</span>
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="na">[a4paper,landscape]</span><span class="nb">{</span>geometry<span class="nb">}</span>
 <span class="k">\newcount\K</span>
@@ -102,7 +102,7 @@
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </code></pre></div><p>scaleオプションとoffsetオプションを指定してやると周囲の切り落としが可能となる。</p>
 <h2 id="奇数ページ偶数ページで異なる処理をする">奇数ページ・偶数ページで異なる処理をする</h2>
-<div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="na">[a4paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
 <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
@@ -126,7 +126,7 @@
 <span class="k">\createPDF</span>
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </code></pre></div><h2 id="印刷時の縮小の打ち消し">印刷時の縮小の打ち消し</h2>
-<div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="na">[a4paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
@@ -135,7 +135,7 @@
 </span><span class="c"></span><span class="k">\includepdf</span><span class="na">[scale=1.0498687664]</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </code></pre></div><h2 id="a4にする">A4にする</h2>
-<div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="na">[a4paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>

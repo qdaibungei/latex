@@ -48,11 +48,11 @@
 <p>本稿は、otfパッケージによるぶら下げ組を改良するための方法を記すものである。</p>
 <h1 id="本論">本論</h1>
 <p>otfパッケージにはburasageオプションがあり、これを利用するとぶら下げ組ができる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[burasage]</span><span class="nb">{</span>otf<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[burasage]</span><span class="nb">{</span>otf<span class="nb">}</span>
 </code></pre></div><p>しかし、このぶら下げ組にはひとつ問題がある。句読点が行末に来たとき、必ずぶら下げ処理がおこなわれてしまうのである<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。</p>
 <p>むろん、これはこれでひとつの立派な組版方針である。だが、行長が短いときに強制的にぶら下げ処理がおこなわれてしまうと、字間が開いてしまい、間延びした印象の組みかたになってしまう。よって、われわれとしては、ぶら下げ処理を少し抑制するように修正してみたい。これは、商業出版の本によく見られる組みかたでもある。</p>
 <p>そこで、プリアンブルなどに以下のように記述し、<code>\。</code>と<code>\、</code>というマクロを作る。</p>
-<div class="highlight"><pre class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\if</span>@burasage
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\if</span>@burasage
     <span class="k">\def\、</span><span class="nb">{</span><span class="c">%
 </span><span class="c"></span>        <span class="k">\@</span>ifnextchar<span class="k">\par</span><span class="nb">{</span>、<span class="nb">}{</span>、<span class="k">\hbox</span><span class="nb">{}}</span><span class="c">%
 </span><span class="c"></span>    <span class="nb">}</span><span class="c">%
@@ -79,7 +79,7 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>ただし段落末尾はそのかぎりではない。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>ただし段落末尾はそのかぎりではない。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
