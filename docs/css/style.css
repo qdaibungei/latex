@@ -106,7 +106,7 @@ body {
 }
 .global-nav .nav-item a {
     display: inline-block;
-    padding: 17px 0;
+    padding: 19px 0 17px;
     /* width: inherit; */
     /* height: 30px; */
     /* line-height: 30px; */
@@ -130,7 +130,7 @@ body {
     font-size: 22px;
     /* height: 22px; */
     float: left;
-    margin: 14px 0;
+    margin: 16px 0 14px;
     /* background: url('../assets/img/header-logo.png') no-repeat; */
     /* background-size: 100%; */
     /* overflow: hidden; */
@@ -632,7 +632,6 @@ blockquote {
         margin: 0 4px;
     }
     .global-nav .nav-item a {
-        margin: 0 0 0 10px;
         font-size: 1.2rem;
     }
     .mokuji-list {
