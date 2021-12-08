@@ -652,14 +652,5 @@ LaTeXにかぎらず、一般にDTPソフトで文章主体の冊子のレイア
 \advance\topmargin by -1truein \advance\topmargin by -\headheight \advance\topmargin by -\headsep はなんなのかというと、まあこれもちょっとした調整だと思っていただきたい。たとえば\advance\topmargin by -1trueinというのを説明すると、実はLaTeX文書にはもともと1インチの余白が設けられている。なぜデフォルトで1インチも余白が空いているのか、意味がわからないのだが、とにかく空いているので、これを引く必要があるのだ。ほか2つもそういった感じのものだと思ってください。詳しくはLaTeX入門書でも見てください。</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>https://qdaibungei.github.io/latex/about/dummy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/about/dummy/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
