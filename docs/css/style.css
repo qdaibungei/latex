@@ -106,7 +106,7 @@ body {
 }
 .global-nav .nav-item a {
     display: inline-block;
-    padding-top: 3px;
+    padding-top: 2px;
     height: 50px;
     line-height: 50px;
     text-align: center;
@@ -313,7 +313,7 @@ body {
 .footer{
     margin-top: auto;
     width: 100%;
-    height: 50px;
+    height: auto;
     line-height: 50px;
     background-color: #333;
     color: #fff;
