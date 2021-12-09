@@ -269,47 +269,21 @@ body {
     color: #333;
 }
 
-.content ul {
+.content ul, .content ol {
+    margin-block-start: var(--body-leading);
+    margin-block-end: var(--body-leading);
+    padding-inline-start: 2em;
     font-size: 1.5rem;
     position: relative;
     margin-bottom: 1em;
-    padding: 0;
 }
-.content ul li {
-    list-style: none;
-    position: relative;
-    padding-left: 1em;
+.content ul li, .content ol li {
     text-align: justify;
     text-justify: inter-ideograph;
-}
-.content ul li::before{
-    position: absolute;
-    left: 0;
-    top: -0.06em;
-    content: '•';
-    padding: 0 0 0 0.25em;
 }
 .content li ul {
     margin: 0 0 0 1em;
     padding: 0;
-}
-.content li ul li::before{
-    content: '◦';
-    position: absolute;
-    left: 0;
-    top: 0.01em;
-    padding: 0 0 0 0.25em;
-}
-.content ol{
-    font-size: 1.5rem;
-    position: relative;
-    margin-bottom: 1em;
-    padding:0
-}
-.content ol li{
-    margin-left: 2rem;
-    text-align: justify;
-    text-justify: inter-ideograph;
 }
 
 .footer{
@@ -498,8 +472,9 @@ img {
     list-style-type: none;
     list-style-position: inside;
     counter-increment: cnt;
-    margin-left: 12px;
-    padding-left: 24px;
+    margin: 0;
+    padding: 0;
+    padding-left: 2em;
     font-size: 1.3rem;
 }
 .footnotes ol li p {
@@ -508,10 +483,10 @@ img {
 }
 .footnotes ol li::before {
     position: absolute;
-    left: 0;
-    top: 0.14rem;
+    left: -1em;
+    top: 0;
     content: "※" counter(cnt);
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: #85023e;
     font-weight: bold;
     padding: 0;
@@ -570,6 +545,11 @@ blockquote {
     color: #828282;
     border-left: 2px solid #e8e8e8;
     padding-left: 13px;
+}
+.content .posts {
+    margin-top: 10px;
+    list-style-type: none;
+    padding-inline-start: 0em;
 }
 .docs-date {
     font-size: 1.2rem;
