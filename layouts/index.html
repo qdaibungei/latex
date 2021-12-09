@@ -1,20 +1,20 @@
 {{ partial "site_header.html" . }}
 {{ partial "menu_home.html" . }}
-<div class="title">HOME</div>
-<h1>配布物</h1>
+<!-- <div class="title">HOME</div> -->
+<h1>HOME</h1>
+<h2>配布物</h2>
 <ul>
     <li><a href="{{ .Site.BaseURL }}/documents/2017-02-18-hanmen/">hanmenパッケージ</a></li>
     <li><a href="{{ .Site.BaseURL }}/documents/2017-02-17-jdash/">jdashパッケージ</a></li>
 </ul>
 
-<h1>記事</h1>
-<h2>記事一覧</h2>
+<h2>記事</h2>
 <ul>
     {{ range .Site.RegularPages.ByDate.Reverse }}
         <li><a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006年1月2日" }}</span></li>
     {{ end }}
 </ul>
-<h2>タグ一覧</h2>
+<br>
 {{ range .Site.Taxonomies.tags.ByCount }}
   <div class="tags"><a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">#{{ .Term }}</a><span class="tag-count">{{ .Count }}</span></div>
 {{ end }}

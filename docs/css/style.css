@@ -106,7 +106,7 @@ body {
 }
 .global-nav .nav-item a {
     display: inline-block;
-    padding-top: 2px;
+    /* padding-top: 2px; */
     height: 50px;
     line-height: 50px;
     text-align: center;
@@ -126,16 +126,17 @@ body {
     display: none;
 }
 .logo {
-    font-size: 22px;
+    font-size: 25px;
     float: left;
-    padding-top: 1px;
     height: 50px;
     line-height: 50px;
-    /* background: url('../assets/img/header-logo.png') no-repeat; */
-    /* background-size: 100%; */
-    /* overflow: hidden; */
-    /* text-indent: 100%; */
-    /* white-space: nowrap; */
+    /* margin-top: 9px; */
+    background: url('../assets/img/header-logo.svg') no-repeat;
+    background-size: 100%;
+    background-position: center;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
 }
 .logo a {
     display: block;
@@ -145,8 +146,9 @@ body {
 }
 .header {
     width: 100%;
-    height: 50px;
+    height: auto;
     background-color: #333;
+    padding-top: 2px;
 }
 .header-wrapper {
     width: 800px;
@@ -201,7 +203,7 @@ body {
     padding: 0 10px;
     margin: 35px 0 10px;
     font-size: 1.7rem;
-    border-left: 3px solid #b94d7e;
+    border-left: 2px solid #b94d7e;
 }
 .content h1+h2 {
     margin: 0 0 10px;
@@ -537,7 +539,8 @@ a.footnote-backref {
 }
 strong {
     font-weight: 700;
-    color: #dd1670;
+    /* color: #dd1670; */
+    color: #b30653;
 }
 
 .content textarea {
@@ -607,9 +610,6 @@ blockquote {
         /* float: none; */
         width: 100%;
         margin: auto;
-    }
-    .header {
-        height: auto;
     }
     .header-wrapper {
         width: 100%;
