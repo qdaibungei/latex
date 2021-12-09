@@ -148,7 +148,7 @@ body {
     width: 100%;
     height: auto;
     background-color: #333;
-    padding-top: 2px;
+    padding-top: 3px;
 }
 .header-wrapper {
     width: 800px;
@@ -621,6 +621,7 @@ blockquote {
     }
     .logo {
         margin-left: 10px;
+        font-size: 23px;
     }
     .global-nav {
         margin: 0 10px;
