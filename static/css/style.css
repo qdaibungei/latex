@@ -1,5 +1,6 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Lato&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Round');
 
@@ -10,7 +11,7 @@ html {
 body {
     color: #333;
     font-size: 1.2em;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -106,9 +107,8 @@ body {
 }
 .global-nav .nav-item a {
     display: inline-block;
-    /* padding-top: 2px; */
-    height: 50px;
-    line-height: 50px;
+    height: 47px;
+    line-height: 47px;
     text-align: center;
     color: #999;
     font-size: 1.3rem;
@@ -128,8 +128,8 @@ body {
 .logo {
     font-size: 25px;
     float: left;
-    height: 50px;
-    line-height: 50px;
+    height: 47px;
+    line-height: 47px;
     /* margin-top: 9px; */
     background: url('../assets/img/header-logo.svg') no-repeat;
     background-size: 100%;
@@ -550,6 +550,7 @@ blockquote {
     margin-top: 10px;
     list-style-type: none;
     padding-inline-start: 0em;
+    line-height: 1.8;
 }
 .docs-date {
     font-size: 1.2rem;
