@@ -2,7 +2,7 @@
 layout: post
 title: CTANにない欧文フォントをLaTeXにインストールする
 date: 2019-03-29
-tags: ["LaTeX", "font", "tips"]
+tags: ["LaTeX", "font"]
 ---
 
 # はじめに

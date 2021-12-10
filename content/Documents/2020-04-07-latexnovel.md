@@ -2,7 +2,7 @@
 layout: post
 title: ベスト文集制作記録⑤（本文の組み方②・版面設計篇）
 date: 2020-04-07
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "DTP"]
 ---
 
 # 本文の組み方②・版面設計篇

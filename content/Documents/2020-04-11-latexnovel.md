@@ -2,7 +2,7 @@
 layout: post
 title: ベスト文集制作記録⑨（著者コメント欄）
 date: 2020-04-11
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "DTP"]
 ---
 
 # 著者コメント欄
@@ -27,4 +27,3 @@ tags: ["LaTeX", "guide"]
 　
 
 （[次回]({{< ref "2020-04-12-latexnovel.md" >}})に続く）
-

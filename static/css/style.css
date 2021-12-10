@@ -17,11 +17,11 @@ body {
     min-height: 100vh;
 }
 .title {
-    font-weight: 700;
-    font-size: 1.3rem;
+    /* font-weight: 700; */
+    /* font-size: 3.3rem; */
     padding: 10px 0px;
     display: block;
-    color: #a0a0a0;
+    color: #8b8b8b; 
 }
 .title::before {
     display: block;
@@ -39,7 +39,7 @@ body {
 }
 .showarticleinfo {
     font-size: 1.3rem;
-    color: #767676;
+    color: #8b8b8b;
     line-height: 1.8;
     margin-top: 50px;
     padding: 10px 0px;
@@ -61,7 +61,7 @@ body {
     font-size: 1.2rem;
     margin-right: 0.3rem;
 }
-.content .showarticleinfo code a {
+.showarticleinfo code a {
     color: inherit;
     border-bottom: none;
 }
@@ -85,12 +85,12 @@ body {
 *, *::before, *::after {
     box-sizing: border-box;
 }
-.content a:link, a:visited, a:active {
+a:link, a:visited, a:active {
     color: #333;
     text-decoration: none;
     border-bottom: 1px dotted #333;
 }
-.content a:hover {
+a:hover {
     text-decoration: none;
     border-bottom: none;
 }
@@ -100,6 +100,10 @@ body {
     /* margin-top: 25px; */
     text-align: right;
     float: right;
+}
+.global-nav ul {
+    margin: 0;
+    padding: 0;
 }
 .global-nav .nav-item {
     display: inline-block;
@@ -126,7 +130,10 @@ body {
     display: none;
 }
 .logo {
+    margin: 0;
+    padding: 0;
     font-size: 25px;
+    letter-spacing: 0;
     float: left;
     height: 47px;
     line-height: 47px;
@@ -166,7 +173,7 @@ body {
 .content {
     line-height: 1.7;
 }
-.content h1 {
+h1 {
     font-weight: 700;
     font-size: 2.3rem;
     letter-spacing: 1px;
@@ -198,17 +205,17 @@ body {
     position: absolute;
     z-index: 1;
 } */
-.content h2 {
+h2 {
     font-weight: 700;
     padding: 0 10px;
     margin: 35px 0 10px;
     font-size: 1.7rem;
     border-left: 2px solid #b94d7e;
 }
-.content h1+h2 {
+h1+h2 {
     margin: 0 0 10px;
 }
-.content h3 {
+h3 {
     display: inline-block;
     font-size: 1.2rem;
     font-weight: 700;
@@ -216,19 +223,19 @@ body {
     margin: 10px 0 15px;
     padding: 0;
 }
-.content h1+h3, .content h2+h3 {
+h1+h3, h2+h3 {
     margin: 5px 0 15px;
 }
-.content p {
+p {
     font-size: 1.5rem;
     margin-bottom: 1em;
     text-align: justify;
     text-justify: inter-ideograph;
 }
-.content .title+p {
+.title+p {
     margin-top: 3em;
 }
-.content h1:first-child {
+h1:first-child {
     margin-top: 10px;
 }
 .yomi {
@@ -269,7 +276,7 @@ body {
     color: #333;
 }
 
-.content ul, .content ol {
+ul, ol {
     margin-block-start: var(--body-leading);
     margin-block-end: var(--body-leading);
     padding-inline-start: 2em;
@@ -277,11 +284,11 @@ body {
     position: relative;
     margin-bottom: 1em;
 }
-.content ul li, .content ol li {
+ul li, ol li {
     text-align: justify;
     text-justify: inter-ideograph;
 }
-.content li ul {
+li ul {
     margin: 0 0 0 1em;
     padding: 0;
 }
@@ -290,7 +297,7 @@ body {
     margin-top: auto;
     width: 100%;
     height: auto;
-    line-height: 50px;
+    padding-bottom: 3px;
     background-color: #333;
     color: #fff;
 }
@@ -318,6 +325,11 @@ body {
     border-top: 4px solid #ff00ff;
 }
 .copyright {
+    margin: 0;
+    padding: 0;
+    height: 47px;
+    line-height: 47px;
+    font-size: 1.1rem;
     text-align: center;
     letter-spacing: 1px;
 }
@@ -488,7 +500,7 @@ img {
     content: "※" counter(cnt);
     font-size: 1.3rem;
     color: #85023e;
-    font-weight: bold;
+    /* font-weight: bold; */
     padding: 0;
     margin: 0;
 }
@@ -518,7 +530,7 @@ strong {
     color: #b30653;
 }
 
-.content textarea {
+textarea {
     width: 100%;
     padding: 1em 5px 0 5px;
 }
@@ -539,14 +551,14 @@ p > code, li > code {
     background-color: #f7f7f7;
 }
 code > a:link, code > a:visited {
-    color: #767676;
+    color: #8b8b8b;
 }
 blockquote {
     color: #828282;
     border-left: 2px solid #e8e8e8;
     padding-left: 13px;
 }
-.content .posts {
+.posts {
     margin-top: 10px;
     list-style-type: none;
     padding-inline-start: 0em;
@@ -554,7 +566,7 @@ blockquote {
 }
 .docs-date {
     font-size: 1.2rem;
-    color: #767676;
+    color: #8b8b8b;
 }
 .docs-date::before {
     content: "（";
@@ -564,7 +576,7 @@ blockquote {
 }
 .tag-count {
     font-size: 1.2rem;
-    color: #767676;
+    color: #8b8b8b;
     margin: 0 3px 0 -4px;
 }
 .tag-count::before {

@@ -2,7 +2,7 @@
 layout: post
 title: ベスト文集制作記録⑪（入稿）
 date: 2020-04-13
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "DTP"]
 ---
 
 最後に、印刷所に入稿する際の注意事項を述べる。

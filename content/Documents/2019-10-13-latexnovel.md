@@ -2,7 +2,7 @@
 layout: post
 title: ベスト文集制作記録②（扉）
 date: 2019-10-13
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "DTP"]
 ---
 
 前回に引き続き、小説組版の方法を解説していく。今回は、**扉ページ**の作り方である。

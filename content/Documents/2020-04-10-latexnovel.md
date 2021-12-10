@@ -2,7 +2,7 @@
 layout: post
 title: ベスト文集制作記録⑧（本文の組み方⑤・作品タイトル篇）
 date: 2020-04-10
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "DTP"]
 ---
 
 # 本文の組み方⑤・作品タイトル篇

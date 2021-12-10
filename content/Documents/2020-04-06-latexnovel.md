@@ -2,7 +2,7 @@
 layout: post
 title: ベスト文集制作記録④（本文の組み方①・フォント篇）
 date: 2020-04-06
-tags: ["LaTeX", "guide", "font"]
+tags: ["LaTeX", "DTP", "font"]
 ---
 
 ここからは小説誌の血肉とも言うべき本文の組み方について述べる。

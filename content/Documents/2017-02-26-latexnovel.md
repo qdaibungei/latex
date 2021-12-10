@@ -4,7 +4,7 @@ title: LaTeXによる小説組版法（初級）
 aliases:
     - /2017/02/26/latexnovel.html
 date: 2017-02-26
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "DTP"]
 ---
 
 

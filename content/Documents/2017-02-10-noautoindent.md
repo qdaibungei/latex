@@ -2,7 +2,7 @@
 layout: post
 title: Wordのオートインデント機能を停止させる
 date: 2017-02-10
-tags: ["tips", "Word"]
+tags: ["Word"]
 ---
 
 

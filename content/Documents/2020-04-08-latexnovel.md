@@ -2,7 +2,7 @@
 layout: post
 title: ベスト文集制作記録⑥（本文の組み方③・ベタ組篇）
 date: 2020-04-08
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "DTP"]
 ---
 
 # 本文の組み方③・ベタ組篇

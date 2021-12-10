@@ -4,7 +4,7 @@ title: LaTeXによる小説誌制作のヒント
 aliases:
     - /2017/10/12/book-making-hints.html
 date: 2017-10-12
-tags: ["LaTeX", "guide", "tips"]
+tags: ["LaTeX", "DTP"]
 ---
 
 # 緒言

@@ -2,7 +2,7 @@
 layout: post
 title: ベスト文集制作記録①（表紙）
 date: 2019-10-12
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "DTP"]
 ---
 
 # 序

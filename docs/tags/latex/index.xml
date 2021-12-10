@@ -392,17 +392,6 @@ Termes URW Nimbus Roman LにもとづくTimes代用フォント。
     </item>
     
     <item>
-      <title>ロゴ作成</title>
-      <link>https://qdaibungei.github.io/latex/documents/2017-04-03-logo/</link>
-      <pubDate>Mon, 03 Apr 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://qdaibungei.github.io/latex/documents/2017-04-03-logo/</guid>
-      <description>LaTeXで適当にロゴというかバナーみたいなものを作った。
-　ソースは以下。
-\documentclass{jsarticle} \usepackage[deluxe,expert]{otf} \usepackage[tate,grid]{hanmen} \usepackage{fbb} \usepackage{tsuku,xsceycmd,vtmacro,pxrubrica} \usepackage[dvipdfmx]{graphicx,xcolor} \begin{document} \definecolor{light-gray}{gray}{0.5} \definecolor{tomato}{HTML}{FF6347} \gyoaki[5] \kanjifamily{tsukumin}\selectfont \ruby[h]{文藝}{ぶん|げい}\ruby[h]{部}{ぶ} \hskip.45zw \tcy{\textcolor{light-gray}{\LaTeX}}\kern-1.2zw{\kanjiseries{bx}\fontsize{5\bQ}{8H}\selectfont\textcolor{tomato}{ラ テ フ}} \hskip.18zw \ruby[h]{研究}{けん|きゆ}\ruby[||-&amp;gt;]{会}{うかい} \end{document} </description>
-    </item>
-    
-    <item>
       <title>LaTeXによる小説組版法（初級）</title>
       <link>https://qdaibungei.github.io/latex/documents/2017-02-26-latexnovel/</link>
       <pubDate>Sun, 26 Feb 2017 00:00:00 +0000</pubDate>
@@ -414,6 +403,26 @@ Termes URW Nimbus Roman LにもとづくTimes代用フォント。
 電撃文庫の再現 雛形ファイルの用意 具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。
 まず、以下を novelstyle.sty という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
 \NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{novelstyle} \RequirePackage[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]{hanmen} \RequirePackage[deluxe,uplatex]{otf} \RequirePackage{plext,pxrubrica}% plextは縦組み時に有用なパッケージ、pxrubricaはルビ振りに必要なパッケージ。  % %% header &amp;amp; footer % % ページ番号を出力するときは\thepageと書く。 \fancyhf{}% ヘッダー・フッターの初期化 \def\nvlsty@nombre{\textit{\thepage}} \def\nvlsty@booktitle{ここにタイトルを書く} \fancyhead[RE]{\vspace*{0pt}\scriptsize\nvlsty@nombre} \fancyhead[LO]{\vspace*{0pt}\footnotesize\nvlsty@nombre\hskip1zw\scriptsize\nvlsty@booktitle} % %% \tcy % % LaTeXの解説書では、縦中横に\rensujiを使うこととされているが、 % \rensujiだと無駄なアキが入ってしまいベタ組みできない。 % そこで、ここでは新たに\tcyを定義する。 \chardef\nvlsty@zenkakuSpace=\jis&amp;#34;2121\relax \def\tcy#1{%  \nvlsty@zenkakuSpace\kern-1zw\relax \leavevmode\hbox to 1zw{%  \centering\rensuji*{#1}%  }%  \kern-1zw\nvlsty@zenkakuSpace } % %% \xobeylines % % これは、空行をあけなくても段落分けできるようにする工夫。 % 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。 % \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。 % ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない。 {\catcode`\^^M=\active \gdef\xobeylines{\catcode`\^^M\active \def^^M{\par\leavevmode}}%  \global\def^^M{\par\leavevmode}% } \def\disobeylines{\catcode`\^^M=5 } \let\disxobeylines=\disobeylines \AtBeginDocument{\xobeylines}%% 本文開始直後から\xobeylinesが適用されるようにする。  % %% 全角アキ % % 疑問符などの後に全角空白文字「　」を使ってアキを作ると、疑問符が行末に来たとき空白が行頭に出てしまって都合が悪い。 % そこで、全角アキは以下のマクロで作る必要がある。 \newcommand{\zenkakuaki}{\hskip1zw plus .</description>
+    </item>
+    
+    <item>
+      <title>本作りに役立つサイト</title>
+      <link>https://qdaibungei.github.io/latex/documents/2017-02-25-bookmake/</link>
+      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2017-02-25-bookmake/</guid>
+      <description>ここでは小説本を作るのに役立つサイトを列挙する。
+組版の知識全般 特定のソフトウェアによらない、組版の普遍的な知識を得られるサイトを列挙した。上二つは必読。
+小説同人誌のための組版レイアウトとDTP かっちりとした文章で組版に必要な知識を網羅してくれている。
+文字を組む方法 プロの手による連載記事。
+組版―Wikipedia 用語の確認に。
+日本語組版処理の要件 技術者向け。
+LaTeX関連 吉永徹美のLaTeX研究室 TeXコンサルタントの吉永徹美氏のサイト。残念ながら、いつのまにか閉鎖されてしまった。しかしインターネットアーカイブは残っているので中身は今も読むことができる。
+MyTeXpert 書籍ではなくネットの文書でLaTeXに入門するなら、吉永氏のサイトかこのサイトがよいだろう。
+よくわかるLaTeX小説サポートページ 同人誌として売られている『よくわかるLaTeX小説』という本のサポートページ。本を買っていなくても役立つ。
+ルビのついた縦書の日本語文章をPDFにする方法 私が初めてLaTeXで小説を組もうとしたとき参考にしたサイト。このサイトには他にも「喘ぎ声ジェネレータ」などの面白いツールが公開されていたのだが、今確認してみたら、残念なことにいつのまにか閉鎖されていた。
+編集者のためのTeX/LaTeX入門 LaTeXとは何か、ざっと概要を知りたいならこれ。
+あがきながら覚えるTeX TeXで小説組版する方法を、あがきながら研究しているサイト。LaTeX初心者にも配慮された良心的な作りで、TeXインストール方法から解説してある。小説に特化しているのでわれわれ文藝人間にとってはありがたいサイトである。</description>
     </item>
     
     <item>

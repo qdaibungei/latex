@@ -2,7 +2,7 @@
 layout: post
 title: ベスト文集制作記録⑦（本文の組み方④・テキストからTeXへ変換する篇）
 date: 2020-04-09
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "DTP"]
 ---
 
 # 本文の組み方④・テキストからTeXへ変換する篇

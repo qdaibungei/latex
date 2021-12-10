@@ -2,7 +2,7 @@
 layout: post
 title: LaTeXで本文領域にマス目を表示させる
 date: 2021-04-12
-tags: ["LaTeX", "memo"]
+tags: ["LaTeX"]
 ---
 
 jlreq.clsで版面設計を行なうときでも、グリッド線（マス目）が表示できると都合がよい。この場合、hanmen.styの`pass`オプションを用いるとよい。

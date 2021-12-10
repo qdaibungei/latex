@@ -2,7 +2,7 @@
 layout: post
 title: ベスト文集制作記録⑩（奥付）
 date: 2020-04-12
-tags: ["LaTeX", "guide"]
+tags: ["LaTeX", "DTP"]
 ---
 
 # 奥付
