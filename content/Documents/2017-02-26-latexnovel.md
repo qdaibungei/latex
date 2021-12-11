@@ -60,7 +60,7 @@ tags: ["LaTeX", "DTP"]
 % これは、空行をあけなくても段落分けできるようにする工夫。
 % 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。
 % \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。
-% ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない。
+% ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない（実際私も、普段は空行で段落分けしている）。
 {\catcode`\^^M=\active
     \gdef\xobeylines{\catcode`\^^M\active \def^^M{\par\leavevmode}}%
     \global\def^^M{\par\leavevmode}%
@@ -128,7 +128,7 @@ tags: ["LaTeX", "DTP"]
 \prebreakpenalty\jis"256E=0     %ヮ
 \prebreakpenalty\jis"2575=0     %ヵ
 \prebreakpenalty\jis"2576=0     %ヶ
-\prebreakpenalty\jis"2139=0     %々
+\prebreakpenalty\jis"2139=0     %々（←これに関しては禁則処理を抑制しないほうが読みやすいかも）
 
 % \endinputはスタイルファイルの末尾に記すおまじない。
 \endinput
@@ -139,7 +139,7 @@ tags: ["LaTeX", "DTP"]
 次に、以下の文字列を `novel.tex` という名で保存する。これが雛形ファイルとなる。
 
 ```TeX
-\documentclass[a6paper,papersize,autodetect-engine]{jsbook}
+\documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
 \usepackage{novelstyle}
 \begin{document}
 （ここに本文を書く）
@@ -174,7 +174,7 @@ dvipdfmx novel
 上で、`novel.tex` というファイルを作った。それをここに再掲する。
 
 ```TeX
-\documentclass[a6paper,papersize,autodetect-engine]{jsbook}
+\documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
 \usepackage{novelstyle}
 \begin{document}
 （ここに本文を書く）
@@ -185,7 +185,7 @@ dvipdfmx novel
 `（ここに本文を書く）` の部分に本文を書けばよい。たとえば以下のように書く。
 
 ```TeX
-\documentclass[a6paper,papersize,autodetect-engine]{jsbook}
+\documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
 \usepackage{novelstyle}
 \begin{document}
 　吾輩は猫である。名前はまだ無い。
@@ -193,13 +193,13 @@ dvipdfmx novel
 \end{document}
 ```
 
-通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、`novelstyle.sty` では、空行を挟まずとも段落分けできるようにしてある。**つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。**
+通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、`novelstyle.sty` では、空行を挟まずとも段落分けできるようにしてある。つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。
 
 ## ルビ
 ルビを振りたいときは、ルビマクロが使える。
 
 ```TeX
-\documentclass[a6paper,papersize,autodetect-engine]{jsbook}
+\documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
 \usepackage{novelstyle}
 \begin{document}
 　\ruby[h]{吾輩}{わが|はい}は猫である。名前はまだ無い。
@@ -216,7 +216,7 @@ dvipdfmx novel
 [^tcy]: 縦中横を実現するマクロとしては、plextパッケージですでに `\rensuji` が提供されている。しかし、`\rensuji` を直接使うとどうやら無駄に \xkanjiskip が挿入されてしまうようなので、ここでは独自に `\tcy` というマクロを使うこととした。
 
 ```TeX
-\documentclass[a6paper,papersize,autodetect-engine]{jsbook}
+\documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
 \usepackage{novelstyle}
 \begin{document}
 　\ruby[h]{吾輩}{わが|はい}は猫である。名前はまだ無い。
@@ -228,7 +228,7 @@ dvipdfmx novel
 最後に、ちょっと面倒だが、疑問符・感嘆符の後の全角空白は、`\zenkakuaki` に置換する。
 
 ```TeX
-\documentclass[a6paper,papersize,autodetect-engine]{jsbook}
+\documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
 \usepackage{novelstyle}
 \begin{document}
 　\ruby[h]{吾輩}{わが|はい}は猫である。名前はまだ無い。
@@ -243,3 +243,5 @@ dvipdfmx novel
 上で見たように、LaTeXで小説を組版するのはそんなに難しいことではない。誰でもできることである。
 
 ただし、レイアウトを変更したり、扉ページを作ったりは少し難しいので、ここでは解説しなかった。後日、中級編を執筆する予定なので、そこで解説できればと思っている。
+
+**追記**：[中級編]({{< ref "2019-10-12-latexnovel.md" >}})を執筆しました。

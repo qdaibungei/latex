@@ -44,22 +44,22 @@
 <p class="title">
     LaTeXによる小説誌制作のヒント<br>
 </p>
-<h1 id="緒言">緒言</h1>
+<h1 id="はじめに">はじめに</h1>
 <p>以下では、小説誌制作をLaTeXでおこなう場合のヒントを述べる。</p>
 <h1 id="フォントの指定">フォントの指定</h1>
 <p>LaTeXのデフォルトフォントはあまり小説向きではない。そこで以下のように記述しフォントを変更する。</p>
-<p>まず日本語フォントであるが、特にこだわりがないならば、とりあえず游明朝にしておくとよい。游明朝を使うには、以下のように書く（以下はuplatexを使うことを前提とした書き方である。いまどきわざわざplatexを使う理由はあるまい）。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% uplatexでA5サイズの本を作る場合のdocumentclassの書きかた
-</span><span class="c"></span><span class="k">\documentclass</span><span class="na">[a5paper,papersize,uplatex]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
+<p>まず日本語フォントであるが、特にこだわりがないならば、とりあえず游明朝にしておくとよい。游明朝を使うには、以下のように書く（以下はupLaTeXを使うことを前提とした書き方である。いまどきわざわざpLaTeXを使う理由はあるまい）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% upLaTeXでA5サイズの本を作る場合のdocumentclassの書き方
+</span><span class="c"></span><span class="k">\documentclass</span><span class="na">[a5paper,papersize,uplatex,dvipdfmx]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 
 <span class="c">% 日本語フォントを游明朝にする
 </span><span class="c"></span><span class="k">\usepackage</span><span class="na">[deluxe,uplatex]</span><span class="nb">{</span>otf<span class="nb">}</span>
-<span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile otf-up-yu-win10.map<span class="nb">}}</span><span class="c">% Windows 10以外の場合は適宜変更せよ
+<span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile otf-up-yu-win10.map<span class="nb">}}</span><span class="c">% Windows 10以外の場合は適宜変更せよ。追記：こう書かずにpxchfonパッケージを使うほうが簡単かも。
 </span></code></pre></div><p>欧文フォントも変更しておこう。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">% 欧文フォントの変更
 </span><span class="c"></span><span class="k">\usepackage</span><span class="na">[scale=1.05]</span><span class="nb">{</span>cochineal<span class="nb">}</span><span class="c">% この欧文フォントはわりと游明朝に合う
-</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[scale=0.95,defaultsans]</span><span class="nb">{</span>opensans<span class="nb">}</span>
-</code></pre></div><h1 id="jdashパッケージ">jdashパッケージ</h1>
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[scale=0.95,defaultsans]</span><span class="nb">{</span>opensans<span class="nb">}</span><span class="c">% この欧文フォントはいろいろな日本語ゴシック体フォントに合う
+</span></code></pre></div><h1 id="jdashパッケージ">jdashパッケージ</h1>
 <p>游明朝だと、ダッシュ<code>――</code>がつながらない。そこでjdashパッケージを導入し、これを使う。jdashパッケージについては<a href="https://qdaibungei.github.io/latex/documents/2017-02-17-jdash/">ここ</a>を参照のこと。</p>
 <h1 id="hanmenパッケージの使用">hanmenパッケージの使用</h1>
 <p>まず<a href="https://gist.github.com/qdaibungei/5f6986fa99fc9a7d86122a7a9417d64e">hanmenパッケージ</a>をダウンロードし、TeXファイルと同じフォルダへ入れる。</p>
@@ -73,8 +73,8 @@
 <span class="k">\xkanjiskip</span>=.25zw plus .25zw minus .0625zw
 </code></pre></div><p>これで厳密な版面の設定が可能となる。厳密というのは、たとえば表と裏とで行が揃っているということである（厳密な設定をしないと、行がズレる。紙を透かして見ると行がズレているかどうか分かる）。</p>
 <p>hanmenパッケージの使い方の詳細は<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">この記事</a>を参照のこと。</p>
-<h1 id="tcyマクロ">\tcyマクロ</h1>
-<p>LaTeXで縦書きをするさい、縦中横には<code>\rensuji</code>を使うよう言われる。しかし<code>\rensuji</code>だと前後のアキがおかしくなる（たとえば、行頭で<code>\rensuji</code>を使うとインデント量が狂う）。そこで<code>\tcy</code>命令を新たに作り、これを使うのがよい。</p>
+<h1 id="tcyコマンド">\tcyコマンド</h1>
+<p>LaTeXで縦書きをする際、縦中横には<code>\rensuji</code>を使うよう言われる。しかし<code>\rensuji</code>だと前後のアキがおかしくなる（たとえば、行頭で<code>\rensuji</code>を使うとインデント量が狂う）。そこで<code>\tcy</code>命令を新たに作り、これを使うのがよい。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="nb">{</span>plext<span class="nb">}</span>
 <span class="k">\makeatletter</span>
 <span class="k">\chardef\nvlsty</span>@zenkakuSpace=<span class="k">\jis</span>&#34;2121<span class="k">\relax</span>
@@ -86,7 +86,7 @@
     <span class="k">\kern</span>-1zw<span class="k">\nvlsty</span>@zenkakuSpace
 <span class="nb">}</span>
 <span class="k">\makeatother</span>
-</code></pre></div><p>以上をプリアンブルなどに書いておく。使いかたは至ってかんたんで、<code>\tcy{12}時</code>、のようにすればよい。</p>
+</code></pre></div><p>以上をプリアンブルなどに書いておく。使い方はいたって簡単で、<code>\tcy{12}時</code>、のようにすればよい。</p>
 <h1 id="禁則処理の設定">禁則処理の設定</h1>
 <p>縦書きの場合、禁則処理はほどほどに抑制しておくと商業出版物の組版に似せることができる。プリアンブルなどに以下を記述する。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\makeatletter</span>
@@ -104,10 +104,10 @@
 <span class="k">\hoge</span>@set@prebreakpenalty<span class="nb">{</span>ーぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ…<span class="nb">}{</span>0<span class="nb">}</span>
 <span class="k">\makeatother</span>
 </code></pre></div><h1 id="フッター">フッター</h1>
-<p>以前出した本のフッターの設定はだいたいこんな感じである。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="nb">{</span>fancyhdr<span class="nb">}</span>
-<span class="k">\usepackage</span><span class="na">[scale=0.9]</span><span class="nb">{</span>tgadventor<span class="nb">}</span>
-<span class="k">\makeatletter</span>
+<p>以前出した本のフッターの設定は大体こんな感じである。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="nb">{</span>fancyhdr<span class="nb">}</span><span class="c">% ヘッダー・フッターの編集をするにはこのパッケージが便利
+</span><span class="c"></span><span class="k">\usepackage</span><span class="na">[scale=0.9]</span><span class="nb">{</span>tgadventor<span class="nb">}</span><span class="c">% TeX Gyreフォントの読み込み
+</span><span class="c"></span><span class="k">\makeatletter</span>
 <span class="k">\def\qbook</span>@chaptertitle<span class="nb">{</span>タイトル<span class="nb">}</span>
 <span class="k">\def\booktitlename</span><span class="nb">{</span>ブックタイトル<span class="nb">}</span>
 <span class="k">\def\qbook</span>@nombre<span class="nb">{</span><span class="c">%
@@ -123,11 +123,11 @@
     <span class="k">\booktitlename</span>
     <span class="k">\kern</span>1em<span class="k">\rule</span><span class="na">[-.25truemm]</span><span class="nb">{</span>0.15truemm<span class="nb">}{</span>1zw<span class="nb">}</span><span class="k">\kern</span>1em<span class="nb">}</span><span class="c">%
 </span><span class="c"></span><span class="nb">}</span>
-<span class="k">\fancyfoot</span><span class="nb">{}</span>
-<span class="k">\fancyfoot</span><span class="na">[LO]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>65<span class="k">\bQ</span><span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="k">\qbook</span>@lhasira<span class="nb">}</span>
+<span class="k">\fancyhf</span><span class="nb">{}</span><span class="c">% ヘッダー・フッタ−の初期化
+</span><span class="c"></span><span class="k">\fancyfoot</span><span class="na">[LO]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>65<span class="k">\bQ</span><span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="k">\qbook</span>@lhasira<span class="nb">}</span>
 <span class="k">\fancyfoot</span><span class="na">[RE]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>65<span class="k">\bQ</span><span class="nb">}</span><span class="k">\qbook</span>@rhasira<span class="k">\qbook</span>@nombre<span class="nb">}</span>
 <span class="k">\makeatother</span>
-</code></pre></div><h1 id="結言">結言</h1>
+</code></pre></div><h1 id="まとめ">まとめ</h1>
 <p>以上、ヒントを列挙した。参考にしてください。</p>
 
 <div class="showarticleinfo">

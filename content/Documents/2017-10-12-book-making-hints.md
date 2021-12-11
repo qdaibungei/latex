@@ -7,21 +7,21 @@ date: 2017-10-12
 tags: ["LaTeX", "DTP"]
 ---
 
-# 緒言
+# はじめに
 以下では、小説誌制作をLaTeXでおこなう場合のヒントを述べる。
 
 # フォントの指定
 LaTeXのデフォルトフォントはあまり小説向きではない。そこで以下のように記述しフォントを変更する。
 
-まず日本語フォントであるが、特にこだわりがないならば、とりあえず游明朝にしておくとよい。游明朝を使うには、以下のように書く（以下はuplatexを使うことを前提とした書き方である。いまどきわざわざplatexを使う理由はあるまい）。
+まず日本語フォントであるが、特にこだわりがないならば、とりあえず游明朝にしておくとよい。游明朝を使うには、以下のように書く（以下はupLaTeXを使うことを前提とした書き方である。いまどきわざわざpLaTeXを使う理由はあるまい）。
 
 ```LaTeX
-% uplatexでA5サイズの本を作る場合のdocumentclassの書きかた
-\documentclass[a5paper,papersize,uplatex]{jsbook}
+% upLaTeXでA5サイズの本を作る場合のdocumentclassの書き方
+\documentclass[a5paper,papersize,uplatex,dvipdfmx]{jsbook}
 
 % 日本語フォントを游明朝にする
 \usepackage[deluxe,uplatex]{otf}
-\AtBeginDvi{\special{pdf:mapfile otf-up-yu-win10.map}}% Windows 10以外の場合は適宜変更せよ
+\AtBeginDvi{\special{pdf:mapfile otf-up-yu-win10.map}}% Windows 10以外の場合は適宜変更せよ。追記：こう書かずにpxchfonパッケージを使うほうが簡単かも。
 ```
 
 欧文フォントも変更しておこう。
@@ -29,7 +29,7 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 ```LaTeX
 % 欧文フォントの変更
 \usepackage[scale=1.05]{cochineal}% この欧文フォントはわりと游明朝に合う
-\usepackage[scale=0.95,defaultsans]{opensans}
+\usepackage[scale=0.95,defaultsans]{opensans}% この欧文フォントはいろいろな日本語ゴシック体フォントに合う
 ```
 
 # jdashパッケージ
@@ -54,8 +54,8 @@ LaTeXのデフォルトフォントはあまり小説向きではない。そこ
 
 hanmenパッケージの使い方の詳細は[この記事]({{< ref "2017-02-18-hanmen.md" >}})を参照のこと。
 
-# \tcyマクロ
-LaTeXで縦書きをするさい、縦中横には`\rensuji`を使うよう言われる。しかし`\rensuji`だと前後のアキがおかしくなる（たとえば、行頭で`\rensuji`を使うとインデント量が狂う）。そこで`\tcy`命令を新たに作り、これを使うのがよい。
+# \tcyコマンド
+LaTeXで縦書きをする際、縦中横には`\rensuji`を使うよう言われる。しかし`\rensuji`だと前後のアキがおかしくなる（たとえば、行頭で`\rensuji`を使うとインデント量が狂う）。そこで`\tcy`命令を新たに作り、これを使うのがよい。
 
 ```LaTeX
 \usepackage{plext}
@@ -71,7 +71,7 @@ LaTeXで縦書きをするさい、縦中横には`\rensuji`を使うよう言�
 \makeatother
 ```
 
-以上をプリアンブルなどに書いておく。使いかたは至ってかんたんで、`\tcy{12}時`、のようにすればよい。
+以上をプリアンブルなどに書いておく。使い方はいたって簡単で、`\tcy{12}時`、のようにすればよい。
 
 # 禁則処理の設定
 縦書きの場合、禁則処理はほどほどに抑制しておくと商業出版物の組版に似せることができる。プリアンブルなどに以下を記述する。
@@ -94,11 +94,11 @@ LaTeXで縦書きをするさい、縦中横には`\rensuji`を使うよう言�
 ```
 
 # フッター
-以前出した本のフッターの設定はだいたいこんな感じである。
+以前出した本のフッターの設定は大体こんな感じである。
 
 ```LaTeX
-\usepackage{fancyhdr}
-\usepackage[scale=0.9]{tgadventor}
+\usepackage{fancyhdr}% ヘッダー・フッターの編集をするにはこのパッケージが便利
+\usepackage[scale=0.9]{tgadventor}% TeX Gyreフォントの読み込み
 \makeatletter
 \def\qbook@chaptertitle{タイトル}
 \def\booktitlename{ブックタイトル}
@@ -115,11 +115,11 @@ LaTeXで縦書きをするさい、縦中横には`\rensuji`を使うよう言�
     \booktitlename
     \kern1em\rule[-.25truemm]{0.15truemm}{1zw}\kern1em}%
 }
-\fancyfoot{}
+\fancyhf{}% ヘッダー・フッタ−の初期化
 \fancyfoot[LO]{\vspace*{65\bQ}\qbook@nombre\qbook@lhasira}
 \fancyfoot[RE]{\vspace*{65\bQ}\qbook@rhasira\qbook@nombre}
 \makeatother
 ```
 
-# 結言
+# まとめ
 以上、ヒントを列挙した。参考にしてください。

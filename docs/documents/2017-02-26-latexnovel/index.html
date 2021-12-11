@@ -89,7 +89,7 @@
 </span><span class="c">% これは、空行をあけなくても段落分けできるようにする工夫。
 </span><span class="c">% 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。
 </span><span class="c">% \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。
-</span><span class="c">% ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない。
+</span><span class="c">% ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない（実際私も、普段は空行で段落分けしている）。
 </span><span class="c"></span><span class="nb">{</span><span class="k">\catcode</span>`<span class="k">\^</span><span class="nb">^</span>M=<span class="k">\active</span>
     <span class="k">\gdef\xobeylines</span><span class="nb">{</span><span class="k">\catcode</span>`<span class="k">\^</span><span class="nb">^</span>M<span class="k">\active</span> <span class="k">\def</span><span class="nb">^^</span>M<span class="nb">{</span><span class="k">\par\leavevmode</span><span class="nb">}}</span><span class="c">%
 </span><span class="c"></span>    <span class="k">\global\def</span><span class="nb">^^</span>M<span class="nb">{</span><span class="k">\par\leavevmode</span><span class="nb">}</span><span class="c">%
@@ -157,13 +157,13 @@
 <span class="k">\prebreakpenalty\jis</span>&#34;256E=0     <span class="c">%ヮ
 </span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2575=0     <span class="c">%ヵ
 </span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2576=0     <span class="c">%ヶ
-</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2139=0     <span class="c">%々
+</span><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2139=0     <span class="c">%々（←これに関しては禁則処理を抑制しないほうが読みやすいかも）
 </span><span class="c"></span>
 <span class="c">% \endinputはスタイルファイルの末尾に記すおまじない。
 </span><span class="c"></span><span class="k">\endinput</span>
 </code></pre></div><p>　</p>
 <p>次に、以下の文字列を <code>novel.tex</code> という名で保存する。これが雛形ファイルとなる。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 （ここに本文を書く）
@@ -181,23 +181,23 @@ dvipdfmx novel
 </code></pre></div><p>この <code>tex2pdf.bat</code> を、<code>novel.tex</code> と同じフォルダに入れておく。あとは、<code>tex2pdf.bat</code> をダブルクリックすると、見事PDFファイルが生成されるはずである。</p>
 <h1 id="本文の書き方">本文の書き方</h1>
 <p>上で、<code>novel.tex</code> というファイルを作った。それをここに再掲する。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 （ここに本文を書く）
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </code></pre></div><h2 id="基本">基本</h2>
 <p><code>（ここに本文を書く）</code> の部分に本文を書けばよい。たとえば以下のように書く。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 　吾輩は猫である。名前はまだ無い。
 　どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</code></pre></div><p>通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、<code>novelstyle.sty</code> では、空行を挟まずとも段落分けできるようにしてある。<strong>つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。</strong></p>
+</code></pre></div><p>通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、<code>novelstyle.sty</code> では、空行を挟まずとも段落分けできるようにしてある。つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。</p>
 <h2 id="ルビ">ルビ</h2>
 <p>ルビを振りたいときは、ルビマクロが使える。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 　<span class="k">\ruby</span><span class="na">[h]</span><span class="nb">{</span>吾輩<span class="nb">}{</span>わが|はい<span class="nb">}</span>は猫である。名前はまだ無い。
@@ -206,7 +206,7 @@ dvipdfmx novel
 </code></pre></div><p>ルビマクロの使い方は、<a href="http://qiita.com/zr_tex8r/items/42466cbcbeb670a3a2dc">LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～</a>を参照せよ。</p>
 <h2 id="縦中横">縦中横</h2>
 <p>縦中横が使いたいときは、<code>\tcy</code> マクロが使える<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 　<span class="k">\ruby</span><span class="na">[h]</span><span class="nb">{</span>吾輩<span class="nb">}{</span>わが|はい<span class="nb">}</span>は猫である。名前はまだ無い。
@@ -214,7 +214,7 @@ dvipdfmx novel
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </code></pre></div><h2 id="疑問符感嘆符の後の空白">疑問符・感嘆符の後の空白</h2>
 <p>最後に、ちょっと面倒だが、疑問符・感嘆符の後の全角空白は、<code>\zenkakuaki</code> に置換する。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[a6paper,papersize,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 　<span class="k">\ruby</span><span class="na">[h]</span><span class="nb">{</span>吾輩<span class="nb">}{</span>わが|はい<span class="nb">}</span>は猫である。名前はまだ無い。
@@ -224,6 +224,7 @@ dvipdfmx novel
 <h1 id="まとめ">まとめ</h1>
 <p>上で見たように、LaTeXで小説を組版するのはそんなに難しいことではない。誰でもできることである。</p>
 <p>ただし、レイアウトを変更したり、扉ページを作ったりは少し難しいので、ここでは解説しなかった。後日、中級編を執筆する予定なので、そこで解説できればと思っている。</p>
+<p><strong>追記</strong>：<a href="https://qdaibungei.github.io/latex/documents/2019-10-12-latexnovel/">中級編</a>を執筆しました。</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
