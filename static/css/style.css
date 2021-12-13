@@ -21,20 +21,20 @@ body {
     /* font-size: 3.3rem; */
     padding: 10px 0px;
     display: block;
-    color: #8b8b8b; 
+    color: #8b8b8b;
 }
 .title::before {
     display: block;
     width: 100%;
     content: "";
-    border-top: 2px solid #ccc;
+    border-top: 2px dotted #ccc;
     margin: auto 0 15px;
 }
 .title::after {
     display: block;
     width: 30px;
     content: "";
-    border-top: 2px solid #ccc;
+    border-top: 2px dotted #ccc;
     margin: 15px 0 auto;
 }
 .showarticleinfo {
@@ -69,14 +69,14 @@ body {
     display: block;
     width: 30px;
     content: "";
-    border-top: 2px solid #ccc;
+    border-top: 2px dotted #ccc;
     margin: 25px 0 15px;
 }
 .showarticleinfo::after {
     display: block;
     width: 100%;
     content: "";
-    border-top: 2px solid #ccc;
+    border-top: 2px dotted #ccc;
     margin: 15px 0 auto;
 }
 .about {
@@ -334,51 +334,6 @@ li ul {
     letter-spacing: 1px;
 }
 
-.aburidasi {
-    color: transparent;
-}
-
-.sidemenu {
-    float: right;
-    width: 275px;
-}
-.mokuji {
-    letter-spacing: 1px;
-    font-weight: 400;
-    padding: 0 10px 5px;
-    margin-top: 20px;
-    font-size: 1.5rem;
-    border-bottom: 2px solid #b94d7e;
-}
-.mokuji-list {
-    font-size: 1.5rem;
-    list-style: none;
-    padding: 10px 0 10px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #b94d7e;
-}
-.mokuji-item {
-    padding: 3px 0 3px;
-    margin: auto;
-    letter-spacing: 1px;
-}
-.mokuji-item a {
-    display: block;
-    color: #333;
-    text-decoration: none;
-    padding: 6px 0 6px 10px;
-    width: 100%;
-}
-.mokuji-item a::before {
-    content: '\f0a9';
-    font-family: FontAwesome;
-}
-.mokuji-item a:hover,
-.mokuji-list .active a {
-    background-color: #f7f7f7;
-    transition: background-color 0.15s;
-}
-
 .icon {
     color: #fff;
     font-weight: 700;
@@ -407,37 +362,6 @@ li ul {
 img {
     max-width: 99%;
     border: 1px solid #eee;
-}
-.button {
-    display: inline-block;
-    background-color: #9ac4ed;
-    border: 2px solid #9ac4ed;
-    border-radius: 2px;
-    padding: 5px 1px 5px 7px;
-    color: #fff;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-}
-.button a, .button a:hover {
-    color: inherit;
-}
-.button:hover {
-    background-color: #fff;
-    border: 2px solid #9ac4ed;
-    color: #9ac4ed;
-    transition: 0.15s;
-}
-.modoru {
-    width: 6em;
-    margin-top: 25px;
-}
-.modoru::before {
-    content: '\f053　';
-    font-family: FontAwesome;
-}
-.author {
-    font-size: 1.5rem;
-    text-align: right;
 }
 
 
@@ -479,14 +403,16 @@ img {
     border-radius: 5px;
     padding: 20px 15px 5px 0px;
 }
+.footnotes ol {
+    padding-inline-start: 0;
+}
 .footnotes ol li {
     position: relative;
     list-style-type: none;
     list-style-position: inside;
     counter-increment: cnt;
     margin: 0;
-    padding: 0;
-    padding-left: 2em;
+    padding: 0 0 0 3.5em;
     font-size: 1.3rem;
 }
 .footnotes ol li p {
@@ -495,7 +421,7 @@ img {
 }
 .footnotes ol li::before {
     position: absolute;
-    left: -1em;
+    left: 1em;
     top: 0;
     content: "※" counter(cnt);
     font-size: 1.3rem;
@@ -591,7 +517,7 @@ blockquote {
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
     .sidemenu {
         width: 100%;
         float: none;
