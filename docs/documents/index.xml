@@ -6,7 +6,31 @@
     <description>Recent content in Documents on 文藝部LaTeX研究会</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 13 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://qdaibungei.github.io/latex/documents/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qdaibungei.github.io/latex/documents/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>混植支援フォント「Dal」</title>
+      <link>https://qdaibungei.github.io/latex/documents/2022-02-10-dal-font/</link>
+      <pubDate>Thu, 10 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qdaibungei.github.io/latex/documents/2022-02-10-dal-font/</guid>
+      <description>テキストエディタ用の混植支援フォントを作った。「Dal」と命名した。dash、arrow、leaderの頭文字を取って「Dal」である。
+背景 VSCodeやAtomなどの最近のテキストエディタでは複数のフォントを指定することができる。欧文フォントを先に指定することにより、簡易的に、和文と欧文との混植を行なうことができる。
+例えば、VSCodeのフォント設定を次のようにすると、IBM Plex Monoとヒラギノゴシックとの混植が可能だ。
+&amp;#34;IBM Plex Mono&amp;#34;, &amp;#34;Hiragino Sans&amp;#34;, monospace しかしこのやり方には問題がある。和文フォントで表示してほしい文字種まで欧文フォントで表示されてしまうことがあるのだ。これにより、見栄えが悪くなる。特に見栄えを損ねるのは、ダーシ―と矢印←↓↑→と三点リーダ…である。
+そこでダーシと矢印と三点リーダのみをグリフとして持つフォントを作成することにした。こうしたフォントを作るのは簡単である。
+M+Web FONTS Subsetter 最も簡単には、M+Web FONTS Subsetterを利用し、「サブセット化する文字を入力」の欄に―‥…←↓↑→とだけ書いて「変換・ダウンロード」ボタンを押せばよい。
+ただし、これだとあまりうまくいかない。M+フォントは、もともと矢印が半角になってしまっているので、矢印に関しては期待通りの結果が得られないのだ（三点リーダとダーシについてはうまくいくのだが）。
+IBM Plex Sans JPのサブセット化 そこで、ダーシがきちんとつながり、三点リーダや矢印が半角でなく、かつフリーで使える和文フォントを探すことにする。幸い、そのようなフォントは存在する。その一つがIBM Plex Sans JPである。
+fontforge でフォントのサブセットを生成するを参考にフォントを作る。
+必要なソフトウェアのインストール まずFontForgeとpython3-fontforgeをインストールする。なおFontForgeはLinux環境で使うのが無難なようだ。
+$ sudo apt install fontforge $ sudo apt install python3-fontforge Pythonスクリプトの使用 IBM Plex Sans JPをOTFからTTFに変換し、そののち、記事内にあるPythonスクリプトを利用してサブセット化する。コードポイントは次のように指定する。
+codepoints = [(0x2015, 0x2015), (0x2025, 0x2026), (0x2190, 0x2193)] こうするとダーシ、三点リーダ、矢印のみからなるフォントができあがる。
+Dalフォントの作成 このままではフォント情報がIBM Plex Sans JPのままなので、FontForgeをGUIで立ち上げてフォント情報を書き換える。フォントの名前は「Dal」とでもしておく。
+フォントをOSにインストールすれば使えるようになる。
+エディタでフォント設定 VSCodeなどの設定で「Dal」を先頭に書き加える。
+&amp;#34;Dal&amp;#34;, &amp;#34;IBM Plex Mono&amp;#34;, &amp;#34;Hiragino Sans&amp;#34;, monospace これで三点リーダやダーシや矢印がきちんと全角で表示される。</description>
+    </item>
+    
     <item>
       <title>半角漢数字を出力するコマンド</title>
       <link>https://qdaibungei.github.io/latex/documents/2021-04-13-hankakukansuji/</link>

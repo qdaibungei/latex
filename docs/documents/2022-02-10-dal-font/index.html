@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155017107-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-155017107-1');
+        </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>混植支援フォント「Dal」｜文藝部LaTeX研究会</title>
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
+        <link rel="icon" type="image/svg" href="https://qdaibungei.github.io/latex/assets/img/favicon.svg">
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });</script>
+        
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-wrapper">
+                <div class="logo">
+                    <a href="https://qdaibungei.github.io/latex">文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会</a>
+                </div>
+
+<nav class="global-nav">
+    <ul>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex"><span class="material-icons-round">home</span> HOME</a></li>
+        <li class="nav-item"><a href="https://qdaibungei.github.io/latex/about"><span class="material-icons-round">info</span> About</a></li>
+        
+    </ul>
+</nav>
+</div>
+</header>
+<div class="wrapper clearfix">
+<main class="main">
+    <div class="content">
+
+<p class="title">
+    混植支援フォント「Dal」<br>
+</p>
+<p>テキストエディタ用の混植支援フォントを作った。「Dal」と命名した。dash、arrow、leaderの頭文字を取って「Dal」である。</p>
+<h1 id="背景">背景</h1>
+<p>VSCodeやAtomなどの最近のテキストエディタでは複数のフォントを指定することができる。欧文フォントを先に指定することにより、簡易的に、和文と欧文との混植を行なうことができる。</p>
+<p>例えば、VSCodeのフォント設定を次のようにすると、IBM Plex Monoとヒラギノゴシックとの混植が可能だ。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">&#34;IBM Plex Mono&#34;, &#34;Hiragino Sans&#34;, monospace
+</code></pre></div><p>しかしこのやり方には問題がある。和文フォントで表示してほしい文字種まで欧文フォントで表示されてしまうことがあるのだ。これにより、見栄えが悪くなる。特に見栄えを損ねるのは、ダーシ<code>―</code>と矢印<code>←↓↑→</code>と三点リーダ<code>…</code>である。</p>
+<p>そこでダーシと矢印と三点リーダのみをグリフとして持つフォントを作成することにした。こうしたフォントを作るのは簡単である。</p>
+<h1 id="mweb-fonts-subsetter">M+Web FONTS Subsetter</h1>
+<p>最も簡単には、<a href="http://mplus.font-face.jp/#/">M+Web FONTS Subsetter</a>を利用し、「サブセット化する文字を入力」の欄に<code>―‥…←↓↑→</code>とだけ書いて「変換・ダウンロード」ボタンを押せばよい。</p>
+<p>ただし、これだとあまりうまくいかない。M+フォントは、もともと矢印が半角になってしまっているので、矢印に関しては期待通りの結果が得られないのだ（三点リーダとダーシについてはうまくいくのだが）。</p>
+<h1 id="ibm-plex-sans-jpのサブセット化">IBM Plex Sans JPのサブセット化</h1>
+<p>そこで、ダーシがきちんとつながり、三点リーダや矢印が半角でなく、かつフリーで使える和文フォントを探すことにする。幸い、そのようなフォントは存在する。その一つがIBM Plex Sans JPである。</p>
+<p><a href="https://blog.alprosys.com/2016/03/28/genwebfonts/">fontforge でフォントのサブセットを生成する</a>を参考にフォントを作る。</p>
+<h2 id="必要なソフトウェアのインストール">必要なソフトウェアのインストール</h2>
+<p>まずFontForgeとpython3-fontforgeをインストールする。なおFontForgeはLinux環境で使うのが無難なようだ。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt install fontforge
+$ sudo apt install python3-fontforge
+</code></pre></div><h2 id="pythonスクリプトの使用">Pythonスクリプトの使用</h2>
+<p>IBM Plex Sans JPをOTFからTTFに変換し、そののち、記事内にあるPythonスクリプトを利用してサブセット化する。コードポイントは次のように指定する。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">codepoints</span> <span class="o">=</span> <span class="p">[(</span><span class="mh">0x2015</span><span class="p">,</span> <span class="mh">0x2015</span><span class="p">),</span> <span class="p">(</span><span class="mh">0x2025</span><span class="p">,</span> <span class="mh">0x2026</span><span class="p">),</span> <span class="p">(</span><span class="mh">0x2190</span><span class="p">,</span> <span class="mh">0x2193</span><span class="p">)]</span>
+</code></pre></div><p>こうするとダーシ、三点リーダ、矢印のみからなるフォントができあがる。</p>
+<h2 id="dalフォントの作成">Dalフォントの作成</h2>
+<p>このままではフォント情報がIBM Plex Sans JPのままなので、FontForgeをGUIで立ち上げてフォント情報を書き換える。フォントの名前は「Dal」とでもしておく。</p>
+<p>フォントをOSにインストールすれば使えるようになる。</p>
+<h1 id="エディタでフォント設定">エディタでフォント設定</h1>
+<p>VSCodeなどの設定で「Dal」を先頭に書き加える。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">&#34;Dal&#34;, &#34;IBM Plex Mono&#34;, &#34;Hiragino Sans&#34;, monospace
+</code></pre></div><p>これで三点リーダやダーシや矢印がきちんと全角で表示される。</p>
+<h1 id="比較画像">比較画像</h1>
+<p>Dalフォント適用前。</p>
+<p><img src="/latex/assets/img/2022-02-10-nodal.png" alt=""></p>
+<p>　</p>
+<p>Dalフォント適用後。</p>
+<p><img src="/latex/assets/img/2022-02-10-dal.png" alt=""></p>
+
+<div class="showarticleinfo">
+    <span class="material-icons-round">schedule</span> 2022年2月10日<br>
+    
+    <span class="material-icons-round">local_offer</span>   <code><a href="/latex/tags/font">#font</a></code> <br>
+</div>
+                    </div>
+                </main>
+            </div>
+        <footer class="footer">
+            <p class="copyright">
+                ©2016–2021 文藝部L<span class="a">a</span>T<span class="e">e</span>X研究会
+            </p>
+        </footer>
+    </body>
+</html>
+
