@@ -333,6 +333,12 @@ li ul {
     text-align: center;
     letter-spacing: 1px;
 }
+.copyright a {
+    color: inherit;
+}
+.copyright a:hover {
+    text-decoration:underline;
+}
 
 .icon {
     color: #fff;
