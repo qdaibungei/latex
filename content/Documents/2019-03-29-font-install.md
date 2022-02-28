@@ -13,11 +13,19 @@ upLaTeXにおいて、CTANに存在する欧文フォントをインストール
 そこで、備忘録を兼ね、以下にその方法を記す。
 
 # 一つのウェイトをインストールしてみる
+## tfmとは
+フォントの形式は通常、otfやttfなどであるが、TeXはそれらを直接に扱うことができない。そこでtfmファイルなどのフォントファイルを生成して介在させる必要がある（tfmは、TeX Font Metricの略）。面倒だが、フォントごとに別のtfmを生成せねばならない。
+
+## otftotfm
+tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルで、
+
+```bash
+otftotfm --version
+```
+
+と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。
+
 ## tfmなどの生成
-フォントの形式は通常、otfやttfなどであるが、TeXはそれらを直接に扱うことができない。そこでtfmファイルなどのフォントファイルを生成する必要がある。面倒だが、フォントごとに別のtfmを生成せねばならない。
-
-tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルで`otftotfm --version`と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。
-
 さて今回はGoogle Fontsに収録されている[Josefin Slab](https://fonts.google.com/specimen/Josefin+Slab?category=Serif)というフォントをインストールしてみよう。まずは、一つのウェイト（Regular）だけをインストールしてみる。
 
 まず作業用ディレクトリを適当に作っておき、そこにJosefinSlab-Regular.ttfを入れておく。ターミナルで作業用ディレクトリに行き、次のコマンドを実行してみよう。
@@ -26,16 +34,24 @@ tfmを生成するためには「otftotfm」というソフトを使う。otftot
 otftotfm --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
 ```
 
-すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである[^1]。一応、オプションの意味を説明しておこう。
+すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである[^1]。
+
+一応、オプションの意味を説明しておこう。
 
 [^1]: ここでエラーが出てtfmファイルが生成されない場合、ec.encをネットで検索してダウンロードし、作業用ディレクトリに置いておくこと。
 
 * `--no-type1 --no-dotlessj`は、「Type 1フォントへの変換を行わない」ということ、らしい。あまり理解できていない。
-* `--mapfile=josefinslab.map`で、mapファイルの指定をする。
+* `--mapfile=josefinslab.map`で、mapファイル名の指定をする。mapファイルの名前は何でもよい（自分が分かりやすいような名前にする）。
 * `-e ec.enc`は、エンコーディングファイルの指定。ec.encを指定すると、T1エンコーディングになる。ちなみにtexnansi.encを指定するとLY1エンコーディングになる。エンコーディングって何なのかいまいち分かっていないが、私はT1エンコーディングにしておいて困ったことはない。
-* `-n josefinslab-regular`は、tfm名の指定。
+* `-n josefinslab-regular`は、tfm名の指定。これも、自分が分かりやすいよう適当に名前を付ければよい。
 
-また、`-fkern`とすればカーニングの、`-fliga`とすればリガチャの情報を、tfmに含ませることができる。Josefin Slabにはこれらの機能がなかったから上ではこのオプションをつけていないが、この機能があればつけたほうがよい。`otfinfo -f JosefinSlab-Regular.ttf`などとすれば、どのような機能が備わっているかを確認できる。
+また、`-fkern`とすればカーニングの、`-fliga`とすればリガチャの情報を、tfmに含ませることができる。Josefin Slabにはこれらの機能がなかったから上ではこのオプションをつけていないが、この機能があればつけたほうがよい。つまり、もしJosefin Slabがカーニングやリガチャの機能を備えていた場合には、次のようにオプションをつけてコマンドを実行するほうがよい、というわけである。
+
+```bash
+otftotfm -fkern -fliga --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
+```
+
+`otfinfo -f JosefinSlab-Regular.ttf`などと打てば、フォントにどのような機能が備わっているかを確認できる。
 
 ## styファイルの作成
 各種ファイルが生成できたならば、すかさず、josefinslab.styという名前でstyファイルを作る。
@@ -56,7 +72,7 @@ otftotfm --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefin
 動作確認のため、作業用ディレクトリにTeXファイルを作って、フォントが埋め込まれるかをチェックしておこう。
 
 ```LaTeX
-\documentclass[uplatex]{jsarticle}
+\documentclass[uplatex,dvipdfmx]{jsarticle}
 \usepackage{josefinslab}
 \begin{document}
 \romanfamily{josefinslab}\selectfont
@@ -84,7 +100,7 @@ otftotfm --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefin
 otftotfm --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefinslab-bold-italic JosefinSlab-BoldItalic.ttf
 ```
 
-このままでは各種ファイルでディレクトリがごちゃごちゃする。そこで○○○.tfmはtfmフォルダ直下のjosefinslabフォルダに、○○○.vfはvfフォルダ直下のjosefinslabフォルダに、というような塩梅で移動させておく。
+このままでは各種ファイルでディレクトリがごちゃごちゃする。そこで○○○.tfmはtfmフォルダ内のjosefinslabフォルダに、○○○.vfはvfフォルダ内のjosefinslabフォルダに、というような塩梅で移動させておく。
 
 ```bash
 mkdir vf/
@@ -105,7 +121,13 @@ mv *.enc enc/josefinslab/
 
 [^2]: `$TEXMF`とは、TeXとMETAFONTという意味で、各種パッケージが収められるディレクトリのこと。その場所は複数あるので「`$TEXMF`」という変数の形でよく表記される。`$TEXMF`の場所が分からない場合、ターミナルで`kpsewhich -var-value TEXMF`を実行すれば、調べられる。
 
-mapファイルが読み込めずエラーが生ずる場合、`$ sudo mktexlsr`を実行して情報を更新する。
+mapファイルが読み込めずエラーが生ずる場合、
+
+```bash
+sudo mktexlsr
+```
+
+を実行して情報を更新する。
 
 ## styファイルの生成とインストール
 さらにstyファイルを作る。

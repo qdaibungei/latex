@@ -49,20 +49,27 @@
 <p>困難の原因は、二つある。第一は、tfmファイルやmapファイルを生成するのが難しいことである。第二は、フォント設定ファイルの作り方が分かりづらいことである。</p>
 <p>そこで、備忘録を兼ね、以下にその方法を記す。</p>
 <h1 id="一つのウェイトをインストールしてみる">一つのウェイトをインストールしてみる</h1>
+<h2 id="tfmとは">tfmとは</h2>
+<p>フォントの形式は通常、otfやttfなどであるが、TeXはそれらを直接に扱うことができない。そこでtfmファイルなどのフォントファイルを生成して介在させる必要がある（tfmは、TeX Font Metricの略）。面倒だが、フォントごとに別のtfmを生成せねばならない。</p>
+<h2 id="otftotfm">otftotfm</h2>
+<p>tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルで、</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">otftotfm --version
+</code></pre></div><p>と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。</p>
 <h2 id="tfmなどの生成">tfmなどの生成</h2>
-<p>フォントの形式は通常、otfやttfなどであるが、TeXはそれらを直接に扱うことができない。そこでtfmファイルなどのフォントファイルを生成する必要がある。面倒だが、フォントごとに別のtfmを生成せねばならない。</p>
-<p>tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルで<code>otftotfm --version</code>と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。</p>
 <p>さて今回はGoogle Fontsに収録されている<a href="https://fonts.google.com/specimen/Josefin+Slab?category=Serif">Josefin Slab</a>というフォントをインストールしてみよう。まずは、一つのウェイト（Regular）だけをインストールしてみる。</p>
 <p>まず作業用ディレクトリを適当に作っておき、そこにJosefinSlab-Regular.ttfを入れておく。ターミナルで作業用ディレクトリに行き、次のコマンドを実行してみよう。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
-</code></pre></div><p>すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。一応、オプションの意味を説明しておこう。</p>
+</code></pre></div><p>すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。</p>
+<p>一応、オプションの意味を説明しておこう。</p>
 <ul>
 <li><code>--no-type1 --no-dotlessj</code>は、「Type 1フォントへの変換を行わない」ということ、らしい。あまり理解できていない。</li>
-<li><code>--mapfile=josefinslab.map</code>で、mapファイルの指定をする。</li>
+<li><code>--mapfile=josefinslab.map</code>で、mapファイル名の指定をする。mapファイルの名前は何でもよい（自分が分かりやすいような名前にする）。</li>
 <li><code>-e ec.enc</code>は、エンコーディングファイルの指定。ec.encを指定すると、T1エンコーディングになる。ちなみにtexnansi.encを指定するとLY1エンコーディングになる。エンコーディングって何なのかいまいち分かっていないが、私はT1エンコーディングにしておいて困ったことはない。</li>
-<li><code>-n josefinslab-regular</code>は、tfm名の指定。</li>
+<li><code>-n josefinslab-regular</code>は、tfm名の指定。これも、自分が分かりやすいよう適当に名前を付ければよい。</li>
 </ul>
-<p>また、<code>-fkern</code>とすればカーニングの、<code>-fliga</code>とすればリガチャの情報を、tfmに含ませることができる。Josefin Slabにはこれらの機能がなかったから上ではこのオプションをつけていないが、この機能があればつけたほうがよい。<code>otfinfo -f JosefinSlab-Regular.ttf</code>などとすれば、どのような機能が備わっているかを確認できる。</p>
+<p>また、<code>-fkern</code>とすればカーニングの、<code>-fliga</code>とすればリガチャの情報を、tfmに含ませることができる。Josefin Slabにはこれらの機能がなかったから上ではこのオプションをつけていないが、この機能があればつけたほうがよい。つまり、もしJosefin Slabがカーニングやリガチャの機能を備えていた場合には、次のようにオプションをつけてコマンドを実行するほうがよい、というわけである。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">otftotfm -fkern -fliga --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
+</code></pre></div><p><code>otfinfo -f JosefinSlab-Regular.ttf</code>などと打てば、フォントにどのような機能が備わっているかを確認できる。</p>
 <h2 id="styファイルの作成">styファイルの作成</h2>
 <p>各種ファイルが生成できたならば、すかさず、josefinslab.styという名前でstyファイルを作る。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
@@ -75,7 +82,7 @@
 </code></pre></div><h2 id="インストールできたかを確認">インストールできたかを確認</h2>
 <p>ここまでできたら、ほとんどインストールは完了したと言ってよい（今のままだと、各種ファイルがディレクトリにたくさん散らばっていて、気持ち悪いかもしれないが、この問題は次の節で解決する）。</p>
 <p>動作確認のため、作業用ディレクトリにTeXファイルを作って、フォントが埋め込まれるかをチェックしておこう。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="na">[uplatex]</span><span class="nb">{</span>jsarticle<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx]</span><span class="nb">{</span>jsarticle<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>josefinslab<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 <span class="k">\romanfamily</span><span class="nb">{</span>josefinslab<span class="nb">}</span><span class="k">\selectfont</span>
@@ -95,7 +102,7 @@ otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.m
 otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-semibold-italic JosefinSlab-SemiBoldItalic.ttf
 otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-bold JosefinSlab-Bold.ttf
 otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-bold-italic JosefinSlab-BoldItalic.ttf
-</code></pre></div><p>このままでは各種ファイルでディレクトリがごちゃごちゃする。そこで○○○.tfmはtfmフォルダ直下のjosefinslabフォルダに、○○○.vfはvfフォルダ直下のjosefinslabフォルダに、というような塩梅で移動させておく。</p>
+</code></pre></div><p>このままでは各種ファイルでディレクトリがごちゃごちゃする。そこで○○○.tfmはtfmフォルダ内のjosefinslabフォルダに、○○○.vfはvfフォルダ内のjosefinslabフォルダに、というような塩梅で移動させておく。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir vf/
 mkdir tfm/
 mkdir map/
@@ -109,7 +116,9 @@ mv *.tfm tfm/josefinslab/
 mv *.map map/josefinslab/
 mv *.enc enc/josefinslab/
 </code></pre></div><p>こうして、各種ファイルを収納した四つのフォルダが作られた。これらのフォルダを、<code>$TEXMF/fonts/</code>へ移動させる（マージさせる）<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>と、tfmなどの各種ファイルがカレントディレクトリになくとも使えるようになる。こうしてtfm類のインストールは完了する。</p>
-<p>mapファイルが読み込めずエラーが生ずる場合、<code>$ sudo mktexlsr</code>を実行して情報を更新する。</p>
+<p>mapファイルが読み込めずエラーが生ずる場合、</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mktexlsr
+</code></pre></div><p>を実行して情報を更新する。</p>
 <h2 id="styファイルの生成とインストール">styファイルの生成とインストール</h2>
 <p>さらにstyファイルを作る。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
