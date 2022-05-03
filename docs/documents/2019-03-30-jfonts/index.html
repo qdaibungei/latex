@@ -48,143 +48,143 @@
 <p>LaTeXでPDFに和文フォントを埋め込む際、いちいちmapファイルを書き換えるのは面倒である。そこでjfontsパッケージというLaTeXパッケージを作った。簡単な工夫だが、役に立つ。</p>
 <p>jfontsパッケージは、otfパッケージと併用することを前提としている。フォントを変えたいときはフォントのファイル名を書き換えればよい。</p>
 <h1 id="jfontssty">jfonts.sty</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
-</span><span class="c">% jfonts.sty
-</span><span class="c">%
-</span><span class="c"></span>
-<span class="k">\NeedsTeXFormat</span><span class="nb">{</span>pLaTeX2e<span class="nb">}</span>
-<span class="k">\ProvidesPackage</span><span class="nb">{</span>jfonts<span class="nb">}</span>
-
-<span class="k">\def\jf</span>@hminl<span class="nb">{</span>ToppanBunkyuMincho-Regular.otf<span class="nb">}</span>
-<span class="k">\def\jf</span>@hminr<span class="nb">{</span>HiraMinProN-W3.otf<span class="nb">}</span>
-<span class="k">\def\jf</span>@hminb<span class="nb">{</span>HiraMinProN-W6.otf<span class="nb">}</span>
-<span class="k">\def\jf</span>@hgothr<span class="nb">{</span>HiraKakuProN-W3.otf<span class="nb">}</span>
-<span class="k">\def\jf</span>@hgothb<span class="nb">{</span>HiraKakuProN-W6.otf<span class="nb">}</span>
-<span class="k">\def\jf</span>@hgotheb<span class="nb">{</span>HiraKakuStdN-W8.otf<span class="nb">}</span>
-<span class="k">\def\jf</span>@hmgothr<span class="nb">{</span>HiraMaruPro-W4.otf<span class="nb">}</span>
-
-<span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="c">%
-</span><span class="c"></span>    <span class="c">% TEXT, 90JIS
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminl-h H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminl-v V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminr-h H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminr-v V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminb-h H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminb-v V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothr-h H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothr-v V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothb-h H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothb-v V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgotheb-h H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgotheb-v V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hmgothr-h H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hmgothr-v V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="c">% TEXT, JIS04
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminln-h H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminln-v V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminrn-h H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminrn-v V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminbn-h H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminbn-v V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothrn-h H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothrn-v V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothbn-h H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothbn-v V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothebn-h H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothebn-v V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hmgothrn-h H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hmgothrn-v V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="c">% CID
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjml-h Identity-H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjml-v Identity-V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmr-h Identity-H <span class="k">\jf</span>@hminr/AJ16<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmr-v Identity-V <span class="k">\jf</span>@hminr/AJ16<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmb-h Identity-H <span class="k">\jf</span>@hminb/AJ16<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmb-v Identity-V <span class="k">\jf</span>@hminb/AJ16<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjgr-h Identity-H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjgr-v Identity-V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjgb-h Identity-H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjgb-v Identity-V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjge-h Identity-H <span class="k">\jf</span>@hgotheb/AJ16<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjge-v Identity-V <span class="k">\jf</span>@hgotheb/AJ16<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmgr-h Identity-H <span class="k">\jf</span>@hmgothr/AJ16<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmgr-v Identity-V <span class="k">\jf</span>@hmgothr/AJ16<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="c">% Unicode 90JIS
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujml-h UniJIS-UTF16-H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujml-v UniJIS-UTF16-V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmr-h UniJIS-UTF16-H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmr-v UniJIS-UTF16-V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmb-h UniJIS-UTF16-H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmb-v UniJIS-UTF16-V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgr-h UniJIS-UTF16-H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgr-v UniJIS-UTF16-V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgb-h UniJIS-UTF16-H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgb-v UniJIS-UTF16-V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujge-h UniJIS-UTF16-H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujge-v UniJIS-UTF16-V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmgr-h UniJIS-UTF16-H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmgr-v UniJIS-UTF16-V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="c">% Unicode JIS04
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmln-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmln-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmbn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmbn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgbn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgbn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgen-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgen-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmgrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmgrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="k">\if</span>@otf@uplatex
-    <span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="c">%
-</span><span class="c"></span>        <span class="c">% TEXT, 90JIS
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminl-h UniJIS-UTF16-H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminl-v UniJIS-UTF16-V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminr-h UniJIS-UTF16-H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminr-v UniJIS-UTF16-V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminb-h UniJIS-UTF16-H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminb-v UniJIS-UTF16-V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothr-h UniJIS-UTF16-H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothr-v UniJIS-UTF16-V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothb-h UniJIS-UTF16-H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothb-v UniJIS-UTF16-V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgotheb-h UniJIS-UTF16-H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgotheb-v UniJIS-UTF16-V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothr-h UniJIS-UTF16-H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothr-v UniJIS-UTF16-V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="c">% TEXT, JIS04
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminln-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminln-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminbn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminbn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothbn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothbn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothebn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothebn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="k">\fi</span>
-</code></pre></div><h1 id="追記">追記</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c">% jfonts.sty
+</span></span></span><span class="line"><span class="cl"><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>
+</span></span><span class="line"><span class="cl"><span class="k">\NeedsTeXFormat</span><span class="nb">{</span>pLaTeX2e<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\ProvidesPackage</span><span class="nb">{</span>jfonts<span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\def\jf</span>@hminl<span class="nb">{</span>ToppanBunkyuMincho-Regular.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\jf</span>@hminr<span class="nb">{</span>HiraMinProN-W3.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\jf</span>@hminb<span class="nb">{</span>HiraMinProN-W6.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\jf</span>@hgothr<span class="nb">{</span>HiraKakuProN-W3.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\jf</span>@hgothb<span class="nb">{</span>HiraKakuProN-W6.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\jf</span>@hgotheb<span class="nb">{</span>HiraKakuStdN-W8.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\jf</span>@hmgothr<span class="nb">{</span>HiraMaruPro-W4.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% TEXT, 90JIS
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminl-h H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminl-v V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminr-h H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminr-v V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminb-h H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminb-v V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothr-h H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothr-v V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothb-h H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothb-v V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgotheb-h H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgotheb-v V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hmgothr-h H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hmgothr-v V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% TEXT, JIS04
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminln-h H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminln-v V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminrn-h H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminrn-v V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminbn-h H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hminbn-v V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothrn-h H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothrn-v V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothbn-h H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothbn-v V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothebn-h H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hgothebn-v V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hmgothrn-h H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline hmgothrn-v V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% CID
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjml-h Identity-H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjml-v Identity-V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmr-h Identity-H <span class="k">\jf</span>@hminr/AJ16<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmr-v Identity-V <span class="k">\jf</span>@hminr/AJ16<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmb-h Identity-H <span class="k">\jf</span>@hminb/AJ16<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmb-v Identity-V <span class="k">\jf</span>@hminb/AJ16<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjgr-h Identity-H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjgr-v Identity-V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjgb-h Identity-H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjgb-v Identity-V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjge-h Identity-H <span class="k">\jf</span>@hgotheb/AJ16<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjge-v Identity-V <span class="k">\jf</span>@hgotheb/AJ16<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmgr-h Identity-H <span class="k">\jf</span>@hmgothr/AJ16<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-cjmgr-v Identity-V <span class="k">\jf</span>@hmgothr/AJ16<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% Unicode 90JIS
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujml-h UniJIS-UTF16-H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujml-v UniJIS-UTF16-V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmr-h UniJIS-UTF16-H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmr-v UniJIS-UTF16-V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmb-h UniJIS-UTF16-H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmb-v UniJIS-UTF16-V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgr-h UniJIS-UTF16-H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgr-v UniJIS-UTF16-V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgb-h UniJIS-UTF16-H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgb-v UniJIS-UTF16-V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujge-h UniJIS-UTF16-H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujge-v UniJIS-UTF16-V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmgr-h UniJIS-UTF16-H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmgr-v UniJIS-UTF16-V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% Unicode JIS04
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmln-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmln-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmbn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmbn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgbn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgbn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgen-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujgen-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmgrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\special</span><span class="nb">{</span>pdf:mapline otf-ujmgrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\if</span>@otf@uplatex
+</span></span><span class="line"><span class="cl">    <span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="c">% TEXT, 90JIS
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminl-h UniJIS-UTF16-H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminl-v UniJIS-UTF16-V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminr-h UniJIS-UTF16-H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminr-v UniJIS-UTF16-V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminb-h UniJIS-UTF16-H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminb-v UniJIS-UTF16-V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothr-h UniJIS-UTF16-H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothr-v UniJIS-UTF16-V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothb-h UniJIS-UTF16-H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothb-v UniJIS-UTF16-V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgotheb-h UniJIS-UTF16-H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgotheb-v UniJIS-UTF16-V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothr-h UniJIS-UTF16-H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothr-v UniJIS-UTF16-V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="c">% TEXT, JIS04
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminln-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminln-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminl<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminbn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphminbn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hminb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothbn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothbn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgothb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothebn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphgothebn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hgotheb<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothrn-h UniJIS2004-UTF16-H <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\special</span><span class="nb">{</span>pdf:mapline uphmgothrn-v UniJIS2004-UTF16-V <span class="k">\jf</span>@hmgothr<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\fi</span>
+</span></span></code></pre></div><h1 id="追記">追記</h1>
 <p>いまだとTeX Liveに収録されているpxchfonパッケージがあるので、これを使って次のように書くのがラクである。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\usepackage</span><span class="na">[noalphabet]</span><span class="nb">{</span>pxchfon<span class="nb">}</span>
-<span class="k">\setlightminchofont</span><span class="nb">{</span>ToppanBunkyuMincho-Regular.otf<span class="nb">}</span>
-<span class="k">\setmediumminchofont</span><span class="nb">{</span>HiraMinProN-W3.otf<span class="nb">}</span>
-<span class="k">\setboldminchofont</span><span class="nb">{</span>HiraMinProN-W6.otf<span class="nb">}</span>
-<span class="k">\setmediumgothicfont</span><span class="nb">{</span>HiraKakuProN-W3.otf<span class="nb">}</span>
-<span class="k">\setboldgothicfont</span><span class="nb">{</span>HiraKakuProN-W6.otf<span class="nb">}</span>
-<span class="k">\setxboldgothicfont</span><span class="nb">{</span>HiraKakuStdN-W8.otf<span class="nb">}</span>
-<span class="k">\setmarugothicfont</span><span class="nb">{</span>HiraMaruPro-W4.otf<span class="nb">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[noalphabet]</span><span class="nb">{</span>pxchfon<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\setlightminchofont</span><span class="nb">{</span>ToppanBunkyuMincho-Regular.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\setmediumminchofont</span><span class="nb">{</span>HiraMinProN-W3.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\setboldminchofont</span><span class="nb">{</span>HiraMinProN-W6.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\setmediumgothicfont</span><span class="nb">{</span>HiraKakuProN-W3.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\setboldgothicfont</span><span class="nb">{</span>HiraKakuProN-W6.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\setxboldgothicfont</span><span class="nb">{</span>HiraKakuStdN-W8.otf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\setmarugothicfont</span><span class="nb">{</span>HiraMaruPro-W4.otf<span class="nb">}</span>
+</span></span></code></pre></div>
 <div class="showarticleinfo">
     <span class="material-icons-round">schedule</span> 2019年3月30日<br>
     

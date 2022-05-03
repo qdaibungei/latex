@@ -48,79 +48,79 @@
 <p>奥付は次のようなデザインにした<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。奥付でもやはり書籍タイトルに<a href="https://moji-waku.com/kaiso/">廻想体</a>を使い、統一感を出した。</p>
 <p><img src="/latex/assets/img/2020-04-12.png" alt=""></p>
 <p>LaTeXでは次のように実現してある。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% macro for colophon
-</span><span class="c"></span><span class="k">\makeatletter</span>
-<span class="k">\def\@</span>thisdate#1/#2/#3/#4<span class="k">\@</span>nil<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\thisyear</span><span class="nb">}{</span>#1<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\thismonth</span><span class="nb">}{</span>#2<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\thisday</span><span class="nb">}{</span>#3<span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="nb">}</span>
-<span class="k">\def\thisdate</span>#1<span class="nb">{</span><span class="k">\expandafter\@</span>thisdate#1//<span class="k">\@</span>nil<span class="nb">}</span>
-<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\bookmaker</span><span class="nb">}</span>[2]<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>    ■<span class="k">\leavevmode\hbox</span> to 2.7zw<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>        <span class="nb">{</span><span class="k">\gtfamily\bfseries\fontsizeX</span> #1<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    ―<span class="k">\kern</span>-.7zw<span class="k">\―</span>―#2<span class="c">%
-</span><span class="c"></span><span class="nb">}</span>
-<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\fontcredit</span><span class="nb">}</span>[2]<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\leavevmode\hbox</span> to 6zw<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\hfill\emph</span><span class="nb">{</span>#1<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="nb">{</span><span class="k">\kern</span>1.5zw<span class="k">\okfamily</span> #2<span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="nb">}</span>
-<span class="k">\makeatother</span>
-
-<span class="c">%% colophon
-</span><span class="c"></span><span class="k">\newhanmen</span><span class="nb">{</span>Q=11.5,H=19,W=58,L=21,ko=2mm,koguchi=<span class="k">\relax</span>,nodo=<span class="k">\relax</span>,chi=16.4375mm,tate<span class="nb">}</span>
-<span class="c">% \pagegridon{g=56}
-</span><span class="c"></span><span class="k">\thispagestyle</span><span class="nb">{</span>empty<span class="nb">}</span>
-<span class="k">\columnsep</span>=4zw
-<span class="k">\begin</span><span class="nb">{</span>multicols*<span class="nb">}{</span>2<span class="nb">}</span>
-<span class="k">\parbox</span>&lt;y&gt;[c]<span class="nb">{</span><span class="k">\textheight</span><span class="nb">}{</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\fontcredit</span><span class="nb">{</span>組版処理<span class="nb">}{</span><span class="k">\LaTeXe</span><span class="nb">}</span><span class="k">\\</span>
-
-    <span class="k">\fontcredit</span><span class="nb">{</span>使用書体<span class="nb">}{}{</span><span class="k">\raise</span>-.125zw<span class="k">\hbox</span><span class="nb">{</span><span class="k">\gtfamily\ebseries\fontsize</span><span class="nb">{</span>14<span class="k">\bQ</span><span class="nb">}{</span>19H<span class="nb">}</span><span class="k">\selectfont</span> <span class="k">\kern</span>-.1zw 廻<span class="k">\kern</span>-.25zw 想<span class="k">\kern</span>-.25zw 体<span class="nb">}</span>＋<span class="nb">{</span><span class="k">\agencyfb</span> Agency FB<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈表紙〉<span class="nb">}</span><span class="k">\\</span>
-    <span class="k">\fontcredit</span><span class="nb">{}{</span><span class="k">\raise</span>-.125zw<span class="k">\hbox</span><span class="nb">{</span><span class="k">\gtfamily\ebseries\fontsize</span><span class="nb">{</span>14<span class="k">\bQ</span><span class="nb">}{</span>19H<span class="nb">}</span><span class="k">\selectfont</span> <span class="k">\kern</span>-.1zw 廻<span class="k">\kern</span>-.25zw 想<span class="k">\kern</span>-.25zw 体<span class="nb">}</span>＋<span class="nb">{</span><span class="k">\classico</span> Classico<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈ロゴ〉<span class="nb">}</span><span class="k">\\</span>
-    <span class="k">\fontcredit</span><span class="nb">{}{{</span><span class="k">\mcfamily</span> 游明朝体R＋Cochineal<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈本文・ルビ・柱〉<span class="nb">}</span><span class="k">\\</span>
-    <span class="k">\fontcredit</span><span class="nb">{}{</span>游明朝体五号かなR＋fbb<span class="k">\fontsizeVIII</span> 〈本文〉<span class="nb">}</span><span class="k">\\</span>
-    <span class="k">\fontcredit</span><span class="nb">{}{{</span><span class="k">\mgfamily</span> 筑紫Aオールド明朝R<span class="nb">}</span>＋fbb<span class="k">\fontsizeVIII</span> 〈各作品タイトル〉<span class="nb">}</span><span class="k">\\</span>
-    <span class="k">\fontcredit</span><span class="nb">{}{{</span><span class="k">\gtfamily</span> 游ゴシック体M<span class="nb">}</span>＋<span class="k">\textgt</span><span class="nb">{</span>Open Sans Regular<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈見出し・作品情報〉<span class="nb">}</span><span class="k">\\</span>
-    <span class="k">\fontcredit</span><span class="nb">{}{</span><span class="k">\emph</span><span class="nb">{</span>筑紫ゴシックD<span class="nb">}</span>＋<span class="k">\emph</span><span class="nb">{</span>Open Sans Semibold<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈強調・小見出し〉<span class="nb">}</span><span class="k">\\</span>
-    <span class="k">\fontcredit</span><span class="nb">{}{</span><span class="k">\texttt</span><span class="nb">{</span>Nimbus15 Mono Narrow<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈作品情報〉<span class="nb">}</span><span class="k">\\</span>
-    <span class="k">\fontcredit</span><span class="nb">{}{</span>源暎ノンブル<span class="k">\fontsizeVIII</span> 〈ノンブル〉<span class="nb">}</span>
-<span class="nb">}</span>
-<span class="k">\columnbreak</span>
-
-<span class="k">\thisdate</span><span class="nb">{</span>2019/10/04<span class="nb">}</span>
-<span class="k">\leftskip</span>=-6zw
-<span class="k">\okfamily</span>
-<span class="k">\vspace*</span><span class="nb">{</span>.5zw<span class="nb">}</span>
-<span class="k">\vspace*</span><span class="nb">{</span>-1mm<span class="nb">}</span>
-<span class="k">\rule</span><span class="nb">{</span><span class="k">\linewidth</span> + 6zw<span class="nb">}{</span>1mm<span class="nb">}</span>
-<span class="k">\obeylines</span>
-<span class="k">\gyodori</span><span class="nb">{</span>2<span class="nb">}{{</span><span class="k">\gtfamily\ebseries\fontsize</span><span class="nb">{</span>25<span class="k">\bQ</span><span class="nb">}{</span>25H<span class="nb">}</span><span class="k">\selectfont\booktitlename</span><span class="nb">}</span><span class="k">\kern</span>.25zw<span class="nb">{</span><span class="k">\fontsizeIX</span> ［きゅうだいぶんがく］<span class="nb">}}</span>
-<span class="k">\gyodori</span><span class="nb">{</span>2<span class="nb">}{</span>■<span class="k">\kansuji\thisyear</span> 年<span class="k">\kansuji\thismonth</span> 月<span class="k">\kansuji\thisday</span> 日　第一版第一刷発行<span class="nb">}</span>
-<span class="k">\bookmaker</span><span class="nb">{</span>編集者<span class="nb">}{</span>＊＊＊＊＋＊＊＊＊<span class="nb">}</span>
-<span class="k">\bookmaker</span><span class="nb">{</span>発行者<span class="nb">}{</span>＊＊＊＊＊<span class="nb">}</span>
-<span class="k">\bookmaker</span><span class="nb">{</span>印刷者<span class="nb">}{</span>＊＊＊＊<span class="nb">}</span>
-<span class="k">\bookmaker</span><span class="nb">{</span>印刷所<span class="nb">}{</span>＊＊＊＊＊＊＊＊＊<span class="nb">}</span>
-<span class="k">\bookmaker</span><span class="nb">{</span>発行所<span class="nb">}{</span>九州大学文藝部<span class="nb">}</span>
-<span class="k">\gyodori</span><span class="nb">{</span>4<span class="nb">}{</span><span class="k">\includegraphics</span><span class="na">[angle=90,width=5zw]</span><span class="nb">{</span>hanko.eps<span class="nb">}}</span>
-<span class="k">\vspace*</span><span class="nb">{</span>-4<span class="k">\baselineskip</span><span class="nb">}</span>
-<span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}</span>福岡市西区元岡七四四番地
-<span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}</span>郵便番号八一九―〇三九五
-<span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}{</span><span class="k">\fontsize</span><span class="nb">{</span>10.5<span class="k">\bQ</span><span class="nb">}{</span>19trueH<span class="nb">}</span><span class="k">\selectfont</span> Website: <span class="k">\url</span><span class="nb">{</span>https://kyudai-bungeiclub.wixsite.com/kyudai-bungei<span class="nb">}}</span>
-<span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}{</span><span class="k">\fontsize</span><span class="nb">{</span>10.5<span class="k">\bQ</span><span class="nb">}{</span>19trueH<span class="nb">}</span><span class="k">\selectfont</span> Twitter: @kyudaibungei<span class="nb">}</span>
-<span class="k">\vspace</span><span class="nb">{</span>-.25<span class="k">\baselineskip</span><span class="nb">}</span>
-<span class="k">\rule</span><span class="nb">{</span><span class="k">\linewidth</span> + 6zw<span class="nb">}{</span>.125truemm<span class="nb">}</span>
-<span class="k">\vspace</span><span class="nb">{</span>-.25<span class="k">\baselineskip</span><span class="nb">}</span>
-造本には十分注意しておりますが、乱丁・落丁の場合は、お取り替えいたしますので九州大学文藝部までご連絡ください。
-本書の一部あるいは全部を無断で転写・複写することは法律で認められた場合を除き、著作権の侵害にあたります。
-<span class="k">\textcopyright</span><span class="nb">{}</span> Kyushu University Literary Club and Authors <span class="k">\thisyear</span> <span class="k">\hfill</span> Printed in Japan
-<span class="k">\disobeylines</span>
-<span class="k">\rule</span><span class="nb">{</span><span class="k">\linewidth</span> + 6zw<span class="nb">}{</span>1mm<span class="nb">}</span>
-<span class="k">\end</span><span class="nb">{</span>multicols*<span class="nb">}</span>
-</code></pre></div><h2 id="印鑑画像">印鑑画像</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl"><span class="c">%% macro for colophon
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\makeatletter</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\@</span>thisdate#1/#2/#3/#4<span class="k">\@</span>nil<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\thisyear</span><span class="nb">}{</span>#1<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\thismonth</span><span class="nb">}{</span>#2<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\newcommand</span><span class="nb">{</span><span class="k">\thisday</span><span class="nb">}{</span>#3<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\thisdate</span>#1<span class="nb">{</span><span class="k">\expandafter\@</span>thisdate#1//<span class="k">\@</span>nil<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\bookmaker</span><span class="nb">}</span>[2]<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    ■<span class="k">\leavevmode\hbox</span> to 2.7zw<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="nb">{</span><span class="k">\gtfamily\bfseries\fontsizeX</span> #1<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    ―<span class="k">\kern</span>-.7zw<span class="k">\―</span>―#2<span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\fontcredit</span><span class="nb">}</span>[2]<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\leavevmode\hbox</span> to 6zw<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\hfill\emph</span><span class="nb">{</span>#1<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="nb">{</span><span class="k">\kern</span>1.5zw<span class="k">\okfamily</span> #2<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\makeatother</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%% colophon
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\newhanmen</span><span class="nb">{</span>Q=11.5,H=19,W=58,L=21,ko=2mm,koguchi=<span class="k">\relax</span>,nodo=<span class="k">\relax</span>,chi=16.4375mm,tate<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">% \pagegridon{g=56}
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\thispagestyle</span><span class="nb">{</span>empty<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\columnsep</span>=4zw
+</span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>multicols*<span class="nb">}{</span>2<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\parbox</span>&lt;y&gt;[c]<span class="nb">{</span><span class="k">\textheight</span><span class="nb">}{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\fontcredit</span><span class="nb">{</span>組版処理<span class="nb">}{</span><span class="k">\LaTeXe</span><span class="nb">}</span><span class="k">\\</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">\fontcredit</span><span class="nb">{</span>使用書体<span class="nb">}{}{</span><span class="k">\raise</span>-.125zw<span class="k">\hbox</span><span class="nb">{</span><span class="k">\gtfamily\ebseries\fontsize</span><span class="nb">{</span>14<span class="k">\bQ</span><span class="nb">}{</span>19H<span class="nb">}</span><span class="k">\selectfont</span> <span class="k">\kern</span>-.1zw 廻<span class="k">\kern</span>-.25zw 想<span class="k">\kern</span>-.25zw 体<span class="nb">}</span>＋<span class="nb">{</span><span class="k">\agencyfb</span> Agency FB<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈表紙〉<span class="nb">}</span><span class="k">\\</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\fontcredit</span><span class="nb">{}{</span><span class="k">\raise</span>-.125zw<span class="k">\hbox</span><span class="nb">{</span><span class="k">\gtfamily\ebseries\fontsize</span><span class="nb">{</span>14<span class="k">\bQ</span><span class="nb">}{</span>19H<span class="nb">}</span><span class="k">\selectfont</span> <span class="k">\kern</span>-.1zw 廻<span class="k">\kern</span>-.25zw 想<span class="k">\kern</span>-.25zw 体<span class="nb">}</span>＋<span class="nb">{</span><span class="k">\classico</span> Classico<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈ロゴ〉<span class="nb">}</span><span class="k">\\</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\fontcredit</span><span class="nb">{}{{</span><span class="k">\mcfamily</span> 游明朝体R＋Cochineal<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈本文・ルビ・柱〉<span class="nb">}</span><span class="k">\\</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\fontcredit</span><span class="nb">{}{</span>游明朝体五号かなR＋fbb<span class="k">\fontsizeVIII</span> 〈本文〉<span class="nb">}</span><span class="k">\\</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\fontcredit</span><span class="nb">{}{{</span><span class="k">\mgfamily</span> 筑紫Aオールド明朝R<span class="nb">}</span>＋fbb<span class="k">\fontsizeVIII</span> 〈各作品タイトル〉<span class="nb">}</span><span class="k">\\</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\fontcredit</span><span class="nb">{}{{</span><span class="k">\gtfamily</span> 游ゴシック体M<span class="nb">}</span>＋<span class="k">\textgt</span><span class="nb">{</span>Open Sans Regular<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈見出し・作品情報〉<span class="nb">}</span><span class="k">\\</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\fontcredit</span><span class="nb">{}{</span><span class="k">\emph</span><span class="nb">{</span>筑紫ゴシックD<span class="nb">}</span>＋<span class="k">\emph</span><span class="nb">{</span>Open Sans Semibold<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈強調・小見出し〉<span class="nb">}</span><span class="k">\\</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\fontcredit</span><span class="nb">{}{</span><span class="k">\texttt</span><span class="nb">{</span>Nimbus15 Mono Narrow<span class="nb">}</span><span class="k">\fontsizeVIII</span> 〈作品情報〉<span class="nb">}</span><span class="k">\\</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\fontcredit</span><span class="nb">{}{</span>源暎ノンブル<span class="k">\fontsizeVIII</span> 〈ノンブル〉<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\columnbreak</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\thisdate</span><span class="nb">{</span>2019/10/04<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\leftskip</span>=-6zw
+</span></span><span class="line"><span class="cl"><span class="k">\okfamily</span>
+</span></span><span class="line"><span class="cl"><span class="k">\vspace*</span><span class="nb">{</span>.5zw<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\vspace*</span><span class="nb">{</span>-1mm<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\rule</span><span class="nb">{</span><span class="k">\linewidth</span> + 6zw<span class="nb">}{</span>1mm<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\obeylines</span>
+</span></span><span class="line"><span class="cl"><span class="k">\gyodori</span><span class="nb">{</span>2<span class="nb">}{{</span><span class="k">\gtfamily\ebseries\fontsize</span><span class="nb">{</span>25<span class="k">\bQ</span><span class="nb">}{</span>25H<span class="nb">}</span><span class="k">\selectfont\booktitlename</span><span class="nb">}</span><span class="k">\kern</span>.25zw<span class="nb">{</span><span class="k">\fontsizeIX</span> ［きゅうだいぶんがく］<span class="nb">}}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\gyodori</span><span class="nb">{</span>2<span class="nb">}{</span>■<span class="k">\kansuji\thisyear</span> 年<span class="k">\kansuji\thismonth</span> 月<span class="k">\kansuji\thisday</span> 日　第一版第一刷発行<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\bookmaker</span><span class="nb">{</span>編集者<span class="nb">}{</span>＊＊＊＊＋＊＊＊＊<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\bookmaker</span><span class="nb">{</span>発行者<span class="nb">}{</span>＊＊＊＊＊<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\bookmaker</span><span class="nb">{</span>印刷者<span class="nb">}{</span>＊＊＊＊<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\bookmaker</span><span class="nb">{</span>印刷所<span class="nb">}{</span>＊＊＊＊＊＊＊＊＊<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\bookmaker</span><span class="nb">{</span>発行所<span class="nb">}{</span>九州大学文藝部<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\gyodori</span><span class="nb">{</span>4<span class="nb">}{</span><span class="k">\includegraphics</span><span class="na">[angle=90,width=5zw]</span><span class="nb">{</span>hanko.eps<span class="nb">}}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\vspace*</span><span class="nb">{</span>-4<span class="k">\baselineskip</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}</span>福岡市西区元岡七四四番地
+</span></span><span class="line"><span class="cl"><span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}</span>郵便番号八一九―〇三九五
+</span></span><span class="line"><span class="cl"><span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}{</span><span class="k">\fontsize</span><span class="nb">{</span>10.5<span class="k">\bQ</span><span class="nb">}{</span>19trueH<span class="nb">}</span><span class="k">\selectfont</span> Website: <span class="k">\url</span><span class="nb">{</span>https://kyudai-bungeiclub.wixsite.com/kyudai-bungei<span class="nb">}}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\hspace*</span><span class="nb">{</span>6zw<span class="nb">}{</span><span class="k">\fontsize</span><span class="nb">{</span>10.5<span class="k">\bQ</span><span class="nb">}{</span>19trueH<span class="nb">}</span><span class="k">\selectfont</span> Twitter: @kyudaibungei<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\vspace</span><span class="nb">{</span>-.25<span class="k">\baselineskip</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\rule</span><span class="nb">{</span><span class="k">\linewidth</span> + 6zw<span class="nb">}{</span>.125truemm<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\vspace</span><span class="nb">{</span>-.25<span class="k">\baselineskip</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl">造本には十分注意しておりますが、乱丁・落丁の場合は、お取り替えいたしますので九州大学文藝部までご連絡ください。
+</span></span><span class="line"><span class="cl">本書の一部あるいは全部を無断で転写・複写することは法律で認められた場合を除き、著作権の侵害にあたります。
+</span></span><span class="line"><span class="cl"><span class="k">\textcopyright</span><span class="nb">{}</span> Kyushu University Literary Club and Authors <span class="k">\thisyear</span> <span class="k">\hfill</span> Printed in Japan
+</span></span><span class="line"><span class="cl"><span class="k">\disobeylines</span>
+</span></span><span class="line"><span class="cl"><span class="k">\rule</span><span class="nb">{</span><span class="k">\linewidth</span> + 6zw<span class="nb">}{</span>1mm<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>multicols*<span class="nb">}</span>
+</span></span></code></pre></div><h2 id="印鑑画像">印鑑画像</h2>
 <p>奥付に使われている印鑑の画像は、修正を施して画質を向上させてから用いた<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
 <p><img src="/latex/assets/img/2020-04-12a.jpg" alt=""></p>
 <p>　</p>

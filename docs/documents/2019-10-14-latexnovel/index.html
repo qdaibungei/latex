@@ -65,56 +65,56 @@
 <p>第二に、<code>\tableofcontents</code>で出力される目次のレイアウトを変更するのが難しい。<code>\tableofcontents</code>を再定義してやればいいのだが、<code>\tableofcontents</code>の元の定義はかなり複雑で、変更が面倒である。</p>
 <h2 id="latexによる目次の作り方私家版">LaTeXによる目次の作り方（私家版）</h2>
 <p>さてそこで私は、<code>\tableofcontents</code>に代替しうるマクロを別途定義して使っている。そのマクロとは、以下に示すような<code>\Mokuji</code>マクロである。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%% \Mokuji
-</span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\Mokuji</span><span class="nb">}</span>[3]<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>    #1<span class="k">\hskip</span>1zw<span class="c">% 作品名
-</span><span class="c"></span>    <span class="k">\textgt</span><span class="nb">{</span>#2<span class="nb">}</span><span class="k">\hskip</span>1zw<span class="c">% 著者名
-</span><span class="c"></span>    <span class="k">\rensuji</span><span class="nb">{</span><span class="k">\pageref</span><span class="nb">{</span>#3<span class="nb">}}</span><span class="c">% ページ数
-</span><span class="c"></span><span class="nb">}</span>
-</code></pre></div><p>このようなマクロを作っておいたうえで、本文内に次のように記述する。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\Mokuji</span><span class="nb">{</span>走れメロス<span class="nb">}{</span>太宰治<span class="nb">}{</span>dazai<span class="nb">}</span><span class="c">% 目次生成。引数は、\Mokuji{&lt;作品名&gt;}{&lt;著者名&gt;}{&lt;ページ参照用ラベル&gt;}とする。
-</span><span class="c"></span>
-<span class="c">%
-</span><span class="c"></span>
-<span class="k">\label</span><span class="nb">{</span>dazai<span class="nb">}</span><span class="c">% 小説開始時点にラベルを張っておく
-</span><span class="c">% 以下、小説本文
-</span></code></pre></div><p>すると、次のように出力される。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="c">%% \Mokuji
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\Mokuji</span><span class="nb">}</span>[3]<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    #1<span class="k">\hskip</span>1zw<span class="c">% 作品名
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\textgt</span><span class="nb">{</span>#2<span class="nb">}</span><span class="k">\hskip</span>1zw<span class="c">% 著者名
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\rensuji</span><span class="nb">{</span><span class="k">\pageref</span><span class="nb">{</span>#3<span class="nb">}}</span><span class="c">% ページ数
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span></code></pre></div><p>このようなマクロを作っておいたうえで、本文内に次のように記述する。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\Mokuji</span><span class="nb">{</span>走れメロス<span class="nb">}{</span>太宰治<span class="nb">}{</span>dazai<span class="nb">}</span><span class="c">% 目次生成。引数は、\Mokuji{&lt;作品名&gt;}{&lt;著者名&gt;}{&lt;ページ参照用ラベル&gt;}とする。
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>
+</span></span><span class="line"><span class="cl"><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>
+</span></span><span class="line"><span class="cl"><span class="k">\label</span><span class="nb">{</span>dazai<span class="nb">}</span><span class="c">% 小説開始時点にラベルを張っておく
+</span></span></span><span class="line"><span class="cl"><span class="c">% 以下、小説本文
+</span></span></span></code></pre></div><p>すると、次のように出力される。</p>
 <p><img src="/latex/assets/img/2019-10-14e.png" alt=""></p>
 <p>基本的には、このように<code>\Mokuji</code>マクロを何個も使って目次を作ればよい。目次デザインを変えるためには、<code>\Mokuji</code>マクロの定義を適宜変更すればよい。</p>
 <p>ベスト文集では、<code>\mokuji</code>を次のように定義して使った。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%% \mokuji
-</span><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mokuji</span><span class="nb">}</span>[4]<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\expandafter\ifx</span>#4<span class="k">\relax</span>
-        <span class="k">\leavevmode\hbox</span> to 14zw<span class="nb">{}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\else</span>
-        <span class="k">\leavevmode\hbox</span> to 14zw<span class="nb">{</span><span class="k">\rule</span><span class="na">[-1zw]</span><span class="nb">{</span>.4pt<span class="nb">}{</span>2zw<span class="nb">}</span><span class="k">\kern</span>.5zw<span class="k">\fontsize</span><span class="nb">{</span>12<span class="k">\bQ</span><span class="nb">}{</span><span class="k">\baselineskip</span><span class="nb">}</span><span class="k">\selectfont</span> #4<span class="k">\hss</span><span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\fi</span>
-    <span class="k">\expandafter\ifx</span>#2<span class="k">\relax</span>
-    <span class="k">\else</span>
-        <span class="k">\leavevmode\hbox</span> to 6zw<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>            <span class="k">\hss\textgt</span><span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>12<span class="k">\bQ</span><span class="nb">}{</span><span class="k">\baselineskip</span><span class="nb">}</span><span class="k">\selectfont</span> #2<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\fi</span>
-    <span class="k">\kern</span>.5zw<span class="k">\rule</span><span class="na">[-1zw]</span><span class="nb">{</span>.4pt<span class="nb">}{</span>2zw<span class="nb">}</span><span class="k">\kern</span>.5zw #1
-    <span class="k">\def\qbook</span>@mkj@page<span class="nb">{</span><span class="k">\pageref</span><span class="nb">{</span>#3<span class="nb">}}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\expandafter\ifx\csname</span> r@#3<span class="k">\endcsname\relax</span>
-        <span class="k">\def\qbook</span>@mkj@page<span class="nb">{</span>??<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\fi</span>
-    <span class="k">\StrLeft</span><span class="nb">{</span><span class="k">\qbook</span>@mkj@page<span class="nb">}{</span>1<span class="nb">}</span>[<span class="k">\qbook</span>@mkj@firstchar]<span class="c">%
-</span><span class="c"></span>    <span class="k">\if</span> ?<span class="k">\qbook</span>@mkj@firstchar
-        <span class="k">\hfill\rule</span><span class="na">[-1zw]</span><span class="nb">{</span>.4pt<span class="nb">}{</span>2zw<span class="nb">}</span><span class="k">\kern</span>.5zw<span class="k">\hbox</span> to 1.5zw<span class="nb">{</span><span class="k">\tcy</span><span class="nb">{</span>?<span class="nb">}}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\else</span>
-        <span class="k">\if</span> i<span class="k">\qbook</span>@mkj@firstchar
-            <span class="k">\tcy</span><span class="nb">{</span><span class="k">\small\qbook</span>@mkj@page<span class="nb">}</span><span class="k">\hspace*</span><span class="nb">{</span>-.17zw<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\else</span>
-            <span class="k">\hfill\rule</span><span class="na">[-1zw]</span><span class="nb">{</span>.4pt<span class="nb">}{</span>2zw<span class="nb">}</span><span class="k">\kern</span>.5zw<span class="k">\hbox</span> to 1.5zw<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>                <span class="k">\fontsize</span><span class="nb">{</span>12<span class="k">\bQ</span><span class="nb">}{</span>12H<span class="nb">}</span><span class="k">\selectfont</span>
-                <span class="k">\tcy</span><span class="nb">{</span><span class="k">\phantom</span><span class="nb">{</span><span class="k">\geneinombre</span> 8<span class="nb">}</span><span class="k">\geneinombre\qbook</span>@mkj@page<span class="k">\phantom</span><span class="nb">{</span><span class="k">\geneinombre</span> 9<span class="nb">}}</span><span class="c">%
-</span><span class="c"></span>            <span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\fi</span>
-    <span class="k">\fi</span>
-<span class="nb">}</span>
-</code></pre></div><p>目次デザインがシンプルな割には定義が複雑である（これは、不要な記述も多々入っているためである。本当はもう少し簡潔に記述できる気がする）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="c">%% \mokuji
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mokuji</span><span class="nb">}</span>[4]<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\expandafter\ifx</span>#4<span class="k">\relax</span>
+</span></span><span class="line"><span class="cl">        <span class="k">\leavevmode\hbox</span> to 14zw<span class="nb">{}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">\leavevmode\hbox</span> to 14zw<span class="nb">{</span><span class="k">\rule</span><span class="na">[-1zw]</span><span class="nb">{</span>.4pt<span class="nb">}{</span>2zw<span class="nb">}</span><span class="k">\kern</span>.5zw<span class="k">\fontsize</span><span class="nb">{</span>12<span class="k">\bQ</span><span class="nb">}{</span><span class="k">\baselineskip</span><span class="nb">}</span><span class="k">\selectfont</span> #4<span class="k">\hss</span><span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\expandafter\ifx</span>#2<span class="k">\relax</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">\leavevmode\hbox</span> to 6zw<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>            <span class="k">\hss\textgt</span><span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>12<span class="k">\bQ</span><span class="nb">}{</span><span class="k">\baselineskip</span><span class="nb">}</span><span class="k">\selectfont</span> #2<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\kern</span>.5zw<span class="k">\rule</span><span class="na">[-1zw]</span><span class="nb">{</span>.4pt<span class="nb">}{</span>2zw<span class="nb">}</span><span class="k">\kern</span>.5zw #1
+</span></span><span class="line"><span class="cl">    <span class="k">\def\qbook</span>@mkj@page<span class="nb">{</span><span class="k">\pageref</span><span class="nb">{</span>#3<span class="nb">}}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\expandafter\ifx\csname</span> r@#3<span class="k">\endcsname\relax</span>
+</span></span><span class="line"><span class="cl">        <span class="k">\def\qbook</span>@mkj@page<span class="nb">{</span>??<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\StrLeft</span><span class="nb">{</span><span class="k">\qbook</span>@mkj@page<span class="nb">}{</span>1<span class="nb">}</span>[<span class="k">\qbook</span>@mkj@firstchar]<span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\if</span> ?<span class="k">\qbook</span>@mkj@firstchar
+</span></span><span class="line"><span class="cl">        <span class="k">\hfill\rule</span><span class="na">[-1zw]</span><span class="nb">{</span>.4pt<span class="nb">}{</span>2zw<span class="nb">}</span><span class="k">\kern</span>.5zw<span class="k">\hbox</span> to 1.5zw<span class="nb">{</span><span class="k">\tcy</span><span class="nb">{</span>?<span class="nb">}}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">\if</span> i<span class="k">\qbook</span>@mkj@firstchar
+</span></span><span class="line"><span class="cl">            <span class="k">\tcy</span><span class="nb">{</span><span class="k">\small\qbook</span>@mkj@page<span class="nb">}</span><span class="k">\hspace*</span><span class="nb">{</span>-.17zw<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\else</span>
+</span></span><span class="line"><span class="cl">            <span class="k">\hfill\rule</span><span class="na">[-1zw]</span><span class="nb">{</span>.4pt<span class="nb">}{</span>2zw<span class="nb">}</span><span class="k">\kern</span>.5zw<span class="k">\hbox</span> to 1.5zw<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>                <span class="k">\fontsize</span><span class="nb">{</span>12<span class="k">\bQ</span><span class="nb">}{</span>12H<span class="nb">}</span><span class="k">\selectfont</span>
+</span></span><span class="line"><span class="cl">                <span class="k">\tcy</span><span class="nb">{</span><span class="k">\phantom</span><span class="nb">{</span><span class="k">\geneinombre</span> 8<span class="nb">}</span><span class="k">\geneinombre\qbook</span>@mkj@page<span class="k">\phantom</span><span class="nb">{</span><span class="k">\geneinombre</span> 9<span class="nb">}}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>            <span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\fi</span>
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
+</span></span></code></pre></div><p>目次デザインがシンプルな割には定義が複雑である（これは、不要な記述も多々入っているためである。本当はもう少し簡潔に記述できる気がする）。</p>
 <h1 id="本文の始まりを明示するための中扉">本文の始まりを明示するための中扉</h1>
 <p>目次が書かれている最後のページを再掲しよう。</p>
 <p><img src="/latex/assets/img/2019-10-14-2in1c.png" alt=""></p>

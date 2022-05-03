@@ -59,35 +59,35 @@
 <h2 id="latexによる扉の作り方">LaTeXによる扉の作り方</h2>
 <p>LaTeXで扉を作るには通常、<code>\title{九大文学}</code>のように本のタイトルを指定し、<code>\maketitle</code>という命令を書き込むことによって扉を生成する。しかしこの方法では、扉ページのレイアウトを変更するのが非常に難しい。具体的には、クラスファイルを編集して<code>\maketitle</code>という命令を定義し直せばよいと思われるが、この方法は余程TeXに習熟している人でない限り実行困難であろう。今回作ったベスト文集のように、扉だけ横書きで、本文は縦書き、といったような複雑なレイアウトにする場合は、特に面倒だと思われる。</p>
 <p>そこで、扉を作るにあたっては、実現したいレイアウトを直接LaTeXの文法に従って書くほうが無難である。具体的には、私は以下のように記述して扉を作った（ただし、以下の記述のなかには独自に定義したマクロも多く含まれているので、これをそのままコピペしてもエラーが出るだけである。注意されたい）。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\newhanmenII</span>
-<span class="k">\newhanmen</span><span class="nb">{</span>tate,te=-2mm<span class="nb">}</span>
-<span class="k">\hanmenchangedir</span>
-<span class="k">\thispagestyle</span><span class="nb">{</span>empty<span class="nb">}</span>
-<span class="k">\begingroup</span>
-
-<span class="k">\vspace*</span><span class="nb">{</span>70mm<span class="nb">}</span>
-<span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>30<span class="k">\bQ</span><span class="nb">}{</span>30H<span class="nb">}</span><span class="k">\gtfamily\ebseries\romanfamily</span><span class="nb">{</span>agencyfb<span class="nb">}</span><span class="k">\romanseries</span><span class="nb">{</span>bx<span class="nb">}</span><span class="k">\selectfont\booktitlename</span><span class="nb">}</span>
-
-<span class="k">\leftskip</span>-1zw
-<span class="k">\vspace</span><span class="nb">{</span><span class="k">\fill</span><span class="nb">}</span>
-<span class="k">\parbox</span><span class="nb">{</span>9zw<span class="nb">}{</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\begin</span><span class="nb">{</span>center<span class="nb">}</span>
-        <span class="k">\fontsize</span><span class="nb">{</span>15<span class="k">\bQ</span><span class="nb">}{</span>16H<span class="nb">}</span><span class="k">\classico</span>
-        <span class="k">\hspace*</span><span class="nb">{</span>0.18em<span class="nb">}</span>Kyushu <span class="k">\hspace</span><span class="nb">{</span>0.05em<span class="nb">}</span>Univ.<span class="k">\\</span>
-        <span class="k">\vspace</span><span class="nb">{</span>-.2em<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        <span class="k">\mbox</span><span class="nb">{}</span><span class="k">\hspace</span><span class="nb">{</span>-1.3zw<span class="nb">}{</span><span class="k">\gtfamily\ebseries\fontsizeX</span> 九州大学文藝部<span class="nb">}</span><span class="k">\\</span>
-        <span class="k">\vspace</span><span class="nb">{</span>-.1em<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>        Literary Club
-    <span class="k">\end</span><span class="nb">{</span>center<span class="nb">}</span>
-<span class="nb">}</span>
-
-<span class="k">\endgroup</span>
-</code></pre></div><p>何をやっているかというと、基本的には、「文字の大きさやフォントを切り替えつつ、<code>\vspace</code>や<code>\hspace</code>で文字の位置を調整して配置している」ということになる。すなわちWordなどと同じ要領でデザインすればよい。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\newhanmenII</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newhanmen</span><span class="nb">{</span>tate,te=-2mm<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\hanmenchangedir</span>
+</span></span><span class="line"><span class="cl"><span class="k">\thispagestyle</span><span class="nb">{</span>empty<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\begingroup</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\vspace*</span><span class="nb">{</span>70mm<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">{</span><span class="k">\fontsize</span><span class="nb">{</span>30<span class="k">\bQ</span><span class="nb">}{</span>30H<span class="nb">}</span><span class="k">\gtfamily\ebseries\romanfamily</span><span class="nb">{</span>agencyfb<span class="nb">}</span><span class="k">\romanseries</span><span class="nb">{</span>bx<span class="nb">}</span><span class="k">\selectfont\booktitlename</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\leftskip</span>-1zw
+</span></span><span class="line"><span class="cl"><span class="k">\vspace</span><span class="nb">{</span><span class="k">\fill</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\parbox</span><span class="nb">{</span>9zw<span class="nb">}{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\begin</span><span class="nb">{</span>center<span class="nb">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">\fontsize</span><span class="nb">{</span>15<span class="k">\bQ</span><span class="nb">}{</span>16H<span class="nb">}</span><span class="k">\classico</span>
+</span></span><span class="line"><span class="cl">        <span class="k">\hspace*</span><span class="nb">{</span>0.18em<span class="nb">}</span>Kyushu <span class="k">\hspace</span><span class="nb">{</span>0.05em<span class="nb">}</span>Univ.<span class="k">\\</span>
+</span></span><span class="line"><span class="cl">        <span class="k">\vspace</span><span class="nb">{</span>-.2em<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\mbox</span><span class="nb">{}</span><span class="k">\hspace</span><span class="nb">{</span>-1.3zw<span class="nb">}{</span><span class="k">\gtfamily\ebseries\fontsizeX</span> 九州大学文藝部<span class="nb">}</span><span class="k">\\</span>
+</span></span><span class="line"><span class="cl">        <span class="k">\vspace</span><span class="nb">{</span>-.1em<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>        Literary Club
+</span></span><span class="line"><span class="cl">    <span class="k">\end</span><span class="nb">{</span>center<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\endgroup</span>
+</span></span></code></pre></div><p>何をやっているかというと、基本的には、「文字の大きさやフォントを切り替えつつ、<code>\vspace</code>や<code>\hspace</code>で文字の位置を調整して配置している」ということになる。すなわちWordなどと同じ要領でデザインすればよい。</p>
 <p>文字の大きさは、</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\fontsize</span><span class="nb">{</span>20Q<span class="nb">}{</span>25H<span class="nb">}</span><span class="k">\selectfont</span>
-</code></pre></div><p>のように書けば指定できる。また、フォントの指定をするには</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\kanjifamily</span><span class="nb">{</span>hmc<span class="nb">}</span><span class="k">\romanfamily</span><span class="nb">{</span>qag<span class="nb">}</span><span class="k">\selectfont</span>
-</code></pre></div><p>のように書けばよい。フォント指定のマクロには<code>\fontfamily</code>という命令もあるが、ここでは敢えて<code>\fontfamily</code>ではなく<code>\kanjifamily</code>と<code>\romanfamily</code>を使っている。こちらの命令を使えば、和文と欧文でまったく違うフォントを指定することが可能となるので、便利である。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\fontsize</span><span class="nb">{</span>20Q<span class="nb">}{</span>25H<span class="nb">}</span><span class="k">\selectfont</span>
+</span></span></code></pre></div><p>のように書けば指定できる。また、フォントの指定をするには</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\kanjifamily</span><span class="nb">{</span>hmc<span class="nb">}</span><span class="k">\romanfamily</span><span class="nb">{</span>qag<span class="nb">}</span><span class="k">\selectfont</span>
+</span></span></code></pre></div><p>のように書けばよい。フォント指定のマクロには<code>\fontfamily</code>という命令もあるが、ここでは敢えて<code>\fontfamily</code>ではなく<code>\kanjifamily</code>と<code>\romanfamily</code>を使っている。こちらの命令を使えば、和文と欧文でまったく違うフォントを指定することが可能となるので、便利である。</p>
 <p>　</p>
 <p>（<a href="https://qdaibungei.github.io/latex/documents/2019-10-14-latexnovel/">次回</a>に続く）</p>
 

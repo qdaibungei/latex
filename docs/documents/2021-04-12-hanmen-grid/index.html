@@ -45,13 +45,13 @@
     LaTeXで本文領域にマス目を表示させる<br>
 </p>
 <p>jlreq.clsで版面設計を行なうときでも、グリッド線（マス目）が表示できると都合がよい。この場合、hanmen.styの<code>pass</code>オプションを用いるとよい。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="na">[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=41]</span><span class="nb">{</span>jlreq<span class="nb">}</span>
-<span class="k">\usepackage</span><span class="na">[Q=14,H=24.5,W=45,L=41,g=45,pass]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
-<span class="k">\usepackage</span><span class="nb">{</span>bxjalipsum<span class="nb">}</span>
-<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-<span class="k">\jalipsum</span><span class="na">[4-6]</span><span class="nb">{</span>wagahai<span class="nb">}</span>    
-<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</code></pre></div><p>こうすると、次の結果を得る。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="na">[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=41]</span><span class="nb">{</span>jlreq<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[Q=14,H=24.5,W=45,L=41,g=45,pass]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>bxjalipsum<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\jalipsum</span><span class="na">[4-6]</span><span class="nb">{</span>wagahai<span class="nb">}</span>    
+</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></span></code></pre></div><p>こうすると、次の結果を得る。</p>
 <p><img src="/latex/assets/img/2021-04-12.png" alt=""></p>
 <p>確かにグリッド線がうまく表示されている。ただし現状、縦書き時にはグリッド線が少しずれて表示されてしまう。後日修正したい。</p>
 

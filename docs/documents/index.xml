@@ -599,14 +599,14 @@ F910明朝W3-IPA 「現代的な骨格と古くからある味わいを融合し
       <pubDate>Sun, 29 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2016-05-29-yohaku-settei/</guid>
-      <description>この記事では、LaTeX文書における余白の設定方法を解説する1。
-横書きの場合 geometryパッケージ 横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。
+      <description>この記事では、LaTeX文書における余白の設定方法を解説する。
+目次  目次 横書きの場合  geometryパッケージ jlreq.cls hanmenパッケージ 手動で設定   縦書きの場合  jlreq.cls hanmenパッケージ 手動で設定    横書きの場合 geometryパッケージ 横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。
 % 45字×41行の設定にする \usepackage[textwidth=45zw,lines=41]{geometry} 字数・行数を指定するのではなく、余白を直接指定する場合、次のように書けばよい。
-% 上下に2cm、左右に1cmの余白を取る \usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry} hanmenパッケージ 拙作のhanmenパッケージを用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。
-\usepackage[Q=10,H=15,W=38,L=40,ptj]{hanmen} そうすると、
- 文字サイズ　10pt 行送り　15pt 行長　38字 行数　40行  に設定できる。hanmenパッケージは縦書きにも対応しているので便利である。
-手動で設定 パッケージに頼らず、手動で余白を設定することもできる。例えば、字数・行数を指定する場合は次をプリアンブルに書く。
-% % 45字×41行の設定にする %  % 字数・行数マクロ定義 \def\mojiparline{45} \def\linesparpage{41} % 字数と行数 \textwidth = \mojiparline zw \textheight = \linesparpage\baselineskip \advance\textheight by -1\baselineskip \advance\textheight by 1zw % 版面を中央に（上下） \topmargin=\paperheight \advance\topmargin by -\textheight \divide\topmargin by 2 \advance\topmargin by -1truein \advance\topmargin by -\headheight \advance\topmargin by -\headsep % 版面を中央に（左右） \oddsidemargin=\paperwidth \advance\oddsidemargin by -\textwidth \divide\oddsidemargin by 2 \advance\oddsidemargin by -1truein \evensidemargin=\paperwidth \advance\evensidemargin by -\textwidth \divide\evensidemargin by 2 \advance\evensidemargin by -1truein % \topskip調整 \topskip = 0.</description>
+% 上下に2cm、左右に1cmの余白を取る \usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry} ターミナルで$ texdoc geometryを実行すれば、geometryパッケージのマニュアルを読むことができる。
+jlreq.cls jlreq.clsを用いている場合、クラスオプションを用いて余白設定を行なうことができる。プリアンブルに次のように書き込む。
+\documentclass[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=41]{jlreq} すると、
+ 文字サイズ　14級 行送り　24.5歯 行長　45字 行数　41行  に設定することができる。字数・行数を指定するのではなく、余白の広さを直接指定する場合には、次のようにする。
+% 上下に2cm、左右に1cmの余白を取る % head_space: 上部余白 % foot_space: 下部余白 % gutter: ノド余白（左とじの場合は左側の余白、右とじの場合は右側の余白） % fore-edge: 小口余白（ノドとは逆側の余白） \documentclass[head_space=2cm, foot_space=2cm, gutter=1cm, fore-edge=1cm]{jlreq} hanmenパッケージ 拙作のhanmenパッケージを用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。</description>
     </item>
     
     <item>

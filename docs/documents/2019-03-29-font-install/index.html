@@ -53,13 +53,13 @@
 <p>フォントの形式は通常、otfやttfなどであるが、TeXはそれらを直接に扱うことができない。そこでtfmファイルなどのフォントファイルを生成して介在させる必要がある（tfmは、TeX Font Metricの略）。面倒だが、フォントごとに別のtfmを生成せねばならない。</p>
 <h2 id="otftotfm">otftotfm</h2>
 <p>tfmを生成するためには「otftotfm」というソフトを使う。otftotfmはふつうTeXをインストールしたときに一緒にインストールされているはずだ。インストールされているかどうかを確認するためには、ターミナルで、</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">otftotfm --version
-</code></pre></div><p>と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">otftotfm --version
+</span></span></code></pre></div><p>と打ち、ヴァージョン情報が返ってくるかどうかを確かめればよい。</p>
 <h2 id="tfmなどの生成">tfmなどの生成</h2>
 <p>さて今回はGoogle Fontsに収録されている<a href="https://fonts.google.com/specimen/Josefin+Slab?category=Serif">Josefin Slab</a>というフォントをインストールしてみよう。まずは、一つのウェイト（Regular）だけをインストールしてみる。</p>
 <p>まず作業用ディレクトリを適当に作っておき、そこにJosefinSlab-Regular.ttfを入れておく。ターミナルで作業用ディレクトリに行き、次のコマンドを実行してみよう。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
-</code></pre></div><p>すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
+</span></span></code></pre></div><p>すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。</p>
 <p>一応、オプションの意味を説明しておこう。</p>
 <ul>
 <li><code>--no-type1 --no-dotlessj</code>は、「Type 1フォントへの変換を行わない」ということ、らしい。あまり理解できていない。</li>
@@ -68,103 +68,103 @@
 <li><code>-n josefinslab-regular</code>は、tfm名の指定。これも、自分が分かりやすいよう適当に名前を付ければよい。</li>
 </ul>
 <p>また、<code>-fkern</code>とすればカーニングの、<code>-fliga</code>とすればリガチャの情報を、tfmに含ませることができる。Josefin Slabにはこれらの機能がなかったから上ではこのオプションをつけていないが、この機能があればつけたほうがよい。つまり、もしJosefin Slabがカーニングやリガチャの機能を備えていた場合には、次のようにオプションをつけてコマンドを実行するほうがよい、というわけである。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">otftotfm -fkern -fliga --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
-</code></pre></div><p><code>otfinfo -f JosefinSlab-Regular.ttf</code>などと打てば、フォントにどのような機能が備わっているかを確認できる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">otftotfm -fkern -fliga --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
+</span></span></code></pre></div><p><code>otfinfo -f JosefinSlab-Regular.ttf</code>などと打てば、フォントにどのような機能が備わっているかを確認できる。</p>
 <h2 id="styファイルの作成">styファイルの作成</h2>
 <p>各種ファイルが生成できたならば、すかさず、josefinslab.styという名前でstyファイルを作る。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
-</span><span class="c">% josefinslab.sty
-</span><span class="c">%
-</span><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile josefinslab.map<span class="nb">}}</span><span class="c">% 先程生成したmapファイルの読み込み
-</span><span class="c"></span><span class="k">\DeclareFontFamily</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{}</span><span class="c">% TeXファイル内で使うフォント名を設定
-</span><span class="c"></span><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-regular<span class="nb">}{}</span><span class="c">% 上で設定したフォント名と、先程生成したtfmファイルとを結びつける
-</span><span class="c"></span><span class="k">\endinput</span>
-</code></pre></div><h2 id="インストールできたかを確認">インストールできたかを確認</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c">% josefinslab.sty
+</span></span></span><span class="line"><span class="cl"><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile josefinslab.map<span class="nb">}}</span><span class="c">% 先程生成したmapファイルの読み込み
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\DeclareFontFamily</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{}</span><span class="c">% TeXファイル内で使うフォント名を設定
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-regular<span class="nb">}{}</span><span class="c">% 上で設定したフォント名と、先程生成したtfmファイルとを結びつける
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\endinput</span>
+</span></span></code></pre></div><h2 id="インストールできたかを確認">インストールできたかを確認</h2>
 <p>ここまでできたら、ほとんどインストールは完了したと言ってよい（今のままだと、各種ファイルがディレクトリにたくさん散らばっていて、気持ち悪いかもしれないが、この問題は次の節で解決する）。</p>
 <p>動作確認のため、作業用ディレクトリにTeXファイルを作って、フォントが埋め込まれるかをチェックしておこう。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx]</span><span class="nb">{</span>jsarticle<span class="nb">}</span>
-<span class="k">\usepackage</span><span class="nb">{</span>josefinslab<span class="nb">}</span>
-<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-<span class="k">\romanfamily</span><span class="nb">{</span>josefinslab<span class="nb">}</span><span class="k">\selectfont</span>
-This is a test.
-<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</code></pre></div><p>「This is a test.」がJosefin Slabで表示されたら、ここまでの作業はうまくいったことになる。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx]</span><span class="nb">{</span>jsarticle<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>josefinslab<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\romanfamily</span><span class="nb">{</span>josefinslab<span class="nb">}</span><span class="k">\selectfont</span>
+</span></span><span class="line"><span class="cl">This is a test.
+</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></span></code></pre></div><p>「This is a test.」がJosefin Slabで表示されたら、ここまでの作業はうまくいったことになる。</p>
 <h1 id="すべてのウェイトをインストールする">すべてのウェイトをインストールする</h1>
 <h2 id="tfmなどの生成とインストール">tfmなどの生成とインストール</h2>
 <p>すべてのウェイトをインストールするには、同じことを全ウェイトで実行すればよい。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
-otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular-italic JosefinSlab-RegularItalic.ttf
-otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-light JosefinSlab-Light.ttf
-otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-light-italic JosefinSlab-LightItalic.ttf
-otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-thin JosefinSlab-Thin.ttf
-otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-thin-italic JosefinSlab-ThinItalic.ttf
-otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-semibold JosefinSlab-SemiBold.ttf
-otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-semibold-italic JosefinSlab-SemiBoldItalic.ttf
-otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-bold JosefinSlab-Bold.ttf
-otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-bold-italic JosefinSlab-BoldItalic.ttf
-</code></pre></div><p>このままでは各種ファイルでディレクトリがごちゃごちゃする。そこで○○○.tfmはtfmフォルダ内のjosefinslabフォルダに、○○○.vfはvfフォルダ内のjosefinslabフォルダに、というような塩梅で移動させておく。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir vf/
-mkdir tfm/
-mkdir map/
-mkdir enc/
-mkdir vf/josefinslab/
-mkdir tfm/josefinslab/
-mkdir map/josefinslab/
-mkdir enc/josefinslab/
-mv *.vf vf/josefinslab/
-mv *.tfm tfm/josefinslab/
-mv *.map map/josefinslab/
-mv *.enc enc/josefinslab/
-</code></pre></div><p>こうして、各種ファイルを収納した四つのフォルダが作られた。これらのフォルダを、<code>$TEXMF/fonts/</code>へ移動させる（マージさせる）<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>と、tfmなどの各種ファイルがカレントディレクトリになくとも使えるようになる。こうしてtfm類のインストールは完了する。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf
+</span></span><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-regular-italic JosefinSlab-RegularItalic.ttf
+</span></span><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-light JosefinSlab-Light.ttf
+</span></span><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-light-italic JosefinSlab-LightItalic.ttf
+</span></span><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-thin JosefinSlab-Thin.ttf
+</span></span><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-thin-italic JosefinSlab-ThinItalic.ttf
+</span></span><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-semibold JosefinSlab-SemiBold.ttf
+</span></span><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-semibold-italic JosefinSlab-SemiBoldItalic.ttf
+</span></span><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-bold JosefinSlab-Bold.ttf
+</span></span><span class="line"><span class="cl">otftotfm --no-type1 --no-dotlessj --mapfile<span class="o">=</span>josefinslab.map -e ec.enc -n josefinslab-bold-italic JosefinSlab-BoldItalic.ttf
+</span></span></code></pre></div><p>このままでは各種ファイルでディレクトリがごちゃごちゃする。そこで○○○.tfmはtfmフォルダ内のjosefinslabフォルダに、○○○.vfはvfフォルダ内のjosefinslabフォルダに、というような塩梅で移動させておく。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir vf/
+</span></span><span class="line"><span class="cl">mkdir tfm/
+</span></span><span class="line"><span class="cl">mkdir map/
+</span></span><span class="line"><span class="cl">mkdir enc/
+</span></span><span class="line"><span class="cl">mkdir vf/josefinslab/
+</span></span><span class="line"><span class="cl">mkdir tfm/josefinslab/
+</span></span><span class="line"><span class="cl">mkdir map/josefinslab/
+</span></span><span class="line"><span class="cl">mkdir enc/josefinslab/
+</span></span><span class="line"><span class="cl">mv *.vf vf/josefinslab/
+</span></span><span class="line"><span class="cl">mv *.tfm tfm/josefinslab/
+</span></span><span class="line"><span class="cl">mv *.map map/josefinslab/
+</span></span><span class="line"><span class="cl">mv *.enc enc/josefinslab/
+</span></span></code></pre></div><p>こうして、各種ファイルを収納した四つのフォルダが作られた。これらのフォルダを、<code>$TEXMF/fonts/</code>へ移動させる（マージさせる）<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>と、tfmなどの各種ファイルがカレントディレクトリになくとも使えるようになる。こうしてtfm類のインストールは完了する。</p>
 <p>mapファイルが読み込めずエラーが生ずる場合、</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mktexlsr
-</code></pre></div><p>を実行して情報を更新する。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mktexlsr
+</span></span></code></pre></div><p>を実行して情報を更新する。</p>
 <h2 id="styファイルの生成とインストール">styファイルの生成とインストール</h2>
 <p>さらにstyファイルを作る。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
-</span><span class="c">% josefinslab.sty
-</span><span class="c">%
-</span><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile josefinslab.map<span class="nb">}}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>el<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-thin<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>el<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-thin-italic<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>l<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-light<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>l<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-light-italic<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-regular<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-regular-italic<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>sb<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-semibold<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>sb<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-semibold-italic<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-bold<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-bold-italic<span class="nb">}{}</span>
-<span class="k">\endinput</span>
-</code></pre></div><p>これを<code>$TEXMF/tex/latex/</code>に移動させる。これでstyファイルのインストールも完了する。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c">% josefinslab.sty
+</span></span></span><span class="line"><span class="cl"><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile josefinslab.map<span class="nb">}}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>el<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-thin<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>el<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-thin-italic<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>l<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-light<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>l<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-light-italic<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-regular<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-regular-italic<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>sb<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-semibold<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>sb<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-semibold-italic<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; josefinslab-bold<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; josefinslab-bold-italic<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\endinput</span>
+</span></span></code></pre></div><p>これを<code>$TEXMF/tex/latex/</code>に移動させる。これでstyファイルのインストールも完了する。</p>
 <p>本当は<code>\DeclareFontShape……</code>のような情報はstyでなくfdファイルに書き込むのが正しいのかもしれないが、fdファイルを作るやり方はよく分からなかった。しかしstyに書いても動くことは動くので、動作の点からは特に問題ないものと思われる。</p>
 <h1 id="scaleオプションの追加">scaleオプションの追加</h1>
 <p>scaleオプションを追加しておくと便利である（既存の欧文フォントのパッケージには大抵scaleオプションがある）。scaleオプションとは、<code>\usepackage[scale=0.9]{josefinslab}</code>などとすれば欧文が0.9倍の大きさで印字されるようなオプション機能である。</p>
 <p>scaleオプションを実装するためには、styファイルを少しばかり書き換えるだけでよろしい。具体的には以下のようにする（煩雑になるのを避けるためウェイトは二種類のみにしてある）。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="c">%
-</span><span class="c">% josefinslab.sty
-</span><span class="c">%
-</span><span class="c"></span>
-<span class="k">\ProvidesPackage</span><span class="nb">{</span>josefinslab<span class="nb">}</span>[2019/03/31 v0.2]
-
-<span class="k">\RequirePackage</span><span class="nb">{</span>xkeyval<span class="nb">}</span>
-<span class="k">\DeclareOptionX</span><span class="nb">{</span>scale<span class="nb">}{</span><span class="k">\def\jsfnslb</span>@scale<span class="nb">{</span>#1<span class="nb">}}</span>
-<span class="k">\DeclareOptionX</span><span class="nb">{</span>scaled<span class="nb">}{</span><span class="k">\def\jsfnslb</span>@scale<span class="nb">{</span>#1<span class="nb">}}</span>
-<span class="k">\ExecuteOptionsX</span><span class="nb">{</span>scale=1<span class="nb">}</span>
-<span class="k">\ProcessOptionsX</span>
-
-<span class="k">\def\jsfnslb</span>@@scale<span class="nb">{</span>s*[<span class="k">\jsfnslb</span>@scale]<span class="nb">}</span>
-
-<span class="k">\DeclareFontFamily</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-regular<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-regular-italic<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-bold<span class="nb">}{}</span>
-<span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-bold-italic<span class="nb">}{}</span>
-
-<span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile josefinslab.map<span class="nb">}}</span>
-
-<span class="k">\endinput</span>
-</code></pre></div><h1 id="参考文献">参考文献</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c">% josefinslab.sty
+</span></span></span><span class="line"><span class="cl"><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>
+</span></span><span class="line"><span class="cl"><span class="k">\ProvidesPackage</span><span class="nb">{</span>josefinslab<span class="nb">}</span>[2019/03/31 v0.2]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\RequirePackage</span><span class="nb">{</span>xkeyval<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareOptionX</span><span class="nb">{</span>scale<span class="nb">}{</span><span class="k">\def\jsfnslb</span>@scale<span class="nb">{</span>#1<span class="nb">}}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareOptionX</span><span class="nb">{</span>scaled<span class="nb">}{</span><span class="k">\def\jsfnslb</span>@scale<span class="nb">{</span>#1<span class="nb">}}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\ExecuteOptionsX</span><span class="nb">{</span>scale=1<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\ProcessOptionsX</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\def\jsfnslb</span>@@scale<span class="nb">{</span>s*[<span class="k">\jsfnslb</span>@scale]<span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontFamily</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-regular<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>m<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-regular-italic<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>n<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-bold<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\DeclareFontShape</span><span class="nb">{</span>T1<span class="nb">}{</span>josefinslab<span class="nb">}{</span>bx<span class="nb">}{</span>it<span class="nb">}{</span>&lt;-&gt; <span class="k">\jsfnslb</span>@@scale josefinslab-bold-italic<span class="nb">}{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>pdf:mapfile josefinslab.map<span class="nb">}}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\endinput</span>
+</span></span></code></pre></div><h1 id="参考文献">参考文献</h1>
 <ul>
 <li><a href="https://zrbabbler.hatenablog.com/entry/20110926/1317041905">dvipdfmx で OpenType する件について (1)</a></li>
 <li><a href="https://zrbabbler.hatenablog.com/entry/20110927/1317136030">dvipdfmx で OpenType する件について (2)</a></li>
@@ -185,7 +185,7 @@ mv *.enc enc/josefinslab/
 <div class="showarticleinfo">
     <span class="material-icons-round">schedule</span> 2019年3月29日<br>
     
-    <span class="material-icons-round">update</span> 2021年12月10日<br>
+    <span class="material-icons-round">update</span> 2022年2月28日<br>
     
     <span class="material-icons-round">local_offer</span>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/font">#font</a></code> <br>
 </div>

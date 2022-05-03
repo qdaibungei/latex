@@ -70,68 +70,68 @@
 </ul>
 <p>これは、「頁数節約のため一頁あたりの文字数を多めにしつつ、最大限、可読性も確保する」というコンセプトのもとで、幾度も調整を重ねて設計したものである。</p>
 <p>具体的には次のように記述してLaTeXで実現している（細かい解説は面倒なので割愛）。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="c">%% ドキュメントクラス読み込み時にA5サイズ指定
-</span><span class="c"></span><span class="k">\documentclass</span><span class="na">[a5paper,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
-<span class="k">\usepackage</span><span class="na">[tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
-
-<span class="c">%% papersize
-</span><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>papersize=<span class="k">\the\paperwidth</span>,<span class="k">\the\paperheight</span><span class="nb">}}</span><span class="c">% 通常
-</span><span class="c">% 本文に上下左右3mmの塗り足しを作る細工
-</span><span class="c">% \newdimen\stockwidth
-</span><span class="c">% \newdimen\stockheight
-</span><span class="c">% \setlength{\stockwidth}{\paperwidth}
-</span><span class="c">% \setlength{\stockheight}{\paperheight}
-</span><span class="c">% \advance\stockwidth by 6mm
-</span><span class="c">% \advance\stockheight by 6mm
-</span><span class="c">% \advance\voffset by 3mm
-</span><span class="c">% \advance\hoffset by 3mm
-</span><span class="c">% \AtBeginDvi{\special{papersize=\the\stockwidth,\the\stockheight}}
-</span><span class="c"></span>
-<span class="c">%% layout
-</span><span class="c"></span><span class="k">\newcounter</span><span class="nb">{</span>dangumi<span class="nb">}</span>
-<span class="k">\setcounter</span><span class="nb">{</span>dangumi<span class="nb">}{</span>0<span class="nb">}</span>
-<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\newhanmenI</span><span class="nb">}{</span><span class="c">%
-</span><span class="c"></span>    <span class="c">% H = ((19.5/4)*(24-1)/(22-1))*4
-</span><span class="c"></span>    <span class="c">% TBmargin: (210-((13/4)*50))/2=23.75
-</span><span class="c"></span>    <span class="c">% ko=(newhanmenIIに追随), te=23.75-16.4325=7.3175
-</span><span class="c"></span>    <span class="c">% (3.25*6)=19.5
-</span><span class="c"></span>    <span class="c">% footskip=(newhanmenIIに追随)
-</span><span class="c"></span>    <span class="k">\newhanmen</span><span class="nb">{</span>Q=13,H=21.357142857,W=50,L=22,ko=0mm,te=-7.3175mm,nodo=18mm,chi=<span class="k">\relax</span>,footskip=3.25mm,tate<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="c">% \pagegridon{g=50,column=1}
-</span><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[RE]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[LO]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@lhasira<span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="nb">}</span>
-<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\newhanmenII</span><span class="nb">}{</span><span class="c">%
-</span><span class="c"></span>    <span class="c">% RLmargin: (148-(19.5/4)*(24-1)-(13/4))/2=16.3125, TBmargin: (210-((13/4)*54.5))/2=16.4375
-</span><span class="c"></span>    <span class="c">% ko=18−16.3125=1.6875, te=1
-</span><span class="c"></span>    <span class="k">\newhanmen</span><span class="nb">{</span>Q=13,H=19.5,W=54.5,L=24,ko=0mm,te=0mm,nodo=18mm,chi=<span class="k">\relax</span>,footskip=3.25mm,tate<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="c">% \pagegridon{g=26,column=2,columnskip=28.5}
-</span><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[RE]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[LO]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@lhasira<span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="nb">}</span>
-<span class="k">\fancyhf</span><span class="nb">{}</span>
-<span class="k">\def\qbook</span>@nombre<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>    <span class="nb">{</span><span class="k">\fontsizeXI\geneinombre\thepage</span><span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="nb">}</span>
-<span class="k">\def\qbook</span>@lhasira<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>    <span class="nb">{</span><span class="k">\fontsizeIX\qbook</span>@chaptertitle<span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="nb">}</span>
-<span class="k">\def\qbook</span>@rhasira<span class="nb">{</span><span class="c">%
-</span><span class="c"></span>    <span class="nb">{</span><span class="k">\fontsizeX\gtfamily\selectfont</span>
-    <span class="k">\booktitlename</span><span class="nb">}</span><span class="c">%
-</span><span class="c"></span><span class="nb">}</span>
-<span class="k">\newenvironment</span><span class="nb">{</span>honbun<span class="nb">}{</span><span class="c">% 環境の名称はmymulticolsくらいでよいかも
-</span><span class="c"></span>    <span class="k">\ifnum\value</span><span class="nb">{</span>dangumi<span class="nb">}</span>=1
-    <span class="k">\fi</span>
-    <span class="k">\ifnum\value</span><span class="nb">{</span>dangumi<span class="nb">}</span>&gt;1
-        <span class="k">\multicolsep</span>=0pt
-        <span class="k">\begin</span><span class="nb">{</span>multicols*<span class="nb">}{</span><span class="k">\value</span><span class="nb">{</span>dangumi<span class="nb">}}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\fi</span><span class="nb">}{</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\ifnum\value</span><span class="nb">{</span>dangumi<span class="nb">}</span>&gt;1
-        <span class="k">\end</span><span class="nb">{</span>multicols*<span class="nb">}</span><span class="c">%
-</span><span class="c"></span>    <span class="k">\fi</span>
-<span class="nb">}</span>
-</code></pre></div><p>以上の設定により、『九大文学』の本文組版はこのような仕上がりとなった。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl"><span class="c">%% ドキュメントクラス読み込み時にA5サイズ指定
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\documentclass</span><span class="na">[a5paper,autodetect-engine]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%% papersize
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\AtBeginDvi</span><span class="nb">{</span><span class="k">\special</span><span class="nb">{</span>papersize=<span class="k">\the\paperwidth</span>,<span class="k">\the\paperheight</span><span class="nb">}}</span><span class="c">% 通常
+</span></span></span><span class="line"><span class="cl"><span class="c">% 本文に上下左右3mmの塗り足しを作る細工
+</span></span></span><span class="line"><span class="cl"><span class="c">% \newdimen\stockwidth
+</span></span></span><span class="line"><span class="cl"><span class="c">% \newdimen\stockheight
+</span></span></span><span class="line"><span class="cl"><span class="c">% \setlength{\stockwidth}{\paperwidth}
+</span></span></span><span class="line"><span class="cl"><span class="c">% \setlength{\stockheight}{\paperheight}
+</span></span></span><span class="line"><span class="cl"><span class="c">% \advance\stockwidth by 6mm
+</span></span></span><span class="line"><span class="cl"><span class="c">% \advance\stockheight by 6mm
+</span></span></span><span class="line"><span class="cl"><span class="c">% \advance\voffset by 3mm
+</span></span></span><span class="line"><span class="cl"><span class="c">% \advance\hoffset by 3mm
+</span></span></span><span class="line"><span class="cl"><span class="c">% \AtBeginDvi{\special{papersize=\the\stockwidth,\the\stockheight}}
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>
+</span></span><span class="line"><span class="cl"><span class="c">%% layout
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\newcounter</span><span class="nb">{</span>dangumi<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\setcounter</span><span class="nb">{</span>dangumi<span class="nb">}{</span>0<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\newhanmenI</span><span class="nb">}{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% H = ((19.5/4)*(24-1)/(22-1))*4
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% TBmargin: (210-((13/4)*50))/2=23.75
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% ko=(newhanmenIIに追随), te=23.75-16.4325=7.3175
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% (3.25*6)=19.5
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% footskip=(newhanmenIIに追随)
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\newhanmen</span><span class="nb">{</span>Q=13,H=21.357142857,W=50,L=22,ko=0mm,te=-7.3175mm,nodo=18mm,chi=<span class="k">\relax</span>,footskip=3.25mm,tate<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% \pagegridon{g=50,column=1}
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[RE]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[LO]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@lhasira<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\newhanmenII</span><span class="nb">}{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% RLmargin: (148-(19.5/4)*(24-1)-(13/4))/2=16.3125, TBmargin: (210-((13/4)*54.5))/2=16.4375
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% ko=18−16.3125=1.6875, te=1
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\newhanmen</span><span class="nb">{</span>Q=13,H=19.5,W=54.5,L=24,ko=0mm,te=0mm,nodo=18mm,chi=<span class="k">\relax</span>,footskip=3.25mm,tate<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="c">% \pagegridon{g=26,column=2,columnskip=28.5}
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[RE]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\fancyfoot</span><span class="na">[LO]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\qbook</span>@nombre<span class="k">\hspace*</span><span class="nb">{</span>1zw<span class="nb">}</span><span class="k">\qbook</span>@lhasira<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\fancyhf</span><span class="nb">{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\qbook</span>@nombre<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="nb">{</span><span class="k">\fontsizeXI\geneinombre\thepage</span><span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\qbook</span>@lhasira<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="nb">{</span><span class="k">\fontsizeIX\qbook</span>@chaptertitle<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\def\qbook</span>@rhasira<span class="nb">{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="nb">{</span><span class="k">\fontsizeX\gtfamily\selectfont</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\booktitlename</span><span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newenvironment</span><span class="nb">{</span>honbun<span class="nb">}{</span><span class="c">% 環境の名称はmymulticolsくらいでよいかも
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\ifnum\value</span><span class="nb">{</span>dangumi<span class="nb">}</span>=1
+</span></span><span class="line"><span class="cl">    <span class="k">\fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">\ifnum\value</span><span class="nb">{</span>dangumi<span class="nb">}</span>&gt;1
+</span></span><span class="line"><span class="cl">        <span class="k">\multicolsep</span>=0pt
+</span></span><span class="line"><span class="cl">        <span class="k">\begin</span><span class="nb">{</span>multicols*<span class="nb">}{</span><span class="k">\value</span><span class="nb">{</span>dangumi<span class="nb">}}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\fi</span><span class="nb">}{</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\ifnum\value</span><span class="nb">{</span>dangumi<span class="nb">}</span>&gt;1
+</span></span><span class="line"><span class="cl">        <span class="k">\end</span><span class="nb">{</span>multicols*<span class="nb">}</span><span class="c">%
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\fi</span>
+</span></span><span class="line"><span class="cl"><span class="nb">}</span>
+</span></span></code></pre></div><p>以上の設定により、『九大文学』の本文組版はこのような仕上がりとなった。</p>
 <p><img src="/latex/assets/img/2020-04-06.jpg" alt=""></p>
 <p>　</p>
 <p>（<a href="https://qdaibungei.github.io/latex/documents/2020-04-08-latexnovel/">次回</a>に続く）</p>
