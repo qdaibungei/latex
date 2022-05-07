@@ -175,7 +175,7 @@
 <p>さて、あとは先程の雛形ファイルをPDF化できれば、ひとまずは成功である。</p>
 <p>コンピュータに詳しい人なら、PDF化は容易であろう。しかし、コンピュータに不慣れな人にはこれが難しく感じられるはずである。</p>
 <p>そこで、簡単にPDF化する方法として、以下のものを勧めたい（なお、以下の方法はWindows限定）。</p>
-<p>次の文字列を <code>tex2pdf.bat</code> という名で保存する<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。</p>
+<p>次の文字列を <code>tex2pdf.bat</code> という名で保存する<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> %~dp0
 </span></span><span class="line"><span class="cl">uplatex novel
 </span></span><span class="line"><span class="cl">dvipdfmx novel
@@ -206,7 +206,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </span></span></code></pre></div><p>ルビマクロの使い方は、「<a href="http://qiita.com/zr_tex8r/items/42466cbcbeb670a3a2dc">LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～</a>」を参照せよ。</p>
 <h2 id="縦中横">縦中横</h2>
-<p>縦中横が使いたいときは、<code>\tcy</code> マクロが使える<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
+<p>縦中横が使いたいときは、<code>\tcy</code> マクロが使える<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
@@ -232,7 +232,10 @@
 <p>なぜこれが簡易的方法なのかと言うと、例えば全角空白を用いてインデントを表現していたりするからだ。全角空白を用いてインデント代わりにするのは、組版の規則を考えると本当はよくない（このやり方だと、段落によってインデント量にわずかな差がうまれる危険がある）。また、本当はスタイルファイルではなくクラスファイルを作ったほうがよい（なお、ここで紹介しているスタイルファイルをクラスファイルに仕立て直すことはそれほど難しくはない）。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>縦中横を実現するマクロとしては、plextパッケージですでに <code>\rensuji</code> が提供されている。しかし、<code>\rensuji</code> を直接使うとどうやら無駄に \xkanjiskip が挿入されてしまうようなので、ここでは独自に <code>\tcy</code> というマクロを使うこととした。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>ファイル名は末尾に <code>.bat</code> があれば何でもよいが、ここでは &ldquo;tex to pdf&rdquo; という意味で <code>tex2pdf.bat</code> という名にした。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>縦中横を実現するマクロとしては、plextパッケージですでに <code>\rensuji</code> が提供されている。しかし、<code>\rensuji</code> を直接使うとどうやら無駄に \xkanjiskip が挿入されてしまうようなので、ここでは独自に <code>\tcy</code> というマクロを使うこととした。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -240,7 +243,7 @@
 <div class="showarticleinfo">
     <span class="material-icons-round">schedule</span> 2017年2月26日<br>
     
-    <span class="material-icons-round">update</span> 2021年12月11日<br>
+    <span class="material-icons-round">update</span> 2022年5月7日<br>
     
     <span class="material-icons-round">local_offer</span>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/dtp">#DTP</a></code> <br>
 </div>
