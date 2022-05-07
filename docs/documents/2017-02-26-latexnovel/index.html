@@ -46,7 +46,7 @@
 </p>
 <p>この記事は、LaTeXで小説を組版するにはどうすればよいかを具体的に解説するものである。理論的な話は最小限に留め、主として実践的な話題を取り上げる。つまり、具体的にどう手を動かせばLaTeXで小説が組版できるのかを解説する。</p>
 <p>コンピュータおよびLaTeXの初心者でも読めるように配慮したつもりだが、LaTeXの知識ゼロだと厳しいかもしれない。</p>
-<p>なお、以下の方法はあくまでも初心者向けの簡易的方法であり、私が普段LaTeXで組版している実際の現場の方法とはかなり異なる。</p>
+<p>なお、以下の方法はあくまでも初心者向けの簡易的方法<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>であり、私が普段LaTeXで組版している実際の現場の方法とはかなり異なる。</p>
 <h1 id="電撃文庫の再現">電撃文庫の再現</h1>
 <h2 id="雛形ファイルの用意">雛形ファイルの用意</h2>
 <p>具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。</p>
@@ -54,17 +54,16 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\NeedsTeXFormat</span><span class="nb">{</span>pLaTeX2e<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\ProvidesPackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">\RequirePackage</span><span class="na">[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\RequirePackage</span><span class="na">[deluxe,uplatex]</span><span class="nb">{</span>otf<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\RequirePackage</span><span class="nb">{</span>plext,pxrubrica<span class="nb">}</span><span class="c">% plextは縦組み時に有用なパッケージ、pxrubricaはルビ振りに必要なパッケージ。
+</span></span><span class="line"><span class="cl"><span class="k">\RequirePackage</span><span class="na">[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\RequirePackage</span><span class="na">[deluxe,uplatex]</span><span class="nb">{</span>otf<span class="nb">}</span><span class="c">% フォントの多書体化。
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\RequirePackage</span><span class="nb">{</span>plext,pxrubrica<span class="nb">}</span><span class="c">% plextは縦組み時に有用なパッケージ、pxrubricaはルビ振りに必要なパッケージ。
 </span></span></span><span class="line"><span class="cl"><span class="c"></span>
 </span></span><span class="line"><span class="cl"><span class="c">%
 </span></span></span><span class="line"><span class="cl"><span class="c">%% header &amp; footer
 </span></span></span><span class="line"><span class="cl"><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c">% ページ番号を出力するときは\thepageと書く。
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\fancyhf</span><span class="nb">{}</span><span class="c">% ヘッダー・フッターの初期化
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\def\nvlsty</span>@nombre<span class="nb">{</span><span class="k">\textit</span><span class="nb">{</span><span class="k">\thepage</span><span class="nb">}}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\def\nvlsty</span>@booktitle<span class="nb">{</span>ここにタイトルを書く<span class="nb">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\def\nvlsty</span>@nombre<span class="nb">{</span><span class="k">\textit</span><span class="nb">{</span><span class="k">\thepage</span><span class="nb">}}</span><span class="c">% ページ番号を出力するときは\thepageと書く。
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\def\nvlsty</span>@booktitle<span class="nb">{</span>ここにタイトルを書く<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\fancyhead</span><span class="na">[RE]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\scriptsize\nvlsty</span>@nombre<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\fancyhead</span><span class="na">[LO]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span>0pt<span class="nb">}</span><span class="k">\footnotesize\nvlsty</span>@nombre<span class="k">\hskip</span>1zw<span class="k">\scriptsize\nvlsty</span>@booktitle<span class="nb">}</span>
 </span></span><span class="line"><span class="cl">
@@ -87,6 +86,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c">%% \xobeylines
 </span></span></span><span class="line"><span class="cl"><span class="c">%
 </span></span></span><span class="line"><span class="cl"><span class="c">% これは、空行をあけなくても段落分けできるようにする工夫。
+</span></span></span><span class="line"><span class="cl"><span class="c">% 参考：https://hakuoku.github.io/agakuTeX/tutorial/4_1linebreak/（ちなみにここに出てくるxsceyさんというのは当研究会メンバーです）
 </span></span></span><span class="line"><span class="cl"><span class="c">% 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。
 </span></span></span><span class="line"><span class="cl"><span class="c">% \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。
 </span></span></span><span class="line"><span class="cl"><span class="c">% ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない（実際私も、普段は空行で段落分けしている）。
@@ -120,7 +120,8 @@
 </span></span><span class="line"><span class="cl"><span class="k">\parsep</span>=0pt
 </span></span><span class="line"><span class="cl"><span class="k">\partopsep</span>=0pt
 </span></span><span class="line"><span class="cl"><span class="c">% 以下は、禁則処理を抑制するためのもの。
-</span></span></span><span class="line"><span class="cl"><span class="c">% ウィドウ処理などを厳密にやりすぎるとかえって見栄えが悪いので、
+</span></span></span><span class="line"><span class="cl"><span class="c">% 参考：『よくわかるLaTeX小説 All You Need Is LaTeX』(http://p-act.sakura.ne.jp/PARALLEL_ACT/LaTeX-Dojin/)
+</span></span></span><span class="line"><span class="cl"><span class="c">% ウィドウ処理などを厳密にやりすぎると商業出版の組み方に似せられないので、
 </span></span></span><span class="line"><span class="cl"><span class="c">% ここでは禁則処理を抑制しておく。
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\clubpenalty</span>=0
 </span></span><span class="line"><span class="cl"><span class="k">\widowpenalty</span>=0
@@ -159,7 +160,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2576=0     <span class="c">%ヶ
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\prebreakpenalty\jis</span>&#34;2139=0     <span class="c">%々（←これに関しては禁則処理を抑制しないほうが読みやすいかも）
 </span></span></span><span class="line"><span class="cl"><span class="c"></span>
-</span></span><span class="line"><span class="cl"><span class="c">% \endinputはスタイルファイルの末尾に記すおまじない。
+</span></span><span class="line"><span class="cl"><span class="c">% \endinputはスタイルファイルの末尾に記すおまじない。\endinputの後には何を記述しても無視される。
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\endinput</span>
 </span></span></code></pre></div><p>　</p>
 <p>次に、以下の文字列を <code>novel.tex</code> という名で保存する。これが雛形ファイルとなる。</p>
@@ -200,10 +201,10 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span><span class="line"><span class="cl">　<span class="k">\ruby</span><span class="na">[h]</span><span class="nb">{</span>吾輩<span class="nb">}{</span>わが|はい<span class="nb">}</span>は猫である。名前はまだ無い。
-</span></span><span class="line"><span class="cl">　どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番<span class="k">\ruby</span><span class="na">[h]</span><span class="nb">{</span>獰悪<span class="nb">}{</span>どう|あく<span class="nb">}</span>な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。
+</span></span><span class="line"><span class="cl">　<span class="k">\ruby</span><span class="nb">{</span>吾輩<span class="nb">}{</span>わが|はい<span class="nb">}</span>は猫である。名前はまだ無い。
+</span></span><span class="line"><span class="cl">　どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番<span class="k">\ruby</span><span class="nb">{</span>獰悪<span class="nb">}{</span>どう|あく<span class="nb">}</span>な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。
 </span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span></code></pre></div><p>ルビマクロの使い方は、<a href="http://qiita.com/zr_tex8r/items/42466cbcbeb670a3a2dc">LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～</a>を参照せよ。</p>
+</span></span></code></pre></div><p>ルビマクロの使い方は、「<a href="http://qiita.com/zr_tex8r/items/42466cbcbeb670a3a2dc">LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～</a>」を参照せよ。</p>
 <h2 id="縦中横">縦中横</h2>
 <p>縦中横が使いたいときは、<code>\tcy</code> マクロが使える<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
@@ -217,10 +218,9 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span><span class="line"><span class="cl">　<span class="k">\ruby</span><span class="na">[h]</span><span class="nb">{</span>吾輩<span class="nb">}{</span>わが|はい<span class="nb">}</span>は猫である。名前はまだ無い。
-</span></span><span class="line"><span class="cl">　<span class="k">\tcy</span><span class="nb">{</span>12<span class="nb">}</span>時だ！<span class="k">\zenkakuaki</span><span class="nb">{}</span>そろそろお昼にしよう<span class="k">\tcy</span><span class="nb">{</span>!!<span class="nb">}</span><span class="k">\zenkakuaki</span><span class="nb">{}</span>ラーメンがいいな！
+</span></span><span class="line"><span class="cl">　<span class="k">\ruby</span><span class="nb">{</span>吾輩<span class="nb">}{</span>わが|はい<span class="nb">}</span>は猫である！名前はまだ無い<span class="k">\tcy</span><span class="nb">{</span>!!<span class="nb">}{</span><span class="k">\zenkakuaki</span><span class="nb">}</span>無いのである！
 </span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span></code></pre></div><p><code>！</code> と <code>？</code> だけは、直後に全角空白を入れないで記述しておくと、PDF化させたさいに自動的に全角アキを挿入してくれるから、最初からそのように書いてもよい。しかし、<code>\tcy{!!}</code> の直後には <code>\zenkakuaki</code> が必ず要る。</p>
+</span></span></code></pre></div><p><code>！</code> と <code>？</code> だけは、直後に全角空白を入れないで記述しておくと、PDF化させたさいに自動的に全角アキを挿入してくれるから、最初からそのように書いてもよい（というか普通はそうする）。しかし、<code>\tcy{!!}</code> の直後には <code>\zenkakuaki</code> が必ず要る。</p>
 <h1 id="まとめ">まとめ</h1>
 <p>上で見たように、LaTeXで小説を組版するのはそんなに難しいことではない。誰でもできることである。</p>
 <p>ただし、レイアウトを変更したり、扉ページを作ったりは少し難しいので、ここでは解説しなかった。後日、中級編を執筆する予定なので、そこで解説できればと思っている。</p>
@@ -229,7 +229,7 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>ファイル名は末尾に <code>.bat</code> があれば何でもよいが、ここでは &ldquo;tex to pdf&rdquo; という意味で <code>tex2pdf.bat</code> という名にした。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>なぜこれが簡易的方法なのかと言うと、例えば全角空白を用いてインデントを表現していたりするからだ。全角空白を用いてインデント代わりにするのは、組版の規則を考えると本当はよくない（このやり方だと、段落によってインデント量にわずかな差がうまれる危険がある）。また、本当はスタイルファイルではなくクラスファイルを作ったほうがよい（なお、ここで紹介しているスタイルファイルをクラスファイルに仕立て直すことはそれほど難しくはない）。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
 <p>縦中横を実現するマクロとしては、plextパッケージですでに <code>\rensuji</code> が提供されている。しかし、<code>\rensuji</code> を直接使うとどうやら無駄に \xkanjiskip が挿入されてしまうようなので、ここでは独自に <code>\tcy</code> というマクロを使うこととした。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>

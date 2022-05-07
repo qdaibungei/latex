@@ -12,7 +12,9 @@ tags: ["LaTeX", "DTP"]
 
 コンピュータおよびLaTeXの初心者でも読めるように配慮したつもりだが、LaTeXの知識ゼロだと厳しいかもしれない。
 
-なお、以下の方法はあくまでも初心者向けの簡易的方法であり、私が普段LaTeXで組版している実際の現場の方法とはかなり異なる。
+なお、以下の方法はあくまでも初心者向けの簡易的方法[^1]であり、私が普段LaTeXで組版している実際の現場の方法とはかなり異なる。
+
+[^1]: なぜこれが簡易的方法なのかと言うと、例えば全角空白を用いてインデントを表現していたりするからだ。全角空白を用いてインデント代わりにするのは、組版の規則を考えると本当はよくない（このやり方だと、段落によってインデント量にわずかな差がうまれる危険がある）。また、本当はスタイルファイルではなくクラスファイルを作ったほうがよい（なお、ここで紹介しているスタイルファイルをクラスファイルに仕立て直すことはそれほど難しくはない）。
 
 
 # 電撃文庫の再現
@@ -25,16 +27,15 @@ tags: ["LaTeX", "DTP"]
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesPackage{novelstyle}
 
-\RequirePackage[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]{hanmen}
-\RequirePackage[deluxe,uplatex]{otf}
+\RequirePackage[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]{hanmen}% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。
+\RequirePackage[deluxe,uplatex]{otf}% フォントの多書体化。
 \RequirePackage{plext,pxrubrica}% plextは縦組み時に有用なパッケージ、pxrubricaはルビ振りに必要なパッケージ。
 
 %
 %% header & footer
 %
-% ページ番号を出力するときは\thepageと書く。
 \fancyhf{}% ヘッダー・フッターの初期化
-\def\nvlsty@nombre{\textit{\thepage}}
+\def\nvlsty@nombre{\textit{\thepage}}% ページ番号を出力するときは\thepageと書く。
 \def\nvlsty@booktitle{ここにタイトルを書く}
 \fancyhead[RE]{\vspace*{0pt}\scriptsize\nvlsty@nombre}
 \fancyhead[LO]{\vspace*{0pt}\footnotesize\nvlsty@nombre\hskip1zw\scriptsize\nvlsty@booktitle}
@@ -58,6 +59,7 @@ tags: ["LaTeX", "DTP"]
 %% \xobeylines
 %
 % これは、空行をあけなくても段落分けできるようにする工夫。
+% 参考：https://hakuoku.github.io/agakuTeX/tutorial/4_1linebreak/（ちなみにここに出てくるxsceyさんというのは当研究会メンバーです）
 % 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。
 % \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。
 % ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない（実際私も、普段は空行で段落分けしている）。
@@ -91,7 +93,8 @@ tags: ["LaTeX", "DTP"]
 \parsep=0pt
 \partopsep=0pt
 % 以下は、禁則処理を抑制するためのもの。
-% ウィドウ処理などを厳密にやりすぎるとかえって見栄えが悪いので、
+% 参考：『よくわかるLaTeX小説 All You Need Is LaTeX』(http://p-act.sakura.ne.jp/PARALLEL_ACT/LaTeX-Dojin/)
+% ウィドウ処理などを厳密にやりすぎると商業出版の組み方に似せられないので、
 % ここでは禁則処理を抑制しておく。
 \clubpenalty=0
 \widowpenalty=0
@@ -130,7 +133,7 @@ tags: ["LaTeX", "DTP"]
 \prebreakpenalty\jis"2576=0     %ヶ
 \prebreakpenalty\jis"2139=0     %々（←これに関しては禁則処理を抑制しないほうが読みやすいかも）
 
-% \endinputはスタイルファイルの末尾に記すおまじない。
+% \endinputはスタイルファイルの末尾に記すおまじない。\endinputの後には何を記述しても無視される。
 \endinput
 ```
 
@@ -202,12 +205,12 @@ dvipdfmx novel
 \documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
 \usepackage{novelstyle}
 \begin{document}
-　\ruby[h]{吾輩}{わが|はい}は猫である。名前はまだ無い。
-　どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番\ruby[h]{獰悪}{どう|あく}な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。
+　\ruby{吾輩}{わが|はい}は猫である。名前はまだ無い。
+　どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番\ruby{獰悪}{どう|あく}な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。
 \end{document}
 ```
 
-ルビマクロの使い方は、[LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～](http://qiita.com/zr_tex8r/items/42466cbcbeb670a3a2dc)を参照せよ。
+ルビマクロの使い方は、「[LaTeX 文書で“美しい日本の”ルビを使う ～pxrubrica パッケージ～](http://qiita.com/zr_tex8r/items/42466cbcbeb670a3a2dc)」を参照せよ。
 
 
 ## 縦中横
@@ -231,12 +234,11 @@ dvipdfmx novel
 \documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
 \usepackage{novelstyle}
 \begin{document}
-　\ruby[h]{吾輩}{わが|はい}は猫である。名前はまだ無い。
-　\tcy{12}時だ！\zenkakuaki{}そろそろお昼にしよう\tcy{!!}\zenkakuaki{}ラーメンがいいな！
+　\ruby{吾輩}{わが|はい}は猫である！名前はまだ無い\tcy{!!}{\zenkakuaki}無いのである！
 \end{document}
 ```
 
-`！` と `？` だけは、直後に全角空白を入れないで記述しておくと、PDF化させたさいに自動的に全角アキを挿入してくれるから、最初からそのように書いてもよい。しかし、`\tcy{!!}` の直後には `\zenkakuaki` が必ず要る。
+`！` と `？` だけは、直後に全角空白を入れないで記述しておくと、PDF化させたさいに自動的に全角アキを挿入してくれるから、最初からそのように書いてもよい（というか普通はそうする）。しかし、`\tcy{!!}` の直後には `\zenkakuaki` が必ず要る。
 
 
 # まとめ
