@@ -73,10 +73,8 @@
 <p>ヘッダ・フッタの位置の調整。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[headheight=13mm, headsep=1mm, footskip=3mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </span></span></code></pre></div><h2 id="上下左右の余白調整">上下左右の余白調整</h2>
-<p>デフォルトでは、版面は左右中央に配置される。これを、少しだけ小口側に寄せたり、天側に寄せたりしたい場合、以下のようにする（このオプションは正直インターフェースが微妙なので現在私自身は使っていないが、古い文書も処理できるよう残しておいた）。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[ko=3mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">%% 3mm小口寄せ
-</span></span></span><span class="line"><span class="cl"><span class="c">% \usepackage[te=4mm]{hanmen}%% 4mm天寄せ
-</span></span></span></code></pre></div><p>ノド、小口、天、地の広さを直接指定することもできる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない。もし間違えて両方指定した場合はエラーが出るようにしてある。</p>
+<p>デフォルトでは、版面は左右中央に配置される。</p>
+<p>左右中央のいずれかに版面を寄せたい場合には、ノド、小口、天、地の広さを直接手動で指定することができる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない（基本的に、hanmenパッケージはベタ組するためのパッケージなので）。もし間違えて両方指定した場合はエラーが出るようにしてある。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="c">% ノドと天の広さを指定
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\usepackage</span><span class="na">[nodo=20mm, ten=15mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="c">% 小口と地の広さを指定
@@ -86,6 +84,10 @@
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\usepackage</span><span class="na">[nodo=20mm, ten=15mm, addnodo=5mm, addten=1zw]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">% ノドは25mm、天は15mm+1zwで指定される
 </span></span></span><span class="line"><span class="cl"><span class="c">% 小口と地の広さを指定した後、広さを足す
 </span></span></span><span class="line"><span class="cl"><span class="c">% \usepackage[koguchi=20mm, chi=15mm, addkoguchi=-5mm, addchi=2mm]{hanmen}% 小口は15mm、地は17mmで指定される
+</span></span></span></code></pre></div><p>なお、版面を少しだけ小口側に寄せたり、天側に寄せたりしたい場合、以下のようにする（このオプションは正直インターフェースが微妙なので現在私自身は使っていないが、古い文書も処理できるよう残しておいた。現在の仕様では、同じことをするのに<code>addkoguchi</code>などを使ったほうが分かりやすいであろう）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[ko=3mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">%% 3mm小口寄せ
+</span></span></span><span class="line"><span class="cl"><span class="c">% \usepackage[te=4mm]{hanmen}%% 4mm天寄せ
+</span></span></span><span class="line"><span class="cl"><span class="c">% \usepackage[addkoguchi=-3mm]{hanmen}%% `\usepackage[ko=3mm]{hanmen}`と同値。この指定方法のほうがユーザーインターフェースとして分かりやすいであろう。
 </span></span></span></code></pre></div><h2 id="文字サイズ単位">文字サイズ単位</h2>
 <p>文字サイズ単位にQではなくptを使う。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[Q=13, pt]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">% 文字サイズが13ptになる

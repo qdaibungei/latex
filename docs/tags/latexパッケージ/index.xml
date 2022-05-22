@@ -33,10 +33,11 @@ jfonts.sty % % jfonts.sty %  \NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{jfonts} 
 各種オプション g グリッド線を表示させる（gに代入する値は上のWで指定した文字数と同じか、または近い整数値を入れる）。これで原稿用紙のようなマス目を表示させることができる。
 \usepackage[g=38]{hanmen} tate 縦組みにする。
 \usepackage[tate]{hanmen} ヘッダ・フッタ ヘッダ・フッタの位置の調整。
-\usepackage[headheight=13mm, headsep=1mm, footskip=3mm]{hanmen} 上下左右の余白調整 デフォルトでは、版面は左右中央に配置される。これを、少しだけ小口側に寄せたり、天側に寄せたりしたい場合、以下のようにする（このオプションは正直インターフェースが微妙なので現在私自身は使っていないが、古い文書も処理できるよう残しておいた）。
-\usepackage[ko=3mm]{hanmen}%% 3mm小口寄せ % \usepackage[te=4mm]{hanmen}%% 4mm天寄せ ノド、小口、天、地の広さを直接指定することもできる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない。もし間違えて両方指定した場合はエラーが出るようにしてある。
+\usepackage[headheight=13mm, headsep=1mm, footskip=3mm]{hanmen} 上下左右の余白調整 デフォルトでは、版面は左右中央に配置される。
+左右中央のいずれかに版面を寄せたい場合には、ノド、小口、天、地の広さを直接手動で指定することができる。なお当然ながら、ノドと小口を両方指定したり、天と地を両方指定したりすることはできない（基本的に、hanmenパッケージはベタ組するためのパッケージなので）。もし間違えて両方指定した場合はエラーが出るようにしてある。
 % ノドと天の広さを指定 \usepackage[nodo=20mm, ten=15mm]{hanmen} % 小口と地の広さを指定 % \usepackage[koguchi=20mm, chi=15mm]{hanmen} また、ノド、小口、天、地の広さを直接指定するだけでなく、既存の値に加算することもできる（それぞれ、addnodo、addkoguchi、addten、addchiというオプションで指定できる。なおこれらオプションは同時に指定してもエラーは生じない）。
-% ノドと天の広さを指定した後、広さを足す \usepackage[nodo=20mm, ten=15mm, addnodo=5mm, addten=1zw]{hanmen}% ノドは25mm、天は15mm+1zwで指定される % 小口と地の広さを指定した後、広さを足す % \usepackage[koguchi=20mm, chi=15mm, addkoguchi=-5mm, addchi=2mm]{hanmen}% 小口は15mm、地は17mmで指定される 文字サイズ単位 文字サイズ単位にQではなくptを使う。</description>
+% ノドと天の広さを指定した後、広さを足す \usepackage[nodo=20mm, ten=15mm, addnodo=5mm, addten=1zw]{hanmen}% ノドは25mm、天は15mm+1zwで指定される % 小口と地の広さを指定した後、広さを足す % \usepackage[koguchi=20mm, chi=15mm, addkoguchi=-5mm, addchi=2mm]{hanmen}% 小口は15mm、地は17mmで指定される なお、版面を少しだけ小口側に寄せたり、天側に寄せたりしたい場合、以下のようにする（このオプションは正直インターフェースが微妙なので現在私自身は使っていないが、古い文書も処理できるよう残しておいた。現在の仕様では、同じことをするのにaddkoguchiなどを使ったほうが分かりやすいであろう）。
+\usepackage[ko=3mm]{hanmen}%% 3mm小口寄せ % \usepackage[te=4mm]{hanmen}%% 4mm天寄せ % \usepackage[addkoguchi=-3mm]{hanmen}%% `\usepackage[ko=3mm]{hanmen}`と同値。この指定方法のほうがユーザーインターフェースとして分かりやすいであろう。 文字サイズ単位 文字サイズ単位にQではなくptを使う。</description>
     </item>
     
     <item>
