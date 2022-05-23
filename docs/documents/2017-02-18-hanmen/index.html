@@ -88,10 +88,10 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[ko=3mm]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">%% 3mm小口寄せ
 </span></span></span><span class="line"><span class="cl"><span class="c">% \usepackage[te=4mm]{hanmen}%% 4mm天寄せ
 </span></span></span><span class="line"><span class="cl"><span class="c">% \usepackage[addkoguchi=-3mm]{hanmen}%% `\usepackage[ko=3mm]{hanmen}`と同値。この指定方法のほうがユーザーインターフェースとして分かりやすいであろう。
-</span></span></span></code></pre></div><h2 id="文字サイズ単位">文字サイズ単位</h2>
-<p>文字サイズ単位にQではなくptを使う。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[Q=13, pt]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">% 文字サイズが13ptになる
-</span></span></span><span class="line"><span class="cl"><span class="c">% \usepackage[Q=13, ptj]{hanmen} % Wordに合わせたptのサイズにするには ptj とすること。
+</span></span></span></code></pre></div><h2 id="単位変更">単位変更</h2>
+<p>文字サイズ単位・行送り単位にQやHではなくptを使う。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[Q=13, H=20, pt]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">% 文字サイズが13pt、行送りが20ptになる。
+</span></span></span><span class="line"><span class="cl"><span class="c">% \usepackage[Q=13, H=20, ptj]{hanmen} % Wordに合わせたptのサイズにするには ptj とすること。
 </span></span></span></code></pre></div><h2 id="jisfontzoom">jisfontzoom</h2>
 <p>このパッケージは新ドキュメントクラス（jsbook.cls、jsarticle.clsなど）で使うことを想定している。旧ドキュメントクラス（jarticle.cls、tbook.clsなど）で使う場合、jisfontzoomオプションを付けないと、文字サイズが正しく設定されない。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[jisfontzoom]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
@@ -186,7 +186,7 @@
 <div class="showarticleinfo">
     <span class="material-icons-round">schedule</span> 2017年2月18日<br>
     
-    <span class="material-icons-round">update</span> 2021年12月5日<br>
+    <span class="material-icons-round">update</span> 2022年5月23日<br>
     
     <span class="material-icons-round">local_offer</span>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/latex%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8">#LaTeXパッケージ</a></code> <br>
 </div>
