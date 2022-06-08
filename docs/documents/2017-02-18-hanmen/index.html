@@ -96,9 +96,14 @@
 <p>このパッケージは新ドキュメントクラス（jsbook.cls、jsarticle.clsなど）で使うことを想定している。旧ドキュメントクラス（jarticle.cls、tbook.clsなど）で使う場合、jisfontzoomオプションを付けないと、文字サイズが正しく設定されない。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[jisfontzoom]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </span></span></code></pre></div><h2 id="adjustfontsize">adjustfontsize</h2>
+<p>このオプションは<strong>廃止</strong>した。デフォルトで、このオプションはつねに有効となるような挙動になった。</p>
+<p>もともとは次のようにしていた。</p>
+<blockquote>
 <p>hanmenパッケージのデフォルトの動作では、<code>\normalsize</code>しか再定義されない。<code>\small</code>なども文字サイズを変更するには次のオプションをつける。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[adjustfontsize]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
-</span></span></code></pre></div><h2 id="develop">develop</h2>
+</span></span></code></pre></div></blockquote>
+<p>しかしフォントサイズを再定義したくないときというのがあまりないと思われたため、このオプションは廃止した。</p>
+<h2 id="develop">develop</h2>
 <p>開発用コマンドが使えるようになるオプション。開発用コマンドについては<a href="#showhanmencalchanmen">下記</a>参照。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[develop]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </span></span></code></pre></div><h2 id="pass">pass</h2>
@@ -116,6 +121,11 @@
 <p><code>\usepackage[g=50]{hanmen}</code> とやる代わりに、<code>\pagegridon{g=50}</code> としてもグリッド線を表示できる。また、</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\pagegridon</span><span class="nb">{</span>g=26, column=2, columnskip=28.5<span class="nb">}</span>
 </span></span></code></pre></div><p>とすると、26字×2段組の場合にもうまくグリッド線が表示される。columnskipは、一段の文字数＋段間の広さ。この例だと、一段が26字あり、段間の広さが2.5字分あるとの想定で（26+2.5=28.5なので）<code>columnskip=28.5</code> としてある（段間の広さをミリメートルで指定できるようにもしたかったが、技術力不足により実現していない）。</p>
+<h2 id="pagegridcolor">\pagegridcolor</h2>
+<p>グリッド線の色を変更するコマンド。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\pagegridcolor</span><span class="nb">{</span>HTML<span class="nb">}{</span>e5abbe<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">% \pagegridcolor{rgb}{0.8,0.85,1}% rgbやcmykでももちろん指定可能。
+</span></span></span></code></pre></div><p>のように宣言すると、色を変えることができる。色の指定の仕方はxcolorパッケージの<code>\definecolor</code>と同様である。</p>
 <h2 id="showhanmencalchanmen">\showhanmen、\calchanmen</h2>
 <p><code>\showhanmen</code>は、現在設定している版面設計の値を出力するコマンド。例えば、ノドの広さを指定したときに、小口の広さがいくらになっているか確認したい、というときこのコマンドは便利である。</p>
 <p><code>\calchanmen</code>は、版面をいくらで設定すればよいか計算してくれるコマンド。しかし自分で定義しておきながら、使い方を忘れた。例えば、本文ページとおまけページとで文字サイズや組方向を変えたいというときがあるが、おまけページを作るとき何字×何行にすれば本文ページと余白の広さが同じくらいになるかを計算してくれる、というコマンドだったはず……。</p>
@@ -156,9 +166,14 @@
 <ul>
 <li>細かなバグを修正。</li>
 </ul>
+<h2 id="2022年6月9日">2022年6月9日</h2>
+<ul>
+<li>adjustfontsizeオプションを廃止した。</li>
+<li>LuaLaTeXに対応させた。</li>
+<li><code>\pagegridcolor</code>コマンドを導入した。</li>
+</ul>
 <h1 id="既知の問題">既知の問題</h1>
 <ul>
-<li><code>\usepackage</code>する際にadjustfontsizeオプションをつけると、<code>\newhanmen</code>でadjustfontsizeオプションをつけなくても<code>\normalsize</code>以外のフォントサイズ変更コマンドが自動的に更新されてしまう。これは私の意図通りの挙動ではない（実用上はあまり問題はないが）。いっそadjustfontsizeオプションを廃止してつねにフォントサイズ変更コマンドを更新するようにしたほうがよいかもしれない。</li>
 <li>otfパッケージのオプションで<code>scale=1</code>と指定するような場合に対応できていない。そもそもjlreq.cls同様、フォントスケールは自由に定義できるようにしたほうがよいかもしれない。</li>
 </ul>
 <h1 id="参考文献">参考文献</h1>
