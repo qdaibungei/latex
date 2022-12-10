@@ -54,9 +54,11 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\NeedsTeXFormat</span><span class="nb">{</span>pLaTeX2e<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\ProvidesPackage</span><span class="nb">{</span>novelstyle<span class="nb">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">\RequirePackage</span><span class="na">[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。
+</span></span><span class="line"><span class="cl"><span class="k">\RequirePackage</span><span class="na">[Q=11.5,H=19,W=42,L=17,addten=2mm,headsep=5mm,tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span><span class="c">% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\RequirePackage</span><span class="na">[deluxe,uplatex]</span><span class="nb">{</span>otf<span class="nb">}</span><span class="c">% フォントの多書体化。
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\RequirePackage</span><span class="nb">{</span>plext,pxrubrica<span class="nb">}</span><span class="c">% plextは縦組み時に有用なパッケージ、pxrubricaはルビ振りに必要なパッケージ。
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\RequirePackage</span><span class="nb">{</span>plext<span class="nb">}</span><span class="c">% plextは縦組み時に有用なパッケージ（なおutbook.clsなどの縦書き専用クラスを用いる場合には自動的に読み込まれる）。
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\RequirePackage</span><span class="nb">{</span>pxrubrica<span class="nb">}</span><span class="c">% pxrubricaはルビ振りに必要なパッケージ。
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\RequirePackage</span><span class="nb">{</span>fancyhdr<span class="nb">}</span><span class="c">% ヘッダー・フッターの改造に便利なパッケージ。
 </span></span></span><span class="line"><span class="cl"><span class="c"></span>
 </span></span><span class="line"><span class="cl"><span class="c">%
 </span></span></span><span class="line"><span class="cl"><span class="c">%% header &amp; footer
@@ -225,27 +227,27 @@
 <p>上で見たように、LaTeXで小説を組版するのはそんなに難しいことではない。誰でもできることである。</p>
 <p>ただし、レイアウトを変更したり、扉ページを作ったりは少し難しいので、ここでは解説しなかった。後日、中級編を執筆する予定なので、そこで解説できればと思っている。</p>
 <p><strong>追記</strong>：<a href="https://qdaibungei.github.io/latex/documents/2019-10-12-latexnovel/">中級編</a>を執筆しました。</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
+<li id="fn:1">
 <p>なぜこれが簡易的方法なのかと言うと、例えば全角空白を用いてインデントを表現していたりするからだ。全角空白を用いてインデント代わりにするのは、組版の規則を考えると本当はよくない（このやり方だと、段落によってインデント量にわずかな差がうまれる危険がある）。また、本当はスタイルファイルではなくクラスファイルを作ったほうがよい（なお、ここで紹介しているスタイルファイルをクラスファイルに仕立て直すことはそれほど難しくはない）。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
+<li id="fn:2">
 <p>ファイル名は末尾に <code>.bat</code> があれば何でもよいが、ここでは &ldquo;tex to pdf&rdquo; という意味で <code>tex2pdf.bat</code> という名にした。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
+<li id="fn:3">
 <p>縦中横を実現するマクロとしては、plextパッケージですでに <code>\rensuji</code> が提供されている。しかし、<code>\rensuji</code> を直接使うとどうやら無駄に \xkanjiskip が挿入されてしまうようなので、ここでは独自に <code>\tcy</code> というマクロを使うこととした。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
 <div class="showarticleinfo">
     <span class="material-icons-round">schedule</span> 2017年2月26日<br>
     
     <span class="material-icons-round">update</span> 2022年5月7日<br>
     
-    <span class="material-icons-round">local_offer</span>   <code><a href="/latex/tags/latex">#LaTeX</a></code>  <code><a href="/latex/tags/dtp">#DTP</a></code> <br>
+    <span class="material-icons-round">local_offer</span>   <code><a href="/tags/latex">#LaTeX</a></code>  <code><a href="/tags/dtp">#DTP</a></code> <br>
 </div>
                     </div>
                 </main>

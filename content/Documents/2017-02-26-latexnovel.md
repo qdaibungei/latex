@@ -7,7 +7,6 @@ date: 2017-02-26
 tags: ["LaTeX", "DTP"]
 ---
 
-
 この記事は、LaTeXで小説を組版するにはどうすればよいかを具体的に解説するものである。理論的な話は最小限に留め、主として実践的な話題を取り上げる。つまり、具体的にどう手を動かせばLaTeXで小説が組版できるのかを解説する。
 
 コンピュータおよびLaTeXの初心者でも読めるように配慮したつもりだが、LaTeXの知識ゼロだと厳しいかもしれない。
@@ -27,9 +26,11 @@ tags: ["LaTeX", "DTP"]
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesPackage{novelstyle}
 
-\RequirePackage[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]{hanmen}% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。
+\RequirePackage[Q=11.5,H=19,W=42,L=17,addten=2mm,headsep=5mm,tate]{hanmen}% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。
 \RequirePackage[deluxe,uplatex]{otf}% フォントの多書体化。
-\RequirePackage{plext,pxrubrica}% plextは縦組み時に有用なパッケージ、pxrubricaはルビ振りに必要なパッケージ。
+\RequirePackage{plext}% plextは縦組み時に有用なパッケージ（なおutbook.clsなどの縦書き専用クラスを用いる場合には自動的に読み込まれる）。
+\RequirePackage{pxrubrica}% pxrubricaはルビ振りに必要なパッケージ。
+\RequirePackage{fancyhdr}% ヘッダー・フッターの改造に便利なパッケージ。
 
 %
 %% header & footer

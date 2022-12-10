@@ -14,7 +14,7 @@
       
       <guid>https://qdaibungei.github.io/latex/documents/2019-09-07-git-diff/</guid>
       <description>方法 git diff で一文字ずつ差分表示するには次のようにすればよい。
-git diff --color-words --word-diff-regex=&amp;#39;\\w+|[^[:space:]]&amp;#39; 参考文献  git diff を1文字単位で出力する  </description>
+git diff --color-words --word-diff-regex=&amp;#39;\\w+|[^[:space:]]&amp;#39; 参考文献 git diff を1文字単位で出力する </description>
     </item>
     
   </channel>

@@ -40,7 +40,7 @@ Dalフォントの作成 このままではフォント情報がIBM Plex Sans JP
       <description>半角漢数字（正式名称ではないと思うが）は、少し昔の本の目次などで使われている。いまどきの本ではあまり見かけないが、かっこいいので私は好きである。
 半角漢数字は、LaTeXだとotfパッケージの\CIDを用いれば簡単に出力できる。しかしCIDをいちいち調べないといけないのが面倒だ。そこで\hankakukansujiというコマンドを作ってみた。
 次をhoge.texなどのファイル名で保存し、upLaTeXで実行する。
-\documentclass[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=21, tate]{jlreq} \usepackage[uplatex]{otf}% \CIDを用いるため必須 \usepackage[noalphabet]{pxchfon} \setminchofont{HiraMinProN-W3.otf}% 半角漢数字が存在するフォントを選ぶ %% 半角漢数字出力コマンド \makeatletter \newcounter{qbcl@c@hk} \newcommand{\hankakukansuji}[1]{%  \@tfor\@tempa:=#1\do{%  \setcounter{qbcl@c@hk}{0}%  \@whilenum\value{qbcl@c@hk}&amp;lt;10\do{%  \ifnum\@tempa=\theqbcl@c@hk \addtocounter{qbcl@c@hk}{10185}\CID{\theqbcl@c@hk}\addtocounter{qbcl@c@hk}{-10185}%  \fi \addtocounter{qbcl@c@hk}{1}%  }%  }% } \makeatother \begin{document} \hankakukansuji{764980} \end{document} すると次の結果を得る。</description>
+\documentclass[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=21, tate]{jlreq} \usepackage[uplatex]{otf}% \CIDを用いるため必須 \usepackage[noalphabet]{pxchfon} \setminchofont{HiraMinProN-W3.otf}% 半角漢数字が存在するフォントを選ぶ %% 半角漢数字出力コマンド \makeatletter \newcounter{qbcl@c@hk} \newcommand{\hankakukansuji}[1]{% \@tfor\@tempa:=#1\do{% \setcounter{qbcl@c@hk}{0}% \@whilenum\value{qbcl@c@hk}&amp;lt;10\do{% \ifnum\@tempa=\theqbcl@c@hk \addtocounter{qbcl@c@hk}{10185}\CID{\theqbcl@c@hk}\addtocounter{qbcl@c@hk}{-10185}% \fi \addtocounter{qbcl@c@hk}{1}% }% }% } \makeatother \begin{document} \hankakukansuji{764980} \end{document} すると次の結果を得る。</description>
     </item>
     
     <item>
@@ -70,10 +70,9 @@ Dalフォントの作成 このままではフォント情報がIBM Plex Sans JP
 本文の断ち切りを作るのを忘れぬように 普通のレイアウトでは本文には断ち切りは要らない。しかし、紙の端まで印刷したい場合は、本文データにも断ち切り部分を作る必要がある。今回のベスト文集も、断ち切りが必要なデザインであった。
 私の場合、「断ち切りを作るべし」ということ自体は覚えていても、編集時にはレイアウト確認のため断ち切りなしバージョンで作業していることが多く、その結果、入稿時にも間違えて断ち切りなしバージョンでデータ送信してしまうことがある。入稿時には断ち切りを作るのを忘れぬよう注意したい。
 よくある凡ミス よくある凡ミスを列挙しておこう。これらは、入稿前にいま一度チェックしておきたい。
- 他人のペンネームを間違える（特にその人が複数のペンネームを持っている場合） 目次で作品タイトルを間違える 柱で作品タイトルを間違える 奥付の情報を間違える（特に年月日）  このなかでも近年文藝部内で目立つのが、「柱で作品タイトルを間違える」ミスである1。私はLaTeXを用いているのでこの類のミスはしたことがないのだが、Wordで編集している場合、このミスが多発する。気をつけよう。
+他人のペンネームを間違える（特にその人が複数のペンネームを持っている場合） 目次で作品タイトルを間違える 柱で作品タイトルを間違える 奥付の情報を間違える（特に年月日） このなかでも近年文藝部内で目立つのが、「柱で作品タイトルを間違える」ミスである1。私はLaTeXを用いているのでこの類のミスはしたことがないのだが、Wordで編集している場合、このミスが多発する。気をつけよう。
 跋 以上、ベスト文集制作の主に技術的な側面を記述してきた。次期ベスト文集の編集人の健闘を祈る。
-  「柱」というのは何かというと、本には普通、各ページに小さく作品タイトルや章タイトルが書いてあると思うが、その小さく書かれたタイトルのことである。&amp;#160;&amp;#x21a9;&amp;#xfe0e;
-   </description>
+「柱」というのは何かというと、本には普通、各ページに小さく作品タイトルや章タイトルが書いてあると思うが、その小さく書かれたタイトルのことである。&amp;#160;&amp;#x21a9;&amp;#xfe0e;</description>
     </item>
     
     <item>
@@ -84,7 +83,7 @@ Dalフォントの作成 このままではフォント情報がIBM Plex Sans JP
       <guid>https://qdaibungei.github.io/latex/documents/2020-04-12-latexnovel/</guid>
       <description>奥付 奥付は次のようなデザインにした1。奥付でもやはり書籍タイトルに廻想体を使い、統一感を出した。
 LaTeXでは次のように実現してある。
-%% macro for colophon \makeatletter \def\@thisdate#1/#2/#3/#4\@nil{%  \newcommand{\thisyear}{#1}%  \newcommand{\thismonth}{#2}%  \newcommand{\thisday}{#3}% } \def\thisdate#1{\expandafter\@thisdate#1//\@nil} \newcommand{\bookmaker}[2]{%  ■\leavevmode\hbox to 2.7zw{%  {\gtfamily\bfseries\fontsizeX #1}%  }%  ―\kern-.7zw\――#2% } \newcommand{\fontcredit}[2]{%  \leavevmode\hbox to 6zw{%  \hfill\emph{#1}%  }%  {\kern1.5zw\okfamily #2}% } \makeatother %% colophon \newhanmen{Q=11.5,H=19,W=58,L=21,ko=2mm,koguchi=\relax,nodo=\relax,chi=16.4375mm,tate} % \pagegridon{g=56} \thispagestyle{empty} \columnsep=4zw \begin{multicols*}{2} \parbox&amp;lt;y&amp;gt;[c]{\textheight}{%  \fontcredit{組版処理}{\LaTeXe}\\ \fontcredit{使用書体}{}{\raise-.125zw\hbox{\gtfamily\ebseries\fontsize{14\bQ}{19H}\selectfont \kern-.1zw 廻\kern-.25zw 想\kern-.25zw 体}＋{\agencyfb Agency FB}\fontsizeVIII 〈表紙〉}\\ \fontcredit{}{\raise-.125zw\hbox{\gtfamily\ebseries\fontsize{14\bQ}{19H}\selectfont \kern-.1zw 廻\kern-.25zw 想\kern-.25zw 体}＋{\classico Classico}\fontsizeVIII 〈ロゴ〉}\\ \fontcredit{}{{\mcfamily 游明朝体R＋Cochineal}\fontsizeVIII 〈本文・ルビ・柱〉}\\ \fontcredit{}{游明朝体五号かなR＋fbb\fontsizeVIII 〈本文〉}\\ \fontcredit{}{{\mgfamily 筑紫Aオールド明朝R}＋fbb\fontsizeVIII 〈各作品タイトル〉}\\ \fontcredit{}{{\gtfamily 游ゴシック体M}＋\textgt{Open Sans Regular}\fontsizeVIII 〈見出し・作品情報〉}\\ \fontcredit{}{\emph{筑紫ゴシックD}＋\emph{Open Sans Semibold}\fontsizeVIII 〈強調・小見出し〉}\\ \fontcredit{}{\texttt{Nimbus15 Mono Narrow}\fontsizeVIII 〈作品情報〉}\\ \fontcredit{}{源暎ノンブル\fontsizeVIII 〈ノンブル〉} } \columnbreak \thisdate{2019/10/04} \leftskip=-6zw \okfamily \vspace*{.</description>
+%% macro for colophon \makeatletter \def\@thisdate#1/#2/#3/#4\@nil{% \newcommand{\thisyear}{#1}% \newcommand{\thismonth}{#2}% \newcommand{\thisday}{#3}% } \def\thisdate#1{\expandafter\@thisdate#1//\@nil} \newcommand{\bookmaker}[2]{% ■\leavevmode\hbox to 2.7zw{% {\gtfamily\bfseries\fontsizeX #1}% }% ―\kern-.7zw\――#2% } \newcommand{\fontcredit}[2]{% \leavevmode\hbox to 6zw{% \hfill\emph{#1}% }% {\kern1.5zw\okfamily #2}% } \makeatother %% colophon \newhanmen{Q=11.5,H=19,W=58,L=21,ko=2mm,koguchi=\relax,nodo=\relax,chi=16.4375mm,tate} % \pagegridon{g=56} \thispagestyle{empty} \columnsep=4zw \begin{multicols*}{2} \parbox&amp;lt;y&amp;gt;[c]{\textheight}{% \fontcredit{組版処理}{\LaTeXe}\\ \fontcredit{使用書体}{}{\raise-.125zw\hbox{\gtfamily\ebseries\fontsize{14\bQ}{19H}\selectfont \kern-.1zw 廻\kern-.25zw 想\kern-.25zw 体}＋{\agencyfb Agency FB}\fontsizeVIII 〈表紙〉}\\ \fontcredit{}{\raise-.125zw\hbox{\gtfamily\ebseries\fontsize{14\bQ}{19H}\selectfont \kern-.1zw 廻\kern-.25zw 想\kern-.25zw 体}＋{\classico Classico}\fontsizeVIII 〈ロゴ〉}\\ \fontcredit{}{{\mcfamily 游明朝体R＋Cochineal}\fontsizeVIII 〈本文・ルビ・柱〉}\\ \fontcredit{}{游明朝体五号かなR＋fbb\fontsizeVIII 〈本文〉}\\ \fontcredit{}{{\mgfamily 筑紫Aオールド明朝R}＋fbb\fontsizeVIII 〈各作品タイトル〉}\\ \fontcredit{}{{\gtfamily 游ゴシック体M}＋\textgt{Open Sans Regular}\fontsizeVIII 〈見出し・作品情報〉}\\ \fontcredit{}{\emph{筑紫ゴシックD}＋\emph{Open Sans Semibold}\fontsizeVIII 〈強調・小見出し〉}\\ \fontcredit{}{\texttt{Nimbus15 Mono Narrow}\fontsizeVIII 〈作品情報〉}\\ \fontcredit{}{源暎ノンブル\fontsizeVIII 〈ノンブル〉} } \columnbreak \thisdate{2019/10/04} \leftskip=-6zw \okfamily \vspace*{.</description>
     </item>
     
     <item>
@@ -96,7 +95,7 @@ LaTeXでは次のように実現してある。
       <description>著者コメント欄 ベスト文集の終わりのほうに、著者コメント欄を設けた。
 版面設定は次のようにした。見開きに収めたかったので、文字サイズは10.5Qとかなり小さめ。
 \newhanmen{Q=10.5,H=15.75,W=66.5,L=29,tate,ko=0mm,te=0mm,nodo=\relax,koguchi=14.625mm,chi=16.4375mm,footskip=3.25mm} 「著者コメント」とあるタイトル部分は、次のコードにより出力した。
-\fboxsep=.25zw \definecolor{creditgray}{gray}{0.1} \colorbox{creditgray}{\emph{\color{white}~著者コメント}}{\color{creditgray}\rule[-.75zw]{59.75zw}{1.5zw}} 　（次回に続く）</description>
+\fboxsep=.25zw \definecolor{creditgray}{gray}{0.1} \colorbox{creditgray}{\emph{\color{white}~著者コメント}}{\color{creditgray}\rule[-.75zw]{59.75zw}{1.5zw}} （次回に続く）</description>
     </item>
     
     <item>
@@ -109,7 +108,7 @@ LaTeXでは次のように実現してある。
 LaTeXによる章の作り方（通常時） 普通、LaTeXで作品タイトルや章タイトルを出力するには、\chapterという命令を使う。\chapter{作品タイトル}のようにすればよい。
 しかし今回は、\chapterに代替しうるマクロを独自に定義してこれを使った。なぜかというと、\chapterの定義を変更してデザインを変えるのが面倒であったからだ。LaTeXにもう少し詳しければ\chapterを再定義して用いたほうがよいであろう。
 LaTeXによる章の作り方（私家版） 上のような作品タイトルの出力をLaTeXで実現するために、次のようなマクロを組んだ。
-%% title &amp;amp; author names \newcommand{\booktitlename}{\relax} \newcommand{\chaptertitle}[1]{\def\qbook@chaptertitle{#1}} \newcommand{\chapterauthor}[1]{\def\qbook@chapterauthor{#1}} \newcommand{\chapterauthorruby}[1]{\def\qbook@chapterauthorruby{#1}} \newcommand{\chapterfirstappearance}[1]{\expandafter\qbook@fa#1//\@nil} \def\qbook@fa#1/#2/#3/#4\@nil{%  \def\qbook@fa@year{#1}%  \def\qbook@fa@gou{#2}%  \def\qbook@fa@booktitle{#3}% } \chaptertitle{\relax} \chapterauthor{\relax} \chapterauthorruby{\relax} \chapterfirstappearance{\relax/\relax/\relax} %% \makechapter % \let\qbook@orig@tcy=\tcy \def\qbook@5gyobox#1{\leavevmode\hbox to 5\baselineskip{\yoko#1\hfill}} \def\qbook@makechapter{%  \begingroup \ifnum\value{dangumi}=1 \hspace*{-4.5zw}%  \fi \qbook@5gyobox{\rule{70mm}{.4mm}} \qbook@5gyobox{\fontsize{12\bQ}{12H}\agencyfb The BEST SELECTION of\phantom{y}}\kern.05em \qbook@5gyobox{\fontsize{12\bQ}{12H}\agencyfb Kyushu University}\kern.05em \qbook@5gyobox{\fontsize{12\bQ}{12H}\agencyfb Literary Club}\kern.05em \qbook@5gyobox{\fontsize{12\bQ}{12H}\agencyfb Works} \qbook@5gyobox{\rule{70mm}{.4mm}} \begingroup \kanjiskip=-2H plus 0zw minus 0zw {\hskip2zw\fontsize{35\bQ}{35H}\selectfont\parbox{16zw}{\mgfamily\romanfamily{fbb-TLF}\selectfont\qbook@chaptertitle}}\par \endgroup \vspace{-.08\baselineskip} \hfill\leavevmode\hbox to 0pt{\yoko{\fontsize{8\bQ}{8H}\ttfamily Author:\phantom{y}}\hfill}\kern.</description>
+%% title &amp;amp; author names \newcommand{\booktitlename}{\relax} \newcommand{\chaptertitle}[1]{\def\qbook@chaptertitle{#1}} \newcommand{\chapterauthor}[1]{\def\qbook@chapterauthor{#1}} \newcommand{\chapterauthorruby}[1]{\def\qbook@chapterauthorruby{#1}} \newcommand{\chapterfirstappearance}[1]{\expandafter\qbook@fa#1//\@nil} \def\qbook@fa#1/#2/#3/#4\@nil{% \def\qbook@fa@year{#1}% \def\qbook@fa@gou{#2}% \def\qbook@fa@booktitle{#3}% } \chaptertitle{\relax} \chapterauthor{\relax} \chapterauthorruby{\relax} \chapterfirstappearance{\relax/\relax/\relax} %% \makechapter % \let\qbook@orig@tcy=\tcy \def\qbook@5gyobox#1{\leavevmode\hbox to 5\baselineskip{\yoko#1\hfill}} \def\qbook@makechapter{% \begingroup \ifnum\value{dangumi}=1 \hspace*{-4.5zw}% \fi \qbook@5gyobox{\rule{70mm}{.4mm}} \qbook@5gyobox{\fontsize{12\bQ}{12H}\agencyfb The BEST SELECTION of\phantom{y}}\kern.05em \qbook@5gyobox{\fontsize{12\bQ}{12H}\agencyfb Kyushu University}\kern.05em \qbook@5gyobox{\fontsize{12\bQ}{12H}\agencyfb Literary Club}\kern.05em \qbook@5gyobox{\fontsize{12\bQ}{12H}\agencyfb Works} \qbook@5gyobox{\rule{70mm}{.4mm}} \begingroup \kanjiskip=-2H plus 0zw minus 0zw {\hskip2zw\fontsize{35\bQ}{35H}\selectfont\parbox{16zw}{\mgfamily\romanfamily{fbb-TLF}\selectfont\qbook@chaptertitle}}\par \endgroup \vspace{-.08\baselineskip} \hfill\leavevmode\hbox to 0pt{\yoko{\fontsize{8\bQ}{8H}\ttfamily Author:\phantom{y}}\hfill}\kern.2mm \leavevmode\hbox to 0pt{\yoko\rule{70mm}{.125mm}}\kern1mm \leavevmode\hbox to 0pt{\yoko\textgt{\fontsize{10\bQ}{10H}\selectfont\qbook@chapterauthor}\hfill} \leavevmode\hbox to 0pt{\yoko\textgt{% \fontsize{7\bQ}{7H}\selectfont \expandafter\ifx\qbook@chapterauthorruby\relax \else （\qbook@chapterauthorruby）\fi}\hfill }\kern2.</description>
     </item>
     
     <item>
@@ -120,7 +119,7 @@ LaTeXによる章の作り方（私家版） 上のような作品タイトル�
       <guid>https://qdaibungei.github.io/latex/documents/2020-04-09-latexnovel/</guid>
       <description>本文の組み方④・テキストからTeXへ変換する篇 ダッシュ 倍角ダッシュや波ダッシュは、jdash.styを用いてマクロ定義してある。このマクロを使うため、次のように置換処理を行なう。
 jdashes = [&amp;#39;—&amp;#39;,&amp;#39;―&amp;#39;,&amp;#39;─&amp;#39;] wdashes = [&amp;#39;〜&amp;#39;,&amp;#39;～&amp;#39;] def jdash_replace(x): for jdash in jdashes: if x.find(jdash) &amp;gt; -1: for y in range(30,2,-1): x = x.replace(jdash*y,&amp;#39;{\\jdash[&amp;#39;+str(y)+&amp;#39;]&amp;#39;+&amp;#39;}&amp;#39;) x = x.replace(jdash*2,&amp;#39;\\――&amp;#39;) return x def wdash_replace(x): for wdash in wdashes: if x.find(wdash) &amp;gt; -1: for y in range(20,1,-1): x = re.sub(wdash*y,(&amp;#39;\\&amp;#39;+wdash)*y,x) return x 濁点マクロ 例えば、平仮名の「な」に濁点を打ちたくなることがある。このような場合には濁点マクロを作っておくと便利だ。
-LaTeXでのマクロ定義 %% dakutens \newcommand{\dakuten}[1]{%  \jghostguarded{%  \leavevmode\hbox to 1zw{%  \rensuji{\hbox to 1zw{#1\hspace*{-0.25zw}゛}}%  }%  }% } \newcommand{\handakuten}[1]{%  \jghostguarded{%  \leavevmode\hbox to 1zw{%  \rensuji{\hbox to 1zw{#1\hspace*{-0.</description>
+LaTeXでのマクロ定義 %% dakutens \newcommand{\dakuten}[1]{% \jghostguarded{% \leavevmode\hbox to 1zw{% \rensuji{\hbox to 1zw{#1\hspace*{-0.25zw}゛}}% }% }% } \newcommand{\handakuten}[1]{% \jghostguarded{% \leavevmode\hbox to 1zw{% \rensuji{\hbox to 1zw{#1\hspace*{-0.</description>
     </item>
     
     <item>
@@ -133,8 +132,8 @@ LaTeXでのマクロ定義 %% dakutens \newcommand{\dakuten}[1]{%  \jghostguarde
 hanmen.styの使用 LaTeXの標準機能でベタ組を実現するのは案外難しい。そこで、hanmen.styを使用する。これを用いると、ベタ組を実現しやすい。
 ベタ組のための基本設定 次の設定をしておくと字間や行間が広がりにくく、ベタ組を実現しやすい。
 %% 字間・行間の設定 \kanjiskip=0zw plus .25zw minus .03125zw \xkanjiskip=.25zw plus .25zw minus .0625zw \parskip=0zw \parsep=0zw \partopsep=0zw 縦中横 LaTeXで縦書きをする際、縦中横には\rensujiを使うよう言われる。しかし\rensujiだと無駄に\xkanjiskipが挿入されてしまい、ベタ組にならない。そこで\tcy命令を新たに作り、これを使うのがよい。
-\usepackage{pxghost} %% \tcy \newcommand{\tcy}[1]{%  \jghostguarded{%  \leavevmode\hbox to 1zw{%  \centering\rensuji*{#1}%  }%  }% } 数字やアルファベットを自動で縦中横にするために、『九大文学』製作時にはPythonで次の関数を作って置換した。
-nums = [ [&amp;#39;０&amp;#39;,&amp;#39;0&amp;#39;],[&amp;#39;１&amp;#39;,&amp;#39;1&amp;#39;],[&amp;#39;２&amp;#39;,&amp;#39;2&amp;#39;],[&amp;#39;３&amp;#39;,&amp;#39;3&amp;#39;],[&amp;#39;４&amp;#39;,&amp;#39;4&amp;#39;], [&amp;#39;５&amp;#39;,&amp;#39;5&amp;#39;],[&amp;#39;６&amp;#39;,&amp;#39;6&amp;#39;],[&amp;#39;７&amp;#39;,&amp;#39;7&amp;#39;],[&amp;#39;８&amp;#39;,&amp;#39;8&amp;#39;],[&amp;#39;９&amp;#39;,&amp;#39;9&amp;#39;] ] alphabets = [ [&amp;#39;Ａ&amp;#39;,&amp;#39;A&amp;#39;],[&amp;#39;Ｂ&amp;#39;,&amp;#39;B&amp;#39;],[&amp;#39;Ｃ&amp;#39;,&amp;#39;C&amp;#39;],[&amp;#39;Ｄ&amp;#39;,&amp;#39;D&amp;#39;],[&amp;#39;Ｅ&amp;#39;,&amp;#39;E&amp;#39;], [&amp;#39;Ｆ&amp;#39;,&amp;#39;F&amp;#39;],[&amp;#39;Ｇ&amp;#39;,&amp;#39;G&amp;#39;],[&amp;#39;Ｈ&amp;#39;,&amp;#39;H&amp;#39;],[&amp;#39;Ｉ&amp;#39;,&amp;#39;I&amp;#39;],[&amp;#39;Ｊ&amp;#39;,&amp;#39;J&amp;#39;], [&amp;#39;Ｋ&amp;#39;,&amp;#39;K&amp;#39;],[&amp;#39;Ｌ&amp;#39;,&amp;#39;L&amp;#39;],[&amp;#39;Ｍ&amp;#39;,&amp;#39;M&amp;#39;],[&amp;#39;Ｎ&amp;#39;,&amp;#39;N&amp;#39;],[&amp;#39;Ｏ&amp;#39;,&amp;#39;O&amp;#39;], [&amp;#39;Ｐ&amp;#39;,&amp;#39;P&amp;#39;],[&amp;#39;Ｑ&amp;#39;,&amp;#39;Q&amp;#39;],[&amp;#39;Ｒ&amp;#39;,&amp;#39;R&amp;#39;],[&amp;#39;Ｓ&amp;#39;,&amp;#39;S&amp;#39;],[&amp;#39;Ｔ&amp;#39;,&amp;#39;T&amp;#39;], [&amp;#39;Ｕ&amp;#39;,&amp;#39;U&amp;#39;],[&amp;#39;Ｖ&amp;#39;,&amp;#39;V&amp;#39;],[&amp;#39;Ｗ&amp;#39;,&amp;#39;W&amp;#39;],[&amp;#39;Ｘ&amp;#39;,&amp;#39;X&amp;#39;],[&amp;#39;Ｙ&amp;#39;,&amp;#39;Y&amp;#39;], [&amp;#39;Ｚ&amp;#39;,&amp;#39;Z&amp;#39;], [&amp;#39;ａ&amp;#39;,&amp;#39;a&amp;#39;],[&amp;#39;ｂ&amp;#39;,&amp;#39;b&amp;#39;],[&amp;#39;ｃ&amp;#39;,&amp;#39;c&amp;#39;],[&amp;#39;ｄ&amp;#39;,&amp;#39;d&amp;#39;],[&amp;#39;ｅ&amp;#39;,&amp;#39;e&amp;#39;], [&amp;#39;ｆ&amp;#39;,&amp;#39;f&amp;#39;],[&amp;#39;ｇ&amp;#39;,&amp;#39;g&amp;#39;],[&amp;#39;ｈ&amp;#39;,&amp;#39;h&amp;#39;],[&amp;#39;ｉ&amp;#39;,&amp;#39;i&amp;#39;],[&amp;#39;ｊ&amp;#39;,&amp;#39;j&amp;#39;], [&amp;#39;ｋ&amp;#39;,&amp;#39;k&amp;#39;],[&amp;#39;ｌ&amp;#39;,&amp;#39;l&amp;#39;],[&amp;#39;ｍ&amp;#39;,&amp;#39;m&amp;#39;],[&amp;#39;ｎ&amp;#39;,&amp;#39;n&amp;#39;],[&amp;#39;ｏ&amp;#39;,&amp;#39;o&amp;#39;], [&amp;#39;ｐ&amp;#39;,&amp;#39;p&amp;#39;],[&amp;#39;ｑ&amp;#39;,&amp;#39;q&amp;#39;],[&amp;#39;ｒ&amp;#39;,&amp;#39;r&amp;#39;],[&amp;#39;ｓ&amp;#39;,&amp;#39;s&amp;#39;],[&amp;#39;ｔ&amp;#39;,&amp;#39;t&amp;#39;], [&amp;#39;ｕ&amp;#39;,&amp;#39;u&amp;#39;],[&amp;#39;ｖ&amp;#39;,&amp;#39;v&amp;#39;],[&amp;#39;ｗ&amp;#39;,&amp;#39;w&amp;#39;],[&amp;#39;ｘ&amp;#39;,&amp;#39;x&amp;#39;],[&amp;#39;ｙ&amp;#39;,&amp;#39;y&amp;#39;], [&amp;#39;ｚ&amp;#39;,&amp;#39;z&amp;#39;] ] def alphabet_replace(s): for x in alphabets: s = s.</description>
+\usepackage{pxghost} %% \tcy \newcommand{\tcy}[1]{% \jghostguarded{% \leavevmode\hbox to 1zw{% \centering\rensuji*{#1}% }% }% } 数字やアルファベットを自動で縦中横にするために、『九大文学』製作時にはPythonで次の関数を作って置換した。
+nums = [ [&amp;#39;０&amp;#39;,&amp;#39;0&amp;#39;],[&amp;#39;１&amp;#39;,&amp;#39;1&amp;#39;],[&amp;#39;２&amp;#39;,&amp;#39;2&amp;#39;],[&amp;#39;３&amp;#39;,&amp;#39;3&amp;#39;],[&amp;#39;４&amp;#39;,&amp;#39;4&amp;#39;], [&amp;#39;５&amp;#39;,&amp;#39;5&amp;#39;],[&amp;#39;６&amp;#39;,&amp;#39;6&amp;#39;],[&amp;#39;７&amp;#39;,&amp;#39;7&amp;#39;],[&amp;#39;８&amp;#39;,&amp;#39;8&amp;#39;],[&amp;#39;９&amp;#39;,&amp;#39;9&amp;#39;] ] alphabets = [ [&amp;#39;Ａ&amp;#39;,&amp;#39;A&amp;#39;],[&amp;#39;Ｂ&amp;#39;,&amp;#39;B&amp;#39;],[&amp;#39;Ｃ&amp;#39;,&amp;#39;C&amp;#39;],[&amp;#39;Ｄ&amp;#39;,&amp;#39;D&amp;#39;],[&amp;#39;Ｅ&amp;#39;,&amp;#39;E&amp;#39;], [&amp;#39;Ｆ&amp;#39;,&amp;#39;F&amp;#39;],[&amp;#39;Ｇ&amp;#39;,&amp;#39;G&amp;#39;],[&amp;#39;Ｈ&amp;#39;,&amp;#39;H&amp;#39;],[&amp;#39;Ｉ&amp;#39;,&amp;#39;I&amp;#39;],[&amp;#39;Ｊ&amp;#39;,&amp;#39;J&amp;#39;], [&amp;#39;Ｋ&amp;#39;,&amp;#39;K&amp;#39;],[&amp;#39;Ｌ&amp;#39;,&amp;#39;L&amp;#39;],[&amp;#39;Ｍ&amp;#39;,&amp;#39;M&amp;#39;],[&amp;#39;Ｎ&amp;#39;,&amp;#39;N&amp;#39;],[&amp;#39;Ｏ&amp;#39;,&amp;#39;O&amp;#39;], [&amp;#39;Ｐ&amp;#39;,&amp;#39;P&amp;#39;],[&amp;#39;Ｑ&amp;#39;,&amp;#39;Q&amp;#39;],[&amp;#39;Ｒ&amp;#39;,&amp;#39;R&amp;#39;],[&amp;#39;Ｓ&amp;#39;,&amp;#39;S&amp;#39;],[&amp;#39;Ｔ&amp;#39;,&amp;#39;T&amp;#39;], [&amp;#39;Ｕ&amp;#39;,&amp;#39;U&amp;#39;],[&amp;#39;Ｖ&amp;#39;,&amp;#39;V&amp;#39;],[&amp;#39;Ｗ&amp;#39;,&amp;#39;W&amp;#39;],[&amp;#39;Ｘ&amp;#39;,&amp;#39;X&amp;#39;],[&amp;#39;Ｙ&amp;#39;,&amp;#39;Y&amp;#39;], [&amp;#39;Ｚ&amp;#39;,&amp;#39;Z&amp;#39;], [&amp;#39;ａ&amp;#39;,&amp;#39;a&amp;#39;],[&amp;#39;ｂ&amp;#39;,&amp;#39;b&amp;#39;],[&amp;#39;ｃ&amp;#39;,&amp;#39;c&amp;#39;],[&amp;#39;ｄ&amp;#39;,&amp;#39;d&amp;#39;],[&amp;#39;ｅ&amp;#39;,&amp;#39;e&amp;#39;], [&amp;#39;ｆ&amp;#39;,&amp;#39;f&amp;#39;],[&amp;#39;ｇ&amp;#39;,&amp;#39;g&amp;#39;],[&amp;#39;ｈ&amp;#39;,&amp;#39;h&amp;#39;],[&amp;#39;ｉ&amp;#39;,&amp;#39;i&amp;#39;],[&amp;#39;ｊ&amp;#39;,&amp;#39;j&amp;#39;], [&amp;#39;ｋ&amp;#39;,&amp;#39;k&amp;#39;],[&amp;#39;ｌ&amp;#39;,&amp;#39;l&amp;#39;],[&amp;#39;ｍ&amp;#39;,&amp;#39;m&amp;#39;],[&amp;#39;ｎ&amp;#39;,&amp;#39;n&amp;#39;],[&amp;#39;ｏ&amp;#39;,&amp;#39;o&amp;#39;], [&amp;#39;ｐ&amp;#39;,&amp;#39;p&amp;#39;],[&amp;#39;ｑ&amp;#39;,&amp;#39;q&amp;#39;],[&amp;#39;ｒ&amp;#39;,&amp;#39;r&amp;#39;],[&amp;#39;ｓ&amp;#39;,&amp;#39;s&amp;#39;],[&amp;#39;ｔ&amp;#39;,&amp;#39;t&amp;#39;], [&amp;#39;ｕ&amp;#39;,&amp;#39;u&amp;#39;],[&amp;#39;ｖ&amp;#39;,&amp;#39;v&amp;#39;],[&amp;#39;ｗ&amp;#39;,&amp;#39;w&amp;#39;],[&amp;#39;ｘ&amp;#39;,&amp;#39;x&amp;#39;],[&amp;#39;ｙ&amp;#39;,&amp;#39;y&amp;#39;], [&amp;#39;ｚ&amp;#39;,&amp;#39;z&amp;#39;] ] def alphabet_replace(s): for x in alphabets: s = s.replace(x[0],&amp;#39;\\tcy{&amp;#39;+x[1]+&amp;#39;}&amp;#39;) return s def num_replace(s): for x in nums: s = s.</description>
     </item>
     
     <item>
@@ -151,9 +150,9 @@ nums = [ [&amp;#39;０&amp;#39;,&amp;#39;0&amp;#39;],[&amp;#39;１&amp;#39;,&amp
 行長・行数 行長は26字、行数は24行とした。二段組とし、段間は2.5字分とした。
 ノド ノド側の余白を狭くしすぎると、文字が食われてしまって読みづらい。A5で縦書きの場合、ノドの広さは約20mmは欲しい2。今回は、ノドは18mm取った。
 LaTeXでの実現方法 まとめると、版面は次のような設定にしたことになる。
- 紙はA5サイズ 文字サイズ13Q 行送り19.5H 26字×24行×2段組 段間2.5字分 ノドの広さは18mm  これは、「頁数節約のため一頁あたりの文字数を多めにしつつ、最大限、可読性も確保する」というコンセプトのもとで、幾度も調整を重ねて設計したものである。
+紙はA5サイズ 文字サイズ13Q 行送り19.5H 26字×24行×2段組 段間2.5字分 ノドの広さは18mm これは、「頁数節約のため一頁あたりの文字数を多めにしつつ、最大限、可読性も確保する」というコンセプトのもとで、幾度も調整を重ねて設計したものである。
 具体的には次のように記述してLaTeXで実現している（細かい解説は面倒なので割愛）。
-%% ドキュメントクラス読み込み時にA5サイズ指定 \documentclass[a5paper,autodetect-engine]{jsbook} \usepackage[tate]{hanmen} %% papersize \AtBeginDvi{\special{papersize=\the\paperwidth,\the\paperheight}}% 通常 % 本文に上下左右3mmの塗り足しを作る細工 % \newdimen\stockwidth % \newdimen\stockheight % \setlength{\stockwidth}{\paperwidth} % \setlength{\stockheight}{\paperheight} % \advance\stockwidth by 6mm % \advance\stockheight by 6mm % \advance\voffset by 3mm % \advance\hoffset by 3mm % \AtBeginDvi{\special{papersize=\the\stockwidth,\the\stockheight}}  %% layout \newcounter{dangumi} \setcounter{dangumi}{0} \newcommand{\newhanmenI}{%  % H = ((19.</description>
+%% ドキュメントクラス読み込み時にA5サイズ指定 \documentclass[a5paper,autodetect-engine]{jsbook} \usepackage[tate]{hanmen} %% papersize \AtBeginDvi{\special{papersize=\the\paperwidth,\the\paperheight}}% 通常 % 本文に上下左右3mmの塗り足しを作る細工 % \newdimen\stockwidth % \newdimen\stockheight % \setlength{\stockwidth}{\paperwidth} % \setlength{\stockheight}{\paperheight} % \advance\stockwidth by 6mm % \advance\stockheight by 6mm % \advance\voffset by 3mm % \advance\hoffset by 3mm % \AtBeginDvi{\special{papersize=\the\stockwidth,\the\stockheight}} %% layout \newcounter{dangumi} \setcounter{dangumi}{0} \newcommand{\newhanmenI}{% % H = ((19.5/4)*(24-1)/(22-1))*4 % TBmargin: (210-((13/4)*50))/2=23.</description>
     </item>
     
     <item>
@@ -164,29 +163,28 @@ LaTeXでの実現方法 まとめると、版面は次のような設定にし�
       <guid>https://qdaibungei.github.io/latex/documents/2020-04-06-latexnovel/</guid>
       <description>ここからは小説誌の血肉とも言うべき本文の組み方について述べる。
 本文の組み方①・フォント篇 まずはフォントの選定である。フォントは小説向きのものを選ぶこと、これが鉄則である。小説向きのフォントとは、例えば次のようなフォントを言う。
- 游明朝 ヒラギノ明朝 しっぽり明朝v2 源暎こぶり明朝 筑紫明朝  以下、各々のフォントについて簡単に解説する。
+游明朝 ヒラギノ明朝 しっぽり明朝v2 源暎こぶり明朝 筑紫明朝 以下、各々のフォントについて簡単に解説する。
 游明朝 游明朝は最も小説向きであると言えよう。癖がなく、上品で、読みやすい。しかも公式サイトには次のように書いてあり、小説用に開発されたフォントであることが明言されている。
- 游明朝体ファミリーは「時代小説が組めるような明朝体」をキーワードに、単行本や文庫などで小説を組むことを目的に開発した游明朝体Rを核とした明朝体ファミリーです。
- 游明朝は現在、WindowsおよびMacに標準で付属しているので、誰でも簡単に使用可能である。よい時代になったものである。しかし逆に言うと、最近は小説同人誌でよく見かけるフォントとなってきており、個性を発揮して他との差別化を図りたい向きには物足りないかもしれない。
+游明朝体ファミリーは「時代小説が組めるような明朝体」をキーワードに、単行本や文庫などで小説を組むことを目的に開発した游明朝体Rを核とした明朝体ファミリーです。
+游明朝は現在、WindowsおよびMacに標準で付属しているので、誰でも簡単に使用可能である。よい時代になったものである。しかし逆に言うと、最近は小説同人誌でよく見かけるフォントとなってきており、個性を発揮して他との差別化を図りたい向きには物足りないかもしれない。
 ヒラギノ明朝 ヒラギノ明朝は、Macについてくる美しいフォントである。ファンも多く、ヒラギノ目当てでMacを買う人がいるほどである（「ヒラギノを買ったらMacがついてきた」という言い方が定番ネタとなっている）。
 ただしMacについてくるヒラギノ明朝はウェイトがW3であり、小説本文に使うにはやや太くかつ平仮名がやや大きめである。W3よりも細めのW2であれば、平仮名がやや小さく設計されているのでより小説に向いていると言えるであろう1。ただし、W2はMacに付属していないので別途購入の必要がある。
 しっぽり明朝v2 しっぽり明朝v2はフリーフォントながら綺麗なフォントであり、小説に向いている（もっとも私自身は使ったことがないので使用感はよく分からない）。公式サイトには次のような説明がある。
- しっぽり明朝は、石井中明朝体OKLやリュウミンKO、A1明朝、筑紫Aオールド明朝等に影響を与えた、東京築地活版製造所の名作書体である五号系活字を下敷きに、物静かで上品で、見ているだけでうっとりするような明朝体を目指して制作した、オールドスタイル明朝体フリーフォントです。
- 五号系活字が好きな人にはおすすめのフリーフォントである。
+しっぽり明朝は、石井中明朝体OKLやリュウミンKO、A1明朝、筑紫Aオールド明朝等に影響を与えた、東京築地活版製造所の名作書体である五号系活字を下敷きに、物静かで上品で、見ているだけでうっとりするような明朝体を目指して制作した、オールドスタイル明朝体フリーフォントです。
+五号系活字が好きな人にはおすすめのフリーフォントである。
 源暎こぶり明朝 源暎こぶり明朝もまたフリーフォントながら綺麗なフォントであり、小説に向いている（もっとも私自身は使ったことがないので使用感はよく分からない）。公式サイトには次のように書かれてあり、小説向きであることが明言されている。
- 「源暎こぶり明朝」は小説創作活動や電子書籍閲覧など縦組み・長文・文芸向けをターゲットに製作された本文用明朝体です。
- ヒラギノ明朝にも近しい印象のフォントで、小説同人誌ではMS明朝・游明朝に並んでよく見かける気がする。
+「源暎こぶり明朝」は小説創作活動や電子書籍閲覧など縦組み・長文・文芸向けをターゲットに製作された本文用明朝体です。
+ヒラギノ明朝にも近しい印象のフォントで、小説同人誌ではMS明朝・游明朝に並んでよく見かける気がする。
 筑紫明朝 筑紫明朝は有料フォントであるから、気軽に使うわけにはゆかない。しかし非常に美しいフォントであり、小説本文用としてぜひとも候補に入れておきたい。LETSの学生割か、もしくはmojimo-kireiというパックで契約すると、比較的安い年間価格で使用することができる。
 小説向きのフォントのなかで比較的安い有料フォントとしては、他にもイワタ明朝体オールドのTrueType版がある。また、一太郎のプレミアム版を買うとフォントがついてくる（フォントを単体で買うよりも一太郎ごと買ったほうが安いので、実質「フォントを買ったら一太郎がついてくる」状態である）ので、フォントにこだわる向きは検討してみるとよい。
 小説向きではないフォント 最後に、小説向きではないフォントを紹介する。例えば以下のようなフォントは小説で使わないのが無難である。
- 創英角ポップ体 MS明朝 小塚明朝 ほのか明朝 はれのそら明朝  創英角ポップ体やMS明朝は言うまでもなく、ほのか明朝やはれのそら明朝も小説には向いていない2。
+創英角ポップ体 MS明朝 小塚明朝 ほのか明朝 はれのそら明朝 創英角ポップ体やMS明朝は言うまでもなく、ほのか明朝やはれのそら明朝も小説には向いていない2。
 最も確実にフォントを選ぶには、フォントの公式サイトに行って、そのフォントがいかなる用途を想定して作られたかを確認するのがよい。こうすれば、フォントのセンスに自信がなくても、小説向きかどうかをある程度見極めることができよう。
 九大文学では 今回、『九大文学』では基本的に游明朝を採用した。ただし本文の一部には游明朝体五号かなを使用し、小さなアクセントとした。
 欧文は、游明朝にはCochinealを、游明朝体五号かなにはfbbを合わせた。游明朝とCochinealの組み合わせは相性がよいので試されるとよいであろう。
-　（次回に続く）
-  W3とW2の違いについては、亮月製作所＊書体のはなし・ヒラギノ明朝体を参考にした。&amp;#160;&amp;#x21a9;&amp;#xfe0e;
- なぜわざわざ、ほのか明朝とはれのそら明朝を取り上げたのかというと、最近の文藝部の部誌に使われていたからである。今時の後輩たちは市販の小説本を読んだことがないのか……？　と思わせるほど、小説っぽくないフォント選定であった。いや、フォントを工夫すること自体はありがたいことなんですけどね。というかこんなところで批判的なことを言わずに直接言えよという声が聞こえてきそう。すみません直接言う勇気はありませんでした。後輩たちが楽しく活動できているならそれでいいんです。&amp;#160;&amp;#x21a9;&amp;#xfe0e;
-   </description>
+（次回に続く）
+W3とW2の違いについては、亮月製作所＊書体のはなし・ヒラギノ明朝体を参考にした。&amp;#160;&amp;#x21a9;&amp;#xfe0e;
+なぜわざわざ、ほのか明朝とはれのそら明朝を取り上げたのかというと、最近の文藝部の部誌に使われていたからである。今時の後輩たちは市販の小説本を読んだことがないのか……？　と思わせるほど、小説っぽくないフォント選定であった。いや、フォントを工夫すること自体はありがたいことなんですけどね。というかこんなところで批判的なことを言わずに直接言えよという声が聞こえてきそう。すみません直接言う勇気はありませんでした。後輩たちが楽しく活動できているならそれでいいんです。&amp;#160;&amp;#x21a9;&amp;#xfe0e;</description>
     </item>
     
     <item>
@@ -204,11 +202,11 @@ LaTeXによる目次の作り方（通常時） 通常、LaTeXで目次を生成
 しかし、\tableofcontentsで上のような目次を作るのは結構難しい。なぜならば、第一に、デフォルトの\tableofcontentsでは、著者名と作品名をどちらも出力するということができないからだ（そもそもLaTeXのデフォルトの設定では、複数の著者名を扱うような仕組みがない）。
 第二に、\tableofcontentsで出力される目次のレイアウトを変更するのが難しい。\tableofcontentsを再定義してやればいいのだが、\tableofcontentsの元の定義はかなり複雑で、変更が面倒である。
 LaTeXによる目次の作り方（私家版） さてそこで私は、\tableofcontentsに代替しうるマクロを別途定義して使っている。そのマクロとは、以下に示すような\Mokujiマクロである。
-%% \Mokuji \newcommand{\Mokuji}[3]{%  #1\hskip1zw% 作品名  \textgt{#2}\hskip1zw% 著者名  \rensuji{\pageref{#3}}% ページ数 } このようなマクロを作っておいたうえで、本文内に次のように記述する。
-\Mokuji{走れメロス}{太宰治}{dazai}% 目次生成。引数は、\Mokuji{&amp;lt;作品名&amp;gt;}{&amp;lt;著者名&amp;gt;}{&amp;lt;ページ参照用ラベル&amp;gt;}とする。  %  \label{dazai}% 小説開始時点にラベルを張っておく % 以下、小説本文 すると、次のように出力される。
+%% \Mokuji \newcommand{\Mokuji}[3]{% #1\hskip1zw% 作品名 \textgt{#2}\hskip1zw% 著者名 \rensuji{\pageref{#3}}% ページ数 } このようなマクロを作っておいたうえで、本文内に次のように記述する。
+\Mokuji{走れメロス}{太宰治}{dazai}% 目次生成。引数は、\Mokuji{&amp;lt;作品名&amp;gt;}{&amp;lt;著者名&amp;gt;}{&amp;lt;ページ参照用ラベル&amp;gt;}とする。 % \label{dazai}% 小説開始時点にラベルを張っておく % 以下、小説本文 すると、次のように出力される。
 基本的には、このように\Mokujiマクロを何個も使って目次を作ればよい。目次デザインを変えるためには、\Mokujiマクロの定義を適宜変更すればよい。
 ベスト文集では、\mokujiを次のように定義して使った。
-%% \mokuji \newcommand{\mokuji}[4]{%  \expandafter\ifx#4\relax \leavevmode\hbox to 14zw{}%  \else \leavevmode\hbox to 14zw{\rule[-1zw]{.4pt}{2zw}\kern.5zw\fontsize{12\bQ}{\baselineskip}\selectfont #4\hss}%  \fi \expandafter\ifx#2\relax \else \leavevmode\hbox to 6zw{%  \hss\textgt{\fontsize{12\bQ}{\baselineskip}\selectfont #2}%  }%  \fi \kern.5zw\rule[-1zw]{.4pt}{2zw}\kern.5zw #1 \def\qbook@mkj@page{\pageref{#3}}%  \expandafter\ifx\csname r@#3\endcsname\relax \def\qbook@mkj@page{?</description>
+%% \mokuji \newcommand{\mokuji}[4]{% \expandafter\ifx#4\relax \leavevmode\hbox to 14zw{}% \else \leavevmode\hbox to 14zw{\rule[-1zw]{.4pt}{2zw}\kern.5zw\fontsize{12\bQ}{\baselineskip}\selectfont #4\hss}% \fi \expandafter\ifx#2\relax \else \leavevmode\hbox to 6zw{% \hss\textgt{\fontsize{12\bQ}{\baselineskip}\selectfont #2}% }% \fi \kern.5zw\rule[-1zw]{.4pt}{2zw}\kern.5zw #1 \def\qbook@mkj@page{\pageref{#3}}% \expandafter\ifx\csname r@#3\endcsname\relax \def\qbook@mkj@page{??}% \fi \StrLeft{\qbook@mkj@page}{1}[\qbook@mkj@firstchar]% \if ?\qbook@mkj@firstchar \hfill\rule[-1zw]{.4pt}{2zw}\kern.5zw\hbox to 1.5zw{\tcy{?}}% \else \if i\qbook@mkj@firstchar \tcy{\small\qbook@mkj@page}\hspace*{-.</description>
     </item>
     
     <item>
@@ -226,11 +224,11 @@ LaTeXによる目次の作り方（私家版） さてそこで私は、\tableof
 文藝部の遺伝子は、少しずつアップデートされながらも、着実に継承されていく。
 LaTeXによる扉の作り方 LaTeXで扉を作るには通常、\title{九大文学}のように本のタイトルを指定し、\maketitleという命令を書き込むことによって扉を生成する。しかしこの方法では、扉ページのレイアウトを変更するのが非常に難しい。具体的には、クラスファイルを編集して\maketitleという命令を定義し直せばよいと思われるが、この方法は余程TeXに習熟している人でない限り実行困難であろう。今回作ったベスト文集のように、扉だけ横書きで、本文は縦書き、といったような複雑なレイアウトにする場合は、特に面倒だと思われる。
 そこで、扉を作るにあたっては、実現したいレイアウトを直接LaTeXの文法に従って書くほうが無難である。具体的には、私は以下のように記述して扉を作った（ただし、以下の記述のなかには独自に定義したマクロも多く含まれているので、これをそのままコピペしてもエラーが出るだけである。注意されたい）。
-\newhanmenII \newhanmen{tate,te=-2mm} \hanmenchangedir \thispagestyle{empty} \begingroup \vspace*{70mm} {\fontsize{30\bQ}{30H}\gtfamily\ebseries\romanfamily{agencyfb}\romanseries{bx}\selectfont\booktitlename} \leftskip-1zw \vspace{\fill} \parbox{9zw}{%  \begin{center} \fontsize{15\bQ}{16H}\classico \hspace*{0.18em}Kyushu \hspace{0.05em}Univ.\\ \vspace{-.2em}%  \mbox{}\hspace{-1.3zw}{\gtfamily\ebseries\fontsizeX 九州大学文藝部}\\ \vspace{-.1em}%  Literary Club \end{center} } \endgroup 何をやっているかというと、基本的には、「文字の大きさやフォントを切り替えつつ、\vspaceや\hspaceで文字の位置を調整して配置している」ということになる。すなわちWordなどと同じ要領でデザインすればよい。
+\newhanmenII \newhanmen{tate,te=-2mm} \hanmenchangedir \thispagestyle{empty} \begingroup \vspace*{70mm} {\fontsize{30\bQ}{30H}\gtfamily\ebseries\romanfamily{agencyfb}\romanseries{bx}\selectfont\booktitlename} \leftskip-1zw \vspace{\fill} \parbox{9zw}{% \begin{center} \fontsize{15\bQ}{16H}\classico \hspace*{0.18em}Kyushu \hspace{0.05em}Univ.\\ \vspace{-.2em}% \mbox{}\hspace{-1.3zw}{\gtfamily\ebseries\fontsizeX 九州大学文藝部}\\ \vspace{-.1em}% Literary Club \end{center} } \endgroup 何をやっているかというと、基本的には、「文字の大きさやフォントを切り替えつつ、\vspaceや\hspaceで文字の位置を調整して配置している」ということになる。すなわちWordなどと同じ要領でデザインすればよい。
 文字の大きさは、
 \fontsize{20Q}{25H}\selectfont のように書けば指定できる。また、フォントの指定をするには
 \kanjifamily{hmc}\romanfamily{qag}\selectfont のように書けばよい。フォント指定のマクロには\fontfamilyという命令もあるが、ここでは敢えて\fontfamilyではなく\kanjifamilyと\romanfamilyを使っている。こちらの命令を使えば、和文と欧文でまったく違うフォントを指定することが可能となるので、便利である。
-　（次回に続く）</description>
+（次回に続く）</description>
     </item>
     
     <item>
@@ -251,9 +249,8 @@ LaTeXによる表紙データの作り方 表紙データをPDFで入稿する�
 \documentclass{article} \usepackage{pdfpages} \begin{document} \includepdf[fitpaper]{hyosi.png} \end{document} これをpdfLaTeXで処理すれば、PDF形式の表紙データが得られる。TeXは、画像をPDF化するのにも使えるのだ。便利なものである。
 PP加工 印刷所に入稿予約をするとき、表紙に使う紙を選ぶことができる。今回はペルーラ・スノーホワイトを使用した。これは、光を当てるときらきらと輝く紙である。この紙に、オプションとして、マットPP加工を施してもらった。
 なるべくPP加工を施してもらうことが大切である。PP加工をしておけば、本同士が擦れても塗料が剥がれることがないし、水にも多少耐性ができて丈夫になるので、PP加工はなるべく印刷所に頼んでやってもらおう。
-　（次回に続く）
-  などとエラそうに書いているが、所詮は素人の手すさびにすぎない。間違ったことが書かれてあっても、大目に見ていただきたい。&amp;#160;&amp;#x21a9;&amp;#xfe0e;
-   </description>
+（次回に続く）
+などとエラそうに書いているが、所詮は素人の手すさびにすぎない。間違ったことが書かれてあっても、大目に見ていただきたい。&amp;#160;&amp;#x21a9;&amp;#xfe0e;</description>
     </item>
     
     <item>
@@ -263,7 +260,7 @@ PP加工 印刷所に入稿予約をするとき、表紙に使う紙を選ぶ�
       
       <guid>https://qdaibungei.github.io/latex/documents/2019-09-07-git-diff/</guid>
       <description>方法 git diff で一文字ずつ差分表示するには次のようにすればよい。
-git diff --color-words --word-diff-regex=&amp;#39;\\w+|[^[:space:]]&amp;#39; 参考文献  git diff を1文字単位で出力する  </description>
+git diff --color-words --word-diff-regex=&amp;#39;\\w+|[^[:space:]]&amp;#39; 参考文献 git diff を1文字単位で出力する </description>
     </item>
     
     <item>
@@ -275,7 +272,7 @@ git diff --color-words --word-diff-regex=&amp;#39;\\w+|[^[:space:]]&amp;#39; 参
       <description>はじめに ascmac.styを用いると、itembox環境というものが使える。表題つきの丸い枠である。この枠は、レジュメなどを作るとき使い勝手がよい。
 ところで丸い枠ではなく四角い枠が使いたいときもある。こういうときはどうすればよいか。四角い枠を定義すればよい。以下は、ネットで見つけて拾ったものである。
 fitembox環境の定義 以下、ネットで拾った「表題つきの四角い枠」の定義である。fitembox環境と名づけられている。使いかたはitembox環境と同じである。
-% % fitembox environment % \def\fitembox{\@ifnextchar[{\@itembox}{\@itembox[c]}} \def\@myhleader{\leaders\hrule height .4pt\hfil} \def\endfitembox{\end{minipage}\egroup%  \setbox\scscb@x=\hbox to\linewidth{%  \vbox{\offinterlineskip%  \thicklines\setlength{\unitlength}{1pt}%  \hbox{\rule{10pt}{.4pt}%  \hbox to\@scw{\if l\the\@iboxpos\else\@myhleader\fi \space\vbox to.4pt{\vss\hbox{\box\@iboxstr}\vss}%  \space\if r\the\@iboxpos\else \@myhleader\fi}%  \rule{10pt}{.4pt}} \vskip 10pt \hbox to\linewidth{\hfill\box\scb@x\hfill} \vskip 10pt \hrule height.4pt}} \noindent\hbox to\linewidth{%  \vrule width .4pt \hss \box\scscb@x \hss \vrule width .4pt}%  \egroup\vskip0pt} 使用例 \begin{fitembox}[l]{夏目漱石} 吾輩は猫である。 \end{fitembox} </description>
+% % fitembox environment % \def\fitembox{\@ifnextchar[{\@itembox}{\@itembox[c]}} \def\@myhleader{\leaders\hrule height .4pt\hfil} \def\endfitembox{\end{minipage}\egroup% \setbox\scscb@x=\hbox to\linewidth{% \vbox{\offinterlineskip% \thicklines\setlength{\unitlength}{1pt}% \hbox{\rule{10pt}{.4pt}% \hbox to\@scw{\if l\the\@iboxpos\else\@myhleader\fi \space\vbox to.4pt{\vss\hbox{\box\@iboxstr}\vss}% \space\if r\the\@iboxpos\else \@myhleader\fi}% \rule{10pt}{.4pt}} \vskip 10pt \hbox to\linewidth{\hfill\box\scb@x\hfill} \vskip 10pt \hrule height.4pt}} \noindent\hbox to\linewidth{% \vrule width .4pt \hss \box\scscb@x \hss \vrule width .4pt}% \egroup\vskip0pt} 使用例 \begin{fitembox}[l]{夏目漱石} 吾輩は猫である。 \end{fitembox} </description>
     </item>
     
     <item>
@@ -288,7 +285,7 @@ fitembox環境の定義 以下、ネットで拾った「表題つきの四角�
 あ\kern-.33333zw\leaders\hbox to .33333zw{\hss\raise.3zw\hbox{.}\hss}\hfill あ こうすると、ピリオドを三点リーダと同じ間隔で行長いっぱいまで並べることができる。
 結果 組版結果は以下のようになる。
 上は\leadersを使ったものであり、下は…（三点リーダ）を直接手作業で書き並べたものである。上と下でほぼ同じ形になっており、望ましい結果が得られていることが分かる。
-参考文献  藤田眞作『LaTeX2eまくろの八衢』（オンライン版）  </description>
+参考文献 藤田眞作『LaTeX2eまくろの八衢』（オンライン版） </description>
     </item>
     
     <item>
@@ -304,7 +301,7 @@ LaTeXで混植をする方法の解説としては、これまでにも優れた
 CTANにあるjapanese-otfパッケージからbaseplとscriptというディレクトリをダウンロード。またmkjvfもダウンロードしておく。
 同様にjapanese-otf-uptexからbasepl、script、umkjvfをダウンロード。
 さらに次のスクリプトを作成する。
-#!/bin/sh  mkdir tfm mkdir vf # 普通にtfmファイルを生成 for face in r b do for hv in h v do ppltotf basepl/base-${hv}.pl yumin5go${face}-${hv} ppltotf basepl/base-${hv}.pl expyumin5go${face}-${hv} ppltotf basepl/brsg-${hv}.pl brsgyumin5go${face}-${hv} ppltotf basepl/brsg-${hv}.pl brsgexpyumin5go${face}-${hv} # uppltotf -kanji=uptex basepl/ubase-${hv}.pl upyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubase-${hv}.pl upexpyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubrsg-${hv}.pl upbrsgyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubrsg-${hv}.pl upbrsgexpyumin5go${face}-${hv} done done # ここが混植のキモ。 # 混植しないときは引数二つでよかったが、混植のため引数は三つ。 # しかし仕組みはあまり理解できていない。 for face in r b do for hv in h v do perl mkjvf -m yumin5go${face}-${hv} hmin${face}-${hv} r-yumin5go${face}-${hv} perl mkjvf -m -sage brsgyumin5go${face}-${hv} hmin${face}-${hv} r-yumin5go${face}-${hv} perl mkjvf -m -expert expyumin5go${face}-${hv} hmin${face}-${hv} cidjmin${face} perl mkjvf -m -sage -expert brsgexpyumin5go${face}-${hv} hmin${face}-${hv} cidjmin${face} done done for face in r b do for hv in h v do perl umkjvf -m -ucs -sp 1 upyumin5go${face}-${hv} uphmin${face}-${hv} r-upyumin5go${face}-${hv} perl umkjvf -m -ucs -sp 1 -sage upbrsgyumin5go${face}-${hv} uphmin${face}-${hv} r-upyumin5go${face}-${hv} perl umkjvf -m -ucs -sp 1 -expert upexpyumin5go${face}-${hv} uphmin${face}-${hv} cidjmin${face} perl umkjvf -m -ucs -sp 1 -sage -expert upbrsgexpyumin5go${face}-${hv} uphmin${face}-${hv} cidjmin${face} done done echo &amp;#34;making tfm for supplementary plane .</description>
+#!/bin/sh mkdir tfm mkdir vf # 普通にtfmファイルを生成 for face in r b do for hv in h v do ppltotf basepl/base-${hv}.pl yumin5go${face}-${hv} ppltotf basepl/base-${hv}.pl expyumin5go${face}-${hv} ppltotf basepl/brsg-${hv}.pl brsgyumin5go${face}-${hv} ppltotf basepl/brsg-${hv}.pl brsgexpyumin5go${face}-${hv} # uppltotf -kanji=uptex basepl/ubase-${hv}.pl upyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubase-${hv}.pl upexpyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubrsg-${hv}.pl upbrsgyumin5go${face}-${hv} uppltotf -kanji=uptex basepl/ubrsg-${hv}.pl upbrsgexpyumin5go${face}-${hv} done done # ここが混植のキモ。 # 混植しないときは引数二つでよかったが、混植のため引数は三つ。 # しかし仕組みはあまり理解できていない。 for face in r b do for hv in h v do perl mkjvf -m yumin5go${face}-${hv} hmin${face}-${hv} r-yumin5go${face}-${hv} perl mkjvf -m -sage brsgyumin5go${face}-${hv} hmin${face}-${hv} r-yumin5go${face}-${hv} perl mkjvf -m -expert expyumin5go${face}-${hv} hmin${face}-${hv} cidjmin${face} perl mkjvf -m -sage -expert brsgexpyumin5go${face}-${hv} hmin${face}-${hv} cidjmin${face} done done for face in r b do for hv in h v do perl umkjvf -m -ucs -sp 1 upyumin5go${face}-${hv} uphmin${face}-${hv} r-upyumin5go${face}-${hv} perl umkjvf -m -ucs -sp 1 -sage upbrsgyumin5go${face}-${hv} uphmin${face}-${hv} r-upyumin5go${face}-${hv} perl umkjvf -m -ucs -sp 1 -expert upexpyumin5go${face}-${hv} uphmin${face}-${hv} cidjmin${face} perl umkjvf -m -ucs -sp 1 -sage -expert upbrsgexpyumin5go${face}-${hv} uphmin${face}-${hv} cidjmin${face} done done echo &amp;#34;making tfm for supplementary plane .</description>
     </item>
     
     <item>
@@ -315,7 +312,7 @@ CTANにあるjapanese-otfパッケージからbaseplとscriptというディレ�
       <guid>https://qdaibungei.github.io/latex/documents/2019-03-30-jfonts/</guid>
       <description>はじめに LaTeXでPDFに和文フォントを埋め込む際、いちいちmapファイルを書き換えるのは面倒である。そこでjfontsパッケージというLaTeXパッケージを作った。簡単な工夫だが、役に立つ。
 jfontsパッケージは、otfパッケージと併用することを前提としている。フォントを変えたいときはフォントのファイル名を書き換えればよい。
-jfonts.sty % % jfonts.sty %  \NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{jfonts} \def\jf@hminl{ToppanBunkyuMincho-Regular.otf} \def\jf@hminr{HiraMinProN-W3.otf} \def\jf@hminb{HiraMinProN-W6.otf} \def\jf@hgothr{HiraKakuProN-W3.otf} \def\jf@hgothb{HiraKakuProN-W6.otf} \def\jf@hgotheb{HiraKakuStdN-W8.otf} \def\jf@hmgothr{HiraMaruPro-W4.otf} \AtBeginDvi{%  % TEXT, 90JIS  \special{pdf:mapline hminl-h H \jf@hminl}%  \special{pdf:mapline hminl-v V \jf@hminl}%  \special{pdf:mapline hminr-h H \jf@hminr}%  \special{pdf:mapline hminr-v V \jf@hminr}%  \special{pdf:mapline hminb-h H \jf@hminb}%  \special{pdf:mapline hminb-v V \jf@hminb}%  \special{pdf:mapline hgothr-h H \jf@hgothr}%  \special{pdf:mapline hgothr-v V \jf@hgothr}%  \special{pdf:mapline hgothb-h H \jf@hgothb}%  \special{pdf:mapline hgothb-v V \jf@hgothb}%  \special{pdf:mapline hgotheb-h H \jf@hgotheb}%  \special{pdf:mapline hgotheb-v V \jf@hgotheb}%  \special{pdf:mapline hmgothr-h H \jf@hmgothr}%  \special{pdf:mapline hmgothr-v V \jf@hmgothr}%  % TEXT, JIS04  \special{pdf:mapline hminln-h H \jf@hminl}%  \special{pdf:mapline hminln-v V \jf@hminl}%  \special{pdf:mapline hminrn-h H \jf@hminr}%  \special{pdf:mapline hminrn-v V \jf@hminr}%  \special{pdf:mapline hminbn-h H \jf@hminb}%  \special{pdf:mapline hminbn-v V \jf@hminb}%  \special{pdf:mapline hgothrn-h H \jf@hgothr}%  \special{pdf:mapline hgothrn-v V \jf@hgothr}%  \special{pdf:mapline hgothbn-h H \jf@hgothb}%  \special{pdf:mapline hgothbn-v V \jf@hgothb}%  \special{pdf:mapline hgothebn-h H \jf@hgotheb}%  \special{pdf:mapline hgothebn-v V \jf@hgotheb}%  \special{pdf:mapline hmgothrn-h H \jf@hmgothr}%  \special{pdf:mapline hmgothrn-v V \jf@hmgothr}%  % CID  \special{pdf:mapline otf-cjml-h Identity-H \jf@hminl}%  \special{pdf:mapline otf-cjml-v Identity-V \jf@hminl}%  \special{pdf:mapline otf-cjmr-h Identity-H \jf@hminr/AJ16}%  \special{pdf:mapline otf-cjmr-v Identity-V \jf@hminr/AJ16}%  \special{pdf:mapline otf-cjmb-h Identity-H \jf@hminb/AJ16}%  \special{pdf:mapline otf-cjmb-v Identity-V \jf@hminb/AJ16}%  \special{pdf:mapline otf-cjgr-h Identity-H \jf@hgothr}%  \special{pdf:mapline otf-cjgr-v Identity-V \jf@hgothr}%  \special{pdf:mapline otf-cjgb-h Identity-H \jf@hgothb}%  \special{pdf:mapline otf-cjgb-v Identity-V \jf@hgothb}%  \special{pdf:mapline otf-cjge-h Identity-H \jf@hgotheb/AJ16}%  \special{pdf:mapline otf-cjge-v Identity-V \jf@hgotheb/AJ16}%  \special{pdf:mapline otf-cjmgr-h Identity-H \jf@hmgothr/AJ16}%  \special{pdf:mapline otf-cjmgr-v Identity-V \jf@hmgothr/AJ16}%  % Unicode 90JIS  \special{pdf:mapline otf-ujml-h UniJIS-UTF16-H \jf@hminl}%  \special{pdf:mapline otf-ujml-v UniJIS-UTF16-V \jf@hminl}%  \special{pdf:mapline otf-ujmr-h UniJIS-UTF16-H \jf@hminr}%  \special{pdf:mapline otf-ujmr-v UniJIS-UTF16-V \jf@hminr}%  \special{pdf:mapline otf-ujmb-h UniJIS-UTF16-H \jf@hminb}%  \special{pdf:mapline otf-ujmb-v UniJIS-UTF16-V \jf@hminb}%  \special{pdf:mapline otf-ujgr-h UniJIS-UTF16-H \jf@hgothr}%  \special{pdf:mapline otf-ujgr-v UniJIS-UTF16-V \jf@hgothr}%  \special{pdf:mapline otf-ujgb-h UniJIS-UTF16-H \jf@hgothb}%  \special{pdf:mapline otf-ujgb-v UniJIS-UTF16-V \jf@hgothb}%  \special{pdf:mapline otf-ujge-h UniJIS-UTF16-H \jf@hgotheb}%  \special{pdf:mapline otf-ujge-v UniJIS-UTF16-V \jf@hgotheb}%  \special{pdf:mapline otf-ujmgr-h UniJIS-UTF16-H \jf@hmgothr}%  \special{pdf:mapline otf-ujmgr-v UniJIS-UTF16-V \jf@hmgothr}%  % Unicode JIS04  \special{pdf:mapline otf-ujmln-h UniJIS2004-UTF16-H \jf@hminl}%  \special{pdf:mapline otf-ujmln-v UniJIS2004-UTF16-V \jf@hminl}%  \special{pdf:mapline otf-ujmrn-h UniJIS2004-UTF16-H \jf@hminr}%  \special{pdf:mapline otf-ujmrn-v UniJIS2004-UTF16-V \jf@hminr}%  \special{pdf:mapline otf-ujmbn-h UniJIS2004-UTF16-H \jf@hminb}%  \special{pdf:mapline otf-ujmbn-v UniJIS2004-UTF16-V \jf@hminb}%  \special{pdf:mapline otf-ujgrn-h UniJIS2004-UTF16-H \jf@hgothr}%  \special{pdf:mapline otf-ujgrn-v UniJIS2004-UTF16-V \jf@hgothr}%  \special{pdf:mapline otf-ujgbn-h UniJIS2004-UTF16-H \jf@hgothb}%  \special{pdf:mapline otf-ujgbn-v UniJIS2004-UTF16-V \jf@hgothb}%  \special{pdf:mapline otf-ujgen-h UniJIS2004-UTF16-H \jf@hgotheb}%  \special{pdf:mapline otf-ujgen-v UniJIS2004-UTF16-V \jf@hgotheb}%  \special{pdf:mapline otf-ujmgrn-h UniJIS2004-UTF16-H \jf@hmgothr}%  \special{pdf:mapline otf-ujmgrn-v UniJIS2004-UTF16-V \jf@hmgothr}% }% \if@otf@uplatex \AtBeginDvi{%  % TEXT, 90JIS  \special{pdf:mapline uphminl-h UniJIS-UTF16-H \jf@hminl}%  \special{pdf:mapline uphminl-v UniJIS-UTF16-V \jf@hminl}%  \special{pdf:mapline uphminr-h UniJIS-UTF16-H \jf@hminr}%  \special{pdf:mapline uphminr-v UniJIS-UTF16-V \jf@hminr}%  \special{pdf:mapline uphminb-h UniJIS-UTF16-H \jf@hminb}%  \special{pdf:mapline uphminb-v UniJIS-UTF16-V \jf@hminb}%  \special{pdf:mapline uphgothr-h UniJIS-UTF16-H \jf@hgothr}%  \special{pdf:mapline uphgothr-v UniJIS-UTF16-V \jf@hgothr}%  \special{pdf:mapline uphgothb-h UniJIS-UTF16-H \jf@hgothb}%  \special{pdf:mapline uphgothb-v UniJIS-UTF16-V \jf@hgothb}%  \special{pdf:mapline uphgotheb-h UniJIS-UTF16-H \jf@hgotheb}%  \special{pdf:mapline uphgotheb-v UniJIS-UTF16-V \jf@hgotheb}%  \special{pdf:mapline uphmgothr-h UniJIS-UTF16-H \jf@hmgothr}%  \special{pdf:mapline uphmgothr-v UniJIS-UTF16-V \jf@hmgothr}%  % TEXT, JIS04  \special{pdf:mapline uphminln-h UniJIS2004-UTF16-H \jf@hminl}%  \special{pdf:mapline uphminln-v UniJIS2004-UTF16-V \jf@hminl}%  \special{pdf:mapline uphminrn-h UniJIS2004-UTF16-H \jf@hminr}%  \special{pdf:mapline uphminrn-v UniJIS2004-UTF16-V \jf@hminr}%  \special{pdf:mapline uphminbn-h UniJIS2004-UTF16-H \jf@hminb}%  \special{pdf:mapline uphminbn-v UniJIS2004-UTF16-V \jf@hminb}%  \special{pdf:mapline uphgothrn-h UniJIS2004-UTF16-H \jf@hgothr}%  \special{pdf:mapline uphgothrn-v UniJIS2004-UTF16-V \jf@hgothr}%  \special{pdf:mapline uphgothbn-h UniJIS2004-UTF16-H \jf@hgothb}%  \special{pdf:mapline uphgothbn-v UniJIS2004-UTF16-V \jf@hgothb}%  \special{pdf:mapline uphgothebn-h UniJIS2004-UTF16-H \jf@hgotheb}%  \special{pdf:mapline uphgothebn-v UniJIS2004-UTF16-V \jf@hgotheb}%  \special{pdf:mapline uphmgothrn-h UniJIS2004-UTF16-H \jf@hmgothr}%  \special{pdf:mapline uphmgothrn-v UniJIS2004-UTF16-V \jf@hmgothr}%  }% \fi 追記 いまだとTeX Liveに収録されているpxchfonパッケージがあるので、これを使って次のように書くのがラクである。</description>
+jfonts.sty % % jfonts.sty % \NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{jfonts} \def\jf@hminl{ToppanBunkyuMincho-Regular.otf} \def\jf@hminr{HiraMinProN-W3.otf} \def\jf@hminb{HiraMinProN-W6.otf} \def\jf@hgothr{HiraKakuProN-W3.otf} \def\jf@hgothb{HiraKakuProN-W6.otf} \def\jf@hgotheb{HiraKakuStdN-W8.otf} \def\jf@hmgothr{HiraMaruPro-W4.otf} \AtBeginDvi{% % TEXT, 90JIS \special{pdf:mapline hminl-h H \jf@hminl}% \special{pdf:mapline hminl-v V \jf@hminl}% \special{pdf:mapline hminr-h H \jf@hminr}% \special{pdf:mapline hminr-v V \jf@hminr}% \special{pdf:mapline hminb-h H \jf@hminb}% \special{pdf:mapline hminb-v V \jf@hminb}% \special{pdf:mapline hgothr-h H \jf@hgothr}% \special{pdf:mapline hgothr-v V \jf@hgothr}% \special{pdf:mapline hgothb-h H \jf@hgothb}% \special{pdf:mapline hgothb-v V \jf@hgothb}% \special{pdf:mapline hgotheb-h H \jf@hgotheb}% \special{pdf:mapline hgotheb-v V \jf@hgotheb}% \special{pdf:mapline hmgothr-h H \jf@hmgothr}% \special{pdf:mapline hmgothr-v V \jf@hmgothr}% % TEXT, JIS04 \special{pdf:mapline hminln-h H \jf@hminl}% \special{pdf:mapline hminln-v V \jf@hminl}% \special{pdf:mapline hminrn-h H \jf@hminr}% \special{pdf:mapline hminrn-v V \jf@hminr}% \special{pdf:mapline hminbn-h H \jf@hminb}% \special{pdf:mapline hminbn-v V \jf@hminb}% \special{pdf:mapline hgothrn-h H \jf@hgothr}% \special{pdf:mapline hgothrn-v V \jf@hgothr}% \special{pdf:mapline hgothbn-h H \jf@hgothb}% \special{pdf:mapline hgothbn-v V \jf@hgothb}% \special{pdf:mapline hgothebn-h H \jf@hgotheb}% \special{pdf:mapline hgothebn-v V \jf@hgotheb}% \special{pdf:mapline hmgothrn-h H \jf@hmgothr}% \special{pdf:mapline hmgothrn-v V \jf@hmgothr}% % CID \special{pdf:mapline otf-cjml-h Identity-H \jf@hminl}% \special{pdf:mapline otf-cjml-v Identity-V \jf@hminl}% \special{pdf:mapline otf-cjmr-h Identity-H \jf@hminr/AJ16}% \special{pdf:mapline otf-cjmr-v Identity-V \jf@hminr/AJ16}% \special{pdf:mapline otf-cjmb-h Identity-H \jf@hminb/AJ16}% \special{pdf:mapline otf-cjmb-v Identity-V \jf@hminb/AJ16}% \special{pdf:mapline otf-cjgr-h Identity-H \jf@hgothr}% \special{pdf:mapline otf-cjgr-v Identity-V \jf@hgothr}% \special{pdf:mapline otf-cjgb-h Identity-H \jf@hgothb}% \special{pdf:mapline otf-cjgb-v Identity-V \jf@hgothb}% \special{pdf:mapline otf-cjge-h Identity-H \jf@hgotheb/AJ16}% \special{pdf:mapline otf-cjge-v Identity-V \jf@hgotheb/AJ16}% \special{pdf:mapline otf-cjmgr-h Identity-H \jf@hmgothr/AJ16}% \special{pdf:mapline otf-cjmgr-v Identity-V \jf@hmgothr/AJ16}% % Unicode 90JIS \special{pdf:mapline otf-ujml-h UniJIS-UTF16-H \jf@hminl}% \special{pdf:mapline otf-ujml-v UniJIS-UTF16-V \jf@hminl}% \special{pdf:mapline otf-ujmr-h UniJIS-UTF16-H \jf@hminr}% \special{pdf:mapline otf-ujmr-v UniJIS-UTF16-V \jf@hminr}% \special{pdf:mapline otf-ujmb-h UniJIS-UTF16-H \jf@hminb}% \special{pdf:mapline otf-ujmb-v UniJIS-UTF16-V \jf@hminb}% \special{pdf:mapline otf-ujgr-h UniJIS-UTF16-H \jf@hgothr}% \special{pdf:mapline otf-ujgr-v UniJIS-UTF16-V \jf@hgothr}% \special{pdf:mapline otf-ujgb-h UniJIS-UTF16-H \jf@hgothb}% \special{pdf:mapline otf-ujgb-v UniJIS-UTF16-V \jf@hgothb}% \special{pdf:mapline otf-ujge-h UniJIS-UTF16-H \jf@hgotheb}% \special{pdf:mapline otf-ujge-v UniJIS-UTF16-V \jf@hgotheb}% \special{pdf:mapline otf-ujmgr-h UniJIS-UTF16-H \jf@hmgothr}% \special{pdf:mapline otf-ujmgr-v UniJIS-UTF16-V \jf@hmgothr}% % Unicode JIS04 \special{pdf:mapline otf-ujmln-h UniJIS2004-UTF16-H \jf@hminl}% \special{pdf:mapline otf-ujmln-v UniJIS2004-UTF16-V \jf@hminl}% \special{pdf:mapline otf-ujmrn-h UniJIS2004-UTF16-H \jf@hminr}% \special{pdf:mapline otf-ujmrn-v UniJIS2004-UTF16-V \jf@hminr}% \special{pdf:mapline otf-ujmbn-h UniJIS2004-UTF16-H \jf@hminb}% \special{pdf:mapline otf-ujmbn-v UniJIS2004-UTF16-V \jf@hminb}% \special{pdf:mapline otf-ujgrn-h UniJIS2004-UTF16-H \jf@hgothr}% \special{pdf:mapline otf-ujgrn-v UniJIS2004-UTF16-V \jf@hgothr}% \special{pdf:mapline otf-ujgbn-h UniJIS2004-UTF16-H \jf@hgothb}% \special{pdf:mapline otf-ujgbn-v UniJIS2004-UTF16-V \jf@hgothb}% \special{pdf:mapline otf-ujgen-h UniJIS2004-UTF16-H \jf@hgotheb}% \special{pdf:mapline otf-ujgen-v UniJIS2004-UTF16-V \jf@hgotheb}% \special{pdf:mapline otf-ujmgrn-h UniJIS2004-UTF16-H \jf@hmgothr}% \special{pdf:mapline otf-ujmgrn-v UniJIS2004-UTF16-V \jf@hmgothr}% }% \if@otf@uplatex \AtBeginDvi{% % TEXT, 90JIS \special{pdf:mapline uphminl-h UniJIS-UTF16-H \jf@hminl}% \special{pdf:mapline uphminl-v UniJIS-UTF16-V \jf@hminl}% \special{pdf:mapline uphminr-h UniJIS-UTF16-H \jf@hminr}% \special{pdf:mapline uphminr-v UniJIS-UTF16-V \jf@hminr}% \special{pdf:mapline uphminb-h UniJIS-UTF16-H \jf@hminb}% \special{pdf:mapline uphminb-v UniJIS-UTF16-V \jf@hminb}% \special{pdf:mapline uphgothr-h UniJIS-UTF16-H \jf@hgothr}% \special{pdf:mapline uphgothr-v UniJIS-UTF16-V \jf@hgothr}% \special{pdf:mapline uphgothb-h UniJIS-UTF16-H \jf@hgothb}% \special{pdf:mapline uphgothb-v UniJIS-UTF16-V \jf@hgothb}% \special{pdf:mapline uphgotheb-h UniJIS-UTF16-H \jf@hgotheb}% \special{pdf:mapline uphgotheb-v UniJIS-UTF16-V \jf@hgotheb}% \special{pdf:mapline uphmgothr-h UniJIS-UTF16-H \jf@hmgothr}% \special{pdf:mapline uphmgothr-v UniJIS-UTF16-V \jf@hmgothr}% % TEXT, JIS04 \special{pdf:mapline uphminln-h UniJIS2004-UTF16-H \jf@hminl}% \special{pdf:mapline uphminln-v UniJIS2004-UTF16-V \jf@hminl}% \special{pdf:mapline uphminrn-h UniJIS2004-UTF16-H \jf@hminr}% \special{pdf:mapline uphminrn-v UniJIS2004-UTF16-V \jf@hminr}% \special{pdf:mapline uphminbn-h UniJIS2004-UTF16-H \jf@hminb}% \special{pdf:mapline uphminbn-v UniJIS2004-UTF16-V \jf@hminb}% \special{pdf:mapline uphgothrn-h UniJIS2004-UTF16-H \jf@hgothr}% \special{pdf:mapline uphgothrn-v UniJIS2004-UTF16-V \jf@hgothr}% \special{pdf:mapline uphgothbn-h UniJIS2004-UTF16-H \jf@hgothb}% \special{pdf:mapline uphgothbn-v UniJIS2004-UTF16-V \jf@hgothb}% \special{pdf:mapline uphgothebn-h UniJIS2004-UTF16-H \jf@hgotheb}% \special{pdf:mapline uphgothebn-v UniJIS2004-UTF16-V \jf@hgotheb}% \special{pdf:mapline uphmgothrn-h UniJIS2004-UTF16-H \jf@hmgothr}% \special{pdf:mapline uphmgothrn-v UniJIS2004-UTF16-V \jf@hmgothr}% }% \fi 追記 いまだとTeX Liveに収録されているpxchfonパッケージがあるので、これを使って次のように書くのがラクである。</description>
     </item>
     
     <item>
@@ -334,7 +331,7 @@ tfmなどの生成 さて今回はGoogle Fontsに収録されているJosefin Sl
 まず作業用ディレクトリを適当に作っておき、そこにJosefinSlab-Regular.ttfを入れておく。ターミナルで作業用ディレクトリに行き、次のコマンドを実行してみよう。
 otftotfm --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf すると、○○○.tfm、○○○.vf、○○○.map、○○○.encという四種類のファイルが生成されるはずである1。
 一応、オプションの意味を説明しておこう。
- --no-type1 --no-dotlessjは、「Type 1フォントへの変換を行わない」ということ、らしい。あまり理解できていない。 --mapfile=josefinslab.mapで、mapファイル名の指定をする。mapファイルの名前は何でもよい（自分が分かりやすいような名前にする）。 -e ec.encは、エンコーディングファイルの指定。ec.encを指定すると、T1エンコーディングになる。ちなみにtexnansi.encを指定するとLY1エンコーディングになる。エンコーディングって何なのかいまいち分かっていないが、私はT1エンコーディングにしておいて困ったことはない。 -n josefinslab-regularは、tfm名の指定。これも、自分が分かりやすいよう適当に名前を付ければよい。  また、-fkernとすればカーニングの、-fligaとすればリガチャの情報を、tfmに含ませることができる。Josefin Slabにはこれらの機能がなかったから上ではこのオプションをつけていないが、この機能があればつけたほうがよい。つまり、もしJosefin Slabがカーニングやリガチャの機能を備えていた場合には、次のようにオプションをつけてコマンドを実行するほうがよい、というわけである。
+--no-type1 --no-dotlessjは、「Type 1フォントへの変換を行わない」ということ、らしい。あまり理解できていない。 --mapfile=josefinslab.mapで、mapファイル名の指定をする。mapファイルの名前は何でもよい（自分が分かりやすいような名前にする）。 -e ec.encは、エンコーディングファイルの指定。ec.encを指定すると、T1エンコーディングになる。ちなみにtexnansi.encを指定するとLY1エンコーディングになる。エンコーディングって何なのかいまいち分かっていないが、私はT1エンコーディングにしておいて困ったことはない。 -n josefinslab-regularは、tfm名の指定。これも、自分が分かりやすいよう適当に名前を付ければよい。 また、-fkernとすればカーニングの、-fligaとすればリガチャの情報を、tfmに含ませることができる。Josefin Slabにはこれらの機能がなかったから上ではこのオプションをつけていないが、この機能があればつけたほうがよい。つまり、もしJosefin Slabがカーニングやリガチャの機能を備えていた場合には、次のようにオプションをつけてコマンドを実行するほうがよい、というわけである。
 otftotfm -fkern -fliga --no-type1 --no-dotlessj --mapfile=josefinslab.map -e ec.enc -n josefinslab-regular JosefinSlab-Regular.ttf otfinfo -f JosefinSlab-Regular.ttfなどと打てば、フォントにどのような機能が備わっているかを確認できる。
 styファイルの作成 各種ファイルが生成できたならば、すかさず、josefinslab.styという名前でstyファイルを作る。
 % % josefinslab.sty % \AtBeginDvi{\special{pdf:mapfile josefinslab.map}}% 先程生成したmapファイルの読み込み \DeclareFontFamily{T1}{josefinslab}{}% TeXファイル内で使うフォント名を設定 \DeclareFontShape{T1}{josefinslab}{m}{n}{&amp;lt;-&amp;gt; josefinslab-regular}{}% 上で設定したフォント名と、先程生成したtfmファイルとを結びつける \endinput インストールできたかを確認 ここまでできたら、ほとんどインストールは完了したと言ってよい（今のままだと、各種ファイルがディレクトリにたくさん散らばっていて、気持ち悪いかもしれないが、この問題は次の節で解決する）。</description>
@@ -351,13 +348,12 @@ styファイルの作成 各種ファイルが生成できたならば、すか�
 \usepackage[burasage]{otf} しかし、このぶら下げ組にはひとつ問題がある。句読点が行末に来たとき、必ずぶら下げ処理がおこなわれてしまうのである1。
 むろん、これはこれでひとつの立派な組版方針である。だが、行長が短いときに強制的にぶら下げ処理がおこなわれてしまうと、字間が開いてしまい、間延びした印象の組みかたになってしまう。よって、われわれとしては、ぶら下げ処理を少し抑制するように修正してみたい。これは、商業出版の本によく見られる組みかたでもある。
 そこで、プリアンブルなどに以下のように記述し、\。と\、というマクロを作る。
-\if@burasage \def\、{%  \@ifnextchar\par{、}{、\hbox{}}%  }%  \def\。{%  \@ifnextchar\par{。}{。\hbox{}}%  }% \else \def\、{\nobreak\makebox[1zw][l]{、}}%  \def\。{\nobreak\makebox[1zw][l]{。}}% \fi あとは、文章中の句読点すべてを\。および\、で置き換えればよい。すると、burasageオプション時には適度にぶら下げが抑制された組みかたとなる。また、burasageオプションを外したときには、追い出し組となる。
+\if@burasage \def\、{% \@ifnextchar\par{、}{、\hbox{}}% }% \def\。{% \@ifnextchar\par{。}{。\hbox{}}% }% \else \def\、{\nobreak\makebox[1zw][l]{、}}% \def\。{\nobreak\makebox[1zw][l]{。}}% \fi あとは、文章中の句読点すべてを\。および\、で置き換えればよい。すると、burasageオプション時には適度にぶら下げが抑制された組みかたとなる。また、burasageオプションを外したときには、追い出し組となる。
 細かい調整 ただし、このままでは句読点と括弧類とが並んだとき、空きが広くなりすぎてしまう。たとえば、\。「のように、句読点の直後に始め括弧が来た場合、\。\&amp;lt;「とする（つまり\&amp;lt;を追加する）ことが必要となる。
 句点と鉤括弧の場合だけ考えると、結局、以下のような置換が必要である。
- \。「 → \。\&amp;lt;「 \。」 → 。」 」\。 → 」\&amp;lt;\。  このような置換を、すべての括弧類と句読点との組み合わせを考えて、おこなえばよい。置換作業は手作業だと面倒きわまりないので、PythonなりRubyなりで置換スクリプトを組んで置換するのがよいであろう。
+\。「 → \。\&amp;lt;「 \。」 → 。」 」\。 → 」\&amp;lt;\。 このような置換を、すべての括弧類と句読点との組み合わせを考えて、おこなえばよい。置換作業は手作業だと面倒きわまりないので、PythonなりRubyなりで置換スクリプトを組んで置換するのがよいであろう。
 結言 LaTeXのデフォルトは追い込み組であるが、これは商業出版にはあまり見られない。そこで上のような設定をし、ぶら下げ組にするか、追い出し組にするとよいのである。そうすれば、いっそう商業出版に近い組みかたが実現でき、嬉しい気分に浸れることであろう。
-  ただし段落末尾はそのかぎりではない。&amp;#160;&amp;#x21a9;&amp;#xfe0e;
-   </description>
+ただし段落末尾はそのかぎりではない。&amp;#160;&amp;#x21a9;&amp;#xfe0e;</description>
     </item>
     
     <item>
@@ -376,9 +372,9 @@ hanmenパッケージの使用 まずhanmenパッケージをダウンロード�
 % 上のフォント設定をした後に書く \usepackage[Q=13,H=22,W=49,L=21,ko=3.875truemm,te=6.5truemm,footskip=2.47truemm,tate]{hanmen} % ついでに、欧文のベースラインなどを適当に変更しておこう \tbaselineshift=.3zw \kanjiskip=0zw plus .25zw minus .03125zw \xkanjiskip=.25zw plus .25zw minus .0625zw これで厳密な版面の設定が可能となる。厳密というのは、たとえば表と裏とで行が揃っているということである（厳密な設定をしないと、行がズレる。紙を透かして見ると行がズレているかどうか分かる）。
 hanmenパッケージの使い方の詳細はこの記事を参照のこと。
 \tcyコマンド LaTeXで縦書きをする際、縦中横には\rensujiを使うよう言われる。しかし\rensujiだと前後のアキがおかしくなる（たとえば、行頭で\rensujiを使うとインデント量が狂う）。そこで\tcy命令を新たに作り、これを使うのがよい。
-\usepackage{plext} \makeatletter \chardef\nvlsty@zenkakuSpace=\jis&amp;#34;2121\relax \newcommand{\tcy}[1]{%  \nvlsty@zenkakuSpace\kern-1zw\relax \leavevmode\hbox to 1zw{%  \centering\rensuji*{#1}\relax }\relax \kern-1zw\nvlsty@zenkakuSpace } \makeatother 以上をプリアンブルなどに書いておく。使い方はいたって簡単で、\tcy{12}時、のようにすればよい。
+\usepackage{plext} \makeatletter \chardef\nvlsty@zenkakuSpace=\jis&amp;#34;2121\relax \newcommand{\tcy}[1]{% \nvlsty@zenkakuSpace\kern-1zw\relax \leavevmode\hbox to 1zw{% \centering\rensuji*{#1}\relax }\relax \kern-1zw\nvlsty@zenkakuSpace } \makeatother 以上をプリアンブルなどに書いておく。使い方はいたって簡単で、\tcy{12}時、のようにすればよい。
 禁則処理の設定 縦書きの場合、禁則処理はほどほどに抑制しておくと商業出版物の組版に似せることができる。プリアンブルなどに以下を記述する。
-\makeatletter \def\hoge@set@prebreakpenalty#1#2{%  \@tfor\@tempa:=#1\do{\expandafter\prebreakpenalty\expandafter`\@tempa =#2}} \clubpenalty=0 \widowpenalty=0 \jcharwidowpenalty=0 \displaywidowpenalty=0 \prebreakpenalty\jis&amp;#34;2147=10000 % 5000 ’ \postbreakpenalty\jis&amp;#34;2148=10000 % 5000 “ \prebreakpenalty\jis&amp;#34;2149=10000 % 5000 ” \inhibitxspcode`〒=2 \hoge@set@prebreakpenalty{ヽヾゝゞ々〻}{10000} \hoge@set@prebreakpenalty{ーぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ…}{0} \makeatother フッター 以前出した本のフッターの設定は大体こんな感じである。</description>
+\makeatletter \def\hoge@set@prebreakpenalty#1#2{% \@tfor\@tempa:=#1\do{\expandafter\prebreakpenalty\expandafter`\@tempa =#2}} \clubpenalty=0 \widowpenalty=0 \jcharwidowpenalty=0 \displaywidowpenalty=0 \prebreakpenalty\jis&amp;#34;2147=10000 % 5000 ’ \postbreakpenalty\jis&amp;#34;2148=10000 % 5000 “ \prebreakpenalty\jis&amp;#34;2149=10000 % 5000 ” \inhibitxspcode`〒=2 \hoge@set@prebreakpenalty{ヽヾゝゞ々〻}{10000} \hoge@set@prebreakpenalty{ーぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ…}{0} \makeatother フッター 以前出した本のフッターの設定は大体こんな感じである。</description>
     </item>
     
     <item>
@@ -395,7 +391,7 @@ pdfpagesパッケージの使いかた 大きさを指定して画像をPDF化�
 縦横比そのままに画像をPDF化する \documentclass{article} \usepackage{pdfpages} \begin{document} \includepdf[fitpaper]{image.jpg} \end{document} このようにfitpaperオプションつきで画像を読み込むと、画像の縦横比に合わせて用紙サイズが決定される。
 PDFファイルの連結 以下はA5サイズの本を作っているとき、左右のページをつなげてA4用紙に出力するやりかたである。デザインを確認したいときなどに有用である。
 \documentclass[a4paper,landscape]{article} \usepackage{pdfpages} \begin{document} \includepdf[pages={28,29},nup=2x1]{mybook.pdf} \end{document} pages={28,29}は28～29ページだけを読み込む設定、nupは複数ページを一枚に並べる設定である。nup=2x1は2行×1列で並べるという意味になる。
-自炊したPDFファイルの加工と連結 \documentclass{article} \usepackage{pdfpages} \usepackage[a5paper]{geometry} \begin{document} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{1.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{2.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{3.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{4.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{5.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{6.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{7.pdf} \end{document} \documentclass{article} \usepackage{pdfpages} \usepackage[a4paper,landscape]{geometry} \newcount\K \newcommand{\createPDF}{%  \K=0 \loop\ifnum\K&amp;lt;134 % while(K&amp;lt;pagecount)  \includepdf[pages=-,scale=1.15,offset=-12mm 2mm]{\the\K.png} \advance\K by 1 % K++  \repeat % end while } \begin{document} \createPDF \end{document} scaleオプションとoffsetオプションを指定してやると周囲の切り落としが可能となる。</description>
+自炊したPDFファイルの加工と連結 \documentclass{article} \usepackage{pdfpages} \usepackage[a5paper]{geometry} \begin{document} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{1.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{2.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{3.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{4.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{5.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{6.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{7.pdf} \end{document} \documentclass{article} \usepackage{pdfpages} \usepackage[a4paper,landscape]{geometry} \newcount\K \newcommand{\createPDF}{% \K=0 \loop\ifnum\K&amp;lt;134 % while(K&amp;lt;pagecount) \includepdf[pages=-,scale=1.15,offset=-12mm 2mm]{\the\K.png} \advance\K by 1 % K++ \repeat % end while } \begin{document} \createPDF \end{document} scaleオプションとoffsetオプションを指定してやると周囲の切り落としが可能となる。</description>
     </item>
     
     <item>
@@ -443,7 +439,7 @@ layoutcal.html
       
       <guid>https://qdaibungei.github.io/latex/documents/2017-03-19-bouten/</guid>
       <description>以下の画像を参考に置換する。
-　置換用文字列は以下をコピペするとよい。
+置換用文字列は以下をコピペするとよい。
 ? ^&amp;［＃「^&amp;」に傍点］ </description>
     </item>
     
@@ -458,7 +454,7 @@ layoutcal.html
 なお、以下の方法はあくまでも初心者向けの簡易的方法1であり、私が普段LaTeXで組版している実際の現場の方法とはかなり異なる。
 電撃文庫の再現 雛形ファイルの用意 具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。
 まず、以下を novelstyle.sty という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
-\NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{novelstyle} \RequirePackage[Q=11.5,H=19,W=42,L=17,te=-2mm,headsep=5mm,tate]{hanmen}% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。 \RequirePackage[deluxe,uplatex]{otf}% フォントの多書体化。 \RequirePackage{plext,pxrubrica}% plextは縦組み時に有用なパッケージ、pxrubricaはルビ振りに必要なパッケージ。  % %% header &amp;amp; footer % \fancyhf{}% ヘッダー・フッターの初期化 \def\nvlsty@nombre{\textit{\thepage}}% ページ番号を出力するときは\thepageと書く。 \def\nvlsty@booktitle{ここにタイトルを書く} \fancyhead[RE]{\vspace*{0pt}\scriptsize\nvlsty@nombre} \fancyhead[LO]{\vspace*{0pt}\footnotesize\nvlsty@nombre\hskip1zw\scriptsize\nvlsty@booktitle} % %% \tcy % % LaTeXの解説書では、縦中横に\rensujiを使うこととされているが、 % \rensujiだと無駄なアキが入ってしまいベタ組みできない。 % そこで、ここでは新たに\tcyを定義する。 \chardef\nvlsty@zenkakuSpace=\jis&amp;#34;2121\relax \def\tcy#1{%  \nvlsty@zenkakuSpace\kern-1zw\relax \leavevmode\hbox to 1zw{%  \centering\rensuji*{#1}%  }%  \kern-1zw\nvlsty@zenkakuSpace } % %% \xobeylines % % これは、空行をあけなくても段落分けできるようにする工夫。 % 参考：https://hakuoku.github.io/agakuTeX/tutorial/4_1linebreak/（ちなみにここに出てくるxsceyさんというのは当研究会メンバーです） % 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。 % \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。 % ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない（実際私も、普段は空行で段落分けしている）。 {\catcode`\^^M=\active \gdef\xobeylines{\catcode`\^^M\active \def^^M{\par\leavevmode}}%  \global\def^^M{\par\leavevmode}% } \def\disobeylines{\catcode`\^^M=5 } \let\disxobeylines=\disobeylines \AtBeginDocument{\xobeylines}%% 本文開始直後から\xobeylinesが適用されるようにする。  % %% 全角アキ % % 疑問符などの後に全角空白文字「　」を使ってアキを作ると、疑問符が行末に来たとき空白が行頭に出てしまって都合が悪い。 % そこで、全角アキは以下のマクロで作る必要がある。 \newcommand{\zenkakuaki}{\hskip1zw plus .</description>
+\NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{novelstyle} \RequirePackage[Q=11.5,H=19,W=42,L=17,addten=2mm,headsep=5mm,tate]{hanmen}% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。 \RequirePackage[deluxe,uplatex]{otf}% フォントの多書体化。 \RequirePackage{plext}% plextは縦組み時に有用なパッケージ（なおutbook.clsなどの縦書き専用クラスを用いる場合には自動的に読み込まれる）。 \RequirePackage{pxrubrica}% pxrubricaはルビ振りに必要なパッケージ。 \RequirePackage{fancyhdr}% ヘッダー・フッターの改造に便利なパッケージ。 % %% header &amp;amp; footer % \fancyhf{}% ヘッダー・フッターの初期化 \def\nvlsty@nombre{\textit{\thepage}}% ページ番号を出力するときは\thepageと書く。 \def\nvlsty@booktitle{ここにタイトルを書く} \fancyhead[RE]{\vspace*{0pt}\scriptsize\nvlsty@nombre} \fancyhead[LO]{\vspace*{0pt}\footnotesize\nvlsty@nombre\hskip1zw\scriptsize\nvlsty@booktitle} % %% \tcy % % LaTeXの解説書では、縦中横に\rensujiを使うこととされているが、 % \rensujiだと無駄なアキが入ってしまいベタ組みできない。 % そこで、ここでは新たに\tcyを定義する。 \chardef\nvlsty@zenkakuSpace=\jis&amp;#34;2121\relax \def\tcy#1{% \nvlsty@zenkakuSpace\kern-1zw\relax \leavevmode\hbox to 1zw{% \centering\rensuji*{#1}% }% \kern-1zw\nvlsty@zenkakuSpace } % %% \xobeylines % % これは、空行をあけなくても段落分けできるようにする工夫。 % 参考：https://hakuoku.github.io/agakuTeX/tutorial/4_1linebreak/（ちなみにここに出てくるxsceyさんというのは当研究会メンバーです） % 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。 % \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。 % ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない（実際私も、普段は空行で段落分けしている）。 {\catcode`\^^M=\active \gdef\xobeylines{\catcode`\^^M\active \def^^M{\par\leavevmode}}% \global\def^^M{\par\leavevmode}% } \def\disobeylines{\catcode`\^^M=5 } \let\disxobeylines=\disobeylines \AtBeginDocument{\xobeylines}%% 本文開始直後から\xobeylinesが適用されるようにする。 % %% 全角アキ % % 疑問符などの後に全角空白文字「　」を使ってアキを作ると、疑問符が行末に来たとき空白が行頭に出てしまって都合が悪い。 % そこで、全角アキは以下のマクロで作る必要がある。 \newcommand{\zenkakuaki}{\hskip1zw plus .</description>
     </item>
     
     <item>
@@ -488,11 +484,11 @@ MyTeXpert 書籍ではなくネットの文書でLaTeXに入門するなら、�
       
       <guid>https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/</guid>
       <description>はじめに hanmenパッケージというLaTeXパッケージを作った。ダウンロードは以下からできる。
- https://gist.github.com/qdaibungei/5f6986fa99fc9a7d86122a7a9417d64e  hanmenパッケージとは、版面の設計1を厳密に行うためのパッケージである。たとえば、38字×40行で文書を作りたい、といったときにhanmenパッケージは有用である。
+https://gist.github.com/qdaibungei/5f6986fa99fc9a7d86122a7a9417d64e hanmenパッケージとは、版面の設計1を厳密に行うためのパッケージである。たとえば、38字×40行で文書を作りたい、といったときにhanmenパッケージは有用である。
 従来、LaTeXでは版面の設計が煩雑であった。特に縦組みの場合、geometryパッケージが使えないので厄介である2。そこで、縦組みでも版面設計がやりやすいようにと作ったのがhanmenパッケージである。
 基本的な使い方 基本的な使い方は簡単である。プリアンブルに次のように書き込む。
 \usepackage[Q=15,H=24,W=38,L=40]{hanmen} そうすると、
- 文字サイズ　15級 行送り　24歯 行長　38字 行数　40行  に設定できる。Q は文字サイズの単位「級」に、H は行送りの単位「歯」に、W はwidthに、L はlinesに由来している。なお、デフォルトではQ=11.5、H=19、W=42、L=17に設定してある。
+文字サイズ　15級 行送り　24歯 行長　38字 行数　40行 に設定できる。Q は文字サイズの単位「級」に、H は行送りの単位「歯」に、W はwidthに、L はlinesに由来している。なお、デフォルトではQ=11.5、H=19、W=42、L=17に設定してある。
 各種オプション g グリッド線を表示させる（gに代入する値は上のWで指定した文字数と同じか、または近い整数値を入れる）。これで原稿用紙のようなマス目を表示させることができる。
 \usepackage[g=38]{hanmen} tate 縦組みにする。
 \usepackage[tate]{hanmen} ヘッダ・フッタ ヘッダ・フッタの位置の調整。
@@ -510,13 +506,13 @@ MyTeXpert 書籍ではなくネットの文書でLaTeXに入門するなら、�
       
       <guid>https://qdaibungei.github.io/latex/documents/2017-02-17-jdash/</guid>
       <description>概要 jdashパッケージというLaTeXパッケージを作った。ダウンロードは以下からできる。
- https://gist.github.com/qdaibungei/4230bb59434ec1ba505bc94dbfde1898  jdashというのはjapanese dashの略のつもりである。日本語文に現れる記号ダッシュ ― は、通常何個か並べて一本の線のようにして使うが、フォントによっては一本の線に見えない。一本の線のように見せるには工夫が必要だ。その工夫をパッケージ化したものがjdashパッケージだ。
+https://gist.github.com/qdaibungei/4230bb59434ec1ba505bc94dbfde1898 jdashというのはjapanese dashの略のつもりである。日本語文に現れる記号ダッシュ ― は、通常何個か並べて一本の線のようにして使うが、フォントによっては一本の線に見えない。一本の線のように見せるには工夫が必要だ。その工夫をパッケージ化したものがjdashパッケージだ。
 ところで、人によってはときおり放心状態で「あ～～～」と声にならない声を発したくなることがある。しかしこれでは、波ダッシュ ～ がつながって見えないのでいまいち放心状態であることが伝達されにくい。そこで波線をつなげられるような工夫が必要となる。jdashパッケージでは、その工夫をも盛り込んだ。
 使い方 ダッシュ この文章でも使っているようなふつうのダッシュ――あるいはダーシとも言う――を出力するには、\jdash という命令を使う。
 \jdash{2} のように数字を与えれば、この例の場合2字分の長さのダッシュが出力される。なお、2字分の長さのダッシュ（倍角ダッシュ）に限り、\―― という命令でも出力可能に設定してある。
 デフォルトでは、通常のダッシュ記号 ― を重ねることで一本につながったダッシュを出力するようにしている。このやり方は美文書などでも紹介されている有名なやり方である。
 しかしPDFで見たときダブって見える弱点もある。そこでPDFで閲覧するときのために、罫線 ─ を使った表示ができると都合がよい。そこで用意している命令が \jdashstyle である。
-\jdashstyle{―} % デフォルト \jdash{3} % ダブったダッシュが出る  \jdashstyle{─} % ダッシュ記号を罫線（U+2500）に変更 \jdash{3} % 罫線で出力される  \jdashstyle{rule} % ダッシュ記号を\ruleで生成されるものに変更 \jdash{3} % \ruleで出力される 波ダッシュ 「あ～～～～」と叫びたいとき、あるいはTeX言語話者らしく「えくすぱんどあふた～～～～！」と叫びたいときには波ダッシュがつながっていると便利だ。そのために \wdash という命令を用意してある（wave dashの略のつもり）。
+\jdashstyle{―} % デフォルト \jdash{3} % ダブったダッシュが出る \jdashstyle{─} % ダッシュ記号を罫線（U+2500）に変更 \jdash{3} % 罫線で出力される \jdashstyle{rule} % ダッシュ記号を\ruleで生成されるものに変更 \jdash{3} % \ruleで出力される 波ダッシュ 「あ～～～～」と叫びたいとき、あるいはTeX言語話者らしく「えくすぱんどあふた～～～～！」と叫びたいときには波ダッシュがつながっていると便利だ。そのために \wdash という命令を用意してある（wave dashの略のつもり）。
 えくすぱんどあふた\wdash{4}！ もしくは、\～ という命令を並べれば、波ダッシュ記号 ～ がいくらでもつながる。
 えくすぱんどあふた\～\～\～\～\～\～\～！ フォントによっては波線同士の食い込み量がまずくて、うまくつながらないかもしれない。その場合は \wdashKerningAmount{数字} という命令を使う。数字の単位は zw である。
 % \wdashKerningAmount{.25} % デフォルト。0.25zw分、波線が食い込む。 \wdashKerningAmount{.261} % 食い込み具合を変更。筑紫明朝はこのくらい食い込ませるとうまく波線がつながる。 なお、一部のライトノベルで使われているような波線 〰 の表示もできる。このために \wdashstyle という命令が容易されている。</description>
@@ -530,9 +526,9 @@ MyTeXpert 書籍ではなくネットの文書でLaTeXに入門するなら、�
       <guid>https://qdaibungei.github.io/latex/documents/2017-02-10-noautoindent/</guid>
       <description>はじめに Wordはおせっかい機能が多いことで有名である。中でも文芸サークルにおいて悪名高いのがオートインデント機能である。そこでここでは、このうざったいオートインデント機能が動作しないように設定する方法を記す。
 手順 まず、赤丸で囲ったところをクリック。
-　次に、オプションをクリック。
-　オートコレクトのオプションをクリック。
-　入力オートフォーマットタブの「行の始まりのスペースを字下げに変更する」のチェックボックスを外す。図は、チェックボックスを外した状態である。
+次に、オプションをクリック。
+オートコレクトのオプションをクリック。
+入力オートフォーマットタブの「行の始まりのスペースを字下げに変更する」のチェックボックスを外す。図は、チェックボックスを外した状態である。
 追記：「Tab/Space/BackSpaceキーでインデントとタブの設定を変更する」のチェックも外す必要があるらしい、という情報をネットで得た。私の環境では初めから外れていた。
 むすび オートインデント機能を切る方法は直感的に分かりづらい。Wordがそのような分かりづらい作りになっているのはなぜであろうか。まったく不可解である。もしかすると宇宙人の陰謀かもしれない。NASAなどが早急に原因究明にあたってくれることを強く望む。</description>
     </item>
@@ -545,23 +541,23 @@ MyTeXpert 書籍ではなくネットの文書でLaTeXに入門するなら、�
       <guid>https://qdaibungei.github.io/latex/documents/2016-11-29-dtp-guide-zangai/</guid>
       <description>はじめに この文書の目的 この文書の狙いは、読みやすい小説の同人誌を作成するにはどうすればよいかを、主にDTPの観点から解説することにあった（が、この目標は断念を余儀なくされた1）。
 主な対象読者は、小説の同人誌づくりの工程のうち、本文データ作成で悩んでいる人たちである。すなわち、
- 同人誌を作ってみたが、どうも本文が読みづらい 商業本に比べて見劣りがする  と漠然と感じている人や、
- Wordに小説本文を流し込んでみたが、『!?』が横倒しになって気持ち悪い ルビを振ると行間が空いてしまう  といったように、意図した通りのデータ作成ができず苦しんでいる人が該当する。
+同人誌を作ってみたが、どうも本文が読みづらい 商業本に比べて見劣りがする と漠然と感じている人や、
+Wordに小説本文を流し込んでみたが、『!?』が横倒しになって気持ち悪い ルビを振ると行間が空いてしまう といったように、意図した通りのデータ作成ができず苦しんでいる人が該当する。
 私の方針 今回、初心者向けということで、以下の方針を採用することとした。
- できるだけ安く ただし使用ソフトはWord  できるだけ安く済ませるに越したことはない。特に初心者の場合、いきなり高価なソフトに手を出すのはあまり賢いやり方ではないであろう。
+できるだけ安く ただし使用ソフトはWord できるだけ安く済ませるに越したことはない。特に初心者の場合、いきなり高価なソフトに手を出すのはあまり賢いやり方ではないであろう。
 ただし、使用ソフトはWordを採用した2。これは、初心者の場合Wordが最も操作に慣れていると考えられたからである。もちろん、WordがなければLibreOfficeで代用して構わない。
 注意 私の独断と偏見が多分に混じっていることを留意されたい。
 フォント まずはフォントの選定からである。フォントは本文の印象を担う重要なファクターであり、慎重に選ぶ必要がある。フォントは商用のものを購入すると非常に高価なので、まずは無料フォントの中から選ぶことにする3。
 結論から言ってしまえば、本文フォントは以下の4つのいずれかを使用するのが無難であろう。これらはすべて無料で使えるが、ただしヒラギノだけはMacにしか付いていない。
- 游明朝 ヒラギノ IPAex明朝 F910明朝W3-IPA  個人的には、MS明朝は避けたほうがよいと考えている。
+游明朝 ヒラギノ IPAex明朝 F910明朝W3-IPA 個人的には、MS明朝は避けたほうがよいと考えている。
 MS明朝 MS明朝を使ってはならない理由は、端的に「読みづらい」からである。
 そもそもMS明朝は小説向きのフォントではない。もともと、MS明朝は解像度の低いディスプレイ用に開発されたフォントであり、印刷向きではないのである。その証拠に、開発元のサイトを見ると、
- そのころは、ディスプレイの解像度が低く、小さな画面で、いかに小さい文字まできれいに表示させるかということでいろいろな工夫をしました。
- と書いてある。推測するに、MS明朝のひらがなが独特な形状をしている（直線が多用されていたり、少しばかり大きめだったりする）のは、解像度が低いディスプレイでも字が潰れず読めるように、という工夫だと思われる。
+そのころは、ディスプレイの解像度が低く、小さな画面で、いかに小さい文字まできれいに表示させるかということでいろいろな工夫をしました。
+と書いてある。推測するに、MS明朝のひらがなが独特な形状をしている（直線が多用されていたり、少しばかり大きめだったりする）のは、解像度が低いディスプレイでも字が潰れず読めるように、という工夫だと思われる。
 当時は大変役に立ったであろうそうした工夫は、我々の目指す「美しい小説本をつくる」という目的の前ではむしろ百害あって一理なしである。
 游明朝 游明朝は、最も小説向きと言えるだろう。公式サイトには次のように書いてあり、小説用に開発されたフォントであることが明言されている。
- 游明朝体ファミリーは「時代小説が組めるような明朝体」をキーワードに、単行本や文庫などで小説を組むことを目的に開発した游明朝体Rを核とした明朝体ファミリーです。
- 游明朝は現在、Windows および Mac に標準で付属している。
+游明朝体ファミリーは「時代小説が組めるような明朝体」をキーワードに、単行本や文庫などで小説を組むことを目的に開発した游明朝体Rを核とした明朝体ファミリーです。
+游明朝は現在、Windows および Mac に標準で付属している。
 なお、最新のMacには「游明朝体36ポかな」という仮名書体が付属している（游明朝の漢字部分と組み合わせて使う）。公式サイトを見ると、もともとは見出しフォントとしての使用を想定しているようである。したがって、本文フォントとして読みやすいのかどうか定かではない。場合によっては使ってみてもよいかもしれない。
 ヒラギノ ヒラギノフォントは、とにかく美しいフォントである。ファンも多い。「ヒラギノを目当てにMacを買った」という人も結構いる（フォント単体を買うよりMacごと買ったほうが安いので、しばしば「ヒラギノを買ったらMacがついてきた」と表現される）。
 個人的な意見では、小説よりは横書きの文書に適しているように思うが、縦書きの小説に使用してもさほど問題はなかろう。
@@ -571,7 +567,15 @@ F910明朝W3-IPA 「現代的な骨格と古くからある味わいを融合し
 古風といえば「はんなり明朝」もIPAフォントの漢字に古風な仮名書体を合わせたフリーフォントだが、こちらは縦書きで使うと縦の線が揃わなくてあまり読みやすくない、という意見をどこかで見た気がする。真偽の程は定かではないが。美しさについては、最終的には自分の目で判断するしかないであろう。
 版面設計 本文領域のレイアウトのことを、版面という。この版面設計こそが、小説本の読みやすさを左右する最重要の工程である。
 基本的には、次の4点を決定することで、版面設計したことになる。
- 文字サイズ 行送りサイズ 1行あたりの文字数 1ページあたりの行数  文字サイズ 好きなフォントを選んだら、次に本文の文字サイズを決めよう。大きすぎても小さすぎてもいけない。基本的には市販の本を見て、それに合わせるのがよいだろう。</description>
+文字サイズ 行送りサイズ 1行あたりの文字数 1ページあたりの行数 文字サイズ 好きなフォントを選んだら、次に本文の文字サイズを決めよう。大きすぎても小さすぎてもいけない。基本的には市販の本を見て、それに合わせるのがよいだろう。
+ところが、ここで我々はちょっとした壁にぶつかることになる。
+実は、Wordでは市販の書籍の文字サイズを再現することができない！
+どういうことか。
+Wordで文字サイズといえば、「ポイント」という単位を使うのが普通である。例えばWordの標準設定では、本文の文字サイズは10.5ptである。一方、書籍で使用されている文字サイズは、ポイントではなく、「級（Q）」という単位で設定されているのである。これらは当然だが互いに換算可能で、例えば、「10pt」は約「14Q」である（これはちょうど、アメリカでは「1インチ」と呼ぶ長さを、日本では「2.54センチメートル」と呼ぶようなものである）。
+さて、ここで問題なのは、Wordでは細かな文字サイズ指定ができないことである。例えば、私の手元にある角川文庫の本文サイズは「13Q」だが、これをWordで再現することはできない。「13Q」をポイントに換算すれば、大体「9.2pt」となるが、実は、Wordで「9.2pt」と指定することはできないのである。Wordは「9pt」「9.5pt」「10pt」のように、0.5ptずつしかサイズを変更できないからである。
+したがって、Wordを使う以上、文字サイズに関しては市販の小説本を再現できない。諦めて、近い大きさを指定するほかない。ただし、たまたまぴったり換算できるときはある。例えば、「8.5pt = 12Q」であるから、本文を12QにすることはWordでもできる。
+目安として、市販の小説本ではどういった文字サイズが採用されているか見てみよう。
+ライトノベルは軒並み「11.5Q」であるらしい（らしい、というのは、私はあまりラノベを読まないからである）。ポイントで言えば「8.2pt」くらい。これはかなり小さめであり、本文で使うにはギリギリの大きさであろう。中高生向けである性格上、安価に生産すべく、文字を小さくして紙面を節約しているのだと思われる。 手元の角川文庫（綾辻行人『Another』）や平凡社ライブラリー（丹治信春『クワイン』）は恐らく「13Q」（適当に定規で計測しているので定かではないが）。ポイントでは「9.2pt」くらい。文庫本などで広く採用されているように思う。個人的には、本文サイズとしては最低でもこのくらいはほしい。 手元の新潮文庫（筒井康隆『七瀬ふたたび』）は多分、「13.5Q」。「9.6pt」くらい。 このように、市販の小説本は13Q～14Qくらいであることが多い。</description>
     </item>
     
     <item>
@@ -580,7 +584,7 @@ F910明朝W3-IPA 「現代的な骨格と古くからある味わいを融合し
       <pubDate>Sun, 09 Oct 2016 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2016-10-09-kousei/</guid>
-      <description>背景  小説集の編集をやっている。 インデントは全角空白で表現、ただし文頭が括弧の場合は空白不要、などの表記ルールを（明示はしていないが暗黙のうちに）定めている。  問題  著者たちはパソコンに熟達している人ばかりでなく、そのためインデント規則など表記ルールが守られていない原稿がよく送られてくる。  解法  以下のような正規表現を使って置換する。置換すべき項目がリストアップしてあると便利なので、以下に記しておく。上が検索文字列、下が置換後文字列。  インデントがないとき全角空白を挿入 ^([^　「『（〈【〔《［｛〝\n\\\\]) $1 括弧前に空白があれば削除 ^　([「『（〈【〔《［｛〝]) $1 文末の不要な空白を削除 [ ]+$  半角括弧→全角括弧 \((.+?)\) （$1） 2連続で使用されている疑問符・感嘆符は半角に [！？]{2,}  単純なミスをあらかじめ検知 がが|のの|をを|にに|へへ|とと|でで|やや|かか|もも|はは その他 青空文庫作業マニュアル【校正編】は参考になる。</description>
+      <description>背景 小説集の編集をやっている。 インデントは全角空白で表現、ただし文頭が括弧の場合は空白不要、などの表記ルールを（明示はしていないが暗黙のうちに）定めている。 問題 著者たちはパソコンに熟達している人ばかりでなく、そのためインデント規則など表記ルールが守られていない原稿がよく送られてくる。 解法 以下のような正規表現を使って置換する。置換すべき項目がリストアップしてあると便利なので、以下に記しておく。上が検索文字列、下が置換後文字列。 インデントがないとき全角空白を挿入 ^([^　「『（〈【〔《［｛〝\n\\\\]) $1 括弧前に空白があれば削除 ^　([「『（〈【〔《［｛〝]) $1 文末の不要な空白を削除 [ ]+$ 半角括弧→全角括弧 \((.+?)\) （$1） 2連続で使用されている疑問符・感嘆符は半角に [！？]{2,} 単純なミスをあらかじめ検知 がが|のの|をを|にに|へへ|とと|でで|やや|かか|もも|はは その他 青空文庫作業マニュアル【校正編】は参考になる。</description>
     </item>
     
     <item>
@@ -590,7 +594,7 @@ F910明朝W3-IPA 「現代的な骨格と古くからある味わいを融合し
       
       <guid>https://qdaibungei.github.io/latex/documents/2016-07-10-kousei-script/</guid>
       <description>はじめに 校正割り振りスクリプトをつくった。校正割り振りっていうより、「山分け問題」の解決をするスクリプトって言ったほうがいいか。というかこういう問題ってふつうどう呼ばれているのだろう。検索してもいまいちこれといったものが見つからなかった。「山分け問題」もしくは「分配問題」と呼んでいる本がgoogle booksで見つかったが、これが一般的呼称なのは分からない。
-校正割り振りスクリプト 背景  文藝サークルでは、文集や部誌を発行するさい、校正係を置いている。 ここで校正係とは、部員の原稿を事前に読み、誤字脱字などをチェックする係である。 各校正係は、すべての原稿に目を通す必要はなく、自分の担当原稿のみに目を通せばよい（各人がすべての原稿に目を通すのは非効率的であるため）。  問題  校正係へ原稿を割り振るとき、各人が読まねばならぬ原稿の文字数をできるかぎり揃えたい。 しかし、これを手作業で揃えようとすると、面倒である。  解法 以下に示すpythonスクリプトを書いた。すべての可能な組み合わせを考えて、標準偏差を出し、標準偏差の最も低い組み合わせを出力するようにしてある。
+校正割り振りスクリプト 背景 文藝サークルでは、文集や部誌を発行するさい、校正係を置いている。 ここで校正係とは、部員の原稿を事前に読み、誤字脱字などをチェックする係である。 各校正係は、すべての原稿に目を通す必要はなく、自分の担当原稿のみに目を通せばよい（各人がすべての原稿に目を通すのは非効率的であるため）。 問題 校正係へ原稿を割り振るとき、各人が読まねばならぬ原稿の文字数をできるかぎり揃えたい。 しかし、これを手作業で揃えようとすると、面倒である。 解法 以下に示すpythonスクリプトを書いた。すべての可能な組み合わせを考えて、標準偏差を出し、標準偏差の最も低い組み合わせを出力するようにしてある。
 # -*- coding: utf-8 -*- import math import itertools list1 = [1011,8595,5064,4978,6751,108,30218,732,&amp;#39;|&amp;#39;,&amp;#39;|&amp;#39;,&amp;#39;|&amp;#39;] junretu = [i for i in itertools.permutations(list1)] # すべての順列をひたすら出力 goodp = [] # good permitation listhozon = [] # list保存 # 標準偏差 standard deviation sd = -1 for p in junretu: list2 = [] p = list(p) i = [i for (i, x) in enumerate(p) if x == &amp;#39;|&amp;#39;] # 区切り位置の取得 # 取得した区切り位置を元に数字の組み合わせのリストを作る c = 0 for x in i: list2.</description>
     </item>
     
@@ -601,13 +605,15 @@ F910明朝W3-IPA 「現代的な骨格と古くからある味わいを融合し
       
       <guid>https://qdaibungei.github.io/latex/documents/2016-05-29-yohaku-settei/</guid>
       <description>この記事では、LaTeX文書における余白の設定方法を解説する。
-目次  目次 横書きの場合  geometryパッケージ jlreq.cls hanmenパッケージ 手動で設定   縦書きの場合  jlreq.cls hanmenパッケージ 手動で設定    横書きの場合 geometryパッケージ 横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。
+目次 目次 横書きの場合 geometryパッケージ jlreq.cls hanmenパッケージ 手動で設定 縦書きの場合 jlreq.cls hanmenパッケージ 手動で設定 横書きの場合 geometryパッケージ 横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。
 % 45字×41行の設定にする \usepackage[textwidth=45zw,lines=41]{geometry} 字数・行数を指定するのではなく、余白を直接指定する場合、次のように書けばよい。
 % 上下に2cm、左右に1cmの余白を取る \usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry} ターミナルで$ texdoc geometryを実行すれば、geometryパッケージのマニュアルを読むことができる。
 jlreq.cls jlreq.clsを用いている場合、クラスオプションを用いて余白設定を行なうことができる。プリアンブルに次のように書き込む。
 \documentclass[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=41]{jlreq} すると、
- 文字サイズ　14級 行送り　24.5歯 行長　45字 行数　41行  に設定することができる。字数・行数を指定するのではなく、余白の広さを直接指定する場合には、次のようにする。
-% 上下に2cm、左右に1cmの余白を取る % head_space: 上部余白 % foot_space: 下部余白 % gutter: ノド余白（左とじの場合は左側の余白、右とじの場合は右側の余白） % fore-edge: 小口余白（ノドとは逆側の余白） \documentclass[head_space=2cm, foot_space=2cm, gutter=1cm, fore-edge=1cm]{jlreq} hanmenパッケージ 拙作のhanmenパッケージを用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。</description>
+文字サイズ　14級 行送り　24.5歯 行長　45字 行数　41行 に設定することができる。字数・行数を指定するのではなく、余白の広さを直接指定する場合には、次のようにする。
+% 上下に2cm、左右に1cmの余白を取る % head_space: 上部余白 % foot_space: 下部余白 % gutter: ノド余白（左とじの場合は左側の余白、右とじの場合は右側の余白） % fore-edge: 小口余白（ノドとは逆側の余白） \documentclass[head_space=2cm, foot_space=2cm, gutter=1cm, fore-edge=1cm]{jlreq} hanmenパッケージ 拙作のhanmenパッケージを用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。
+\usepackage[Q=10,H=15,W=38,L=40,ptj]{hanmen} そうすると、
+文字サイズ　10pt 行送り　15pt 行長　38字 行数　40行 に設定できる。hanmenパッケージは縦書きにも対応しているので便利である。</description>
     </item>
     
     <item>
