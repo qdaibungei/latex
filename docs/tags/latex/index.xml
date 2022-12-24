@@ -349,15 +349,9 @@ hanmenパッケージの使い方の詳細はこの記事を参照のこと。
       <pubDate>Wed, 27 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://qdaibungei.github.io/latex/documents/2017-09-27-pdfpages/</guid>
-      <description>緒言 本稿はLaTeXを用いてPDFを生成・加工する方法を示すものである。
-Adobeの有料ソフトを使うならばPDF加工は容易であるが、無償のソフトウェアだけを用いてPDFを加工するのは通常難しい。しかし、LaTeXを用いれば無償でかんたんにPDFを加工できる。それを実現するのがpdfpagesパッケージである。
-そこで以下ではpdfpagesパッケージの使いかたをかんたんに記すことにする（ただし自分用メモとしての意味合いが強く、きちんとは解説していない）。
-pdfpagesパッケージの使いかた 大きさを指定して画像をPDF化する 以下をhoge.texという拡張子で保存し、pdflatex hoge.texとすればhoge.pdfというPDFファイルが生成される。
-\documentclass{article} \usepackage{pdfpages} \usepackage[papersize={308.341truemm,216truemm}]{geometry} \begin{document} \includepdf{image.jpg} \end{document} \includepdfという命令で画像ファイルを読み込み、出力しているだけである。geometryパッケージにより画像の縦横の長さを設定することが可能である。
-縦横比そのままに画像をPDF化する \documentclass{article} \usepackage{pdfpages} \begin{document} \includepdf[fitpaper]{image.jpg} \end{document} このようにfitpaperオプションつきで画像を読み込むと、画像の縦横比に合わせて用紙サイズが決定される。
-PDFファイルの連結 以下はA5サイズの本を作っているとき、左右のページをつなげてA4用紙に出力するやりかたである。デザインを確認したいときなどに有用である。
-\documentclass[a4paper,landscape]{article} \usepackage{pdfpages} \begin{document} \includepdf[pages={28,29},nup=2x1]{mybook.pdf} \end{document} pages={28,29}は28～29ページだけを読み込む設定、nupは複数ページを一枚に並べる設定である。nup=2x1は2行×1列で並べるという意味になる。
-自炊したPDFファイルの加工と連結 \documentclass{article} \usepackage{pdfpages} \usepackage[a5paper]{geometry} \begin{document} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{1.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{2.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{3.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{4.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{5.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{6.pdf} \includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{7.pdf} \end{document} \documentclass{article} \usepackage{pdfpages} \usepackage[a4paper,landscape]{geometry} \newcount\K \newcommand{\createPDF}{% \K=0 \loop\ifnum\K&amp;lt;134 % while(K&amp;lt;pagecount) \includepdf[pages=-,scale=1.15,offset=-12mm 2mm]{\the\K.png} \advance\K by 1 % K++ \repeat % end while } \begin{document} \createPDF \end{document} scaleオプションとoffsetオプションを指定してやると周囲の切り落としが可能となる。</description>
+      <description>本稿はLaTeX＋pdfpagesパッケージを用いてPDFを生成・加工するレシピ集である。
+レシピ PDFのスケーリング \documentclass{minimal} \usepackage{pdfpages} \newcommand{\mainpdf}{main.pdf} \begin{document} \includepdf[pages=-, scale=1.25, offset=0mm -27mm]{\mainpdf} \end{document} offset=X Yは、X軸方向、Y軸方向に、それぞれ版面全体を移動させる。上余白が足りないときにはoffset=0mm -27mmなどとする。
+自炊したPDFの分割 \def\target{main.pdf}%% 対象PDFファイル名 \def\ratio{0}%% 中央を何パーセント切り落とすか。負の数の場合は中央を両側に含める。-99〜99の百分率値を指定。 %%% 横書きか縦書きかで条件分岐 \newif\ifyoko \yokofalse % \yokotrue \documentclass{minimal} \usepackage{graphicx} %%% 総ページ数の取得 \pdfximage{\target} \newcount\pagecount \pagecount=\pdflastximagepages %%% 先頭ページを読んで生成PDFのページサイズを決定（/Rotate も反映） \setbox0\hbox{\includegraphics{\target}} \newdimen\originalwidth \originalwidth=\wd0 %%% 生成PDFのページサイズを決定 \usepackage[papersize={\dimexpr\originalwidth*(100-\ratio)/200\relax,\ht0},margin=0pt]{geometry} \usepackage{pdfpages} \begin{document} \parindent=0pt %%% 画像配置を実行 \newcount\thispage \loop \advance\thispage1 %%% 左ページの配置 \ifnum\thispage&amp;gt;1 \setbox0\hbox{\includegraphics[page=\thispage]{\target}} \fi \ifyoko \copy0\newpage \else \leavevmode\kern\pdfpagewidth\kern-\originalwidth\copy0\newpage \fi %%% 右ページの配置 \ifyoko \leavevmode\kern\pdfpagewidth\kern-\originalwidth\box0\newpage \else \box0\newpage \fi \ifnum\thispage&amp;lt;\pagecount\repeat \end{document} 参考：pdfTeX による見開きPDFの結合・分割</description>
     </item>
     
     <item>

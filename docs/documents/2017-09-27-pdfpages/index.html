@@ -44,11 +44,68 @@
 <p class="title">
     LaTeXによるPDFの生成と加工<br>
 </p>
-<h1 id="緒言">緒言</h1>
-<p>本稿はLaTeXを用いてPDFを生成・加工する方法を示すものである。</p>
-<p>Adobeの有料ソフトを使うならばPDF加工は容易であるが、無償のソフトウェアだけを用いてPDFを加工するのは通常難しい。しかし、LaTeXを用いれば無償でかんたんにPDFを加工できる。それを実現するのがpdfpagesパッケージである。</p>
-<p>そこで以下ではpdfpagesパッケージの使いかたをかんたんに記すことにする（ただし自分用メモとしての意味合いが強く、きちんとは解説していない）。</p>
-<h1 id="pdfpagesパッケージの使いかた">pdfpagesパッケージの使いかた</h1>
+<p>本稿はLaTeX＋pdfpagesパッケージを用いてPDFを生成・加工するレシピ集である。</p>
+<h1 id="レシピ">レシピ</h1>
+<h2 id="pdfのスケーリング">PDFのスケーリング</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>minimal<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-, scale=1.25, offset=0mm -27mm]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></span></code></pre></div><p><code>offset=X Y</code>は、X軸方向、Y軸方向に、それぞれ版面全体を移動させる。上余白が足りないときには<code>offset=0mm -27mm</code>などとする。</p>
+<h2 id="自炊したpdfの分割">自炊したPDFの分割</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\def\target</span><span class="nb">{</span>main.pdf<span class="nb">}</span><span class="c">%% 対象PDFファイル名
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\def\ratio</span><span class="nb">{</span>0<span class="nb">}</span><span class="c">%% 中央を何パーセント切り落とすか。負の数の場合は中央を両側に含める。-99〜99の百分率値を指定。
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>
+</span></span><span class="line"><span class="cl"><span class="c">%%% 横書きか縦書きかで条件分岐
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\newif\ifyoko</span>
+</span></span><span class="line"><span class="cl"><span class="k">\yokofalse</span>
+</span></span><span class="line"><span class="cl"><span class="c">% \yokotrue
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>
+</span></span><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>minimal<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%% 総ページ数の取得
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\pdfximage</span><span class="nb">{</span><span class="k">\target</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newcount\pagecount</span>
+</span></span><span class="line"><span class="cl"><span class="k">\pagecount</span>=<span class="k">\pdflastximagepages</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%% 先頭ページを読んで生成PDFのページサイズを決定（/Rotate も反映）
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\setbox</span>0<span class="k">\hbox</span><span class="nb">{</span><span class="k">\includegraphics</span><span class="nb">{</span><span class="k">\target</span><span class="nb">}}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newdimen\originalwidth</span>
+</span></span><span class="line"><span class="cl"><span class="k">\originalwidth</span>=<span class="k">\wd</span>0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%% 生成PDFのページサイズを決定
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\usepackage</span><span class="na">[papersize={\dimexpr\originalwidth*(100-\ratio)/200\relax,\ht0},margin=0pt]</span><span class="nb">{</span>geometry<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\parindent</span>=0pt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%% 画像配置を実行
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\newcount\thispage</span>
+</span></span><span class="line"><span class="cl"><span class="k">\loop</span>
+</span></span><span class="line"><span class="cl"><span class="k">\advance\thispage</span>1
+</span></span><span class="line"><span class="cl"><span class="c">%%% 左ページの配置
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\ifnum\thispage</span>&gt;1
+</span></span><span class="line"><span class="cl">  <span class="k">\setbox</span>0<span class="k">\hbox</span><span class="nb">{</span><span class="k">\includegraphics</span><span class="na">[page=\thispage]</span><span class="nb">{</span><span class="k">\target</span><span class="nb">}}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">\ifyoko</span>
+</span></span><span class="line"><span class="cl">  <span class="k">\copy</span>0<span class="k">\newpage</span>
+</span></span><span class="line"><span class="cl"><span class="k">\else</span>
+</span></span><span class="line"><span class="cl">  <span class="k">\leavevmode\kern\pdfpagewidth\kern</span>-<span class="k">\originalwidth\copy</span>0<span class="k">\newpage</span>
+</span></span><span class="line"><span class="cl"><span class="k">\fi</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%% 右ページの配置
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\ifyoko</span>
+</span></span><span class="line"><span class="cl">  <span class="k">\leavevmode\kern\pdfpagewidth\kern</span>-<span class="k">\originalwidth\box</span>0<span class="k">\newpage</span>
+</span></span><span class="line"><span class="cl"><span class="k">\else</span>
+</span></span><span class="line"><span class="cl">  <span class="k">\box</span>0<span class="k">\newpage</span>
+</span></span><span class="line"><span class="cl"><span class="k">\fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">\ifnum\thispage</span>&lt;<span class="k">\pagecount\repeat</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></span></code></pre></div><p>参考：<a href="https://doratex.hatenablog.jp/entry/20160610/1465560005">pdfTeX による見開きPDFの結合・分割</a></p>
 <h2 id="大きさを指定して画像をpdf化する">大きさを指定して画像をPDF化する</h2>
 <p>以下を<code>hoge.tex</code>という拡張子で保存し、<code>pdflatex hoge.tex</code>とすれば<code>hoge.pdf</code>というPDFファイルが生成される。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
@@ -73,80 +130,86 @@
 </span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages={28,29},nup=2x1]</span><span class="nb">{</span>mybook.pdf<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </span></span></code></pre></div><p><code>pages={28,29}</code>は28～29ページだけを読み込む設定、<code>nup</code>は複数ページを一枚に並べる設定である。<code>nup=2x1</code>は2行×1列で並べるという意味になる。</p>
-<h2 id="自炊したpdfファイルの加工と連結">自炊したPDFファイルの加工と連結</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[a5paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-,scale=1.25,offset=-14mm -23mm]</span><span class="nb">{</span>1.pdf<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-,scale=1.25,offset=-14mm -23mm]</span><span class="nb">{</span>2.pdf<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-,scale=1.25,offset=-14mm -23mm]</span><span class="nb">{</span>3.pdf<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-,scale=1.25,offset=-14mm -23mm]</span><span class="nb">{</span>4.pdf<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-,scale=1.25,offset=-14mm -23mm]</span><span class="nb">{</span>5.pdf<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-,scale=1.25,offset=-14mm -23mm]</span><span class="nb">{</span>6.pdf<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-,scale=1.25,offset=-14mm -23mm]</span><span class="nb">{</span>7.pdf<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[a4paper,landscape]</span><span class="nb">{</span>geometry<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\newcount\K</span>
-</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\createPDF</span><span class="nb">}{</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\K</span>=0
-</span></span><span class="line"><span class="cl">    <span class="k">\loop\ifnum\K</span>&lt;134 <span class="c">% while(K&lt;pagecount)
-</span></span></span><span class="line"><span class="cl"><span class="c"></span>        <span class="k">\includepdf</span><span class="na">[pages=-,scale=1.15,offset=-12mm 2mm]</span><span class="nb">{</span><span class="k">\the\K</span>.png<span class="nb">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">\advance\K</span> by 1 <span class="c">% K++
-</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\repeat</span> <span class="c">% end while
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\createPDF</span>
-</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span></code></pre></div><p>scaleオプションとoffsetオプションを指定してやると周囲の切り落としが可能となる。</p>
-<h2 id="奇数ページ偶数ページで異なる処理をする">奇数ページ・偶数ページで異なる処理をする</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
+<!-- ## 自炊したPDFファイルの加工と連結
+
+```tex
+\documentclass{article}
+\usepackage{pdfpages}
+\usepackage[a5paper]{geometry}
+\begin{document}
+\includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{1.pdf}
+\includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{2.pdf}
+\includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{3.pdf}
+\includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{4.pdf}
+\includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{5.pdf}
+\includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{6.pdf}
+\includepdf[pages=-,scale=1.25,offset=-14mm -23mm]{7.pdf}
+\end{document}
+```
+
+```tex
+\documentclass{article}
+\usepackage{pdfpages}
+\usepackage[a4paper,landscape]{geometry}
+\newcount\K
+\newcommand{\createPDF}{%
+    \K=0
+    \loop\ifnum\K<134 % while(K<pagecount)
+        \includepdf[pages=-,scale=1.15,offset=-12mm 2mm]{\the\K.png}
+    \advance\K by 1 % K++
+    \repeat % end while
+}
+\begin{document}
+\createPDF
+\end{document}
+```
+
+scaleオプションとoffsetオプションを指定してやると周囲の切り落としが可能となる。 -->
+<!-- ## 奇数ページ・偶数ページで異なる処理をする
+
+```tex
+\documentclass{article}
+\usepackage{pdfpages}
+\usepackage[a4paper]{geometry}
+\newcommand{\targetpdf}{main.pdf}
+\pdfximage{\targetpdf}
+\newcount\pagecount
+\pagecount=\pdflastximagepages
+\advance\pagecount by 1
+\newcount\K
+\newcommand{\createPDF}{%
+    \K=1
+    \loop\ifnum\K<\pagecount
+        \ifodd\K
+            \includepdf[pages={\the\K},scale=1.25,offset=0mm -20mm]{\targetpdf}
+        \else
+            \includepdf[pages={\the\K},scale=1.25,offset=-15mm -20mm]{\targetpdf}
+        \fi
+    \advance\K by 1
+    \repeat
+}
+\begin{document}
+\createPDF
+\end{document}
+``` -->
+<h2 id="印刷時の縮小の打ち消し">印刷時の縮小の打ち消し</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>minimal<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[a4paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\pdfximage</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\newcount\pagecount</span>
-</span></span><span class="line"><span class="cl"><span class="k">\pagecount</span>=<span class="k">\pdflastximagepages</span>
-</span></span><span class="line"><span class="cl"><span class="k">\advance\pagecount</span> by 1
-</span></span><span class="line"><span class="cl"><span class="k">\newcount\K</span>
-</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\createPDF</span><span class="nb">}{</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span>    <span class="k">\K</span>=1
-</span></span><span class="line"><span class="cl">    <span class="k">\loop\ifnum\K</span>&lt;<span class="k">\pagecount</span>
-</span></span><span class="line"><span class="cl">        <span class="k">\ifodd\K</span>
-</span></span><span class="line"><span class="cl">            <span class="k">\includepdf</span><span class="na">[pages={\the\K},scale=1.25,offset=0mm -20mm]</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">\else</span>
-</span></span><span class="line"><span class="cl">            <span class="k">\includepdf</span><span class="na">[pages={\the\K},scale=1.25,offset=-15mm -20mm]</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">\fi</span>
-</span></span><span class="line"><span class="cl">    <span class="k">\advance\K</span> by 1
-</span></span><span class="line"><span class="cl">    <span class="k">\repeat</span>
-</span></span><span class="line"><span class="cl"><span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\createPDF</span>
-</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span></code></pre></div><h2 id="印刷時の縮小の打ち消し">印刷時の縮小の打ち消し</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[a4paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="c">% 20/19.05 = 1.0498687664
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\includepdf</span><span class="na">[scale=1.0498687664]</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\includepdf</span><span class="na">[scale=1.0498687664]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </span></span></code></pre></div><h2 id="a4にする">A4にする</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>minimal<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[a4paper]</span><span class="nb">{</span>geometry<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-,scale=1]</span><span class="nb">{</span><span class="k">\targetpdf</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-,scale=1]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span></code></pre></div><h1 id="参考文献">参考文献</h1>
-<ul>
-<li><a href="http://abenori.blogspot.jp/2015/07/pdfpages.html">http://abenori.blogspot.jp/2015/07/pdfpages.html</a></li>
-</ul>
-
+</span></span></code></pre></div>
 <div class="showarticleinfo">
     <span class="material-icons-round">schedule</span> 2017年9月27日<br>
     
