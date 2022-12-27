@@ -12,7 +12,7 @@
         </script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <title>LaTeXによるPDFの生成と加工｜文藝部LaTeX研究会</title>
+        <title>pdfpagesレシピ集｜文藝部LaTeX研究会</title>
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/reset.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/style.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://qdaibungei.github.io/latex/css/syntax.css" media="screen" title="no title" charset="utf-8">
@@ -42,7 +42,7 @@
     <div class="content">
 
 <p class="title">
-    LaTeXによるPDFの生成と加工<br>
+    pdfpagesレシピ集<br>
 </p>
 <p>本稿はLaTeX＋pdfpagesパッケージを用いてPDFを生成・加工するレシピ集である。</p>
 <h1 id="レシピ">レシピ</h1>
@@ -54,7 +54,28 @@
 </span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[pages=-, scale=1.25, offset=0mm -27mm]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </span></span></code></pre></div><p><code>offset=X Y</code>は、X軸方向、Y軸方向に、それぞれ版面全体を移動させる。上余白が足りないときには<code>offset=0mm -27mm</code>などとする。</p>
-<h2 id="自炊したpdfの分割">自炊したPDFの分割</h2>
+<h2 id="自炊したpdfの頁番号調整栞付与">自炊したPDFの頁番号調整＋栞付与</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>minimal<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>pdfpages,hyperref,bookmark<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>Arabic<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page=1]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\setcounter</span><span class="nb">{</span>page<span class="nb">}{</span>1<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>roman<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page={2-9}]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\setcounter</span><span class="nb">{</span>page<span class="nb">}{</span>1<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>arabic<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page={10-last}]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=1,level=0]</span><span class="nb">{</span>Front Page<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=3,level=0]</span><span class="nb">{</span>Title<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=5,level=0]</span><span class="nb">{</span>Contents<span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=25,level=0]</span><span class="nb">{</span>Introduction: The Chomskian Perspective On Language Study<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=27,level=1]</span><span class="nb">{</span>Introduction<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></span></code></pre></div><h2 id="自炊したpdfの分割">自炊したPDFの分割</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\def\target</span><span class="nb">{</span>main.pdf<span class="nb">}</span><span class="c">%% 対象PDFファイル名
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\def\ratio</span><span class="nb">{</span>0<span class="nb">}</span><span class="c">%% 中央を何パーセント切り落とすか。負の数の場合は中央を両側に含める。-99〜99の百分率値を指定。
 </span></span></span><span class="line"><span class="cl"><span class="c"></span>
@@ -213,7 +234,7 @@ scaleオプションとoffsetオプションを指定してやると周囲の切
 <div class="showarticleinfo">
     <span class="material-icons-round">schedule</span> 2017年9月27日<br>
     
-    <span class="material-icons-round">update</span> 2021年12月10日<br>
+    <span class="material-icons-round">update</span> 2022年12月24日<br>
     
     <span class="material-icons-round">local_offer</span>   <code><a href="/tags/latex">#LaTeX</a></code> <br>
 </div>
