@@ -75,13 +75,16 @@
 <h2 id="自炊した文書の頁番号調整栞付与">自炊した文書の頁番号調整＋栞付与</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>minimal<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>pdfpages,hyperref,bookmark<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}{</span>main.pdf<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}{</span>mentuke1.pdf<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>Arabic<span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>Roman<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page=1]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">\setcounter</span><span class="nb">{</span>page<span class="nb">}{</span>1<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>roman<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page={2-9}]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">\setcounter</span><span class="nb">{</span>page<span class="nb">}{</span>1<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>arabic<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page={10-last}]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
