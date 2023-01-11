@@ -8,7 +8,10 @@
 </ul>
 <br>
 {{ range .Site.Taxonomies.tags.ByCount }}
-  <div class="tags"><a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">#{{ .Term }}</a><span class="tag-count">{{ .Count }}</span></div>
+  <div class="tags">
+    <a href="{{ $.Site.BaseURL | relURL }}/tags/{{ .Name | urlize }}">#{{ .Page.Title }}</a><span class="tag-count">{{ .Count }}</span>
+    <!-- <a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">#{{ .Term }}</a> -->
+  </div>
 {{ end }}
 
 {{ partial "site_footer.html" . }}

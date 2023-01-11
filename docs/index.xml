@@ -599,7 +599,7 @@ Wordで文字サイズといえば、「ポイント」という単位を使う�
       
       <guid>https://qdaibungei.github.io/latex/documents/2016-05-29-yohaku-settei/</guid>
       <description>この記事では、LaTeX文書における余白の設定方法を解説する。
-目次 目次 横書きの場合 geometryパッケージ jlreq.cls hanmenパッケージ 手動で設定 縦書きの場合 jlreq.cls hanmenパッケージ 手動で設定 横書きの場合 geometryパッケージ 横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。
+横書きの場合 geometryパッケージ jlreq.cls hanmenパッケージ 手動で設定 縦書きの場合 jlreq.cls hanmenパッケージ 手動で設定 横書きの場合 geometryパッケージ 横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。
 % 45字×41行の設定にする \usepackage[textwidth=45zw,lines=41]{geometry} 字数・行数を指定するのではなく、余白を直接指定する場合、次のように書けばよい。
 % 上下に2cm、左右に1cmの余白を取る \usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry} ターミナルで$ texdoc geometryを実行すれば、geometryパッケージのマニュアルを読むことができる。
 jlreq.cls jlreq.clsを用いている場合、クラスオプションを用いて余白設定を行なうことができる。プリアンブルに次のように書き込む。

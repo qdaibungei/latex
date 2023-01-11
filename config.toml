@@ -9,3 +9,5 @@ enableGitInfo = true
 pluralizelisttitles = false
 [markup.goldmark.renderer]
     unsafe = true
+# [taxonomies]
+#     tag = "tags"

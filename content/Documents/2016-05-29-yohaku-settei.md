@@ -7,8 +7,6 @@ tags: ["LaTeX"]
 
 この記事では、LaTeX文書における余白の設定方法を解説する。
 
-# 目次
-- [目次](#目次)
 - [横書きの場合](#横書きの場合)
   - [geometryパッケージ](#geometryパッケージ)
   - [jlreq.cls](#jlreqcls)
