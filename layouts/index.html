@@ -3,7 +3,7 @@
 
 <ul class="posts">
     {{ range .Site.RegularPages.ByDate.Reverse }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006年1月2日" }}</span></li>
+        <li><span class="docs-date">{{ .Date.Format "2006-01-02" }}</span><a href="{{ .Permalink }}">{{ .Title }}</a></li>
     {{ end }}
 </ul>
 <br>

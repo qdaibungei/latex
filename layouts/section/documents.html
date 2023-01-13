@@ -1,21 +1,17 @@
 {{ partial "site_header.html" . }}
 {{ partial "menu_documents.html" . }}
 
-<!-- <div class="title">Documents</div> -->
-<h1>Documents</h1>
-<h2>タグ一覧</h2>
-<!-- <ul>
-  {{ range .Site.Taxonomies.tags.ByCount }}
-    <li><a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">{{ .Term }}</a><span class="tag-count">{{ .Count }}</span></li>
-  {{ end }}
-</ul> -->
-{{ range .Site.Taxonomies.tags.ByCount }}
-  <div class="tags"><a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">#{{ .Term }}</a><span class="tag-count">{{ .Count }}</span></div>
-{{ end }}
-<h2>記事一覧</h2>
-<ul>
-    {{ range .Data.Pages }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006年1月2日" }}</span></li>
+<ul class="posts">
+    {{ range .Site.RegularPages.ByDate.Reverse }}
+        <li><span class="docs-date">{{ .Date.Format "2006-01-02" }}</span><a href="{{ .Permalink }}">{{ .Title }}</a></li>
     {{ end }}
 </ul>
+<br>
+{{ range .Site.Taxonomies.tags.ByCount }}
+  <div class="tags">
+    <a href="{{ $.Site.BaseURL | relURL }}/tags/{{ .Name | urlize }}">#{{ .Page.Title }}</a><span class="tag-count">{{ .Count }}</span>
+    <!-- <a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">#{{ .Term }}</a> -->
+  </div>
+{{ end }}
+
 {{ partial "site_footer.html" . }}

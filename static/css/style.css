@@ -495,17 +495,30 @@ blockquote {
     list-style-type: none;
     padding-inline-start: 0em;
     line-height: 1.8;
+    padding-left: 5em;
+	text-indent: -5em;
+}
+.posts a:link, .posts a:visited, .posts a:active {
+    color: #85023e;
+    text-decoration: none;
+    border-bottom: none;
+}
+.posts a:hover {
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px dotted #333;
 }
 .docs-date {
+    margin-right: 1em;
     font-size: 1.2rem;
     color: #8b8b8b;
 }
-.docs-date::before {
+/* .docs-date::before {
     content: "（";
 }
 .docs-date::after {
     content: "）";
-}
+} */
 .tag-count {
     font-size: 1.2rem;
     color: #8b8b8b;
