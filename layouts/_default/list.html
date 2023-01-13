@@ -2,8 +2,11 @@
 {{ partial "menu_documents.html" . }}
 <h2>{{ .Title }}</h2>
 <p>
-{{ range .Data.Pages }}
-    <a href="{{ .Permalink }}">{{ .Title }}</a><span class="docs-date">{{ .Date.Format "2006年1月2日" }}</span><br>
-{{ end }}
+
+<ul class="posts">
+    {{ range .Data.Pages }}
+        <li><span class="docs-date">{{ .Date.Format "2006-01-02" }}</span><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    {{ end }}
+</ul>
 </p>
 {{ partial "site_footer.html" . }}

@@ -10,7 +10,6 @@
 {{ range .Site.Taxonomies.tags.ByCount }}
   <div class="tags">
     <a href="{{ $.Site.BaseURL | relURL }}/tags/{{ .Name | urlize }}">#{{ .Page.Title }}</a><span class="tag-count">{{ .Count }}</span>
-    <!-- <a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">#{{ .Term }}</a> -->
   </div>
 {{ end }}
 
