@@ -198,7 +198,7 @@
 </span></span><span class="line"><span class="cl">　どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。
 </span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </span></span></code></pre></div><p>通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、<code>novelstyle.sty</code> では、空行を挟まずとも段落分けできるようにしてある。つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。</p>
-<p>ただし、再度注意するが、これは簡易的方法であって<strong>常用はおすすめできない</strong><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>。LaTeXに慣れた後は、やはり段落毎に空行を挟むという通常のLaTeX記法を用いるのが最善である。</p>
+<p>ただし、再度注意するが、これは簡易的方法であって常用はおすすめできない<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>。LaTeXに慣れた後は、やはり段落毎に空行を挟むという<strong>通常のLaTeX記法を用いるのが最善</strong>である。</p>
 <h2 id="ルビ">ルビ</h2>
 <p>ルビを振りたいときは、ルビマクロが使える。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TeX" data-lang="TeX"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="na">[uplatex,dvipdfmx,a6paper,papersize]</span><span class="nb">{</span>jsbook<span class="nb">}</span>
@@ -238,7 +238,7 @@
 <p>ファイル名は末尾に <code>.bat</code> があれば何でもよいが、ここでは &ldquo;tex to pdf&rdquo; という意味で <code>tex2pdf.bat</code> という名にした。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3">
-<p><code>\xobeylines</code>には色々な弊害があるのでグローバルに使用するのは本来避けるべきである（局所的に環境内で使うぶんには弊害は少ないであろう）。本記事で<code>\xobeylines</code>を紹介したのは、あくまで「LaTeXでも実はある程度WYSIWYGっぽいことができる」とか「テキストで書いていた小説をそのままTeXファイルとして保存するだけで簡易的にPDF化することができる」とかということを示唆したかったからにすぎない。……<a href="https://twitter.com/zr_tex8r/status/1580479543403372544">ZR氏のツイート</a>のいわゆる「LaTeX者☺に<code>\xobeylines</code>を雑に勧めている勢」という語で本記事が想定されていそうだったので、改めて注意喚起を記しておきました。なお本記事ではつねづね、<code>\xobeylines</code>を紹介こそしていますが推奨は一切してきておりません。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><code>\xobeylines</code>には色々な弊害があるのでグローバルに使用するのは本来避けるべきである（局所的に環境内で使うぶんには弊害は少ないであろう）。本記事で<code>\xobeylines</code>を紹介したのは、あくまで「LaTeXでも実はある程度WYSIWYGっぽいことができる」とか「テキストで書いていた小説をそのままTeXファイルとして保存するだけで簡易的にPDF化することができる」とかということを示唆したかったからにすぎない。（<a href="https://twitter.com/zr_tex8r/status/1580479543403372544">ZR氏のツイート</a>の言う「LaTeX者☺に<code>\xobeylines</code>を雑に勧めている勢」と呼ばれる集団のメンバーとして本記事およびその作者が想定されていそうだったので、改めて注意喚起を記しておきました。なお本記事ではつねづね、<code>\xobeylines</code>を紹介こそしていますが推奨は一切してきておりません。）&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4">
 <p>縦中横を実現するマクロとしては、plextパッケージですでに <code>\rensuji</code> が提供されている。しかし、<code>\rensuji</code> を直接使うとどうやら無駄に \xkanjiskip が挿入されてしまうようなので、ここでは独自に <code>\tcy</code> というマクロを使うこととした。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
@@ -249,7 +249,7 @@
 <div class="showarticleinfo">
     <span class="material-icons-round">schedule</span> 2017年2月26日<br>
     
-    <span class="material-icons-round">update</span> 2022年12月10日<br>
+    <span class="material-icons-round">update</span> 2023年1月14日<br>
     
     <span class="material-icons-round">local_offer</span>   <code><a href="/tags/latex">#LaTeX</a></code>  <code><a href="/tags/dtp">#DTP</a></code> <br>
 </div>
