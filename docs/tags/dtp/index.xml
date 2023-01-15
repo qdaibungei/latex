@@ -16,8 +16,7 @@
       <description>最後に、印刷所に入稿する際の注意事項を述べる。
 入稿時の注意事項 紙の種類 入稿するとき、本文に使用する紙の種類が選べる。このとき重要なのは、書籍用紙やクリームキンマリなどのほんのり茶色がかった色の紙を選ぶことだ。いくら値段が安いからといって、上質紙（真っ白な色をした紙）を選んではならない。
 市販の文庫本や単行本を見よ。コピー用紙のように真っ白な紙は、普通、使われていないのである。書籍用紙やクリームキンマリなど、長文を読むのに適した紙を選ぶことが何より大事である。
-断ち切り 印刷用語に「断ち切り」というのがある。知らない人は、ポプルスのサイト内の記事「■綺麗な本にするためには「断ち切り」が大事？」などを参照のこと。
-この断ち切りに関連して、二つの注意事項がある。
+断ち切り 印刷用語に「断ち切り」というのがある（「断ち落とし」「塗り足し」とも。用語の意味についてはGoogle検索せよ）。この断ち切りに関連して、二つの注意事項がある。
 表紙担当に断ち切りのことを伝えよ 表紙担当が断ち切りのことを把握しているとは限らない。むしろ、把握していないことのほうが多い。表紙作成を依頼する際には、担当者にしっかりと断ち切りのことを伝えること。例えば、A5サイズの本を作るときには、表紙はA5よりも一回り大きなサイズ（上下左右にプラス3mmほど）で作ってもらおう。
 また、表紙に文字を入れたいときもあるだろう。このとき文字が表紙の端っこすぎると文字が切れてしまうことがあるので、少し内側に寄せるほうが安全である。このことも表紙担当には伝えておきたい。
 本文の断ち切りを作るのを忘れぬように 普通のレイアウトでは本文には断ち切りは要らない。しかし、紙の端まで印刷したい場合は、本文データにも断ち切り部分を作る必要がある。今回のベスト文集も、断ち切りが必要なデザインであった。
@@ -199,7 +198,7 @@ LaTeXによる扉の作り方 LaTeXで扉を作るには通常、\title{九大�
 私から言いたいことは、GIMPなどで作った表紙画像から、どうやって入稿用の表紙データを作るかである。
 LaTeXによる表紙データの作り方 表紙データをPDFで入稿するようにと規定している印刷所も多い。つまり入稿するためには、画像をPDF化しなければならないのだ。そこで、今回私はPNG形式の表紙データをLaTeXによってPDF化することにした。
 まず、表紙用の画像データをhyosi.pngというファイル名で保存しておくことにする。そして、次のようなTeXファイルを作る。
-\documentclass{article} \usepackage{pdfpages} \begin{document} \includepdf[fitpaper]{hyosi.png} \end{document} これをpdfLaTeXで処理すれば、PDF形式の表紙データが得られる。TeXは、画像をPDF化するのにも使えるのだ。便利なものである。
+\documentclass{minimal} \usepackage{pdfpages} \begin{document} \includepdf[fitpaper]{hyosi.png} \end{document} これをpdfLaTeXで処理すれば、PDF形式の表紙データが得られる。TeXは、画像をPDF化するのにも使えるのだ。便利なものである。
 PP加工 印刷所に入稿予約をするとき、表紙に使う紙を選ぶことができる。今回はペルーラ・スノーホワイトを使用した。これは、光を当てるときらきらと輝く紙である。この紙に、オプションとして、マットPP加工を施してもらった。
 なるべくPP加工を施してもらうことが大切である。PP加工をしておけば、本同士が擦れても塗料が剥がれることがないし、水にも多少耐性ができて丈夫になるので、PP加工はなるべく印刷所に頼んでやってもらおう。
 （次回に続く）
@@ -248,7 +247,7 @@ layoutcal.html
 コンピュータおよびLaTeXの初心者でも読めるように配慮したつもりだが、LaTeXの知識ゼロだと厳しいかもしれない。
 なお、以下の方法はあくまでも初心者向けの簡易的方法1であり、私が普段LaTeXで組版している実際の現場の方法とはかなり異なる。
 電撃文庫の再現 雛形ファイルの用意 具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。
-まず、以下を novelstyle.sty という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
+まず、以下をnovelstyle.styという名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
 \NeedsTeXFormat{pLaTeX2e} \ProvidesPackage{novelstyle} \RequirePackage[Q=11.5,H=19,W=42,L=17,addten=2mm,headsep=5mm,tate]{hanmen}% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。なお現在はこんなことをせずに、素直にjlreq.clsを用いるのが標準的な方法だと思われる。 \RequirePackage[deluxe]{otf}% フォントの多書体化。 \RequirePackage{plext}% plextは縦組み時に有用なパッケージ（なおutbook.clsなどの縦書き専用クラスを用いる場合には自動的に読み込まれる）。 \RequirePackage{pxrubrica}% pxrubricaはルビ振りに必要なパッケージ。 \RequirePackage{fancyhdr}% ヘッダー・フッターの改造に便利なパッケージ。 % %% header &amp;amp; footer % \fancyhf{}% ヘッダー・フッターの初期化 \def\nvlsty@nombre{\textit{\thepage}}% ページ番号を出力するときは\thepageと書く。 \def\nvlsty@booktitle{ここにタイトルを書く} \fancyhead[RE]{\vspace*{0pt}\scriptsize\nvlsty@nombre} \fancyhead[LO]{\vspace*{0pt}\footnotesize\nvlsty@nombre\hskip1zw\scriptsize\nvlsty@booktitle} % %% \tcy % % LaTeXの解説書では、縦中横に\rensujiを使うこととされているが、 % \rensujiだと無駄なアキが入ってしまいベタ組みできない。 % そこで、ここでは新たに\tcyを定義する。 \chardef\nvlsty@zenkakuSpace=\jis&amp;#34;2121\relax \def\tcy#1{% \nvlsty@zenkakuSpace\kern-1zw\relax \leavevmode\hbox to 1zw{% \centering\rensuji*{#1}% }% \kern-1zw\nvlsty@zenkakuSpace } % %% \xobeylines % % これは、空行をあけなくても段落分けできるようにする工夫。 % 参考：https://hakuoku.github.io/agakuTeX/tutorial/4_1linebreak/（ちなみにここに出てくるxsceyさんというのは当研究会メンバーです） % 本文中、\xobeylinesと書けば、空行をあけなくても段落が変わる。 % \disobeylinesと書けば、LaTeX記法通り、空行をあけないと段落が変わらないようになる。 % ただし、併用するパッケージによってはいろいろ弊害が出る場合があるので、素直に空行によって段落分けしたほうが無難かもしれない（実際私も、普段は空行で段落分けしている）。 {\catcode`\^^M=\active \gdef\xobeylines{\catcode`\^^M\active \def^^M{\par\leavevmode}}% \global\def^^M{\par\leavevmode}% } \def\disobeylines{\catcode`\^^M=5 } \let\disxobeylines=\disobeylines \AtBeginDocument{\xobeylines}%% 本文開始直後から\xobeylinesが適用されるようにする。 % %% 全角アキ % % 疑問符などの後に全角空白文字「　」を使ってアキを作ると、疑問符が行末に来たとき空白が行頭に出てしまって都合が悪い。 % そこで、全角アキは以下のマクロで作る必要がある。 \newcommand{\zenkakuaki}{\hskip1zw plus .</description>
     </item>
     

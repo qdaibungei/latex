@@ -48,29 +48,29 @@
 <ul>
 <li><a href="#%E6%A8%AA%E6%9B%B8%E3%81%8D%E3%81%AE%E5%A0%B4%E5%90%88">横書きの場合</a>
 <ul>
-<li><a href="#geometry%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8">geometryパッケージ</a></li>
+<li><a href="#geometrysty">geometry.sty</a></li>
 <li><a href="#jlreqcls">jlreq.cls</a></li>
-<li><a href="#hanmen%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8">hanmenパッケージ</a></li>
+<li><a href="#hanmensty">hanmen.sty</a></li>
 <li><a href="#%E6%89%8B%E5%8B%95%E3%81%A7%E8%A8%AD%E5%AE%9A">手動で設定</a></li>
 </ul>
 </li>
 <li><a href="#%E7%B8%A6%E6%9B%B8%E3%81%8D%E3%81%AE%E5%A0%B4%E5%90%88">縦書きの場合</a>
 <ul>
 <li><a href="#jlreqcls-1">jlreq.cls</a></li>
-<li><a href="#hanmen%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8-1">hanmenパッケージ</a></li>
+<li><a href="#hanmensty-1">hanmen.sty</a></li>
 <li><a href="#%E6%89%8B%E5%8B%95%E3%81%A7%E8%A8%AD%E5%AE%9A-1">手動で設定</a></li>
 </ul>
 </li>
 </ul>
 <h1 id="横書きの場合">横書きの場合</h1>
-<h2 id="geometryパッケージ">geometryパッケージ</h2>
-<p>横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。</p>
+<h2 id="geometrysty">geometry.sty</h2>
+<p>横書きの場合、geometry.styを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="c">% 45字×41行の設定にする
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\usepackage</span><span class="na">[textwidth=45zw,lines=41]</span><span class="nb">{</span>geometry<span class="nb">}</span>
 </span></span></code></pre></div><p>字数・行数を指定するのではなく、余白を直接指定する場合、次のように書けばよい。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="c">% 上下に2cm、左右に1cmの余白を取る
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\usepackage</span><span class="na">[top=2cm, bottom=2cm, left=1cm, right=1cm]</span><span class="nb">{</span>geometry<span class="nb">}</span>
-</span></span></code></pre></div><p>ターミナルで<code>$ texdoc geometry</code>を実行すれば、geometryパッケージのマニュアルを読むことができる。</p>
+</span></span></code></pre></div><p>ターミナルで<code>$ texdoc geometry</code>を実行すれば、geometry.styのマニュアルを読むことができる。</p>
 <h2 id="jlreqcls">jlreq.cls</h2>
 <p>jlreq.clsを用いている場合、クラスオプションを用いて余白設定を行なうことができる。プリアンブルに次のように書き込む。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="na">[jafontsize=14Q, baselineskip=24.5H, line_length=45zw, number_of_lines=41]</span><span class="nb">{</span>jlreq<span class="nb">}</span>
@@ -88,8 +88,9 @@
 </span></span></span><span class="line"><span class="cl"><span class="c">% gutter: ノド余白（左とじの場合は左側の余白、右とじの場合は右側の余白）
 </span></span></span><span class="line"><span class="cl"><span class="c">% fore-edge: 小口余白（ノドとは逆側の余白）
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\documentclass</span><span class="na">[head_space=2cm, foot_space=2cm, gutter=1cm, fore-edge=1cm]</span><span class="nb">{</span>jlreq<span class="nb">}</span>
-</span></span></code></pre></div><h2 id="hanmenパッケージ">hanmenパッケージ</h2>
-<p>拙作の<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmenパッケージ</a>を用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。</p>
+</span></span></code></pre></div><p>ターミナルで<code>$ texdoc jlreq</code>を実行すれば、jlreq.clsのマニュアルを読むことができる。</p>
+<h2 id="hanmensty">hanmen.sty</h2>
+<p>拙作の<a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmen.sty</a>を用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[Q=10,H=15,W=38,L=40,ptj]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </span></span></code></pre></div><p>そうすると、</p>
 <ul>
@@ -98,7 +99,7 @@
 <li>行長　　　　38字</li>
 <li>行数　　　　40行</li>
 </ul>
-<p>に設定できる。hanmenパッケージは縦書きにも対応しているので便利である。</p>
+<p>に設定できる。hanmen.styは縦書きにも対応しているので便利である。</p>
 <h2 id="手動で設定">手動で設定</h2>
 <p>パッケージに頼らず、手動で余白を設定することもできる。例えば、字数・行数を指定する場合は次をプリアンブルに書く。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="c">%
@@ -137,10 +138,10 @@
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\topskip</span> = 0.88zw
 </span></span></code></pre></div><h1 id="縦書きの場合">縦書きの場合</h1>
 <h2 id="jlreqcls-1">jlreq.cls</h2>
-<p>geometryパッケージは縦書きに非対応である<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。しかしjlreq.clsを用いると、縦書きでも余白の設定を行なえる。</p>
+<p>geometry.styは縦書きに非対応である<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。しかしjlreq.clsを用いると、縦書きでも余白の設定を行なえる。</p>
 <p>jlreq.clsで縦書きにする場合には、クラスオプションに<code>tate</code>を与えるだけでよい。余白の設定方法自体は、横書きのものと同様。</p>
-<h2 id="hanmenパッケージ-1">hanmenパッケージ</h2>
-<p><a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmenパッケージ</a>を用いても、縦書きで余白の設定を行なえる。プリアンブルに次のように書き込む。</p>
+<h2 id="hanmensty-1">hanmen.sty</h2>
+<p><a href="https://qdaibungei.github.io/latex/documents/2017-02-18-hanmen/">hanmen.sty</a>を用いても、縦書きで余白の設定を行なえる。プリアンブルに次のように書き込む。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="na">[Q=10,H=15,W=38,L=40,ptj,tate]</span><span class="nb">{</span>hanmen<span class="nb">}</span>
 </span></span></code></pre></div><p>そうすると、</p>
 <ul>

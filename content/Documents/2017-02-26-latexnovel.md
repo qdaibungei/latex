@@ -20,7 +20,7 @@ tags: ["LaTeX", "DTP"]
 ## 雛形ファイルの用意
 具体例として、LaTeXで電撃文庫のデザインで組版してみよう。といっても商用フォントが手元にない限り完全再現はできないので、大体同じようなデザインを作るだけであるが。
 
-まず、以下を `novelstyle.sty` という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
+まず、以下を`novelstyle.sty`という名前で保存する。スタイルファイル内の記述の意味は、一応コメント文で書いておいた。
 
 ```tex
 \NeedsTeXFormat{pLaTeX2e}
@@ -140,7 +140,7 @@ tags: ["LaTeX", "DTP"]
 
 　
 
-次に、以下の文字列を `novel.tex` という名で保存する。これが雛形ファイルとなる。
+次に、以下の文字列を`novel.tex`という名で保存する。これが雛形ファイルとなる。
 
 ```TeX
 \documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
@@ -161,9 +161,9 @@ tags: ["LaTeX", "DTP"]
 
 そこで、簡単にPDF化する方法として、以下のものを勧めたい（なお、以下の方法はWindows限定）。
 
-次の文字列を `tex2pdf.bat` という名で保存する[^1]。
+次の文字列を`tex2pdf.bat`という名で保存する[^1]。
 
-[^1]: ファイル名は末尾に `.bat` があれば何でもよいが、ここでは "tex to pdf" という意味で `tex2pdf.bat` という名にした。
+[^1]: ファイル名は末尾に`.bat`があれば何でもよいが、ここでは "tex to pdf" という意味で`tex2pdf.bat`という名にした。
 
 ```shell
 cd %~dp0
@@ -171,11 +171,11 @@ uplatex novel
 dvipdfmx novel
 ```
 
-この `tex2pdf.bat` を、`novel.tex` と同じフォルダに入れておく。あとは、`tex2pdf.bat` をダブルクリックすると、見事PDFファイルが生成されるはずである。
+この`tex2pdf.bat`を、`novel.tex`と同じフォルダに入れておく。あとは、`tex2pdf.bat`をダブルクリックすると、見事PDFファイルが生成されるはずである。
 
 
 # 本文の書き方
-上で、`novel.tex` というファイルを作った。それをここに再掲する。
+上で、`novel.tex`というファイルを作った。それをここに再掲する。
 
 ```TeX
 \documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
@@ -186,7 +186,7 @@ dvipdfmx novel
 ```
 
 ## 基本
-`（ここに本文を書く）` の部分に本文を書けばよい。たとえば以下のように書く。
+`（ここに本文を書く）`の部分に本文を書けばよい。たとえば以下のように書く。
 
 ```TeX
 \documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
@@ -197,7 +197,7 @@ dvipdfmx novel
 \end{document}
 ```
 
-通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、`novelstyle.sty` では、空行を挟まずとも段落分けできるようにしてある。つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。
+通常のLaTeX記法であれば、段落毎に空行を挟む必要があるが、小説を書くときにそのようなLaTeX記法で書くと台詞が連続する場合などに入力しづらい。そこで、`novelstyle.sty`では、空行を挟まずとも段落分けできるようにしてある。つまり、Wordなどで書くときとほぼ同じ感覚で本文を書けばよい。
 
 ただし、再度注意するが、これは簡易的方法であって常用はおすすめできない[^xobeylines]。LaTeXに慣れた後は、やはり段落毎に空行を挟むという**通常のLaTeX記法を用いるのが最善**である。
 
@@ -219,9 +219,9 @@ dvipdfmx novel
 
 
 ## 縦中横
-縦中横が使いたいときは、`\tcy` マクロが使える[^tcy]。
+縦中横が使いたいときは、`\tcy`マクロが使える[^tcy]。
 
-[^tcy]: 縦中横を実現するマクロとしては、plextパッケージですでに `\rensuji` が提供されている。しかし、`\rensuji`を直接使うとどうやら無駄に\xkanjiskipが挿入されてしまうようなので、ここでは独自に`\tcy`というマクロを使うこととした。なお`\tcy`を定義するのではなく、「[！と？ - 縦中横ふたたび](https://hakuoku.github.io/agakuTeX/tutorial/4_4_3exclamation/)」に書かれているような仕方で`\rensuji`を再定義するという方法もある。また、jlreq.clsを使う場合には`\tatechuyoko`というマクロがすでに定義されているのでこれを使えばよい。
+[^tcy]: 縦中横を実現するマクロとしては、plextパッケージですでに`\rensuji`が提供されている。しかし、`\rensuji`を直接使うとどうやら無駄に\xkanjiskipが挿入されてしまうようなので、ここでは独自に`\tcy`というマクロを使うこととした。なお`\tcy`を定義するのではなく、「[！と？ - 縦中横ふたたび](https://hakuoku.github.io/agakuTeX/tutorial/4_4_3exclamation/)」に書かれているような仕方で`\rensuji`を再定義するという方法もある。また、jlreq.clsを使う場合には`\tatechuyoko`というマクロがすでに定義されているのでこれを使えばよい。
 
 ```TeX
 \documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
@@ -233,7 +233,7 @@ dvipdfmx novel
 ```
 
 ## 疑問符・感嘆符の後の空白
-最後に、ちょっと面倒だが、疑問符・感嘆符の後の全角空白は、`\zenkakuaki` に置換する。
+最後に、ちょっと面倒だが、疑問符・感嘆符の後の全角空白は、`\zenkakuaki`に置換する。
 
 ```TeX
 \documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
@@ -243,7 +243,7 @@ dvipdfmx novel
 \end{document}
 ```
 
-`！` と `？` だけは、直後に全角空白を入れないで記述しておくと、PDF化の際に自動的に全角アキを挿入してくれる（なおアキが不要なときは「`あ！\<と言った`」のように`\<`を挿入する）。しかし、`\tcy{!!}` の直後には `\zenkakuaki` が必ず要る。
+`！`と`？`だけは、直後に全角空白を入れないで記述しておくと、PDF化の際に自動的に全角アキを挿入してくれる（なおアキが不要なときは「`あ！\<と言った`」のように`\<`を挿入する）。しかし、`\tcy{!!}`の直後には`\zenkakuaki`が必ず要る。
 
 
 # まとめ

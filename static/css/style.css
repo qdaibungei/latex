@@ -210,7 +210,7 @@ h2 {
     padding: 0 10px;
     margin: 35px 0 10px;
     font-size: 1.7rem;
-    border-left: 2px solid #b94d7e;
+    border-left: 2px solid #c00057;
 }
 h1+h2 {
     margin: 0 0 10px;
@@ -219,7 +219,7 @@ h3 {
     display: inline-block;
     font-size: 1.2rem;
     font-weight: 700;
-    border-bottom: 2px dotted #b94d7e;
+    border-bottom: 2px dotted #c00057;
     margin: 10px 0 15px;
     padding: 0;
 }
@@ -291,6 +291,9 @@ ul li, ol li {
 li ul {
     margin: 0 0 0 1em;
     padding: 0;
+}
+li::marker {
+    color: #c00057;
 }
 
 .footer{
@@ -479,8 +482,8 @@ pre, code, .highlight {
     border-radius: 2px;
 }
 .chroma {
-    padding: 15px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 3px;
 }
 p > code, li > code {
     font-size: 93%;

@@ -8,19 +8,19 @@ tags: ["LaTeX"]
 この記事では、LaTeX文書における余白の設定方法を解説する。
 
 - [横書きの場合](#横書きの場合)
-  - [geometryパッケージ](#geometryパッケージ)
+  - [geometry.sty](#geometrysty)
   - [jlreq.cls](#jlreqcls)
-  - [hanmenパッケージ](#hanmenパッケージ)
+  - [hanmen.sty](#hanmensty)
   - [手動で設定](#手動で設定)
 - [縦書きの場合](#縦書きの場合)
   - [jlreq.cls](#jlreqcls-1)
-  - [hanmenパッケージ](#hanmenパッケージ-1)
+  - [hanmen.sty](#hanmensty-1)
   - [手動で設定](#手動で設定-1)
 
 
 # 横書きの場合
-## geometryパッケージ
-横書きの場合、geometryパッケージを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。
+## geometry.sty
+横書きの場合、geometry.styを使うのが便利だ。字数と行数を指定する場合は、プリアンブルに次のように書き込む。
 
 ```LaTeX
 % 45字×41行の設定にする
@@ -34,7 +34,7 @@ tags: ["LaTeX"]
 \usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry}
 ```
 
-ターミナルで`$ texdoc geometry`を実行すれば、geometryパッケージのマニュアルを読むことができる。
+ターミナルで`$ texdoc geometry`を実行すれば、geometry.styのマニュアルを読むことができる。
 
 ## jlreq.cls
 jlreq.clsを用いている場合、クラスオプションを用いて余白設定を行なうことができる。プリアンブルに次のように書き込む。
@@ -61,8 +61,10 @@ jlreq.clsを用いている場合、クラスオプションを用いて余白�
 \documentclass[head_space=2cm, foot_space=2cm, gutter=1cm, fore-edge=1cm]{jlreq}
 ```
 
-## hanmenパッケージ
-拙作の[hanmenパッケージ]({{< ref "2017-02-18-hanmen.md" >}})を用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。
+ターミナルで`$ texdoc jlreq`を実行すれば、jlreq.clsのマニュアルを読むことができる。
+
+## hanmen.sty
+拙作の[hanmen.sty]({{< ref "2017-02-18-hanmen.md" >}})を用いても、余白の設定を行なえる。プリアンブルに次のように書き込む。
 
 ```LaTeX
 \usepackage[Q=10,H=15,W=38,L=40,ptj]{hanmen}
@@ -75,7 +77,7 @@ jlreq.clsを用いている場合、クラスオプションを用いて余白�
 - 行長　　　　38字
 - 行数　　　　40行
 
-に設定できる。hanmenパッケージは縦書きにも対応しているので便利である。
+に設定できる。hanmen.styは縦書きにも対応しているので便利である。
 
 ## 手動で設定
 パッケージに頼らず、手動で余白を設定することもできる。例えば、字数・行数を指定する場合は次をプリアンブルに書く。
@@ -119,15 +121,15 @@ jlreq.clsを用いている場合、クラスオプションを用いて余白�
 
 # 縦書きの場合
 ## jlreq.cls
-geometryパッケージは縦書きに非対応である[^1]。しかしjlreq.clsを用いると、縦書きでも余白の設定を行なえる。
+geometry.styは縦書きに非対応である[^1]。しかしjlreq.clsを用いると、縦書きでも余白の設定を行なえる。
 
 [^1]: もっとも、`lltjp-geometry.sty`というパッケージを使えば、無理矢理geometryパッケージを縦書きで使うことはできるらしいが、どの程度使える代物なのか、私は使ったことがないので分からない。詳しくは[geometry（TeX wiki内の一項目）](https://texwiki.texjp.org/?geometry)を参照のこと。
 
 jlreq.clsで縦書きにする場合には、クラスオプションに`tate`を与えるだけでよい。余白の設定方法自体は、横書きのものと同様。
 
 
-## hanmenパッケージ
-[hanmenパッケージ]({{< ref "2017-02-18-hanmen.md" >}})を用いても、縦書きで余白の設定を行なえる。プリアンブルに次のように書き込む。
+## hanmen.sty
+[hanmen.sty]({{< ref "2017-02-18-hanmen.md" >}})を用いても、縦書きで余白の設定を行なえる。プリアンブルに次のように書き込む。
 
 ```LaTeX
 \usepackage[Q=10,H=15,W=38,L=40,ptj,tate]{hanmen}

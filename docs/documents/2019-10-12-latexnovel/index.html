@@ -60,14 +60,14 @@
 <h2 id="latexによる表紙データの作り方">LaTeXによる表紙データの作り方</h2>
 <p>表紙データをPDFで入稿するようにと規定している印刷所も多い。つまり入稿するためには、画像をPDF化しなければならないのだ。そこで、今回私はPNG形式の表紙データをLaTeXによってPDF化することにした。</p>
 <p>まず、表紙用の画像データを<code>hyosi.png</code>というファイル名で保存しておくことにする。そして、次のようなTeXファイルを作る。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="k">\documentclass</span><span class="nb">{</span>minimal<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>pdfpages<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper]</span><span class="nb">{</span>hyosi.png<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </span></span></code></pre></div><p>これをpdfLaTeXで処理すれば、PDF形式の表紙データが得られる。TeXは、画像をPDF化するのにも使えるのだ。便利なものである。</p>
 <h2 id="pp加工">PP加工</h2>
-<p>印刷所に入稿予約をするとき、表紙に使う紙を選ぶことができる。今回はペルーラ・スノーホワイトを使用した。これは、光を当てるときらきらと輝く紙である。この紙に、オプションとして、マットPP加工を施してもらった。</p>
+<p>印刷所に入稿予約をするとき、表紙に使う紙を選ぶことができる。今回は<strong>ペルーラ・スノーホワイト</strong>を使用した。これは、光を当てるときらきらと輝く紙である。この紙に、オプションとして、<strong>マットPP加工</strong>を施してもらった。</p>
 <p><strong>なるべくPP加工を施してもらう</strong>ことが大切である。PP加工をしておけば、本同士が擦れても塗料が剥がれることがないし、水にも多少耐性ができて丈夫になるので、PP加工はなるべく印刷所に頼んでやってもらおう。</p>
 <p>　</p>
 <p>（<a href="https://qdaibungei.github.io/latex/documents/2019-10-13-latexnovel/">次回</a>に続く）</p>
