@@ -474,6 +474,10 @@ pre, code, .highlight {
     overflow-x: auto;
     border-radius: 2px;
 }
+.chroma {
+    padding: 10px;
+    border-radius: 5px;
+}
 p > code, li > code {
     font-size: 1.35rem;
     font-family: 'Roboto Mono', monospace;
