@@ -26,8 +26,8 @@ tags: ["LaTeX", "DTP"]
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesPackage{novelstyle}
 
-\RequirePackage[Q=11.5,H=19,W=42,L=17,addten=2mm,headsep=5mm,tate]{hanmen}% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。
-\RequirePackage[deluxe,uplatex]{otf}% フォントの多書体化。
+\RequirePackage[Q=11.5,H=19,W=42,L=17,addten=2mm,headsep=5mm,tate]{hanmen}% hanmen.styは自作のパッケージ。これでざっくりと版面を設計する。なお現在はこんなことをせずに、素直にjlreq.clsを用いるのが標準的な方法だと思われる。
+\RequirePackage[deluxe]{otf}% フォントの多書体化。
 \RequirePackage{plext}% plextは縦組み時に有用なパッケージ（なおutbook.clsなどの縦書き専用クラスを用いる場合には自動的に読み込まれる）。
 \RequirePackage{pxrubrica}% pxrubricaはルビ振りに必要なパッケージ。
 \RequirePackage{fancyhdr}% ヘッダー・フッターの改造に便利なパッケージ。
@@ -221,13 +221,13 @@ dvipdfmx novel
 ## 縦中横
 縦中横が使いたいときは、`\tcy` マクロが使える[^tcy]。
 
-[^tcy]: 縦中横を実現するマクロとしては、plextパッケージですでに `\rensuji` が提供されている。しかし、`\rensuji` を直接使うとどうやら無駄に \xkanjiskip が挿入されてしまうようなので、ここでは独自に `\tcy` というマクロを使うこととした。
+[^tcy]: 縦中横を実現するマクロとしては、plextパッケージですでに `\rensuji` が提供されている。しかし、`\rensuji`を直接使うとどうやら無駄に\xkanjiskipが挿入されてしまうようなので、ここでは独自に`\tcy`というマクロを使うこととした。なお`\tcy`を定義するのではなく、「[！と？ - 縦中横ふたたび](https://hakuoku.github.io/agakuTeX/tutorial/4_4_3exclamation/)」に書かれているような仕方で`\rensuji`を再定義するという方法もある。また、jlreq.clsを使う場合には`\tatechuyoko`というマクロがすでに定義されているのでこれを使えばよい。
 
 ```TeX
 \documentclass[uplatex,dvipdfmx,a6paper,papersize]{jsbook}
 \usepackage{novelstyle}
 \begin{document}
-　\ruby[h]{吾輩}{わが|はい}は猫である。名前はまだ無い。
+　\ruby{吾輩}{わが|はい}は猫である。名前はまだ無い。
 　\tcy{12}時だ。そろそろお昼にしよう\tcy{!!}
 \end{document}
 ```
@@ -243,7 +243,7 @@ dvipdfmx novel
 \end{document}
 ```
 
-`！` と `？` だけは、直後に全角空白を入れないで記述しておくと、PDF化させたさいに自動的に全角アキを挿入してくれるから、最初からそのように書いてもよい（というか普通はそうする）。しかし、`\tcy{!!}` の直後には `\zenkakuaki` が必ず要る。
+`！` と `？` だけは、直後に全角空白を入れないで記述しておくと、PDF化の際に自動的に全角アキを挿入してくれる（なおアキが不要なときは「`あ！\<と言った`」のように`\<`を挿入する）。しかし、`\tcy{!!}` の直後には `\zenkakuaki` が必ず要る。
 
 
 # まとめ
