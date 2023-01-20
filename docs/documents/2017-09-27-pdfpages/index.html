@@ -78,23 +78,22 @@
 </span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}{</span>mentuke1.pdf<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>Roman<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page=1]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>alph<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page={1-2}]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">\setcounter</span><span class="nb">{</span>page<span class="nb">}{</span>1<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>roman<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page={2-9}]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page={3-12}]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">\setcounter</span><span class="nb">{</span>page<span class="nb">}{</span>1<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\pagenumbering</span><span class="nb">{</span>arabic<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page={10-last}]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\includepdf</span><span class="na">[fitpaper,page={13-last}]</span><span class="nb">{</span><span class="k">\mainpdf</span><span class="nb">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=1,level=0]</span><span class="nb">{</span>Front Page<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=3,level=0]</span><span class="nb">{</span>Title<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=5,level=0]</span><span class="nb">{</span>Contents<span class="nb">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=25,level=0]</span><span class="nb">{</span>Introduction: The Chomskian Perspective On Language Study<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=27,level=1]</span><span class="nb">{</span>Introduction<span class="nb">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">\bookmark</span><span class="na">[page=\numexpr 1+12\relax,level=0]</span><span class="nb">{</span>Introduction: The Chomskian Perspective on Language Study<span class="nb">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
 </span></span></code></pre></div><h2 id="自炊した見開き文書の分割">自炊した見開き文書の分割</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\def\target</span><span class="nb">{</span>main.pdf<span class="nb">}</span><span class="c">%% 対象PDFファイル名
